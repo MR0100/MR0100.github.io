@@ -1,8 +1,8 @@
 // Screenshot the design system and site prototype. Usage: NODE_PATH=$(npm root -g) node render.js
 const { chromium } = require('playwright'); const path = require('path');
 const pages = [
-  ['specimen.html', 'specimen', 1440], ['../site/index.html', 'home', 1440],
-  ['../site/case-studies/chatgpt.html', 'case-study-chatgpt', 1440], ['../site/case-studies/chatgpt.html', 'case-study-chatgpt-mobile', 390],
+  ['specimen.html', 'specimen', 1440], ['../_site/index.html', 'home', 1440],
+  ['../_site/work/chatgpt/index.html', 'case-study-chatgpt', 1440], ['../_site/work/chatgpt/index.html', 'case-study-chatgpt-mobile', 390],
 ];
 (async () => {
   const b = await chromium.launch();

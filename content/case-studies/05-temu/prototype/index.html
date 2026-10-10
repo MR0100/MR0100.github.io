@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Temu concept · Keep the fun, fix the contract: shopping games that play fair</title>
+<link rel="stylesheet" href="../../../portfolio/design-system/tokens.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:var(--w-light) 17px/1.6 var(--font-body);padding:48px 24px 72px}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{font:var(--w-medium) 13px/1.4 var(--font-heading);letter-spacing:var(--label-tracking);text-transform:uppercase;color:var(--ink-60)}
+h1{font:var(--w-light) clamp(2rem,2.4vw + 1rem,3rem)/1.15 var(--font-heading);letter-spacing:var(--heading-tracking);margin:12px 0 18px;max-width:22ch}
+.intro{font-size:19px;color:var(--ink-75);max-width:62ch}
+.note{font-size:14px;color:var(--ink-60);margin-top:14px;max-width:70ch}
+section{background:var(--surface);border-radius:var(--radius-block);padding:36px 32px 32px;margin-top:36px}
+section h2{font:var(--w-light) 28px/1.2 var(--font-heading);letter-spacing:var(--heading-tracking);margin:6px 0 4px}
+section .sub{color:var(--ink-60);font-size:16px}
+.flow{display:grid;gap:28px;margin-top:28px}
+.flow.n2{grid-template-columns:repeat(2,minmax(0,260px))}
+.flow.n4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.step img{display:block;width:100%;max-width:260px;height:auto;margin:0 auto 16px}
+.step .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font:var(--w-semibold) 14px/1 var(--font-body);margin-right:8px;vertical-align:1px}
+.today .num{background:var(--problem-bg);color:var(--problem)}
+.proposal .num{background:var(--outcome-bg);color:var(--outcome)}
+.step h3{font:var(--w-semibold) 17px/1.35 var(--font-body);display:inline}
+.step p{font-size:16px;color:var(--ink-75);margin:8px 0 10px}
+.tag{display:inline-block;font:var(--w-medium) 12px/1 var(--font-heading);letter-spacing:.08em;text-transform:uppercase;padding:.5em .7em;border-radius:var(--radius-small)}
+.today .tag{background:var(--problem-bg);color:var(--problem)}
+.proposal .tag{background:var(--evidence-bg);color:var(--evidence)}
+.learn{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}
+.learn ol{padding-left:22px;font-size:17px}.learn li{margin-bottom:10px}
+.testbox{background:var(--hypothesis-bg);border-radius:var(--radius-medium);padding:20px 22px}
+.testbox .eyebrow{color:var(--hypothesis);margin-bottom:8px}
+.links{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.links a{display:inline-flex;align-items:center;height:var(--button-height);padding:0 22px;border-radius:var(--radius-medium);font:var(--w-medium) 15px/1 var(--font-body);text-decoration:none}
+.links a.primary{background:var(--accent);color:#fff}.links a.ghost{border:1px solid var(--ink-20);color:var(--ink)}
+@media (max-width:1000px){.flow.n4{grid-template-columns:repeat(2,minmax(0,1fr))}.learn{grid-template-columns:1fr}}
+@media (max-width:560px){body{padding:28px 16px 48px}section{padding:24px 18px}.flow.n2,.flow.n4{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div class="eyebrow">Concept prototype · Temu case study</div>
+<h1>Keep the fun, fix the contract: shopping games that play fair</h1>
+<p class="intro">Temu’s games do real work: a reason to open the app daily, cheap growth through referrals, and browsing that turns into buying. In 450 App Store reviews, players enjoy them. The anger is about the rules: in the 111 reviews about the games, 17 say progress crawls near the end and 14 say “free” turned into spend. This keeps the spin, the celebration and the countdowns, and makes the rules visible, fixed and true.</p>
+<p class="note">Independent study by Mitul Vaghasiya, not affiliated with Temu. Every screen below is my re-creation in Temu’s visual style, based on its App Store screenshots (10 Oct 2026) and the public images listed in <code>references/</code>. They are not screenshots of the real app.</p>
+
+<section class="today"><div class="eyebrow">Today</div><h2>What happens now</h2><p class="sub">Re-created in the real app’s style. Where no public image of a state exists, it follows reviews and help pages, as noted in the case study.</p>
+<div class="flow n2"><div class="step"><img src="../design/a0-wheel-gate.png" alt="A wheel before the shop" loading="lazy"><span class="num">1</span><h3>A wheel before the shop</h3><p>The wheel opens first and says nothing about what the prize will require. There’s no way to skip it or switch it off.</p><span class="tag">User control and freedom</span></div><div class="step"><img src="../design/a3-gift-crawl.png" alt="Each tap is worth less" loading="lazy"><span class="num">2</span><h3>Each tap is worth less</h3><p>+2.6%, +1.9% … +0.01%, until 99.99% and “invite 2 new users”. A simplified test control built from reviews, not a screenshot.</p><span class="tag">Goal-gradient used against the user</span></div></div></section>
+
+<section class="proposal"><div class="eyebrow">The proposal</div><h2>What I’d build instead</h2><p class="sub">The same moment, in 4 screens.</p>
+<div class="flow n4"><div class="step"><img src="../design/b1-wheel-rules-first.png" alt="Same wheel, rules on it" loading="lazy"><span class="num">1</span><h3>Same wheel, rules on it</h3><p>It still opens, lights up and spins. The chips say every spin wins, €5 to €20, use on €15+, no invites. Skip and “don’t show on open” are there.</p><span class="tag">Informed choice</span></div><div class="step"><img src="../design/b2-win-real-deadline.png" alt="The win still celebrates" loading="lazy"><span class="num">2</span><h3>The win still celebrates</h3><p>Confetti and a big “€10 off”. The 48-hour countdown is real, from the server, and the credit is already in the account.</p><span class="tag">Honest urgency</span></div><div class="step"><img src="../design/b4-gift-fixed-steps.png" alt="Steps that never shrink" loading="lazy"><span class="num">3</span><h3>Steps that never shrink</h3><p>Six steps, each worth the same: check in, look at deals, order, invite any friend. It shows the finish date and last month’s finish rate.</p><span class="tag">Goal-gradient, used fairly</span></div><div class="step"><img src="../design/b7-order-steps-promise.png" alt="It pays out what it said" loading="lazy"><span class="num">4</span><h3>It pays out what it said</h3><p>The order adds its 2 steps and unlocks the mug. The late-delivery credit, the most-praised reward in the reviews, is promised up front.</p><span class="tag">Fairness and trust</span></div></div></section>
+
+<section><div class="learn"><div><div class="eyebrow">What to take from this</div><h2 style="margin-bottom:16px">Three lessons for any app</h2><ol><li>Find out what a feature does for the business before you redesign it. Removing the fun would have removed the habit.</li><li>Read the five-star reviews too. They tell you what to keep.</li><li>Keep the urgency and the celebration. Make every rule visible before the tap, and make progress worth the same at every step.</li></ol></div>
+<div class="testbox"><div class="eyebrow">What the user test will decide</div><p>Does B stay as <em>fun</em> as A while feeling fairer? If 3 of 5 testers find it clearly less exciting, or stop the gift game once they see the real cost, the reward itself needs rethinking.</p></div></div></section>
+
+<div class="links"><a class="primary" href="try.html">Try the clickable prototype →</a><a class="ghost" href="https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/05-temu/case-study.md">Read the case study</a></div>
+</div></body></html>

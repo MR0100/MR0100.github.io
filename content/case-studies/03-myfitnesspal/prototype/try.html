@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Log it again prototype · MyFitnessPal re-creation (independent study)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Re-created in MyFitnessPal's visual style from its App Store (GB, v26.40.0) and Google Play screenshots, 10 Oct 2026.
+   For an independent usability study. Not the real app; no logo or wordmark. */
+:root{--blue:#0066EE;--blue2:#0B5BD3;--tint:#E1EDFD;--bg:#F2F2F7;--card:#fff;--ink:#000;--ink1:#1C1C1E;--ink2:#6C6C70;--ink3:#8E8E93;--line:#E6E6EB;--track:#ECEBF1;--row:#F6F6F8;
+  --teal:#2ABBAE;--purple:#6C0D8D;--orange:#FDB23D;--green:#2DB34A;--red:#E5484D;--paper:#F7F6F2;
+  --sys:-apple-system,"SF Pro Text","SF Pro Display",BlinkMacSystemFont,Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:15px/1.35 var(--sys);color:var(--ink1);background:var(--paper);display:flex;gap:32px;justify-content:center;align-items:flex-start;padding:32px;min-height:100vh;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit}
+input{font:inherit;color:inherit}
+svg{display:block}
+.phone{width:390px;height:844px;border-radius:54px;background:#111;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.18);flex:none}
+.screen{width:100%;height:100%;border-radius:44px;background:var(--bg);overflow:clip;position:relative}
+.status{position:absolute;top:0;left:0;right:0;height:50px;display:flex;justify-content:space-between;align-items:center;padding:4px 30px 0 34px;font-weight:600;font-size:16px;z-index:8;color:#000;pointer-events:none}
+.status .r{display:flex;gap:6px;align-items:center}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#000;z-index:9}
+.homebar{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:#000;z-index:30;pointer-events:none}
+.rtag{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;white-space:nowrap;padding:1px 8px;border-radius:99px;background:rgba(255,255,255,.92);font:500 11px/13px var(--sys);color:rgba(60,60,67,.55);z-index:30;pointer-events:none;letter-spacing:.01em}
+.view{position:absolute;inset:0;padding-top:50px;display:none;flex-direction:column;background:linear-gradient(180deg,#E3F0FD 0,#EAF1FA 170px,var(--bg) 330px)}
+.view.on{display:flex}
+.view.plain{background:#fff}
+.scroll{flex:1;overflow:auto;padding:0 0 120px;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+/* Today header + week row */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 0}
+.hdr h1{font:700 28px/34px var(--sys);letter-spacing:-.4px;display:flex;align-items:center;gap:6px;color:#000}
+.streak{display:flex;align-items:center;gap:3px;font-weight:700;font-size:15px;color:#000}
+.week{display:grid;grid-template-columns:repeat(7,1fr);padding:12px 8px 14px;text-align:center}
+.week .l{font-size:11px;color:var(--ink2);height:14px;position:relative}
+.week .t .l{color:#000;font-weight:700}
+.week .t .l:before{content:"";position:absolute;left:50%;top:-6px;width:3px;height:3px;border-radius:50%;background:var(--ink2);transform:translateX(-50%)}
+.dot{width:22px;height:22px;border-radius:50%;margin:6px auto 0;border:1.5px solid #8E8E93;display:grid;place-items:center}
+.dot.done{background:#000;border-color:#000}
+/* Cards */
+.card{background:var(--card);border-radius:16px;padding:14px 16px 16px;margin:0 14px 10px;box-shadow:0 1px 2px rgba(0,0,0,.03),0 4px 16px rgba(20,30,60,.06)}
+.cal .lab{font-size:15px;color:#000}
+.cal .row{display:flex;align-items:baseline;justify-content:space-between;margin-top:6px}
+.cal .row b{font:700 22px/26px var(--sys);letter-spacing:-.3px;color:#000}.cal .row b small{font:400 13px var(--sys);color:var(--ink2);letter-spacing:0}
+.cal .row > span{font-size:13px;color:var(--ink2)}
+.bar{height:8px;border-radius:4px;background:var(--track);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;border-radius:4px;background:#2583FF;transition:width .3s}
+.mac{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;padding-right:6px}
+.mac .lab{font-size:15px;color:#000}
+.mac .v{margin-top:4px;font:700 16px/20px var(--sys);color:#000}.mac .v small{font:400 13px var(--sys);color:var(--ink2)}
+.mac .bar{height:6px;margin-top:8px}
+.swap{position:absolute;right:-8px;top:-6px;width:28px;height:28px;border-radius:50%;background:var(--bg);display:grid;place-items:center}
+.sechd{display:flex;align-items:baseline;justify-content:space-between;padding:14px 20px 8px}
+.sechd h2{font:600 17px/22px var(--sys);color:#000}
+.sechd button{font-size:15px;color:#000}
+/* Meal cards (real Today diary style) */
+.mcard{position:relative;background:#fff;border-radius:14px;margin:0 14px 8px;box-shadow:0 1px 2px rgba(0,0,0,.03),0 3px 12px rgba(20,30,60,.05)}
+.mtop{display:flex;align-items:flex-start;gap:12px;padding:14px 12px 14px 14px;width:100%}
+.mtop .ic{width:26px;flex:none;color:var(--blue);padding-top:12px}
+.mtop .tx{flex:1;min-width:0}
+.mtop .nm{font:500 17px/22px var(--sys);color:#000;padding-top:4px}
+.mtop .sm{font-size:15px;color:var(--ink2);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtop .mm{white-space:nowrap;font-size:12.5px;color:var(--ink2);margin-top:5px}.mtop .mm b{font-weight:600;color:#3a3a3c;margin-left:6px}
+.mtop .mm b:first-of-type{margin-left:0}
+.mtop .acts{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:6px}
+.mtop .nm{padding-right:120px}
+.more{width:32px;height:32px;display:grid;place-items:center;color:var(--ink3)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:5px;background:var(--tint);color:var(--blue2);font-weight:600;font-size:15px;height:32px;padding:0 15px;border-radius:99px;flex:none}
+.pill.grey{background:var(--bg);color:var(--ink1);font-weight:500;font-size:14px;padding:0 12px}
+.mini2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 14px 10px}
+.mini2 .card{margin:0;padding:12px 14px}
+.mini2 .lab{font-size:14px;color:#000;display:flex;justify-content:space-between;align-items:center}
+.mini2 .v{font:700 17px/22px var(--sys);margin-top:6px;display:flex;align-items:center;gap:6px}
+/* Items inside a meal card (B) */
+.items{padding:0 12px 6px 52px}
+.it{display:flex;align-items:center;width:100%;padding:10px 0;border-top:1px solid var(--line);gap:10px}
+.it .nm{flex:1;min-width:0}.it .nm b{display:flex;align-items:center;gap:5px;font-weight:400;font-size:15px;color:#000}.it .nm span{font-size:13.5px;color:var(--ink2)}
+.it .k{font-size:14px;color:var(--ink2)}
+.editrow{display:none;padding:2px 0 12px}
+.editrow.on{display:block}
+.chips{display:flex;gap:6px;align-items:center}
+.chip{min-width:44px;height:34px;padding:0 10px;border-radius:99px;background:var(--bg);font-weight:600;font-size:15px;text-align:center;color:var(--ink1)}
+.chip.on{background:var(--blue);color:#fff}
+.rm{margin-left:auto;display:flex;align-items:center;gap:4px;color:var(--red);font-size:14px;font-weight:500;padding:6px 2px}
+.editrow .hint{font-size:12.5px;color:var(--ink2);margin-top:8px}
+.empty{font-size:14px;color:var(--ink3);padding:2px 0 10px}
+/* Usual card (B) */
+.usual{padding:16px}
+.usual .eb{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--blue2);display:flex;align-items:center;gap:6px}
+.usual h3{font:700 19px/24px var(--sys);color:#000;margin:6px 0 4px}
+.usual .its{font-size:15px;color:#000}.usual .its b{font-weight:600}
+.usual .basis{font-size:13px;color:var(--ink2);margin-top:4px}
+.usual .row{display:flex;gap:8px;margin-top:14px}
+.bigpill{flex:1;height:44px;border-radius:99px;background:var(--blue);color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center}
+.bigpill.lt{flex:0 0 auto;padding:0 20px;background:var(--tint);color:var(--blue2)}
+.bigpill[disabled]{background:#C7C7CC}
+.sheet>.bigpill,.foot>.bigpill{flex:none}
+.logged{display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:15px;color:#000}
+.logged .ck{width:24px;height:24px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+.logged b{flex:1;font-weight:500}
+.logged button{font-weight:600;color:var(--blue2);padding:4px 2px}
+/* Compact summary (B) */
+.sum .mrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.sum .mrow div{font-size:12.5px;color:var(--ink2)}.sum .mrow b{color:#000;font-weight:600}
+.sum .mrow .bar{height:4px;margin-top:5px}
+/* Floating tab bar + FAB */
+.tabbar{position:absolute;left:12px;right:86px;bottom:30px;height:60px;border-radius:30px;background:rgba(248,248,250,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 2px 14px rgba(0,0,0,.10),0 0 0 .5px rgba(0,0,0,.05);display:flex;align-items:center;padding:0 5px;z-index:4}
+.tabbar span{flex:1;height:50px;border-radius:25px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:500;color:#000}
+.tabbar span.on{background:rgba(0,0,0,.07);font-weight:600}
+.fab{position:absolute;right:14px;bottom:32px;width:58px;height:58px;border-radius:50%;background:var(--blue);display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,80,200,.35);z-index:4}
+/* Sub-screen nav */
+.nav{display:flex;align-items:center;gap:8px;padding:6px 12px 10px;min-height:46px}
+.nav .back{width:36px;height:36px;display:grid;place-items:center;color:#000}
+.nav h2{flex:1;text-align:center;font:500 16px/20px var(--sys);color:#000;margin-right:44px;display:flex;align-items:center;justify-content:center;gap:4px}
+.nav h2.blue{color:var(--blue2);font-weight:600;font-size:15px}
+/* Search screen (A) */
+.sfield{display:flex;align-items:center;gap:8px;margin:2px 16px 12px;background:#fff;border:1px solid #D6D6DC;border-radius:22px;padding:0 14px;height:44px}
+.sfield input{flex:1;border:0;background:none;outline:none;font-size:16px;min-width:0}
+.sfield input::placeholder{color:var(--ink3)}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 16px 12px}
+.tool{background:#fff;border-radius:12px;padding:10px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12.5px;font-weight:500;color:#000;box-shadow:0 1px 2px rgba(0,0,0,.04),0 2px 8px rgba(20,30,60,.05);position:relative;text-align:center}
+.tool .ic{color:var(--blue)}
+.prem{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;color:#8A6100;background:#FFF1CF;padding:2px 6px;border-radius:99px;letter-spacing:.01em}
+.tool .prem{position:absolute;top:-6px;right:-2px}
+.adslot{margin:0 16px 10px;height:52px;border-radius:8px;background:#E7E7EC;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--ink3)}
+.adslot b{font-size:10px;letter-spacing:.05em;border:1px solid var(--ink3);border-radius:3px;padding:0 3px;font-weight:600}
+.segtabs{display:flex;gap:18px;padding:0 20px;border-bottom:1px solid var(--line)}
+.segtabs button{padding:9px 0 8px;font-size:14px;color:var(--ink1);font-weight:400;border-bottom:2px solid transparent}
+.segtabs button.on{color:#000;border-color:#000;font-weight:600}
+.list{flex:1;overflow:auto;padding:10px 16px 40px;scrollbar-width:none}
+/* Food rows (real result-row style: grey card, name, blue detail, plus) */
+.frow{display:flex;align-items:center;gap:10px;width:100%;padding:11px 8px 11px 14px;background:var(--row);border-radius:12px;margin-bottom:8px}
+.frow .nm{flex:1;min-width:0}.frow .nm b{display:flex;align-items:center;gap:6px;font-weight:600;font-size:16px;color:#000}.frow .nm span{display:block;font-size:14px;color:var(--blue);margin-top:2px}
+.frow .cnt{font-size:11.5px;font-weight:600;color:var(--ink2);background:#E9E9EE;padding:1px 6px;border-radius:99px}
+.plusbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#3A3A3C;flex:none}
+.plusbtn.done{background:var(--blue);color:#fff;width:30px;height:30px;margin:4px}
+/* Food detail (A) */
+.dbody{flex:1;overflow:auto;padding:4px 16px 16px}
+.dname{font:700 22px/28px var(--sys);color:#000;display:flex;align-items:center;gap:6px}
+.dsub{font-size:14px;color:var(--ink2);margin-top:2px}
+.nut{display:flex;align-items:center;gap:18px;margin:16px 0 12px}
+.nut .ring{position:relative;width:86px;height:86px;flex:none}
+.nut .ring .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.nut .ring .mid b{font:700 22px/24px var(--sys);color:#000}.nut .ring .mid span{font-size:12px;color:#000}
+.nut .m{flex:1;text-align:center}.nut .m i{display:block;font-style:normal;font-size:12px;font-weight:500}.nut .m b{display:block;font:600 19px/24px var(--sys);color:#000;margin-top:2px}.nut .m span{font-size:13px}
+.frm{background:#fff;border-radius:14px;padding:0 14px;box-shadow:0 1px 2px rgba(0,0,0,.03),0 3px 12px rgba(20,30,60,.05)}
+.frm .f{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;color:#000;gap:10px}
+.frm .f:last-child{border-bottom:0}
+.frm .f .val{background:var(--bg);border-radius:8px;padding:5px 12px;font-size:14px;color:var(--blue2);font-weight:500}
+.foot{padding:12px 16px 50px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.textbtn{height:40px;color:var(--red);font-weight:500;font-size:15px;text-align:center}
+/* Full diary (A, behind View all) */
+.eq{display:flex;justify-content:space-between;align-items:flex-end;text-align:center;font-size:11.5px;color:var(--ink2)}
+.eq b{display:block;font:600 17px/22px var(--sys);color:#000}
+.eq .op{font-size:16px;color:var(--ink2);padding-bottom:16px}
+/* Sheets / toast */
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.32);display:none;z-index:5}.scrim.on{display:block}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;padding:8px 16px 40px;transform:translateY(100%);transition:transform .28s cubic-bezier(.3,1,.3,1);z-index:6;visibility:hidden;max-height:90%;display:flex;flex-direction:column}
+.sheet.on{transform:none;visibility:visible}
+.sheet.tall{height:88%}
+.grab{width:36px;height:5px;border-radius:3px;background:#D1D1D6;margin:0 auto 14px;flex:none}
+.sheet h3{font:700 20px/25px var(--sys);color:#000;margin-bottom:4px}.sheet p.s{color:var(--ink2);font-size:14px;margin-bottom:14px}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}
+.shead .x{width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;color:var(--ink2);flex:none}
+.shead .done{font-weight:600;color:var(--blue2);font-size:16px;padding:4px 2px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px;border-radius:14px;background:var(--row);font-size:15px;font-weight:500;color:#000;position:relative;width:100%}
+.opt .ic{color:var(--blue)}
+.opt .prem{position:absolute;top:12px;right:10px}
+.drow{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;background:var(--row);border-radius:12px;margin-bottom:8px}
+.drow .nm{flex:1;min-width:0}.drow .nm b{display:block;font-size:15px;font-weight:600;color:#000}.drow .nm span{display:block;font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drow .k{font-size:14px;color:var(--blue2);font-weight:500;flex:none}
+.chkrow{display:flex;align-items:center;gap:12px;padding:12px 10px 12px 14px;background:#fff;border-radius:12px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 3px 10px rgba(20,30,60,.07)}
+.chk{width:28px;height:28px;border-radius:50%;border:1.5px solid #C7C7CC;display:grid;place-items:center;flex:none}
+.chk.on{background:var(--blue);border-color:var(--blue)}
+.chkrow .nm{flex:1;min-width:0;font-size:15px;color:#000}.chkrow .nm span{display:block;font-size:13.5px;color:var(--ink2)}
+.chkrow.off .nm{color:var(--ink3)}
+.step{display:flex;align-items:center;gap:4px}
+.step button{width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:18px;color:#000}
+.step b{min-width:26px;text-align:center;font-size:15px;font-weight:600}
+.sfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.sfoot .n{font-weight:600;font-size:15px;color:#000}.sfoot .n span{display:block;font-weight:400;font-size:13px;color:var(--ink2)}
+.sfoot .bigpill{flex:0 0 auto;padding:0 22px}
+.seg2{display:flex;background:#EEEEF0;border-radius:9px;padding:2px;margin:6px 0 8px}
+.seg2 button{flex:1;padding:6px;border-radius:7px;font-size:13.5px;font-weight:500;color:#000;text-align:center}
+.seg2 button.on{background:#fff;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.quiet{display:flex;align-items:center;gap:10px;padding:14px 2px 0;margin-top:auto;border-top:1px solid var(--line);font-size:14px;color:var(--ink2);width:100%}
+.quiet .t{flex:1}
+.toast{position:absolute;left:14px;right:14px;bottom:104px;background:#1C1C1E;color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;display:none;z-index:8;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.toast.on{display:flex}.toast span{flex:1}.toast button{color:#7EB2FF;font-weight:600;padding:2px 4px}
+.premhead{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+/* Facilitator panel */
+.panel{width:360px;background:#fff;border-radius:16px;padding:20px;font:14px/1.45 Inter,var(--sys);color:#16181d}
+.panel h1{font-size:18px;font-weight:600;margin-bottom:4px}.panel .s{color:#5b6070;margin-bottom:14px}
+.panel h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5b6070;margin:16px 0 6px}
+.seg{display:flex;border:1px solid #e7e8ec;border-radius:10px;overflow:hidden}.seg button{flex:1;padding:8px;text-align:center}.seg button.on{background:#111;color:#fff}
+.panel ol{padding-left:18px}.panel li{margin-bottom:6px}
+.daybox{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--paper);border-radius:10px;padding:8px 10px}
+.log{height:170px;overflow:auto;background:var(--paper);border-radius:10px;padding:8px;font:12px/1.5 ui-monospace,Menlo,monospace;white-space:pre}
+.panel .actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.panel .btn{display:inline-block;padding:8px 14px;font-size:14px;font-weight:600;border-radius:99px;background:#111;color:#fff}
+.panel .btn.ghost{background:#fff;color:#16181d;border:1px solid #e7e8ec}
+@media (max-width:820px){body{padding:0;background:#fff}.panel{display:none}.phone{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0}}
+body:not(.test) .panel{display:none}
+body.solo{padding:0;background:transparent;display:block;min-height:0}
+body.solo .phone{width:390px;height:844px;border-radius:54px;padding:12px;box-shadow:none}
+body.solo .screen{border-radius:44px}
+</style></head>
+<body>
+<div class="phone"><div class="screen" id="screen">
+  <div class="island"></div>
+  <div class="status"><span id="clock">8:05</span><span class="r">
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.3 2.5l1.2-1.3A10.6 10.6 0 0 0 8 .4 10.6 10.6 0 0 0 .5 3.4l1.2 1.3A9 9 0 0 1 8 2.2zm0 3.6c1.4 0 2.7.5 3.7 1.4L13 5.9a7.2 7.2 0 0 0-10 0l1.3 1.3c1-.9 2.3-1.4 3.7-1.4zM8 9.3l2.2-2.1a3.3 3.3 0 0 0-4.4 0z" /></svg>
+    <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="#000" opacity=".35"/><rect x="2" y="2" width="20" height="9" rx="2.5"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" opacity=".4"/></svg></span></div>
+
+  <!-- ===== Variant A: today's pattern, re-created from the App Store screens ===== -->
+  <section class="view" id="vTodayA">
+    <div class="scroll" id="todayScroll">
+      <div class="hdr"><h1>Today <svg width="12" height="8" viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="#000"/></svg></h1><span class="streak" id="aStreak"></span></div>
+      <div class="week" id="aWeek"></div>
+      <div class="card cal"><div class="lab">Calories</div>
+        <div class="row"><b><span id="aFood">0</span> cal <small>/ 1,900</small></b><span><span id="aLeft">1,900</span> left</span></div>
+        <div class="bar"><i id="aBar" style="width:0"></i></div></div>
+      <div class="card"><div class="mac">
+        <div><div class="lab">Carbs</div><div class="v"><span id="aMcN">0</span> g <small>/ 240</small></div><div class="bar"><i id="aMc" style="width:0;background:var(--teal)"></i></div></div>
+        <div><div class="lab">Fat</div><div class="v"><span id="aMfN">0</span> g <small>/ 63</small></div><div class="bar"><i id="aMf" style="width:0;background:var(--purple)"></i></div></div>
+        <div><div class="lab">Protein</div><div class="v"><span id="aMpN">0</span> g <small>/ 95</small></div><div class="bar"><i id="aMp" style="width:0;background:var(--orange)"></i></div></div>
+        <span class="swap" data-ic="swap"></span></div></div>
+      <div id="aPreview"><div class="sechd"><h2>Diary</h2><button id="aViewAll">View all</button></div><div id="aPrevRows"></div></div>
+      <div class="mini2"><div class="card"><div class="lab">Steps</div><div class="v"><span data-ic="steps" style="color:#E5484D"></span>4,210</div></div>
+        <div class="card"><div class="lab">Exercise <span data-ic="plus16"></span></div><div class="v"><span data-ic="flame" style="color:#F28C28"></span>0 cal</div></div></div>
+    </div>
+    <div class="tabbar" data-tabs></div>
+    <button class="fab" id="aPlus" aria-label="Log"><span data-ic="plusW"></span></button>
+  </section>
+
+  <section class="view" id="vDiaryA">
+    <div class="nav"><button class="back" id="aDiaryBack" aria-label="Back to Today"><span data-ic="back"></span></button><h2>Diary</h2></div>
+    <div class="scroll" id="aDiaryScroll" style="padding-bottom:60px">
+      <div class="card"><div class="eq"><div><b>1,900</b>Goal</div><span class="op">−</span><div><b id="aDFood">0</b>Food</div><span class="op">+</span><div><b>0</b>Exercise</div><span class="op">=</span><div><b id="aDLeft" style="color:var(--blue2)">1,900</b>Remaining</div></div></div>
+      <div id="aMeals"></div></div>
+  </section>
+
+  <section class="view plain" id="vSearchA">
+    <div class="nav"><button class="back" id="aSearchBack" aria-label="Back"><span data-ic="back"></span></button><h2 class="blue"><span id="aSearchTitle">Breakfast</span> <svg width="10" height="7" viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="currentColor"/></svg></h2></div>
+    <div class="sfield"><span data-ic="search"></span><input id="aQ" placeholder="Search for a food" autocomplete="off"></div>
+    <div class="tools"><button class="tool" id="aScan"><span class="ic" data-ic="barcode"></span>Barcode scan<span class="prem" data-ic-prem></span></button>
+      <button class="tool" data-slock="Meal scan"><span class="ic" data-ic="camera"></span>Meal scan<span class="prem" data-ic-prem></span></button>
+      <button class="tool" data-slock="Voice log"><span class="ic" data-ic="mic"></span>Voice log<span class="prem" data-ic-prem></span></button></div>
+    <div class="adslot"><b>AD</b> Sponsored banner</div>
+    <div class="segtabs"><button class="on" data-at="h">History</button><button data-at="m">My meals</button><button data-at="r">Recipes</button></div>
+    <div class="list" id="aList"></div>
+  </section>
+
+  <section class="view" id="vDetailA">
+    <div class="nav"><button class="back" id="aDetailBack" aria-label="Back"><span data-ic="back"></span></button><h2 id="aDetailNav">Add food</h2></div>
+    <div class="dbody">
+      <div class="dname"><span id="aDName"></span><span data-ic="shield"></span></div><div class="dsub" id="aDServ"></div>
+      <div class="nut"><div class="ring"><svg width="86" height="86" viewBox="0 0 86 86" id="aDRing"></svg><div class="mid"><b id="aDK"></b><span>cal</span></div></div>
+        <div class="m"><i style="color:var(--teal)" id="aDCp"></i><b id="aDC"></b><span>Carbs</span></div><div class="m"><i style="color:var(--purple)" id="aDFp"></i><b id="aDF"></b><span>Fat</span></div><div class="m"><i style="color:#C77F00" id="aDPp"></i><b id="aDP"></b><span>Protein</span></div></div>
+      <div class="frm"><div class="f"><span>Serving size</span><span class="val" id="aDSize"></span></div>
+        <div class="f"><span>Servings</span><div class="chips" id="aDChips"></div></div>
+        <div class="f"><span>Meal</span><span class="val" id="aDMeal"></span></div></div>
+    </div>
+    <div class="foot"><button class="bigpill" id="aDSave">Add</button><button class="textbtn" id="aDRemove" hidden>Remove</button></div>
+  </section>
+
+  <!-- ===== Variant B: Log it again, same visual language ===== -->
+  <section class="view" id="vDiaryB">
+    <div class="scroll" id="bScroll">
+      <div class="hdr"><h1>Today <svg width="12" height="8" viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="#000"/></svg></h1><span class="streak" id="bStreak"></span></div>
+      <div class="week" id="bWeek"></div>
+      <div class="card cal sum"><div class="row" style="margin-top:0"><b><span id="bFood">0</span> cal <small>/ 1,900</small></b><span><span id="bLeft">1,900</span> left</span></div>
+        <div class="bar"><i id="bBar" style="width:0"></i></div>
+        <div class="mrow"><div>Carbs <b id="bC">0</b> g<div class="bar"><i id="bCb" style="width:0;background:var(--teal)"></i></div></div><div>Fat <b id="bF">0</b> g<div class="bar"><i id="bFb" style="width:0;background:var(--purple)"></i></div></div><div>Protein <b id="bP">0</b> g<div class="bar"><i id="bPb" style="width:0;background:var(--orange)"></i></div></div></div></div>
+      <div id="bCard"></div>
+      <div class="sechd"><h2>Diary</h2></div>
+      <div id="bMeals"></div>
+    </div>
+    <div class="tabbar" data-tabs></div>
+    <button class="fab" id="bPlus" aria-label="Log"><span data-ic="plusW"></span></button>
+  </section>
+
+  <div class="toast" id="toast"><span id="toastT"></span><button id="toastUndo" hidden>Undo</button></div>
+  <div class="scrim" id="scrim"></div>
+
+  <!-- A sheets -->
+  <div class="sheet" id="plusSheet"><div class="grab"></div><h3>Log</h3>
+    <div class="opts">
+      <button class="opt" id="aLogFood"><span class="ic" data-ic="search24"></span>Search for a food</button>
+      <button class="opt" data-lock="Barcode scan"><span class="ic" data-ic="barcode"></span>Barcode scan<span class="prem" data-ic-prem></span></button>
+      <button class="opt" data-lock="Meal scan"><span class="ic" data-ic="camera"></span>Meal scan<span class="prem" data-ic-prem></span></button>
+      <button class="opt" data-lock="Voice log"><span class="ic" data-ic="mic"></span>Voice log<span class="prem" data-ic-prem></span></button>
+    </div></div>
+  <div class="sheet" id="lockSheet"><div class="grab"></div><div class="premhead"><span class="prem" data-ic-prem></span></div>
+    <h3 id="lockT">Barcode scan is a Premium feature</h3><p class="s">Start a free trial to scan, snap and speak your meals. Price shown at checkout.</p>
+    <button class="bigpill" id="lockTrial">Start free trial</button><button class="textbtn" id="lockNo" style="color:var(--blue2);margin-top:6px">Not now</button></div>
+  <div class="sheet" id="copySheetA"><div class="grab"></div><h3 id="copyAT">Copy from date</h3><p class="s">Choose a day to copy from.</p><div id="copyAList"></div></div>
+
+  <!-- B sheets -->
+  <div class="sheet" id="changeSheet"><div class="grab"></div>
+    <div class="shead"><h3 id="chT">Your usual breakfast</h3><button class="x" id="chX" aria-label="Close"><span data-ic="x"></span></button></div>
+    <p class="s">Untick what you didn't have. Change amounts before logging.</p>
+    <div id="chList"></div>
+    <div class="sfoot"><span class="n" id="chCount"></span><button class="bigpill" id="chLog">Log</button></div></div>
+  <div class="sheet tall" id="addSheet"><div class="grab"></div>
+    <div class="shead"><h3 id="addT">Add to Snacks</h3><button class="done" id="addDone">Done</button></div>
+    <div class="sfield" style="margin:8px 0 8px"><span data-ic="search"></span><input id="bQ" placeholder="Search your foods and the database" autocomplete="off"></div>
+    <div style="font-size:13px;color:var(--ink2);margin:4px 2px 8px" id="addSub">Your foods · most logged first</div>
+    <div class="list" id="bList" style="padding:0"></div>
+    <button class="quiet" id="bScan"><span data-ic="barcode" style="color:var(--ink2)"></span><span class="t">New packaged food? Scan the barcode</span><span class="prem" data-ic-prem></span></button>
+  </div>
+  <div class="sheet" id="copySheetB"><div class="grab"></div>
+    <div class="shead"><h3 id="copyBT">Copy to today's Lunch</h3><button class="x" id="copyBX" aria-label="Close"><span data-ic="x"></span></button></div>
+    <div class="seg2"><button class="on" data-cm="meal" id="cmMeal">Lunch only</button><button data-cm="day">Whole day</button></div>
+    <p class="s" id="copyBS" style="margin:4px 0 10px">Items keep their meal and amounts.</p>
+    <div id="copyBList"></div></div>
+  <div class="sheet" id="scanSheet"><div class="grab"></div><div class="premhead"><span class="prem" data-ic-prem></span></div>
+    <h3>Scan new foods in one step</h3><p class="s">Barcode scan is part of Premium. Your usual meals, copying and history stay free.</p>
+    <button class="bigpill" id="scanSee">See Premium</button><button class="textbtn" id="scanNo" style="color:var(--blue2);margin-top:6px">Not now</button></div>
+
+  <div class="rtag">Re-creation for an independent study</div>
+  <div class="homebar"></div>
+</div></div>
+
+<aside class="panel">
+  <h1>Test facilitator</h1><div class="s">Prototype for a 5-user test. Both variants are re-created in MyFitnessPal's visual style from its App Store and Google Play screenshots (10 Oct 2026). Not the real app and not affiliated with MyFitnessPal. Foods, calories and history counts are sample data.</div>
+  <h4>Variant</h4><div class="seg"><button data-v="A">A · Today's pattern</button><button data-v="B" class="on">B · Log it again</button></div>
+  <h4>Pretend time</h4><div class="daybox"><span id="timeLabel">8:05 · breakfast</span><button class="btn ghost" id="nextTime">Later →</button></div>
+  <h4>Tasks (read aloud)</h4>
+  <ol><li>"It's 8 am. Log your usual breakfast: oats, a banana and a coffee."</li><li>"You only had half the banana. Fix that, then add a Greek yogurt as a snack."</li><li>Press Later. "It's lunchtime. Make today's lunch the same as Monday's."</li><li>"You want to scan a new snack bar. What would you do?"</li></ol>
+  <h4>Current task</h4><div class="daybox"><span id="taskLabel">No task running</span><span><button class="btn ghost" id="taskStart">Start</button> <button class="btn ghost" id="taskEnd">End</button></span></div>
+  <div class="daybox" style="margin-top:6px"><span id="tapLabel">Taps: 0</span><button class="btn ghost" id="tapReset">Reset count</button></div>
+  <span id="tapA" hidden></span><span id="tapB" hidden></span>
+  <h4>Event log</h4><div class="log" id="log"></div>
+  <div class="actions"><button class="btn" id="reset">Reset</button><button class="btn ghost" id="export">Download CSV</button></div>
+</aside>
+
+<script>
+if(new URLSearchParams(location.search).has('test')) document.body.classList.add('test');
+/* Inline line icons, drawn to look like the app's (outline, ~1.6px strokes, rounded caps) */
+const SV = (w,h,body,extra='') => `<svg width="${w}" height="${h}" viewBox="0 0 24 24" fill="none" stroke="currentColor" ${/stroke-width/.test(extra)?'':'stroke-width="1.7"'} stroke-linecap="round" stroke-linejoin="round" ${extra}>${body}</svg>`;
+const ICON = {
+  back: SV(22,22,'<path d="M20 12H4M10 6l-6 6 6 6"/>'),
+  search: SV(18,18,'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/>','style="color:#0066EE"'),
+  search24: SV(24,24,'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/>'),
+  barcode: SV(24,24,'<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M16.5 8v8"/>'),
+  camera: SV(24,24,'<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/>'),
+  mic: SV(24,24,'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
+  x: SV(14,14,'<path d="M6 6l12 12M18 6L6 18"/>','stroke-width="2.4"'),
+  plus16: SV(16,16,'<path d="M12 5v14M5 12h14"/>','stroke-width="2.2"'),
+  plus: SV(22,22,'<path d="M12 5v14M5 12h14"/>','stroke-width="1.6"'),
+  plusW: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+  checkS: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+  dots: SV(20,20,'<circle cx="5" cy="12" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="19" cy="12" r=".9" fill="currentColor"/>','stroke-width="1.8"'),
+  swap: SV(16,16,'<path d="M4 9h15l-3.5-3.5M20 15H5l3.5 3.5"/>','stroke-width="2"'),
+  trash: SV(17,17,'<path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>'),
+  copy: SV(15,15,'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>'),
+  bolt: '<svg width="11" height="14" viewBox="0 0 11 14"><path d="M6.6 0L0 8h4.4L3.6 14 11 5.6H6.4z" fill="#000"/></svg>',
+  shield: '<svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l8 3v6.5c0 5-3.4 9-8 10.5-4.6-1.5-8-5.5-8-10.5V5z" fill="#2DB34A"/><path d="M8 12.2l2.8 2.8L16.2 9.6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  steps: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="8" rx="3.2" ry="5"/><ellipse cx="16" cy="13" rx="3.2" ry="5"/></svg>',
+  flame: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.6 1.4-4 2.4-5.2.3 1.6 1 2.6 2 3C11 7.5 11.6 4.6 12 2z"/></svg>',
+  // Meal icons (blue outline, as on the Today diary cards)
+  Breakfast: SV(24,24,'<path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 9.5h1.5a2.5 2.5 0 0 1 0 5H16M3 21h16"/>'),
+  Lunch: SV(24,24,'<path d="M4 10a8 5 0 0 1 16 0zM3.5 13.5h17M5 17h14v1a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/>'),
+  Dinner: SV(24,24,'<path d="M3 11h18a9 9 0 0 1-18 0zM8 21h8M14 4l-3 7"/>'),
+  Snacks: SV(24,24,'<path d="M12 7c-1.5-1.5-6-1.5-7 3s2 10 4.5 10c1.2 0 1.6-.6 2.5-.6s1.3.6 2.5.6C17 20 20 14.5 19 10s-5.5-4.5-7-3zM12 7c0-2 1-3.5 3-4"/>'),
+  // Tab bar
+  tToday: '<svg width="22" height="22" viewBox="0 0 24 24"><path d="M3.5 10.2L12 3.5l8.5 6.7V20a1 1 0 0 1-1 1H15v-6h-6v6H4.5a1 1 0 0 1-1-1z" fill="#000"/></svg>',
+  tPlan: SV(22,22,'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/>'),
+  tProgress: SV(22,22,'<path d="M4 20.5h16M6.5 20.5v-6h3.5v6M10 20.5V9h4v11.5M14 20.5V4h3.5v16.5"/>'),
+  tMore: SV(22,22,'<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>'),
+};
+const PREM = `<svg width="10" height="10" viewBox="0 0 24 24" fill="#8A6100"><path d="M3 18h18l-1.6-10-4.9 4L12 5l-2.5 7-4.9-4z"/></svg>Premium`;
+function paintIcons(root=document){ root.querySelectorAll('[data-ic]').forEach(e=>{ if(!e.dataset.done){ e.innerHTML=ICON[e.dataset.ic]||''; e.dataset.done=1; } });
+  root.querySelectorAll('[data-ic-prem]').forEach(e=>{ e.innerHTML=PREM; e.className='prem'; }); }
+document.querySelectorAll('[data-tabs]').forEach(t=>t.innerHTML=`<span class="on">${ICON.tToday}Today</span><span>${ICON.tPlan}Plan</span><span>${ICON.tProgress}Progress</span><span>${ICON.tMore}More</span>`);
+paintIcons();
+
+// Sample data: k = cal per serving, c/p/f = grams per serving, n = times logged in the last 60 days
+const FOODS = {
+  oats:{name:'Oats with milk', s:'1 bowl', k:260, c:38, p:10, f:7, n:21},
+  banana:{name:'Banana', s:'1 medium', k:105, c:27, p:1, f:0, n:18},
+  coffee:{name:'Coffee with milk', s:'1 mug', k:45, c:4, p:3, f:2, n:30},
+  yogurt:{name:'Greek yogurt', s:'150 g', k:90, c:6, p:15, f:1, n:12},
+  bowl:{name:'Chicken rice bowl', s:'1 bowl', k:520, c:62, p:34, f:12, n:9},
+  wrap:{name:'Paneer wrap', s:'1 wrap', k:430, c:44, p:18, f:19, n:7},
+  apple:{name:'Apple', s:'1 medium', k:95, c:25, p:0, f:0, n:8},
+  dal:{name:'Dal', s:'1 cup', k:230, c:32, p:14, f:5, n:7},
+  rice:{name:'Steamed rice', s:'1 cup', k:205, c:45, p:4, f:0, n:11},
+  salad:{name:'Green salad', s:'1 bowl', k:60, c:8, p:2, f:3, n:6},
+  almonds:{name:'Almonds', s:'20 g', k:115, c:4, p:4, f:10, n:10},
+  eggs:{name:'Boiled eggs', s:'2 eggs', k:155, c:1, p:13, f:11, n:5},
+  pasta:{name:'Tomato pasta', s:'1 plate', k:480, c:78, p:15, f:12, n:3},
+};
+const MEALS = ['Breakfast','Lunch','Dinner','Snacks'];
+const TIMES = [{t:'8:05', slot:'Breakfast'},{t:'12:40', slot:'Lunch'},{t:'19:10', slot:'Dinner'}];
+const USUAL = {
+  Breakfast:{eyebrow:'Breakfast · 8:05', title:'Your usual breakfast?', items:['oats','banana','coffee'], basis:'You had this on 9 of the last 14 mornings.'},
+  Lunch:{eyebrow:'Lunch · 12:40', title:'Your usual lunch?', items:['bowl','yogurt'], basis:'You had this on 6 of the last 10 weekdays.'},
+  Dinner:{eyebrow:'Dinner · 19:10', title:'Same as yesterday’s dinner?', items:['dal','rice','salad'], basis:'Your dinners vary, so this is yesterday’s.'},
+};
+const PAST = [
+  {d:'Fri 9 Oct', m:{Breakfast:['oats','banana','coffee'], Lunch:['bowl','yogurt'], Dinner:['dal','rice','salad'], Snacks:['almonds']}},
+  {d:'Thu 8 Oct', m:{Breakfast:['eggs','coffee'], Lunch:['bowl','yogurt'], Dinner:['pasta'], Snacks:['apple']}},
+  {d:'Wed 7 Oct', m:{Breakfast:['oats','banana','coffee'], Lunch:['dal','rice'], Dinner:['wrap','salad'], Snacks:[]}},
+  {d:'Tue 6 Oct', m:{Breakfast:['oats','coffee'], Lunch:['bowl','yogurt'], Dinner:['dal','rice','salad'], Snacks:['almonds']}},
+  {d:'Mon 5 Oct', m:{Breakfast:['oats','banana','coffee'], Lunch:['wrap','apple'], Dinner:['dal','rice'], Snacks:['yogurt']}},
+];
+const HISTORY_A = ['coffee','almonds','dal','rice','salad','apple','oats','yogurt','bowl','banana','wrap','eggs','pasta']; // most recent first
+let S;
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString('en-US');
+const fq = q => ({0.5:'½',1:'1',1.5:'1½',2:'2',2.5:'2½',3:'3'})[q] || String(q);
+const kc = e => FOODS[e.id].k * e.q;
+const sumK = list => list.reduce((a,e)=>a+kc(e),0);
+const allEntries = () => MEALS.flatMap(m=>S.diary[m]);
+const serv = e => e.q===1 ? FOODS[e.id].s : `${fq(e.q)} × ${FOODS[e.id].s}`;
+const snap = () => JSON.parse(JSON.stringify(S.diary));
+const pct = (v,g) => Math.min(100, v/g*100)+'%';
+
+function reset(v){
+  S = {v: v || (S && S.v) || 'B', ti:0, diary:{Breakfast:[],Lunch:[],Dinner:[],Snacks:[]}, start:Date.now(), events:[], taps:0, task:0, taskT:null, taskTaps:0,
+       meal:'Breakfast', editing:null, at:'h', detail:null, from:null, cardDone:{}, ch:[], addMeal:'Snacks', added:0, copyMeal:'Lunch', cm:'meal', undo:null};
+  $('log').textContent=''; document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.v));
+  closeSheets(); hideToast(); renderTime(); updateTaps();
+  show(S.v==='A' ? 'vTodayA' : 'vDiaryB'); log('reset', 'variant '+S.v);
+}
+function log(ev, detail=''){ const s=((Date.now()-S.start)/1000).toFixed(1); S.events.push({t:s, time:TIMES[S.ti].t, taps:S.taps, ev, detail}); $('log').textContent += `${s}s  [${S.taps}]  ${ev}${detail?'  '+detail:''}\n`; $('log').scrollTop=1e9; }
+function show(id){ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on', v.id===id)); render(); }
+const curView = () => (document.querySelector('.view.on')||{}).id;
+function render(){ const v=curView(); if(v==='vTodayA') renderTodayA(); if(v==='vDiaryA') renderDiaryA(); if(v==='vSearchA') renderSearchA(); if(v==='vDiaryB') renderDiaryB(); }
+function openSheet(id){ hideToast(); $('scrim').classList.add('on'); $(id).classList.add('on'); }
+function closeSheets(){ document.querySelectorAll('.sheet,.scrim').forEach(e=>e.classList.remove('on')); }
+let tt; function toast(m, undo){ $('toastT').textContent=m; $('toastUndo').hidden=!undo; S.undo=undo||null; $('toast').classList.add('on'); clearTimeout(tt); tt=setTimeout(hideToast, 4000); }
+function hideToast(){ $('toast').classList.remove('on'); }
+$('toastUndo').onclick = ()=>{ if(S.undo){ S.diary=S.undo.diary; if(S.undo.card) delete S.cardDone[S.undo.card]; log('undo', S.undo.what); } hideToast(); render(); };
+function renderTime(){ const T=TIMES[S.ti]; $('clock').textContent=T.t; $('timeLabel').textContent=`${T.t} · ${T.slot.toLowerCase()}`; }
+// tapA/tapB mirror the count for the side-by-side view; only the current variant's one is kept, so each phone reports its own count
+function updateTaps(){ const t=`${S.taps} tap${S.taps===1?'':'s'}`; $('tapLabel').textContent='Taps: '+S.taps; const el=$('tap'+S.v); if(el) el.textContent=t; }
+// Count every tap on a control inside the phone
+$('screen').addEventListener('click', e=>{ if(e.target.closest('button,input')){ S.taps++; updateTaps(); } }, true);
+
+/* ---------- Shared pieces (same visual language in A and B) ---------- */
+function totals(){ const all=allEntries(); const sum=f=>all.reduce((a,e)=>a+FOODS[e.id][f]*e.q,0); return {k:sumK(all), c:sum('c'), p:sum('p'), f:sum('f')}; }
+// Week row: Sun–Fri logged (sample streak), Saturday 10 Oct is today and fills once something is logged
+function renderWeek(id, streakId){ const today=allEntries().length>0;
+  $(id).innerHTML = ['S','M','T','W','T','F','S'].map((l,i)=>{ const done = i<6 ? i!==3 : today; return `<div class="${i===6?'t':''}"><div class="l">${l}</div><div class="dot ${done?'done':''}">${done?ICON.check:''}</div></div>`; }).join('');
+  $(streakId).innerHTML = `${today?3:2} ${ICON.bolt}`; }
+function mealMacros(list){ const g=f=>list.reduce((a,e)=>a+FOODS[e.id][f]*e.q,0); const c=g('c')*4, f=g('f')*9, p=g('p')*4, t=c+f+p||1; return `<b>C</b> ${Math.round(c/t*100)}% <b>F</b> ${Math.round(f/t*100)}% <b>P</b> ${Math.round(p/t*100)}%`; }
+
+/* ---------- Variant A ---------- */
+function renderTodayA(){
+  const t=totals(); renderWeek('aWeek','aStreak');
+  $('aFood').textContent=fmt(t.k); $('aLeft').textContent=fmt(1900-t.k); $('aBar').style.width=pct(t.k,1900);
+  $('aMcN').textContent=Math.round(t.c); $('aMfN').textContent=Math.round(t.f); $('aMpN').textContent=Math.round(t.p);
+  $('aMc').style.width=pct(t.c,240); $('aMp').style.width=pct(t.p,95); $('aMf').style.width=pct(t.f,63);
+  // Diary section on Today, as in the store screens: one card per meal with ⋯ and a Log button
+  $('aPrevRows').innerHTML = MEALS.map(m=>{ const L=S.diary[m];
+    return `<div class="mcard"><div class="mtop"><span class="ic">${ICON[m]}</span><button class="tx" data-prev="${m}"><div class="nm">${m}</div>${L.length?`<div class="sm">${FOODS[L[0].id].name}${L.length>1?` and ${L.length-1} more`:''}</div><div class="mm">${fmt(sumK(L))} cal &nbsp;·&nbsp; ${mealMacros(L)}</div>`:''}</button>
+      <span class="acts"><button class="more" data-amore="${m}" aria-label="${m} options">${ICON.dots}</button><button class="pill" data-aadd="${m}">Log</button></span></div></div>`; }).join('');
+  document.querySelectorAll('[data-prev]').forEach(b=>b.onclick=()=>{ log('tap diary meal', b.dataset.prev); show('vDiaryA'); });
+  wireA();
+}
+function wireA(){
+  document.querySelectorAll('[data-aadd]').forEach(b=>b.onclick=()=>{ S.meal=b.dataset.aadd; log('tap log (A)', S.meal); S.at='h'; $('aQ').value=''; show('vSearchA'); });
+  document.querySelectorAll('[data-amore]').forEach(b=>b.onclick=()=>{ S.meal=b.dataset.amore; log('tap meal menu (A)', S.meal); openCopyA(); });
+}
+function renderDiaryA(){
+  const t=totals(); $('aDFood').textContent=fmt(t.k); $('aDLeft').textContent=fmt(1900-t.k);
+  $('aMeals').innerHTML = MEALS.map(m=>`<div class="mcard"><div class="mtop"><span class="ic">${ICON[m]}</span><div class="tx"><div class="nm">${m}</div><div class="sm">${fmt(sumK(S.diary[m]))} cal</div></div>
+      <span class="acts"><button class="more" data-amore="${m}" aria-label="${m} options">${ICON.dots}</button><button class="pill" data-aadd="${m}">Log</button></span></div>
+    ${S.diary[m].length?`<div class="items">${S.diary[m].map((e,i)=>`<button class="it" data-aitem="${m}|${i}"><span class="nm"><b>${FOODS[e.id].name}</b><span>${serv(e)}</span></span><span class="k">${fmt(kc(e))}</span></button>`).join('')}</div>`:''}</div>`).join('');
+  document.querySelectorAll('[data-aitem]').forEach(b=>b.onclick=()=>{ const [m,i]=b.dataset.aitem.split('|'); log('open entry (A)', FOODS[S.diary[m][i].id].name); openDetail(S.diary[m][i].id, m, +i); });
+  wireA();
+}
+function renderSearchA(){
+  $('aSearchTitle').textContent=S.meal;
+  document.querySelectorAll('.segtabs button').forEach(b=>b.classList.toggle('on', b.dataset.at===S.at));
+  const q=$('aQ').value.trim().toLowerCase();
+  if(S.at==='m'){ $('aList').innerHTML='<div class="empty" style="padding:24px 4px">No saved meals yet. To create one, open a meal in your diary and save it as a meal.</div>'; return; }
+  if(S.at==='r'){ $('aList').innerHTML='<div class="empty" style="padding:24px 4px">No recipes yet.</div>'; return; }
+  const ids = HISTORY_A.filter(id=>!q || FOODS[id].name.toLowerCase().includes(q));
+  // Row body opens the food; the + adds one serving straight away (benefit of the doubt: the store screens show + on result rows)
+  $('aList').innerHTML = ids.map(id=>`<div class="frow"><button class="nm" data-afood="${id}"><b>${FOODS[id].name}</b><span>${FOODS[id].k} cal, ${FOODS[id].s}</span></button><button class="plusbtn" data-aquick="${id}" aria-label="Add ${FOODS[id].name}">${ICON.plus}</button></div>`).join('') || '<div class="empty" style="padding:24px 4px">No matches in your history.</div>';
+  document.querySelectorAll('[data-afood]').forEach(b=>b.onclick=()=>{ log('pick food (A)', FOODS[b.dataset.afood].name); openDetail(b.dataset.afood, S.meal, null); });
+  document.querySelectorAll('[data-aquick]').forEach(b=>b.onclick=()=>{ const id=b.dataset.aquick; S.diary[S.meal].push({id,q:1}); log('quick add (A)', `${FOODS[id].name} → ${S.meal}`); bounce(`Added to ${S.meal}`); });
+}
+$('aQ').oninput = ()=>renderSearchA();
+document.querySelectorAll('.segtabs button').forEach(b=>b.onclick=()=>{ S.at=b.dataset.at; log('search tab (A)', b.textContent); renderSearchA(); });
+function openDetail(id, meal, idx){
+  S.detail={id, meal, idx, q: idx===null ? 1 : S.diary[meal][idx].q}; S.from = idx===null ? 'vSearchA' : 'vDiaryA';
+  $('aDName').textContent=FOODS[id].name; $('aDServ').textContent='Sample entry'; $('aDSize').textContent=FOODS[id].s; $('aDMeal').textContent=meal;
+  $('aDetailNav').textContent = idx===null ? 'Add food' : 'Edit entry'; $('aDSave').textContent = idx===null ? `Add to ${meal}` : 'Save'; $('aDRemove').hidden = idx===null;
+  renderDetailA(); show('vDetailA');
+}
+function renderDetailA(){ const d=S.detail, F=FOODS[d.id]; $('aDK').textContent=fmt(F.k*d.q);
+  const c=F.c*4, f=F.f*9, p=F.p*4, t=c+f+p||1, C=2*Math.PI*37; let off=0;
+  $('aDRing').innerHTML = `<circle cx="43" cy="43" r="37" fill="none" stroke="#ECEBF1" stroke-width="7"/>` + [[c,'#2ABBAE'],[f,'#6C0D8D'],[p,'#FDB23D']].map(([v,col])=>{ const len=v/t*C, gap=len>4?2:0; const s=`<circle cx="43" cy="43" r="37" fill="none" stroke="${col}" stroke-width="7" stroke-dasharray="${Math.max(0,len-gap)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 43 43)"/>`; off+=len; return s; }).join('');
+  $('aDCp').textContent=Math.round(c/t*100)+'%'; $('aDFp').textContent=Math.round(f/t*100)+'%'; $('aDPp').textContent=Math.round(p/t*100)+'%';
+  $('aDC').textContent=Math.round(F.c*d.q)+'g'; $('aDF').textContent=Math.round(F.f*d.q)+'g'; $('aDP').textContent=Math.round(F.p*d.q)+'g';
+  $('aDChips').innerHTML=[0.5,1,1.5,2].map(q=>`<button class="chip ${q===d.q?'on':''}" data-aq="${q}">${fq(q)}</button>`).join('');
+  document.querySelectorAll('[data-aq]').forEach(b=>b.onclick=()=>{ d.q=+b.dataset.aq; renderDetailA(); }); }
+// Saving returns to the top of Today, as reviews describe ("switching me back to the Home Screen every time I edit an entry")
+function bounce(msg){ show('vTodayA'); $('todayScroll').scrollTop=0; toast(msg); log('returned to Today (A)'); }
+$('aDSave').onclick = ()=>{ const d=S.detail;
+  if(d.idx===null){ S.diary[d.meal].push({id:d.id, q:d.q}); log('add food (A)', `${FOODS[d.id].name} ×${d.q} → ${d.meal}`); bounce(`Added to ${d.meal}`); }
+  else { S.diary[d.meal][d.idx].q=d.q; log('save edit (A)', `${FOODS[d.id].name} ×${d.q}`); bounce('Entry updated'); } };
+$('aDRemove').onclick = ()=>{ const d=S.detail; S.diary[d.meal].splice(d.idx,1); log('remove (A)', FOODS[d.id].name); bounce('Entry removed'); };
+$('aDetailBack').onclick = ()=>{ log('back'); show(S.from); };
+$('aSearchBack').onclick = ()=>{ log('back'); show('vTodayA'); };
+$('aDiaryBack').onclick = ()=>{ log('back to Today'); show('vTodayA'); };
+$('aViewAll').onclick = ()=>{ log('tap view all (A)'); show('vDiaryA'); };
+$('aPlus').onclick = ()=>{ log('tap + (A)'); openSheet('plusSheet'); };
+$('aLogFood').onclick = ()=>{ S.meal=TIMES[S.ti].slot; log('log food from + (A)', S.meal); closeSheets(); S.at='h'; $('aQ').value=''; show('vSearchA'); };
+const lock = name => { $('lockT').textContent=`${name} is a Premium feature`; openSheet('lockSheet'); };
+document.querySelectorAll('[data-lock]').forEach(b=>b.onclick=()=>{ log('tap locked tool (A)', b.dataset.lock); closeSheets(); lock(b.dataset.lock); });
+document.querySelectorAll('[data-slock]').forEach(b=>b.onclick=()=>{ log('tap locked tool in search (A)', b.dataset.slock); lock(b.dataset.slock); });
+$('aScan').onclick = ()=>{ log('tap scan in search (A)'); lock('Barcode scan'); };
+$('lockTrial').onclick = ()=>{ log('tap start trial (A)'); closeSheets(); toast('Checkout. (Prototype ends here.)'); };
+$('lockNo').onclick = ()=>{ log('dismiss premium (A)'); closeSheets(); };
+function openCopyA(){
+  $('copyAT').textContent=`Copy ${S.meal} from date`;
+  $('copyAList').innerHTML = PAST.map((p,i)=>`<button class="drow" data-acopy="${i}"><span class="nm"><b>${p.d}</b></span><span class="k">${fmt(p.m[S.meal].reduce((a,id)=>a+FOODS[id].k,0))} cal</span></button>`).join('');
+  document.querySelectorAll('[data-acopy]').forEach(b=>b.onclick=()=>{ const p=PAST[+b.dataset.acopy]; p.m[S.meal].forEach(id=>S.diary[S.meal].push({id,q:1})); log('copy (A)', `${p.d} ${S.meal}`); closeSheets(); bounce(`Copied ${p.d.slice(0,3)}’s ${S.meal.toLowerCase()}`); });
+  openSheet('copySheetA');
+}
+
+/* ---------- Variant B ---------- */
+function renderDiaryB(){
+  const t=totals(); renderWeek('bWeek','bStreak');
+  $('bLeft').textContent=fmt(1900-t.k); $('bFood').textContent=fmt(t.k); $('bBar').style.width=pct(t.k,1900);
+  $('bC').textContent=Math.round(t.c); $('bP').textContent=Math.round(t.p); $('bF').textContent=Math.round(t.f);
+  $('bCb').style.width=pct(t.c,240); $('bFb').style.width=pct(t.f,63); $('bPb').style.width=pct(t.p,95);
+  const slot=TIMES[S.ti].slot, U=USUAL[slot];
+  if(S.cardDone[slot]) $('bCard').innerHTML = `<div class="card logged"><span class="ck">${ICON.checkS}</span><b>${slot} logged · ${fmt(sumK(S.diary[slot]))} cal</b><button id="bCardUndo">Undo</button></div>`;
+  else if(S.diary[slot].length) $('bCard').innerHTML = '';
+  else $('bCard').innerHTML = `<div class="card usual"><div class="eb"><span style="color:var(--blue)">${ICON[slot]}</span>${U.eyebrow}</div><h3>${U.title}</h3>
+      <div class="its">${U.items.map(id=>FOODS[id].name).join(', ')} · <b>${fmt(U.items.reduce((a,id)=>a+FOODS[id].k,0))} cal</b></div><div class="basis">${U.basis}</div>
+      <div class="row"><button class="bigpill" id="bLog">Log ${slot.toLowerCase()}</button><button class="bigpill lt" id="bChange">Change</button></div></div>`;
+  if($('bLog')) $('bLog').onclick = ()=>{ const before=snap(); U.items.forEach(id=>S.diary[slot].push({id,q:1})); S.cardDone[slot]=before; log('LOG USUAL (B)', `${slot}: ${U.items.join(', ')}`); renderDiaryB(); toast(`${U.items.length} items added to ${slot}`, {diary:before, card:slot, what:'usual '+slot}); };
+  if($('bChange')) $('bChange').onclick = ()=>{ log('tap change (B)', slot); openChange(slot); };
+  if($('bCardUndo')) $('bCardUndo').onclick = ()=>{ S.diary=S.cardDone[slot]; delete S.cardDone[slot]; log('undo usual (B)', slot); renderDiaryB(); };
+  $('bMeals').innerHTML = MEALS.map(m=>{ const L=S.diary[m];
+    return `<div class="mcard"><div class="mtop"><span class="ic">${ICON[m]}</span><div class="tx"><div class="nm">${m}</div><div class="sm">${L.length?`${fmt(sumK(L))} cal`:'Nothing logged yet'}</div></div>
+      <span class="acts">${m!=='Snacks'?`<button class="pill grey" data-bcopy="${m}">${ICON.copy}Copy</button>`:''}<button class="pill" data-badd="${m}">Log</button></span></div>
+    ${L.length?`<div class="items">${L.map((e,i)=>{ const on=S.editing===m+'|'+i; return `<button class="it" data-bitem="${m}|${i}"><span class="nm"><b>${FOODS[e.id].name}</b><span>${fmt(kc(e))} cal, ${serv(e)}</span></span></button>
+      <div class="editrow ${on?'on':''}"><div class="chips">${[0.5,1,1.5,2].map(q=>`<button class="chip ${q===e.q?'on':''}" data-bq="${m}|${i}|${q}">${fq(q)}</button>`).join('')}<button class="rm" data-brm="${m}|${i}">${ICON.trash}Remove</button></div><div class="hint">Servings. Changes save as you tap.</div></div>`; }).join('')}</div>`:''}</div>`; }).join('');
+  document.querySelectorAll('[data-bitem]').forEach(b=>b.onclick=()=>{ const k=b.dataset.bitem; S.editing = S.editing===k ? null : k; log(S.editing?'open inline edit (B)':'close inline edit (B)', k); renderDiaryB(); });
+  document.querySelectorAll('[data-bq]').forEach(b=>b.onclick=()=>{ const [m,i,q]=b.dataset.bq.split('|'); const e=S.diary[m][+i]; e.q=+q; log('edit in place (B)', `${FOODS[e.id].name} ×${q}`); renderDiaryB(); toast(`Saved · ${FOODS[e.id].name}, ${fq(+q)} × ${FOODS[e.id].s}`); });
+  document.querySelectorAll('[data-brm]').forEach(b=>b.onclick=()=>{ const [m,i]=b.dataset.brm.split('|'); const before=snap(); const e=S.diary[m].splice(+i,1)[0]; S.editing=null; log('remove (B)', FOODS[e.id].name); renderDiaryB(); toast(`Removed ${FOODS[e.id].name}`, {diary:before, what:'remove'}); });
+  document.querySelectorAll('[data-badd]').forEach(b=>b.onclick=()=>{ log('tap add food (B)', b.dataset.badd); openAdd(b.dataset.badd); });
+  document.querySelectorAll('[data-bcopy]').forEach(b=>b.onclick=()=>{ log('tap copy (B)', b.dataset.bcopy); openCopyB(b.dataset.bcopy); });
+}
+$('bPlus').onclick = ()=>{ log('tap + (B)'); openAdd(TIMES[S.ti].slot); };
+// Change sheet: edit the usual meal before logging (row and footer style from the real meal-scan screen)
+function openChange(slot){ S.chSlot=slot; S.ch=USUAL[slot].items.map(id=>({id,q:1,on:true})); $('chT').textContent=USUAL[slot].title.replace('?',''); renderChange(); openSheet('changeSheet'); }
+function renderChange(){
+  $('chList').innerHTML = S.ch.map((e,i)=>`<div class="chkrow ${e.on?'':'off'}"><button class="chk ${e.on?'on':''}" data-chk="${i}" aria-label="Include ${FOODS[e.id].name}">${e.on?ICON.check:''}</button><div class="nm">${FOODS[e.id].name}<span>${fmt(kc(e))} cal, ${serv(e)}</span></div>
+    <div class="step"><button data-chm="${i}" aria-label="Less">−</button><b>${fq(e.q)}</b><button data-chp="${i}" aria-label="More">+</button></div></div>`).join('');
+  const on=S.ch.filter(e=>e.on);
+  $('chCount').innerHTML = `${on.length} item${on.length===1?'':'s'}<span>${fmt(sumK(on))} cal</span>`;
+  $('chLog').textContent = on.length ? `Log ${S.chSlot.toLowerCase()}` : 'Nothing selected'; $('chLog').disabled=!on.length;
+  document.querySelectorAll('[data-chk]').forEach(b=>b.onclick=()=>{ const e=S.ch[+b.dataset.chk]; e.on=!e.on; renderChange(); });
+  document.querySelectorAll('[data-chm]').forEach(b=>b.onclick=()=>{ const e=S.ch[+b.dataset.chm]; e.q=Math.max(0.5,e.q-0.5); renderChange(); });
+  document.querySelectorAll('[data-chp]').forEach(b=>b.onclick=()=>{ const e=S.ch[+b.dataset.chp]; e.q=Math.min(3,e.q+0.5); renderChange(); });
+}
+$('chLog').onclick = ()=>{ const slot=S.chSlot, before=snap(), on=S.ch.filter(e=>e.on); on.forEach(e=>S.diary[slot].push({id:e.id,q:e.q})); S.cardDone[slot]=before;
+  log('LOG CHANGED USUAL (B)', on.map(e=>e.id+'×'+e.q).join(', ')); closeSheets(); renderDiaryB(); toast(`${on.length} item${on.length>1?'s':''} added to ${slot}`, {diary:before, card:slot, what:'changed usual'}); };
+$('chX').onclick = ()=>{ log('close change sheet'); closeSheets(); };
+// Add sheet: personal history first, one tap to add, stays open
+function openAdd(m){ S.addMeal=m; S.added=0; $('bQ').value=''; renderAdd(); $('bList').scrollTop=0; openSheet('addSheet'); }
+function renderAdd(){
+  const q=$('bQ').value.trim().toLowerCase();
+  $('addT').textContent = S.added ? `${S.added} added to ${S.addMeal}` : `Add to ${S.addMeal}`;
+  $('addSub').textContent = q ? 'Matches from your foods first' : 'Your foods · most logged first';
+  const ids=Object.keys(FOODS).filter(id=>!q || FOODS[id].name.toLowerCase().includes(q)).sort((a,b)=>FOODS[b].n-FOODS[a].n);
+  $('bList').innerHTML = ids.map(id=>{ const done=S.diary[S.addMeal].some(e=>e.id===id); return `<div class="frow"><span class="nm"><b>${FOODS[id].name}<span class="cnt">${FOODS[id].n}×</span></b><span>${FOODS[id].k} cal, ${FOODS[id].s}</span></span><button class="plusbtn ${done?'done':''}" data-badd1="${id}" aria-label="Add ${FOODS[id].name}">${done?ICON.check:ICON.plus}</button></div>`; }).join('')
+    + (q ? `<div class="empty" style="padding:14px 4px">Not here? Search the full database.</div>` : '');
+  document.querySelectorAll('[data-badd1]').forEach(b=>b.onclick=()=>{ const id=b.dataset.badd1; S.diary[S.addMeal].push({id,q:1}); S.added++; log('one-tap add (B)', `${FOODS[id].name} → ${S.addMeal}`); renderAdd(); renderDiaryB(); });
+}
+$('bQ').oninput = ()=>renderAdd();
+$('addDone').onclick = ()=>{ log('close add sheet (B)', `${S.added} added`); closeSheets(); renderDiaryB(); };
+$('bScan').onclick = ()=>{ log('tap scan row (B)'); closeSheets(); openSheet('scanSheet'); };
+$('scanSee').onclick = ()=>{ log('tap see premium (B)'); closeSheets(); toast('Premium page. (Prototype ends here.)'); };
+$('scanNo').onclick = ()=>{ log('dismiss premium (B)'); closeSheets(); };
+// Copy sheet: per meal or whole day, items keep their slots
+function openCopyB(m){ S.copyMeal=m; S.cm='meal'; renderCopyB(); openSheet('copySheetB'); }
+function renderCopyB(){
+  const m=S.copyMeal, day=S.cm==='day';
+  $('copyBT').textContent = day ? 'Copy a whole day to today' : `Copy to today's ${m}`;
+  $('cmMeal').textContent=`${m} only`; document.querySelectorAll('[data-cm]').forEach(b=>b.classList.toggle('on', b.dataset.cm===S.cm));
+  $('copyBS').textContent = day ? 'Every meal goes back into its own slot.' : 'Items keep their amounts.';
+  $('copyBList').innerHTML = PAST.map((p,i)=>{ const ids = day ? MEALS.flatMap(x=>p.m[x]) : p.m[m];
+    return `<button class="drow" data-bcp="${i}"><span class="nm"><b>${p.d}</b><span>${day ? MEALS.filter(x=>p.m[x].length).length+' meals · '+ids.length+' items' : ids.map(id=>FOODS[id].name).join(', ')}</span></span><span class="k">${fmt(ids.reduce((a,id)=>a+FOODS[id].k,0))} cal</span></button>`; }).join('');
+  document.querySelectorAll('[data-bcp]').forEach(b=>b.onclick=()=>{ const p=PAST[+b.dataset.bcp], before=snap();
+    (day?MEALS:[m]).forEach(x=>p.m[x].forEach(id=>S.diary[x].push({id,q:1})));
+    log('COPY (B)', `${p.d} ${day?'whole day':m}`); closeSheets(); renderDiaryB(); toast(`Copied ${p.d.slice(0,3)}’s ${day?'meals':m.toLowerCase()}`, {diary:before, what:'copy'}); });
+}
+document.querySelectorAll('[data-cm]').forEach(b=>b.onclick=()=>{ S.cm=b.dataset.cm; log('copy mode (B)', S.cm); renderCopyB(); });
+$('copyBX').onclick = ()=>{ log('close copy sheet'); closeSheets(); };
+$('scrim').onclick = ()=>{ log('dismiss sheet'); closeSheets(); render(); };
+
+/* ---------- Facilitator ---------- */
+$('nextTime').onclick = ()=>{ S.ti=(S.ti+1)%TIMES.length; renderTime(); closeSheets(); log('PRETEND TIME', TIMES[S.ti].t); render(); };
+$('tapReset').onclick = ()=>{ S.taps=0; updateTaps(); log('tap count reset'); };
+let tick; $('taskStart').onclick = ()=>{ S.task++; S.taskT=Date.now(); S.taps=0; updateTaps(); log('TASK START', 'task '+S.task); clearInterval(tick);
+  tick=setInterval(()=>{ $('taskLabel').textContent=`Task ${S.task} · ${((Date.now()-S.taskT)/1000).toFixed(0)} s`; }, 250); };
+$('taskEnd').onclick = ()=>{ if(!S.taskT) return; clearInterval(tick); const s=((Date.now()-S.taskT)/1000).toFixed(1); log('TASK END', `task ${S.task}: ${s}s, ${S.taps} taps`); $('taskLabel').textContent=`Task ${S.task} done · ${s} s · ${S.taps} taps`; S.taskT=null; };
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>reset(b.dataset.v));
+$('reset').onclick = ()=>reset();
+$('export').onclick = ()=>{ const rows=['t_seconds,pretend_time,taps,event,detail', ...S.events.map(e=>`${e.t},${e.time},${e.taps},${e.ev},"${(e.detail||'').replace(/"/g,'""')}"`)];
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'})); a.download=`session-${S.v}-${new Date().toISOString().slice(0,16).replace(/:/g,'')}.csv`; a.click(); };
+const q=new URLSearchParams(location.search); reset(q.get('v')||'B');
+if(q.has('solo')){ const other=$(S.v==='A'?'tapB':'tapA'); if(other) other.remove(); }
+window.__proto = {get S(){return S}, $, FOODS, USUAL, PAST};
+</script>
+<script>window.COMPARE = {app:'MyFitnessPal', title:'Logging the same breakfast again: before and after',
+  question:'A free user eats the same breakfast most mornings: oats, a banana and a coffee. It’s 8 am. The same moment, two designs, both re-created in MyFitnessPal’s visual style.',
+  caseStudy:'https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/03-myfitnesspal/case-study.md',
+  before:{try:'Tap <b>Log</b> next to Breakfast and add <b>Oats with milk</b> (tap the name, then <b>Add to Breakfast</b>, or tap <b>+</b>). Now do the banana and the coffee.', notice:'The diary sits below the calorie and macro summary. Each food is added on its own, and every save sends you back to the top of Today. The barcode scanner is Premium.'},
+  after:{try:'Tap <b>Log breakfast</b>. Then tap <b>Banana</b> and pick <b>½</b>. Press <b>Later</b> and tap <b>Copy</b> on Lunch.', notice:'The diary leads the home screen, the meal you repeat is one tap, and edits save in place. Scanning stays Premium, as a quiet option.'},
+  controls:[{side:'before', label:'Reset tap count', click:'tapReset', status:'tapA'},
+            {side:'after', label:'Reset tap count', click:'tapReset', status:'tapB'},
+            {side:'after', label:'Later →', click:'nextTime', status:'timeLabel'}]};</script>
+<script src="../../_shared/compare.js"></script>
+</body></html>
