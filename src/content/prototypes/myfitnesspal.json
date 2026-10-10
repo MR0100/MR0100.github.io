@@ -48,6 +48,7 @@
   "Keep the user’s place. Sending people back to the top after every edit turns small changes into chores."
  ],
  "test": "Does one-tap logging make people <em>stop checking</em> what they log, or stop seeing a reason to upgrade? If 3 of 5 testers say either, the idea needs rethinking.",
+ "note": "Independent study by Mitul Vaghasiya, not affiliated with MyFitnessPal. Every screen below is my re-creation in MyFitnessPal’s visual style, based on its App Store screenshots (10 Oct 2026) and the public images listed in references/. They are not screenshots of the real app.",
  "compare": {
   "app": "MyFitnessPal",
   "title": "Logging the same breakfast again: before and after",

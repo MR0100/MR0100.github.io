@@ -1,76 +1,55 @@
 ---
 app: "KGK Diamonds"
 order: 6
-kind: "client"
-theme: "Performance"
-title: "Making a 50,000-diamond catalogue feel fast on a cheap Android phone"
-summary: "KGK Diamonds lets retailers, wholesalers and brokers in 10+ countries search and buy certified diamonds from a group with 120+ years in the trade. I joined in 2025 to lead the mobile team on the live app, with one goal: a trader on an entry-level phone should never wait on the catalogue."
+theme: "Decision"
+title: "A certificate tells you everything except what the stone looks like"
+summary: "KGK’s app shows traders a grading report: codes, a table and three unlabelled prices, with no picture of the stone. What buyers can’t get from a certificate is what they chase over WhatsApp. I lead the team that builds this app, so I studied it from public evidence only, and kept the density traders depend on."
 accent: "#e9e4da"
-cover: "/images/projects/kgk-diamonds/2.jpg"
-heroImages: ["/images/projects/kgk-diamonds/2.jpg", "/images/projects/kgk-diamonds/3.jpg"]
-heroCaptions: ["Search", "Results"]
-figureNote: "Screens from the KGK Diamonds listing on Google Play, with the store’s own captions (checked 11 Oct 2026). Numbers in this study are from my own work on the app."
+cover: "/studies/kgk-diamonds/design/b1-results-stone-first.png"
+heroImages: ["/studies/kgk-diamonds/design/a1-results-codes.png", "/studies/kgk-diamonds/design/b1-results-stone-first.png"]
+figureNote: "All screens are my re-creations in KGK Diamonds’ visual style, from its store screenshots (11 Oct 2026), with drawn stones and placeholder data. I lead the mobile team that builds the app; this study uses public evidence only."
 meta:
-  - { label: "Type", value: "Client work · live app" }
-  - { label: "Role", value: "Mobile development team lead" }
-  - { label: "Team", value: "7 people: 2 mobile, 1 backend, 1 web, 1 design, 2 QA" }
-  - { label: "Timeline", value: "Apr 2025 — now" }
-  - { label: "Live", value: "<a class=\"link\" href=\"https://apps.apple.com/in/app/kgk-diamonds-buy-diamonds/id6479595403\">App Store</a> · <a class=\"link\" href=\"https://play.google.com/store/apps/details?id=com.kgk.diamonds\">Google Play</a>" }
+  - { label: "Type", value: "Study of an app I work on · public evidence only" }
+  - { label: "Method", value: "8 KGK reviews · 955 reviews of 9 competitor apps (253 coded) · trade sources · 4-app benchmark" }
+  - { label: "Timeline", value: "Oct 2026" }
+  - { label: "Status", value: "Prototype built · user test next" }
 tldr:
-  question: "The inventory grid, the screen traders spend most of their time in, dropped frames and took 5 seconds to show anything on entry-level Android. Fixes then took days to reach the stores."
-  found: "Speed in this app isn’t polish. If the catalogue stutters, a trader picks up the phone and calls a salesperson instead, and the app loses its reason to exist."
-  change: "Rebuilt how the grid renders and loads, set one architecture for the whole team, and automated testing and releases so the app stays fast after every update."
+  question: "I expected the next fix to be speed. Where do trade buyers actually get stuck in KGK’s buying flow?"
+  found: "Speed is the floor. The gap is the moment of choice: the card shows codes and unlabelled prices, not the stone, and “Confirm” places an order without a review."
+  change: "Keep four stones per screen. Put the stone, a labelled price and KGK’s own tint and eye-clean check on the card, and review the order before it’s placed."
 stats:
-  - { value: "60 FPS", label: "scrolling on entry-level Android, up from 50" }
-  - { value: "5s → 2s", label: "until the inventory grid shows on screen" }
-  - { value: "1.5 days", label: "from code to both stores, down from 4" }
+  - { value: "955", label: "reviews of nine competitor apps read, because KGK has only 8, all five-star" }
+  - { value: "35", label: "category reviews punish redesigns that show fewer stones (“Only 3 stones we can see”)" }
+  - { value: "3", label: "prices on each card (Rap value, $/ct, total) with no labels" }
 figures:
-  - { src: "/images/projects/kgk-diamonds/1.jpg", caption: "The dashboard: new arrivals, bids, the cart, appointments and saved searches in one place." }
-  - { src: "/images/projects/kgk-diamonds/2.jpg", caption: "Search by shape, carat, colour and clarity. This is where traders spend their time, so it had to be fast." }
-  - { src: "/images/projects/kgk-diamonds/4.jpg", caption: "New arrivals with a bid countdown, for stones that go to the best offer." }
-  - { src: "/images/projects/kgk-diamonds/5.jpg", caption: "Match pair: finding two stones that match, for earrings and pairs." }
+  - { src: "/studies/kgk-diamonds/design/b1-results-stone-first.png", caption: "The stone first, at the same density: thumbnail with video, the spec in words, KGK’s tint and eye-clean check, and a labelled total, $/ct and % off Rap." }
+  - { src: "/studies/kgk-diamonds/design/b2-detail-tint-shown.png", caption: "The cheapest stone has a faint brown tint, and the card says so before the tap. The stone page opens on a 360° video." }
+  - { src: "/studies/kgk-diamonds/design/b4-review-order.png", caption: "Confirm says what it does: the stones, the total, delivery, payment and returns, before “Place order”." }
+  - { src: "/studies/kgk-diamonds/design/b5-order-what-next.png", caption: "After the order: a number, and when the stone is reserved, invoiced and shipped." }
 ---
 
-<p class="eyebrow">Who it’s for</p>
+<p class="eyebrow">My first question was wrong</p>
 
-## A trading tool, not a shop window
+## I expected to fix speed again
 
-KGK’s customers are retail jewellers, wholesalers, brokers and designers who buy certified diamonds in volume. They don’t browse for pleasure. They compare stones by shape, carat, colour, clarity and certificate, save searches they come back to, bid on new arrivals and book viewings at KGK’s offices. The catalogue behind the app holds more than 50,000 stones from five sales offices.
+My team spent this year making KGK’s inventory grid fast on cheap Android phones, so I assumed the next problem was more of the same. The category agreed it matters: of 253 coded reviews of nine competing B2B diamond apps, 101 are about crashes and slowness. But KGK’s own latest release is already almost all reliability work. Speed is the floor. The gap is one step later, when a trader chooses between stones.
 
-Many of them do this on a phone, and not always a new one. That makes the inventory grid, the list of stones a search returns, the most important screen in the app.
+<p class="eyebrow">How a trade buyer decides</p>
 
-<p class="eyebrow">What was slowing it down</p>
+## The certificate is not the decision
 
-## The screen people live in was the slowest
+A jeweller decides on the specs, the price read as a discount to the Rapaport list, how the stone actually looks, and what happens when they commit. Only the specs are on the lab certificate. Whether a stone has a brown, green or milky tint, and whether it’s eye-clean, is the seller’s word, and on marketplaces buyers ask for it by message. One reviewer of a competitor app put it plainly: “If client ask for video… You need to go to Whatsapp.”
 
-The app was already live when I joined. On entry-level Android, scrolling the grid ran at about 50 frames per second, so it visibly stuttered, and it took 5 seconds before the first stones appeared. A trader who waits that long has a quicker option: call a salesperson.
+KGK’s card answers the specs in codes and the price in three unlabelled figures, and shows no picture. In the live app, the photo and video sit on the stone page, one stone at a time, and “Confirm Stone” places the order straight away.
 
-The slowness wasn’t only on the device. Each release took about 4 days to get from finished code to both stores, so even a small fix reached people slowly. New engineers needed 5 weeks before they were productive, and features regularly collided in merges.
+<p class="eyebrow">What to keep</p>
 
-<p class="eyebrow">The decisions</p>
+## Trade users read density as speed
 
-## Fix the grid first, on the cheapest phone
+The clearest constraint in the reviews: 35 complaints after redesigns that showed fewer stones per screen. So I rejected a photo grid. The new card keeps four stones on screen and adds a small thumbnail beside the specs, not on top of them. And because KGK cut and holds these stones, it can state its own tint and eye-clean check as a fact, something a marketplace relaying supplier claims can’t do.
 
-I treated search and filtering as the main path through the app, not a side feature, and measured everything on an entry-level Android phone rather than the newest one. The grid now builds only the rows on screen, loads results in pages, and receives data shaped around what it actually shows, with caching tuned for the patchy networks traders work on.
+<p class="eyebrow">How I’ll know</p>
 
-Scrolling now holds 60 frames per second on entry-level Android, and the first stones appear in 2 seconds instead of 5. Trimming unused code and deferring assets that aren’t needed at launch also made the app 10% smaller and cut cold start by 45% on mid-range Android 12 phones.
+## Fewer stones opened, the right total, no surprise at Confirm
 
-<p class="eyebrow">Making it last</p>
-
-## One architecture, so the speed survives the next release
-
-A fast screen that slows down two releases later doesn’t help anyone. I made Clean Architecture with MVVM and BLoC the standard across KGK’s apps, so every feature is built the same way. Merge conflicts between features fell by about 65%, and new engineers became productive in 2 weeks instead of 5.
-
-Every pull request now runs unit, widget and Patrol end-to-end tests, at about 80% coverage, before it can merge. Signing and upload to both stores are automated with Fastlane. A release takes 1.5 days instead of 4, and crash-free sessions hold at 99.9%.
-
-<p class="eyebrow">Trust</p>
-
-## Prices stay on the device
-
-Diamond prices are commercially sensitive, and a trading app is only useful if KGK can trust it with them. Screen capture and recording are blocked on pricing screens, the app won’t start if it detects tools for intercepting network traffic, and login details and cached inventory are kept in encrypted storage behind JWT and OAuth 2.0.
-
-<p class="eyebrow">What’s next</p>
-
-## Measure the trader, not just the app
-
-The numbers above describe the app. The next step is the one I push in my product studies: tie them to behaviour. Do faster searches lead to more saved searches, bids and viewings booked per session, and fewer calls to sales for things the app can answer? That’s the question I want this app to answer next, and the measure I’d hold the next round of changes to.
+Five trade buyers do the same brief on today’s card and mine: a round, about one carat, G or H, VS, white and eye-clean, for about $6,000. The pass signal: in my version, four of five avoid the tinted stone without opening every stone and state the correct total before confirming, and nobody says it shows too few stones. In production, the measure would be stones confirmed in the app per buyer, with scroll speed and stones per screen as guardrails.

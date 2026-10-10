@@ -23,7 +23,8 @@ CS = os.path.join(SRC_REPO, 'linkedin-growth', 'case-studies')
 POSTS = os.path.join(SRC_REPO, 'linkedin-growth', 'posts')
 
 STUDIES = [('01-chatgpt', 'chatgpt', 'ChatGPT'), ('02-duolingo', 'duolingo', 'Duolingo'), ('03-myfitnesspal', 'myfitnesspal', 'MyFitnessPal'),
-           ('04-revolut', 'revolut', 'Revolut'), ('05-temu', 'temu', 'Temu')]
+           ('04-revolut', 'revolut', 'Revolut'), ('05-temu', 'temu', 'Temu'),
+           ('06-kgk-diamonds', 'kgk-diamonds', 'KGK Diamonds')]
 GH_CASE = re.compile(r'https://github\.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/[^/"\']+/case-study\.md')
 
 

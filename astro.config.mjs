@@ -6,6 +6,7 @@ export default defineConfig({
   build: { format: 'directory' },
   // Old v1 addresses keep working
   redirects: {
+    '/work/kgk-diamonds/case-study': '/studies/kgk-diamonds/',
     '/work/chatgpt': '/studies/chatgpt/',
     '/work/chatgpt/test-kit': '/studies/chatgpt/test-kit/',
     '/work/chatgpt/sources': '/studies/chatgpt/sources/',

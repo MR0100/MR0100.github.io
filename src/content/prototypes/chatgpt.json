@@ -48,6 +48,7 @@
   "Give more than one way out. Upgrading works better as one choice among several than as the only exit."
  ],
  "test": "Does seeing the meter make people <em>ration</em> their use? If 3 of 5 testers hold back because they can see the count, the idea needs rethinking.",
+ "note": "Independent study by Mitul Vaghasiya, not affiliated with ChatGPT. Every screen below is my re-creation in ChatGPT’s visual style, based on its App Store screenshots (10 Oct 2026) and the public images listed in references/. They are not screenshots of the real app.",
  "compare": {
   "app": "ChatGPT",
   "title": "Hitting the photo limit: before and after",

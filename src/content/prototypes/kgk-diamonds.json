@@ -1,0 +1,67 @@
+{
+ "app": "KGK Diamonds",
+ "title": "Stone first: choosing a diamond without leaving the app",
+ "intro": "KGK’s result card reads like a grading report: codes, a measurements table and three unlabelled prices, with no picture of the stone. What a buyer can’t get from a certificate (tint, eye-clean, how it looks) is what they chase over chat and WhatsApp. In 955 reviews of nine B2B diamond apps, 35 punish redesigns that show fewer stones. This keeps the density and puts the stone, a labelled price and KGK’s own check on the card.",
+ "today": [
+  {
+   "image": "a1-results-codes.png",
+   "title": "Codes, not the stone",
+   "text": "Four stones match the brief on paper. Each card is a line of grade codes and three prices with no labels. Nothing shows that one of them has a brown tint.",
+   "principle": "Information scent"
+  },
+  {
+   "image": "a4-order-placed-at-once.png",
+   "title": "Confirm places the order at once",
+   "text": "No review of the total, delivery or terms before the order goes. The confirmation screen is simplified.",
+   "principle": "Error prevention"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b1-results-stone-first.png",
+   "title": "The stone first, same density",
+   "text": "Still four stones per screen. A thumbnail with video, the spec in words, KGK’s tint and eye-clean check, and a labelled total, $/ct and % off Rap.",
+   "principle": "Recognition over recall"
+  },
+  {
+   "image": "b2-detail-tint-shown.png",
+   "title": "The cheapest stone, seen",
+   "text": "The lowest total has a faint brown tint, and the card says so before the tap. The stone page opens on a 360° video.",
+   "principle": "Visibility"
+  },
+  {
+   "image": "b4-review-order.png",
+   "title": "Confirm says what it does",
+   "text": "Stones, total, delivery, payment and returns, before “Place order”.",
+   "principle": "Error prevention"
+  },
+  {
+   "image": "b5-order-what-next.png",
+   "title": "What happens next",
+   "text": "An order number and three steps: reserved now, invoice in a working day, tracking on dispatch.",
+   "principle": "Visibility of system status"
+  }
+ ],
+ "lessons": [
+  "Find where your users leave the app to decide. That’s where the screen isn’t answering their question.",
+  "For expert users, density is speed. Add information beside what they scan, not on top of it.",
+  "Make the commit step say what it commits to. A buyer unsure what a tap does will call instead."
+ ],
+ "test": "Do buyers trust a manufacturer’s own tint and eye-clean check? If 3 of 5 say they wouldn’t, or find the cards <em>slower</em> to scan, the idea needs rethinking.",
+ "note": "A study by Mitul Vaghasiya, who leads the mobile team that builds KGK Diamonds. Public evidence only, no internal data. Every screen below is my re-creation in KGK Diamonds’ visual style, based on its App Store and Google Play screenshots (11 Oct 2026), with drawn stones and placeholder data. They are not screenshots of the real app.",
+ "compare": {
+  "app": "KGK Diamonds",
+  "title": "Choosing a stone: before and after",
+  "question": "A jeweller’s customer wants a round, about one carat, G or H, VS, white and eye-clean, for about $6,000. Four stones match on paper. Both phones keep KGK’s search, its dense list and its prices. What changes is whether you can see the stone, read the price, and know what Confirm does. Both are re-created in KGK Diamonds’ visual style with placeholder data.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap <b>Search</b>. Pick the stone you’d show your customer, tick it and tap <b>Confirm Stone</b>. To see a stone, tap <b>more</b>.",
+   "notice": "Each card is codes and three unlabelled prices. The look of the stone is one tap away, one stone at a time, and nothing says whether it has a tint. Confirm places the order at once."
+  },
+  "after": {
+   "try": "Tap <b>Search</b>. Compare the four cards, tap a picture to watch the video, tick the stone and tap <b>Review order</b>, then <b>Place order</b>.",
+   "notice": "Still four stones on screen. Each shows the stone, a labelled total, $/ct and % off Rap, and KGK’s own tint and eye-clean check. The order is reviewed before it’s placed, with delivery and returns."
+  },
+  "controls": []
+ }
+}

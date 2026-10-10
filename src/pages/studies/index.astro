@@ -2,21 +2,20 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
-const href = (s: (typeof studies)[number]) => s.data.kind === 'client' ? `/work/${s.id}/case-study/` : `/studies/${s.id}/`;
 ---
 <Base title="Case studies · Mitul Vaghasiya" active="Case studies"
   description="Independent product studies of apps millions use: what users struggle with, what it costs the business, and a tested way to fix it.">
   <section class="wrap intro">
     <p class="eyebrow">Case studies</p>
     <h1>I study apps millions of people use, and design what would make them stay.</h1>
-    <p class="lede">Each study starts with a question, tests it against real evidence (thousands of reviews, company reports, research), and ends with a prototype and the test that would prove it wrong. In most of them, the evidence changed my first question. The last one is from my own client work: a live app I lead.</p>
+    <p class="lede">Each study starts with a question, tests it against real evidence (thousands of reviews, company reports, research), and ends with a prototype and the test that would prove it wrong. In most of them, the evidence changed my first question. The last one is an app I build myself, studied the same way.</p>
   </section>
   <section class="wrap list">
     {studies.map((s, i) => (
-      <a class="row" href={href(s)}>
-        <div class="visual" style={`background:${s.data.accent}`}><img src={s.data.cover} alt="" loading={i < 2 ? 'eager' : 'lazy'} class:list={{ shot: s.data.kind === 'client' }} /></div>
+      <a class="row" href={`/studies/${s.id}/`}>
+        <div class="visual" style={`background:${s.data.accent}`}><img src={s.data.cover} alt="" loading={i < 2 ? 'eager' : 'lazy'} /></div>
         <div class="text">
-          <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {s.data.app} · {s.data.kind === 'client' ? 'Client work' : s.data.theme}</p>
+          <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {s.data.app} · {s.data.theme}</p>
           <h2>{s.data.title}</h2>
           <p>{s.data.summary}</p>
           <span class="more">Read the study →</span>
@@ -34,7 +33,6 @@ const href = (s: (typeof studies)[number]) => s.data.kind === 'client' ? `/work/
   .row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; padding: 40px 0; border-top: 1px solid var(--line); }
   .visual { border-radius: var(--radius); height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden; padding-top: 32px; }
   .visual img { width: 46%; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-  .visual img.shot { width: 40%; border-radius: 18px 18px 0 0; box-shadow: 0 20px 40px rgba(0,0,0,.12); }
   .row:hover .visual img { transform: translateY(-8px); }
   .text h2 { font-size: clamp(30px, 3vw, 42px); margin: 12px 0 14px; }
   .text p:not(.eyebrow) { color: var(--ink-2); }

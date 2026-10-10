@@ -48,6 +48,7 @@
   "Ask for the exact item and confirm it on arrival. Vague requests make cases longer for everyone."
  ],
  "test": "Does the live clock make people <em>calmer</em>, or add pressure? If 3 of 5 testers say it makes them more anxious, or a moved estimate costs more trust than no estimate, the idea needs rethinking.",
+ "note": "Independent study by Mitul Vaghasiya, not affiliated with Revolut. Every screen below is my re-creation in Revolut’s visual style, based on its App Store screenshots (10 Oct 2026) and the public images listed in references/. They are not screenshots of the real app.",
  "compare": {
   "app": "Revolut",
   "title": "Money on hold: before and after",

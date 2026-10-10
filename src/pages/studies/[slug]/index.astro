@@ -3,9 +3,7 @@ import { getCollection } from 'astro:content';
 import StudyPage from '../../../components/StudyPage.astro';
 
 export async function getStaticPaths() {
-  // Product studies live here; client case studies live under /work/<slug>/case-study/
-  const all = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
-  const studies = all.filter(s => s.data.kind !== 'client');
+  const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
   const docs = await getCollection('docs');
   return studies.map((s, i) => ({
     params: { slug: s.id },

@@ -1,6 +1,5 @@
 ---
-// The case-study template shared by the product studies and the client case studies:
-// hero pair, three-part summary, three numbers, the written study, captioned screens, and links to go deeper.
+// The case-study template: hero pair, three-part summary, three numbers, the written study, captioned screens, and links to go deeper.
 import { render, type CollectionEntry } from 'astro:content';
 import CaseStudy from '../layouts/CaseStudy.astro';
 interface Link { label: string; note: string; href: string; external?: boolean }
@@ -12,13 +11,12 @@ interface Props {
 const { study, crumbs, active, next, deeper, studyTabs, tabs } = Astro.props;
 const d = study.data;
 const { Content } = await render(study);
-const client = d.kind === 'client';
-const labels = client ? ['The problem', 'What I found', 'What I changed'] : ['The question', 'What I found', 'What I’d change'];
+const labels = ['The question', 'What I found', 'What I’d change'];
 const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
 ---
-<CaseStudy app={d.app} kind={client ? 'Case study · client work' : 'Product study'} active={active} crumbs={crumbs} study={studyTabs} tabs={tabs}
+<CaseStudy app={d.app} kind="Product study" active={active} crumbs={crumbs} study={studyTabs} tabs={tabs}
   title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} next={next}>
-  <div slot="hero" class:list={['pair', { framed: client }]}>
+  <div slot="hero" class="pair">
     {d.heroImages.map((src, i) => <figure><img src={src} alt={`${d.app}: ${heroCaptions[i]}`} /><figcaption>{heroCaptions[i]}</figcaption></figure>)}
   </div>
 
@@ -35,8 +33,8 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   <section class="md"><Content /></section>
 
   <div class="wide">
-    <p class="eyebrow figs-head">{client ? 'The app' : 'The design'}</p>
-    <div class:list={['figs', { framed: client }]}>
+    <p class="eyebrow figs-head">The design</p>
+    <div class="figs">
       {d.figures.map(f => <figure><div class="frame" style={`background:${d.accent}`}><img src={f.src} alt="" loading="lazy" /></div><figcaption>{f.caption}</figcaption></figure>)}
     </div>
     <p class="disclaim">{d.figureNote ?? `All screens are my re-creations in ${d.app}’s visual style, for an independent study. Not affiliated with ${d.app}.`}</p>
@@ -52,8 +50,6 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   .pair { display: flex; gap: clamp(20px, 5vw, 72px); justify-content: center; align-items: flex-end; padding: 48px 24px 0; width: 100%; }
   .pair figure { margin: 0; width: min(36%, 300px); display: flex; flex-direction: column; align-items: center; }
   .pair img { width: 100%; filter: drop-shadow(0 24px 40px rgba(0,0,0,.12)); }
-  .pair.framed figure { width: min(30%, 260px); }
-  .pair.framed img { border-radius: 22px; filter: none; box-shadow: 0 24px 48px rgba(0,0,0,.12); }
   .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
   .md :global(h2) { font-size: clamp(30px, 3vw, 40px); margin: 10px 0 18px; }
   .md :global(p.eyebrow) { margin: 56px 0 0; color: var(--ink-3); }
@@ -63,7 +59,6 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   .figs figure { margin: 0; }
   .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; }
   .frame img { width: 92%; }
-  .figs.framed .frame img { width: 88%; border-radius: 14px 14px 0 0; }
   .figs figcaption { font-size: 15px; color: var(--ink-2); margin-top: 14px; }
   .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; }
   .deeper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
@@ -74,7 +69,7 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   .deeper a:hover b { text-decoration: underline; text-underline-offset: 4px; }
   @media (max-width: 600px) {
     .pair { gap: 16px; padding: 32px 12px 0; }
-    .pair figure, .pair.framed figure { width: 46%; }
+    .pair figure { width: 46%; }
     .pair figcaption { font-size: 10px; letter-spacing: .08em; white-space: nowrap; }
   }
   @media (max-width: 900px) {

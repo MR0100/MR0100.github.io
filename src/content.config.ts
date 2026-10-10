@@ -19,7 +19,7 @@ const prototypes = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/prototypes' }),
   schema: z.object({
     app: z.string(), title: z.string(), intro: z.string(), today: z.array(step), proposal: z.array(step),
-    lessons: z.array(z.string()), test: z.string(),
+    lessons: z.array(z.string()), test: z.string(), note: z.string().optional(),
     compare: z.object({
       title: z.string(), question: z.string(),
       before: z.object({ try: z.string(), notice: z.string() }), after: z.object({ try: z.string(), notice: z.string() }),
@@ -33,7 +33,6 @@ const studies = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/studies' }),
   schema: z.object({
     app: z.string(), title: z.string(), summary: z.string(), theme: z.string(), order: z.number(),
-    kind: z.enum(['product', 'client']).default('product'),   // client = my own shipped work, shown under /work/<slug>/case-study/
     accent: z.string(), cover: z.string(), heroImages: z.array(z.string()), heroCaptions: z.array(z.string()).optional(),
     figureNote: z.string().optional(),
     meta: z.array(z.object({ label: z.string(), value: z.string() })),

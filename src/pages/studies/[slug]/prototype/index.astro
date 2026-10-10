@@ -60,7 +60,7 @@ const groups = [
         <p set:html={d.test} />
       </div>
     </div>
-    <p class="disclaim">Independent study, not affiliated with {d.app}. Every screen is my re-creation in {d.app}’s visual style, based on its App Store screenshots (10 Oct 2026) and the <a class="link" href={`${base}sources/`}>public images listed in the sources</a>. They are not screenshots of the real app.</p>
+    <p class="disclaim">{d.note} <a class="link" href={`${base}sources/`}>Sources</a>.</p>
     <div class="actions">
       <a class="btn" href={`${base}try/`}>Try both versions →</a>
       <a class="btn ghost" href={base}>Back to the study</a>

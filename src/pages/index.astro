@@ -5,7 +5,7 @@ import { profile, counts, testimonials, experienceLabel } from '../data/profile'
 import { liveApps } from '../data/work';
 import { publishedWriting, nextScheduled, fmtDate } from '../data/published';
 const exp = experienceLabel();
-const studies = (await getCollection('studies')).filter(s => s.data.kind !== 'client').sort((a, b) => a.data.order - b.data.order);
+const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
 const [lead, ...rest] = studies;
 const posts = (await publishedWriting()).slice(0, 3);
 const upcoming = await nextScheduled();
@@ -68,7 +68,7 @@ const quotes = import.meta.env.DEV ? testimonials : testimonials.filter(t => !t.
   <section class="section wrap">
     <div class="section-head"><h2>Shipped work</h2><a class="link" href="/work/">All work →</a></div>
     <div class="work">
-      <a class="kgk" href={`/work/${kgk.slug}/case-study/`}>
+      <a class="kgk" href={`/studies/${kgk.slug}/`}>
         <div class="kvis" style={`background:${kgk.accent}`}><img src={kgk.icon} alt="" width="104" height="104" /></div>
         <div>
           <p class="eyebrow">{kgk.client} · {kgk.role} · {kgk.period}</p>
@@ -120,12 +120,12 @@ const quotes = import.meta.env.DEV ? testimonials : testimonials.filter(t => !t.
   .ftext h3 { font-size: clamp(32px, 3.4vw, 48px); margin: 12px 0 16px; }
   .ftext p:not(.eyebrow) { color: var(--ink-2); }
   .more { font-weight: 500; font-size: 15px; }
-  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
   .cvis { border-radius: 16px; aspect-ratio: 4/5; display: flex; justify-content: center; align-items: flex-end; padding-top: 20px; overflow: hidden; }
   .cvis img { width: 64%; transition: transform .4s; }
   .card:hover .cvis img { transform: translateY(-6px); }
   .card .eyebrow { margin: 16px 0 6px; }
-  .card h3 { font-size: 23px; line-height: 1.2; }
+  .card h3 { font-size: 21px; line-height: 1.2; }
 
   .posts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
   .posts a { display: block; border-top: 1px solid var(--ink); padding-top: 18px; }
