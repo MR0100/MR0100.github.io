@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import { profile } from '../data/profile';
 interface Props { title: string; description?: string; active?: string }
-const { title, description = 'Mitul Vaghasiya, Senior Mobile Engineer & Team Lead. Mobile products researched first and shipped end to end.', active = '' } = Astro.props;
-const nav = [['Work', '/work/'], ['Studies', '/#studies'], ['About', '/about/']];
+const { title, description = 'Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Case studies, analysis and writing.', active = '' } = Astro.props;
+const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '/work/'], ['About', '/about/']];
 ---
 <!doctype html>
 <html lang="en">
@@ -26,7 +26,6 @@ const nav = [['Work', '/work/'], ['Studies', '/#studies'], ['About', '/about/']]
       <a class="mark" href="/">Mitul Vaghasiya</a>
       <nav>
         {nav.map(([label, href]) => <a class:list={['navlink', { on: active === label }]} href={href}>{label}</a>)}
-        <a class="btn small" href={`mailto:${profile.email}`}>Get in touch</a>
       </nav>
     </div>
   </header>
@@ -34,14 +33,14 @@ const nav = [['Work', '/work/'], ['Studies', '/#studies'], ['About', '/about/']]
   <footer class="foot">
     <div class="wrap">
       <div class="cta">
-        <h2>Building something people should keep using?</h2>
-        <p>I’m happy to talk about mobile products, from first research to the store release.</p>
+        <h2>Let’s talk about products people keep.</h2>
+        <p>Questions about a study, an idea worth testing, or something you’re building. I read every message.</p>
         <a class="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
       </div>
       <div class="meta">
         <span>© {new Date().getFullYear()} Mitul Vaghasiya · {profile.location}</span>
         <span class="links">
-          <a href={profile.linkedin}>LinkedIn</a><a href={profile.github}>GitHub</a><a href={profile.upwork}>Upwork</a><a href="/resume/">Résumé</a>
+          <a href={profile.linkedin}>LinkedIn</a><a href={profile.github}>GitHub</a><a href={`mailto:${profile.email}`}>Email</a>
         </span>
       </div>
     </div>
@@ -67,7 +66,8 @@ const nav = [['Work', '/work/'], ['Studies', '/#studies'], ['About', '/about/']]
   .links a:hover { color: #fff; }
   @media (max-width: 760px) {
     nav { gap: 16px; }
-    .navlink:nth-child(2) { display: none; }
-    .btn.small { display: none; }
+    nav { gap: 14px; }
+    .navlink { font-size: 14px; }
+    .navlink:nth-child(3) { display: none; }
   }
 </style>

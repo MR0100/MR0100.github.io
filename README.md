@@ -5,26 +5,24 @@ Live at **https://mr0100.github.io**.
 
 ## How it works
 
+- **Built with Astro** (`src/`): pages, layouts, and content collections. `npm install && npm run dev` to work locally, `npm run build` for `dist/`.
 - **Research lives elsewhere.** Reports, raw review data and reference screenshots stay in the private `PersonalResearch` repo.
-- **`content/`** holds only what's publishable: each case study's edit, my re-created screens, the prototypes, the test kit, review-coding notes and source lists. Refresh it with:
-  ```
-  python3 scripts/sync_from_research.py ../PersonalResearch
-  ```
-- **`scripts/build.py`** turns `content/` and `design-system/` into `_site/`. Preview locally:
-  ```
-  pip install markdown
-  python3 scripts/build.py && python3 -m http.server -d _site 8000
-  ```
-- **Deploy:** every push to `main` builds and publishes through GitHub Actions (`.github/workflows/pages.yml`).
+- **Sync:** `python3 scripts/sync_from_research.py ../PersonalResearch` copies only publishable material: the full analyses, test kits, review coding and source lists (`src/content/research`, `src/content/docs`), the re-created screens and live prototypes (`public/studies/`), and LinkedIn posts as articles (`src/content/writing`). Posts with unfilled `[placeholders]` are skipped.
+- **Written here:** the portfolio-length studies (`src/content/studies/*.md`), the KGK case study, and the profile and work data (`src/data/`).
+- **Deploy:** every push to `main`, plus a daily rebuild, publishes through GitHub Actions. The daily run makes scheduled articles appear on their date and keeps the experience count current.
 
 ## Structure
 | Path | What |
 |---|---|
-| `design-system/` | Tokens, components, specimen (Holstee-based editorial system) |
-| `content/case-studies/` | Synced case-study content (don't edit here; edit in the research repo and sync) |
-| `notes/` | Facts and research behind the portfolio itself |
-| `scripts/` | Sync and build |
+| `src/pages/` | Home, case studies, writing, work, about |
+| `src/content/studies/` | Portfolio-length studies (edit here) |
+| `src/content/research`, `docs`, `writing` | Synced from the research repo (don't edit by hand) |
+| `src/data/` | Profile, work list (store checks dated), publishing helpers |
+| `public/studies/` | Re-created screens and prototypes (synced) |
+| `notes/` | Research behind the portfolio, previews |
 
 ## Publishing rules
 - Every number is cited or labelled Hypothesis. No invented results, quotes or user data.
-- Third-party screenshots (App Store, press) are never republished. Prototype screens are my re-creations, labelled as such, with sources listed on each study's Sources page.
+- Third-party screenshots (App Store, press) are never republished. Prototype screens are my re-creations, labelled as such, with sources on each study's Sources page.
+- Only apps verifiable in an official store are shown as live, with the check date.
+- No freelancing platforms are mentioned anywhere: this is a personal site, not a hiring profile.

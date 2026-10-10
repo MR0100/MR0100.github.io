@@ -3,6 +3,8 @@ name: Deploy site
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '30 0 * * *'   # daily 06:00 IST: scheduled articles and the experience count go live on time
   workflow_dispatch:
 
 permissions:
@@ -19,14 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install markdown
-      - run: python scripts/build.py
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+      - uses: withastro/action@v3
   deploy:
     needs: build
     runs-on: ubuntu-latest

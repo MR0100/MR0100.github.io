@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import CaseStudy from '../../../layouts/CaseStudy.astro';
+
+export async function getStaticPaths() {
+  const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
+  const docs = await getCollection('docs');
+  return studies.map((s, i) => ({
+    params: { slug: s.id },
+    props: { study: s, next: studies[(i + 1) % studies.length], docs: docs.filter(d => d.data.study === s.id) },
+  }));
+}
+const { study, next, docs } = Astro.props;
+const d = study.data;
+const { Content } = await render(study);
+const base = `/studies/${study.id}/`;
+const evidence = docs.filter(x => x.data.kind.startsWith('evidence/'));
+---
+<CaseStudy app={d.app} kind="Product study" active="Case studies" title={d.title} summary={d.summary} meta={d.meta} accent={d.accent}
+  next={{ href: `/studies/${next.id}/`, label: `${next.data.app}: ${next.data.title}` }}>
+  <div slot="hero" class="pair">
+    <figure><img src={d.heroImages[0]} alt={`${d.app} today, re-created`} /><figcaption>Today, re-created</figcaption></figure>
+    <figure><img src={d.heroImages[1]} alt={`${d.app}, my proposal`} /><figcaption>My proposal</figcaption></figure>
+  </div>
+
+  <div class="wide"><div class="tldr">
+    <div><h3>The question</h3><p>{d.tldr.question}</p></div>
+    <div><h3>What I found</h3><p>{d.tldr.found}</p></div>
+    <div><h3>What I’d change</h3><p>{d.tldr.change}</p></div>
+  </div></div>
+
+  <div class="wide"><div class="stats">
+    {d.stats.map(s => <div><b>{s.value}</b><span>{s.label}</span></div>)}
+  </div></div>
+
+  <section class="md"><Content /></section>
+
+  <div class="wide">
+    <p class="eyebrow figs-head">The design</p>
+    <div class="figs">
+      {d.figures.map(f => <figure><div class="frame" style={`background:${d.accent}`}><img src={f.src} alt="" loading="lazy" /></div><figcaption>{f.caption}</figcaption></figure>)}
+    </div>
+    <p class="disclaim">All screens are my re-creations in {d.app}’s visual style, for an independent study. Not affiliated with {d.app}.</p>
+  </div>
+
+  <div class="wide"><div class="deeper">
+    <p class="eyebrow">Go deeper</p>
+    <a href={`${base}prototype/try.html`}><b>Try it</b><span>Before and after, both phones live</span></a>
+    <a href={`${base}full/`}><b>The full analysis</b><span>Every source, table and decision</span></a>
+    <a href={`${base}prototype/`}><b>Screen by screen</b><span>The flow, explained</span></a>
+    <a href={`${base}test-kit/`}><b>The user-test kit</b><span>Script, tasks and pass signals</span></a>
+    {evidence.map(e => <a href={`${base}${e.data.kind}/`}><b>The review coding</b><span>Every theme, with review ids</span></a>)}
+    <a href={`${base}sources/`}><b>Sources</b><span>What the screens were based on</span></a>
+  </div></div>
+</CaseStudy>
+
+<style>
+  .pair { display: flex; gap: clamp(20px, 5vw, 72px); justify-content: center; align-items: flex-end; padding: 48px 24px 0; width: 100%; }
+  .pair figure { margin: 0; width: min(36%, 300px); display: flex; flex-direction: column; align-items: center; }
+  .pair img { width: 100%; filter: drop-shadow(0 24px 40px rgba(0,0,0,.12)); }
+  .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .md :global(h2) { font-size: clamp(30px, 3vw, 40px); margin: 10px 0 18px; }
+  .md :global(p.eyebrow) { margin: 56px 0 0; color: var(--ink-3); }
+  .md :global(p.eyebrow:first-child) { margin-top: 0; }
+  .figs-head { margin: 0 0 24px; }
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .figs figure { margin: 0; }
+  .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; }
+  .frame img { width: 92%; }
+  .figs figcaption { font-size: 15px; color: var(--ink-2); margin-top: 14px; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; }
+  .deeper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
+  .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+  .deeper a b { font: 400 24px/1.2 var(--serif); }
+  .deeper a span { font-size: 14px; color: var(--ink-3); }
+  .deeper a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 900px) {
+    .figs { grid-template-columns: 1fr 1fr; }
+    .deeper { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,4 +1,5 @@
-// Facts about Mitul. Sources: LinkedIn export (Oct 2026), résumé (Sep 2026), Upwork profile (Oct 2026), App Store / Play Store checks (11 Oct 2026).
+// Facts about Mitul. Sources: LinkedIn export (Oct 2026), résumé (Sep 2026), App Store / Play Store checks (11 Oct 2026).
+// This is a personal site, not a hiring page: no freelancing platforms are mentioned anywhere.
 // Anything that changes over time is computed or dated, so the site never goes stale.
 
 export const FIRST_JOB = new Date('2019-11-01'); // Jr. Flutter Developer, Sadguru Soft (LinkedIn)
@@ -17,22 +18,20 @@ export function experienceLabel(now = new Date()): string {
 
 export const profile = {
   name: 'Mitul Vaghasiya',
-  role: 'Senior Mobile Engineer & Team Lead',
+  role: 'Product designer & researcher · Mobile engineer',
+  job: 'Mobile Development Team Lead at KGK InfoTech',
   location: 'Surat, India',
   email: 'mr.vaghasiya197@gmail.com',
   linkedin: 'https://www.linkedin.com/in/mitul-vaghasiya/',
   github: 'https://github.com/MR0100',
-  upwork: 'https://www.upwork.com/freelancers/~01d1417b5f7c73e5e1',
   headshot: '/images/mitul.jpg',
   tagline: 'Validate first. Then build what users keep.',
 };
 
-// Counts. "projectsWorkedOn" is Mitul's own count (shipped, unreleased, cancelled by clients, or later removed).
-// "liveApps" is only what can be verified in an official store today; see work.ts.
+// Counts. "projectsWorkedOn" is Mitul's own count: shipped, unreleased, cancelled by clients, or later removed from the stores.
+// "liveApps" (work.ts) is only what can be verified in an official store today.
 export const counts = {
   projectsWorkedOn: '35+',
-  upworkJobs: 38,
-  upworkJobSuccess: '100%',
 };
 
 export const experience = [
@@ -46,21 +45,15 @@ export const experience = [
     company: 'Sadguru Soft',
     role: 'Jr. Flutter Developer → Senior Mobile Developer',
     period: 'Nov 2019 — Mar 2025',
-    note: 'Promoted four times in five years. Shipped apps for clients in North America, Europe, Korea, Japan, Brazil and India.',
-  },
-  {
-    company: 'Upwork',
-    role: 'Freelance mobile & full-stack developer',
-    period: 'Alongside',
-    note: '38 projects, 100% Job Success, 25 client reviews.',
+    note: 'Promoted four times in five years. Shipped apps for clients in Canada, Germany, Korea, Japan, Brazil and India.',
   },
 ];
 
-// Real quote from Mitul's Upwork profile; the rest are placeholders until Mitul shares them.
+// The first quote is real (a client, shared by Mitul); the rest are placeholders until Mitul shares them.
 export const testimonials = [
   {
     quote: 'Mitul is the best developer I’ve worked with to date. Fantastic communication.',
-    name: 'Upwork client',
+    name: 'Client',
     title: '20+ years hiring developers',
     placeholder: false,
   },

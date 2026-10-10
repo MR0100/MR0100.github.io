@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile, experience, experienceLabel } from '../data/profile';
+const exp = experienceLabel();
+const principles = [
+  ['Count before you design', 'Most of my studies started with a popular opinion that the evidence then overturned. Reading the reviews, the data and the research first is cheaper than building the wrong thing.'],
+  ['Keep what already works', 'A redesign that removes the energy a product depends on, or slows down something people like, isn’t an improvement. I look for what to protect before I look for what to fix.'],
+  ['Write the test that could prove me wrong', 'Every proposal comes with the five-person test and the production metric that would tell me it failed, before anyone builds it.'],
+  ['Ship it properly', 'Architecture, performance, release pipelines and the people doing the work. A good idea is only worth what reaches the store.'],
+];
+const skills = [
+  ['Research', 'Review mining and coding · competitive teardowns · user testing · experiment design'],
+  ['Design', 'Flows and prototypes · interaction design · Figma · re-creating real app UI for testing'],
+  ['Engineering', 'Flutter · Kotlin · Swift · Clean Architecture · BLoC · performance · CI/CD and store releases'],
+  ['Leading', 'A 7-person cross-functional team · code review · sprint planning · mentoring'],
+];
+---
+<Base title="About · Mitul Vaghasiya" active="About" description="Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Surat, India.">
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">About</p>
+      <h1>I’m Mitul. I find out why people keep apps, and then I build them.</h1>
+      <div class="story">
+        <p>I started in November 2019 as a junior Flutter developer in Surat, and I’ve been building mobile apps ever since, {exp} now, for clients in Canada, Germany, Korea, Japan, Brazil and India. Today I lead the mobile team at KGK InfoTech.</p>
+        <p>Somewhere along the way I noticed that the apps that failed were rarely badly built. They were well built for a problem people didn’t have. So I changed how I work: research first, validate with a prototype, then build and measure whether people actually stay.</p>
+        <p>This site is where I do that in the open. I study apps millions of people use, publish what I find, and write about research, mobile UX and building products people keep.</p>
+      </div>
+    </div>
+    <figure class="photo"><img src={profile.headshot} alt="Mitul Vaghasiya" width="480" height="480" /><figcaption>{profile.location}</figcaption></figure>
+  </section>
+
+  <section class="wrap block">
+    <h2>How I work</h2>
+    <div class="principles">
+      {principles.map(([t, d], i) => <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>)}
+    </div>
+  </section>
+
+  <section class="wrap block split">
+    <h2>Experience</h2>
+    <ol class="timeline">
+      {experience.map(e => <li><span class="when">{e.period}</span><div><h3>{e.company}</h3><p class="role">{e.role}</p><p>{e.note}</p></div></li>)}
+      <li><span class="when">2017 — 2020</span><div><h3>S.V. Patel College, Surat</h3><p class="role">Bachelor of Computer Applications</p></div></li>
+    </ol>
+  </section>
+
+  <section class="wrap block split">
+    <h2>What I bring</h2>
+    <dl class="skills">
+      {skills.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+    </dl>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 72px; padding-top: 72px; padding-bottom: 72px; align-items: start; }
+  .hero h1 { font-size: clamp(40px, 4.8vw, 64px); margin: 16px 0 28px; }
+  .story p { font-size: 19px; color: var(--ink-2); max-width: 620px; }
+  .photo { margin: 24px 0 0; }
+  .photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 28px; }
+  .photo figcaption { font-size: 14px; color: var(--ink-3); margin-top: 12px; }
+  .block { padding: 72px 0; border-top: 1px solid var(--line); }
+  .block h2 { font-size: clamp(32px, 3.2vw, 44px); margin-bottom: 32px; }
+  .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .n { font-size: 13px; color: var(--ink-3); }
+  .principles h3 { font-size: 26px; margin: 10px 0 10px; }
+  .principles p { color: var(--ink-2); font-size: 16px; margin: 0; }
+  .split { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .timeline li:first-child { border-top: 0; padding-top: 0; }
+  .when { color: var(--ink-3); font-size: 15px; padding-top: 6px; }
+  .timeline h3 { font-size: 26px; }
+  .role { font-weight: 500; margin: 4px 0 6px; }
+  .timeline p:last-child { color: var(--ink-2); margin: 0; }
+  .skills { margin: 0; }
+  .skills div { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .skills div:first-child { border-top: 0; padding-top: 0; }
+  .skills dt { font: 400 24px/1.2 var(--serif); }
+  .skills dd { margin: 0; color: var(--ink-2); padding-top: 3px; }
+  @media (max-width: 960px) {
+    .hero, .split { grid-template-columns: 1fr; gap: 32px; }
+    .photo { max-width: 340px; margin: 0; }
+    .principles { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .principles { grid-template-columns: 1fr; }
+    .timeline li, .skills div { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import { render } from 'astro:content';
+import Doc from '../../layouts/Doc.astro';
+import { publishedWriting, fmtDate } from '../../data/published';
+import { profile } from '../../data/profile';
+export async function getStaticPaths() {
+  return (await publishedWriting()).map(p => ({ params: { slug: p.id.replace(/^\d{4}-\d\d-\d\d-/, '') }, props: { p } }));
+}
+const { p } = Astro.props;
+const { Content } = await render(p);
+---
+<Doc title={p.data.title} eyebrow={fmtDate(p.data.date)} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}>
+  <p slot="lede" class="dek">{p.data.dek}</p>
+  {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}
+  <Content />
+  <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
+</Doc>
+
+<style>
+  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 20px 0 0; }
+  .cover { width: 100% !important; max-width: 520px; margin: 0 auto 40px !important; border-radius: 16px; }
+  .origin { font-size: 15px; color: var(--ink-3); margin-top: 40px; }
+</style>

@@ -1,0 +1,14 @@
+---
+import { getCollection, render } from 'astro:content';
+import Doc from '../../../layouts/Doc.astro';
+const LABELS: Record<string, string> = { 'test-kit': 'User-test kit', sources: 'Sources' };
+export async function getStaticPaths() {
+  return (await getCollection('docs')).map(d => ({ params: { slug: d.data.study, doc: d.data.kind }, props: { d } }));
+}
+const { d } = Astro.props;
+const { Content } = await render(d);
+const label = LABELS[d.data.kind] ?? 'Evidence';
+---
+<Doc title={d.data.title} eyebrow={`${label} · ${d.data.app}`} back={{ href: `/studies/${d.data.study}/`, label: `${d.data.app} study` }}>
+  <Content />
+</Doc>

@@ -3,11 +3,11 @@ import Base from './Base.astro';
 interface Meta { label: string; value: string }
 interface Props {
   title: string; app: string; summary: string; meta: Meta[]; accent: string; icon?: string;
-  kind?: string; next?: { href: string; label: string };
+  kind?: string; next?: { href: string; label: string }; active?: string;
 }
-const { title, app, summary, meta, accent, icon, kind = 'Case study', next } = Astro.props;
+const { title, app, summary, meta, accent, icon, kind = 'Case study', next, active = 'Work' } = Astro.props;
 ---
-<Base title={`${app} · ${title} · Mitul Vaghasiya`} description={summary} active="Work">
+<Base title={`${app} · ${title} · Mitul Vaghasiya`} description={summary} active={active}>
   <article>
     <header class="wrap head">
       <div class="lead">

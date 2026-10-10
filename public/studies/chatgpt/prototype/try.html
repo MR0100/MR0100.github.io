@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Allowance prototype · ChatGPT re-creation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Re-creation of the ChatGPT iOS app's visual language (App Store screenshots, v1.2026.272, 10 Oct 2026)
+   for an independent usability study. Not an OpenAI product; no logos or wordmarks. Icons are simple lookalikes. */
+:root{--bg:#fff;--ink:#0d0d0d;--ink2:#5d5d5d;--ink3:#8f8f8f;--line:#ececec;--soft:#f4f4f4;
+  --bubble:#e9f3fd;--bubble-ink:#2f68b9;--blue:#0079fe;--warn:#9a5a00;--warn-bg:#fff3df;--paper:#F7F6F2;
+  --sys:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.45 var(--sys);color:var(--ink);background:var(--paper);display:flex;gap:32px;justify-content:center;align-items:flex-start;padding:32px;min-height:100vh;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{display:block}
+/* Phone */
+.phone{width:390px;height:844px;border-radius:54px;background:#161616;padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.18);flex:none}
+.screen{width:100%;height:100%;border-radius:45px;background:var(--bg);overflow:clip;position:relative;display:flex;flex-direction:column}
+.status{height:52px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:8px 30px 0 44px;font-weight:600;font-size:16.5px;letter-spacing:-.01em}
+.status .sb{display:flex;gap:6px;align-items:center}
+.top{height:56px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 14px;position:relative;z-index:2}
+.fab{height:42px;min-width:42px;border-radius:21px;background:#fff;display:flex;align-items:center;justify-content:center;gap:2px;box-shadow:0 2px 14px rgba(0,0,0,.08),0 0 0 .5px rgba(0,0,0,.04)}
+.fab .i{width:42px;height:42px;display:grid;place-items:center}
+.fab.pair{padding:0 3px}
+.plan{position:absolute;left:50%;transform:translateX(-50%);height:32px;padding:0 13px;border-radius:16px;background:var(--soft);font-size:14px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:5px}
+.plan small{font-size:13px;font-weight:400;color:var(--ink2)}
+.thread{flex:1;min-height:0;overflow-y:auto;padding:14px 14px 96px;display:flex;flex-direction:column;gap:14px;scrollbar-width:none}
+.thread::-webkit-scrollbar{display:none}
+.empty{margin:auto;text-align:center;padding-bottom:40px}.empty h2{font-size:23px;font-weight:600;letter-spacing:-.01em}
+.msg{flex:none;max-width:84%;font-size:16px;line-height:1.45;letter-spacing:-.022em}
+.msg.user{align-self:flex-end;background:var(--bubble);color:var(--bubble-ink);padding:12px 16px;border-radius:24px;font-size:16.5px;line-height:1.45}
+.msg.uimg{align-self:flex-end;width:140px;height:186px;border-radius:18px;overflow:hidden;margin-bottom:-8px}
+.msg.uimg svg{width:100%;height:100%}
+.msg.ai{align-self:flex-start;max-width:100%;padding:0 2px}
+.msg.ai .gen{width:226px;height:284px;border-radius:18px;overflow:hidden;margin-top:10px}
+.msg.ai .gen svg{width:100%;height:100%}
+.acts{display:flex;gap:14px;margin-top:12px;color:#5c5c5c}
+.acts span{width:20px;height:20px;display:grid;place-items:center}
+.msg.sys{align-self:stretch;max-width:100%;padding:0 2px}
+.msg.sys .btnrow{display:flex;gap:8px;margin-top:12px}
+.msg.sys .saved{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:18px;padding:12px 14px;font-size:15px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--ink);margin:6px 0 0 4px;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(.7);opacity:.6}}
+/* Composer */
+.composer{position:absolute;left:0;right:0;bottom:0;padding:22px 26px 30px;background:linear-gradient(rgba(255,255,255,0),#fff 26px);z-index:2}
+.notice{display:none;align-items:center;gap:7px;font-size:13.5px;color:var(--warn);background:var(--warn-bg);border-radius:14px;padding:8px 12px;margin:0 4px 8px}
+.notice.on{display:flex}
+.box{display:flex;flex-wrap:wrap;align-items:center;min-height:48px;border-radius:24px;background:#fff;padding:0 7px 0 6px;box-shadow:0 2px 16px rgba(0,0,0,.09),0 0 0 .5px rgba(0,0,0,.05)}
+.box .ib{width:36px;height:36px;display:grid;place-items:center;flex:none;border-radius:50%}
+.box input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;padding:10px 4px 10px 2px;min-width:0;background:transparent;color:var(--ink);letter-spacing:-.01em}
+.box input::placeholder{color:#8f8f8f}
+.send{width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;flex:none;margin-left:2px}
+.send .up{display:none}.box.typed .send .up{display:block}.box.typed .send .wave{display:none}
+.chips{display:none;flex:none}
+.chip{display:none;align-items:center;gap:5px;background:var(--bubble);color:var(--bubble-ink);border-radius:99px;height:30px;padding:0 6px 0 8px;font-size:13.5px;font-weight:500;white-space:nowrap;letter-spacing:-.01em}
+.chip.on{display:inline-flex}.chip .left{font-weight:400}
+.chip .left.low{color:var(--warn);font-weight:600}
+.chip:has(.left.low){background:var(--warn-bg);color:var(--warn)}
+.chip .x{display:grid;place-items:center;width:18px;height:18px;color:inherit;opacity:.75}
+.att-prev{display:none;width:64px;height:64px;border-radius:14px;margin:8px 0 0 6px;overflow:hidden;flex:none}.att-prev svg{width:100%;height:100%}
+.att-prev.on{display:block}
+.spacer{display:none}
+/* Expanded composer (attachment or tool chip): attachment, text, then a tool row */
+.box.expanded{border-radius:26px;padding:0 7px 7px 6px}
+.box.expanded .att-prev{order:0}
+.box.expanded input{order:1;flex-basis:100%;padding:12px 8px 6px}
+.box.expanded #plus{order:2;width:32px}.box.expanded .mic{width:32px}.box.expanded .chips{order:3;display:flex}.box.expanded .spacer{order:4;display:block;flex:1}
+.box.expanded .mic{order:5}.box.expanded .send{order:6}
+.composer:has(.box.expanded){padding-left:18px;padding-right:18px}
+.box.expanded .chip{font-size:13px;gap:4px}
+.notice{font-size:13px}
+.tag{position:absolute;left:0;right:0;bottom:9px;text-align:center;font-size:11px;color:#a3a3a3;z-index:9;pointer-events:none;letter-spacing:.01em}
+/* Sheets */
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.22);display:none;z-index:4}
+.scrim.on{display:block}
+.sheet{position:absolute;left:6px;right:6px;bottom:6px;background:#fff;border-radius:38px;padding:8px 18px 34px;transform:translateY(105%);transition:transform .28s cubic-bezier(.3,1,.3,1);z-index:5;box-shadow:0 -2px 30px rgba(0,0,0,.08)}
+.sheet.on{transform:none}
+.sheet:not(.on){visibility:hidden;transition:transform .28s cubic-bezier(.3,1,.3,1),visibility 0s .28s}
+.grab{width:36px;height:5px;border-radius:3px;background:#d4d4d4;margin:0 auto 16px}
+.sheet h3{font-size:20px;font-weight:600;letter-spacing:-.01em;margin:4px 4px 6px}.sheet p.sub{color:var(--ink2);font-size:15px;margin:0 4px 16px;line-height:1.4}
+.opt{display:flex;gap:13px;align-items:center;text-align:left;width:100%;background:var(--soft);border-radius:20px;padding:13px 14px;margin-bottom:8px}
+.opt:hover{background:#ededed}
+.opt b{display:block;font-weight:600;font-size:16px}.opt span{color:var(--ink2);font-size:14px;line-height:1.35}
+.opt .ic{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;color:var(--ink)}
+.tools .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.tools .tile{background:var(--soft);border-radius:18px;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:15px;font-weight:500}
+.tools .tile .meta{font-size:12px;font-weight:400;color:var(--ink2);margin-top:-4px}
+.tools .tile .meta:empty{display:none}
+.tools .row{display:flex;align-items:center;gap:14px;width:100%;padding:11px 6px;text-align:left;font-size:17px}
+.tools .row .meta{margin-left:auto;font-size:13px;color:var(--ink2)}
+.picker{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.picker[hidden]{display:none}
+.picker button{border-radius:14px;overflow:hidden;aspect-ratio:1}
+.picker button svg{width:100%;height:100%}
+.pk-h{font-size:13px;color:var(--ink2);margin:0 4px 8px}
+.btn{border-radius:99px;padding:9px 16px;font-weight:500;font-size:15px;background:var(--ink);color:#fff}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+/* Plan page */
+.page{position:absolute;inset:52px 0 0;background:#fff;display:none;flex-direction:column;z-index:6}
+.page.on{display:flex}
+.page .head{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.page .head .title{font-size:17px;font-weight:600}
+.page .body{padding:8px 18px}
+.grp-h{font-size:13px;color:var(--ink2);margin:10px 6px 8px}
+.usage{background:var(--soft);border-radius:20px}
+.usage .u{display:flex;justify-content:space-between;padding:15px 16px;font-size:16px;border-bottom:.5px solid #e2e2e2}
+.usage .u:last-child{border:0}.usage .u span{color:var(--ink2)}
+.toast{position:absolute;left:16px;right:16px;top:60px;background:#1f1f1f;color:#fff;border-radius:20px;padding:12px 16px;font-size:14.5px;display:none;z-index:8;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.toast.on{display:block}
+/* Facilitator panel */
+.panel{width:360px;background:#fff;border-radius:16px;padding:20px;font:14px/1.45 Inter,var(--sys);box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.panel h1{font-size:18px;font-weight:600;margin-bottom:4px}.panel .s{color:var(--ink2);margin-bottom:14px}
+.panel h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin:16px 0 6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}.seg button{flex:1;padding:8px}.seg button.on{background:#111;color:#fff}
+.panel ol{padding-left:18px}.panel li{margin-bottom:6px}
+.log{height:170px;overflow:auto;background:var(--paper);border-radius:10px;padding:8px;font:12px/1.5 ui-monospace,Menlo,monospace}
+.panel .actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.panel .btn{font-size:14px}
+@media (max-width:820px){body{padding:0;background:#fff}.panel{display:none}.phone{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0}}
+body:not(.test) .panel{display:none}
+body.solo{padding:0;background:transparent;display:block;min-height:0}
+body.solo .phone{width:390px;height:844px;border-radius:54px;padding:10px;box-shadow:none}
+body.solo .screen{border-radius:45px}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8.5h16M4 15.5h10" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="i-new" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.5H7.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3V13"/><path d="M17.6 3.9a1.9 1.9 0 0 1 2.7 2.7L12.6 14.3 9.5 15l.7-3.1z"/></g></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4.5v15M4.5 12h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="8.6" y="3" width="6.8" height="11.6" rx="3.4"/><path d="M5.5 11.2a6.5 6.5 0 0 0 13 0M12 17.7V21"/></g></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M5 10.5v3M8.6 7.5v9M12.2 5v14M15.8 8.5v7M19.2 10.5v3"/></g></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5.5M6 11.3 12 5.3l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="8.5" y="8.5" width="11" height="11" rx="2.6"/><path d="M15.5 8.5V6.6a2.1 2.1 0 0 0-2.1-2.1H6.6a2.1 2.1 0 0 0-2.1 2.1v6.8a2.1 2.1 0 0 0 2.1 2.1h1.9"/></g></symbol>
+  <symbol id="i-speak" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9.5h3l4.5-4v13l-4.5-4h-3z"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18.3 7a7.2 7.2 0 0 1 0 10"/></g></symbol>
+  <symbol id="i-tup" viewBox="0 0 24 24"><path d="M7.5 10.5v9h-2.3a.9.9 0 0 1-.9-.9v-7.2a.9.9 0 0 1 .9-.9zm0 0 3.6-6.2a1.8 1.8 0 0 1 3.3 1.3l-.8 3.9h4.6a2 2 0 0 1 2 2.4l-1.3 6.2a2.2 2.2 0 0 1-2.2 1.8H7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tdown" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path d="M7.5 10.5v9h-2.3a.9.9 0 0 1-.9-.9v-7.2a.9.9 0 0 1 .9-.9zm0 0 3.6-6.2a1.8 1.8 0 0 1 3.3 1.3l-.8 3.9h4.6a2 2 0 0 1 2 2.4l-1.3 6.2a2.2 2.2 0 0 1-2.2 1.8H7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></g></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 10.5A7.2 7.2 0 0 0 6 7.5M5 13.5A7.2 7.2 0 0 0 18 16.5"/><path d="M5.5 4v3.8h3.8M18.5 20v-3.8h-3.8"/></g></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.3 12 3.8l4.5 4.5M5 13.5v4.2a2.3 2.3 0 0 0 2.3 2.3h9.4a2.3 2.3 0 0 0 2.3-2.3v-4.2"/></g></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8.5a2 2 0 0 1 2-2h1.8l1.4-2h5.6l1.4 2H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></g></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3.8" y="4.8" width="16.4" height="14.4" rx="3"/><circle cx="9" cy="9.8" r="1.6"/><path d="m4.5 17 4.6-4.4 3.4 3 2.6-2.4 4.4 4.1"/></g></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="m19 11.6-6.8 6.8a4.6 4.6 0 0 1-6.5-6.5l7.4-7.4a3 3 0 0 1 4.3 4.3l-7.4 7.3a1.5 1.5 0 0 1-2.1-2.1l6.8-6.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-create" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3.8H7a3 3 0 0 0-3 3v10.4a3 3 0 0 0 3 3h10.2a3 3 0 0 0 3-3V11"/><path d="m4.6 17.6 4.6-4.5 3.3 3.1 2.4-2.3 4.8 4.4"/><path d="M18 2.8v5.4M15.3 5.5h5.4"/></g></symbol>
+  <symbol id="i-think" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17.5h6M10 20.5h4M12 3.5a6 6 0 0 0-3.6 10.8c.6.5.9 1.1.9 1.8v1.4h5.4v-1.4c0-.7.3-1.3.9-1.8A6 6 0 0 0 12 3.5z"/></g></symbol>
+  <symbol id="i-research" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5M8 10.5h5M10.5 8v5"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.3"/><path d="M3.8 12h16.4M12 3.7c2.3 2.3 3.4 5.1 3.4 8.3s-1.1 6-3.4 8.3c-2.3-2.3-3.4-5.1-3.4-8.3s1.1-6 3.4-8.3z"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19.5h14M14.8 4.6a2 2 0 0 1 2.8 2.8l-8.3 8.3-3.7.9.9-3.7z"/></g></symbol>
+  <symbol id="i-upgrade" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.3"/><path d="M12 16.5v-9M8.3 11 12 7.3l3.7 3.7"/></g></symbol>
+</defs></svg>
+<div class="phone"><div class="screen" id="screen">
+  <div class="status"><span>9:41</span><span class="sb">
+    <svg width="18" height="12" viewBox="0 0 18 12"><g fill="#000"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></g></svg>
+    <svg width="17" height="12" viewBox="0 0 17 12"><g fill="#000"><path d="M8.5 2.3c2.4 0 4.6.9 6.2 2.5l1.3-1.3A10.6 10.6 0 0 0 8.5.4 10.6 10.6 0 0 0 1 3.5l1.3 1.3a8.7 8.7 0 0 1 6.2-2.5z"/><path d="M8.5 5.9c1.4 0 2.7.5 3.7 1.4l1.3-1.3a7.1 7.1 0 0 0-10 0l1.3 1.3a5.3 5.3 0 0 1 3.7-1.4z"/><path d="m8.5 11.6 2.3-2.3a3.3 3.3 0 0 0-4.6 0z"/></g></svg>
+    <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="#000" opacity=".35"/><rect x="2" y="2" width="20" height="9" rx="2.4" fill="#000"/><path d="M25 4.5v4a2 2 0 0 0 0-4z" fill="#000" opacity=".4"/></svg></span></div>
+  <div class="top"><button class="fab" id="menuBtn" aria-label="Menu"><svg width="24" height="24"><use href="#i-menu"/></svg></button>
+    <button class="plan" id="planBtn">Free <small>· plan</small></button>
+    <div class="fab pair"><span class="i" aria-label="New chat"><svg width="23" height="23"><use href="#i-new"/></svg></span><span class="i" aria-label="More"><svg width="22" height="22"><use href="#i-more"/></svg></span></div></div>
+  <div class="thread" id="thread"><div class="empty" id="empty"><h2>What can I help with?</h2></div></div>
+  <div class="composer">
+    <div class="notice" id="notice"><svg width="16" height="16"><use href="#i-clock"/></svg><span id="noticeText"></span></div>
+    <div class="box" id="box">
+      <div class="att-prev" id="attPrev"></div>
+      <button class="ib" id="plus" aria-label="Add"><svg width="24" height="24"><use href="#i-plus"/></svg></button>
+      <div class="chips"><span class="chip" id="chip"><svg width="17" height="17"><use href="#i-photo"/></svg><span id="chipName">Photos</span> · <span class="left" id="chipLeft"></span><button class="x" id="chipX" aria-label="Remove"><svg width="14" height="14"><use href="#i-x"/></svg></button></span></div>
+      <input id="input" placeholder="Ask ChatGPT" autocomplete="off">
+      <span class="spacer"></span>
+      <button class="ib mic" aria-label="Dictate"><svg width="22" height="22"><use href="#i-mic"/></svg></button>
+      <button class="send" id="send" aria-label="Send"><svg class="wave" width="20" height="20"><use href="#i-wave"/></svg><svg class="up" width="19" height="19"><use href="#i-up"/></svg></button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet tools" id="toolSheet"><div class="grab"></div>
+    <div class="picker" id="picker" hidden></div>
+    <div class="tiles">
+      <button class="tile tool" data-tool="camera"><svg width="26" height="26"><use href="#i-camera"/></svg>Camera<span class="meta tool-left"></span></button>
+      <button class="tile tool" data-tool="photos"><svg width="26" height="26"><use href="#i-photo"/></svg>Photos<span class="meta tool-left"></span></button>
+      <button class="tile other" data-other="files"><svg width="26" height="26"><use href="#i-file"/></svg>Files</button>
+    </div>
+    <button class="row tool" data-tool="create"><svg width="24" height="24"><use href="#i-create"/></svg>Create image<span class="meta tool-left"></span></button>
+    <button class="row other" data-other="thinking"><svg width="24" height="24"><use href="#i-think"/></svg>Thinking</button>
+    <button class="row other" data-other="research"><svg width="24" height="24"><use href="#i-research"/></svg>Deep research</button>
+    <button class="row other" data-other="web"><svg width="24" height="24"><use href="#i-globe"/></svg>Web search</button>
+  </div>
+  <div class="sheet" id="limitSheet"><div class="grab"></div>
+    <h3>You've used today's photo &amp; image tools</h3><p class="sub">They reset at <b id="resetAt">3:40 pm</b>. Your message and photo are kept.</p>
+    <button class="opt" data-choice="later"><span class="ic"><svg width="20" height="20"><use href="#i-clock"/></svg></span><span><b>Save for later</b><span>Runs automatically at 3:40 pm. We'll notify you.</span></span></button>
+    <button class="opt" data-choice="text"><span class="ic"><svg width="20" height="20"><use href="#i-text"/></svg></span><span><b>Do it in text instead</b><span>Text chat is unlimited. Describe the edit or type the words.</span></span></button>
+    <button class="opt" data-choice="upgrade"><span class="ic"><svg width="20" height="20"><use href="#i-upgrade"/></svg></span><span><b>Upgrade to Plus</b><span>More photo and image uses every day. $20/month.</span></span></button>
+  </div>
+  <div class="page" id="planPage"><div class="head"><button class="fab" id="planBack" aria-label="Back"><svg width="22" height="22"><use href="#i-back"/></svg></button><div class="title" id="planTitle">Your plan</div><span style="width:42px"></span></div>
+    <div class="body"><div class="grp-h">Today on Free</div>
+      <div class="usage"><div class="u">Text chat<span>Unlimited</span></div><div class="u">Photo &amp; image tools<span id="planLeft">3 of 3 left</span></div><div class="u">Resets<span>3:40 pm</span></div></div>
+      <p style="font-size:13px;color:var(--ink2);margin:10px 6px 0">Failed or refused results don't count.</p></div></div>
+  <div class="tag">Re-creation for an independent study</div>
+</div></div>
+
+<aside class="panel">
+  <h1>Test facilitator</h1><div class="s">Prototype for a 5-user test. Re-creates ChatGPT's visual style for an independent study; not affiliated with OpenAI.</div>
+  <h4>Variant</h4><div class="seg"><button data-v="A">A · Today's pattern</button><button data-v="B" class="on">B · Visible allowance</button></div>
+  <h4>Tasks (read aloud)</h4>
+  <ol><li>"Translate this menu photo." (+ → Photos → menu)</li><li>"Now turn this selfie into a professional headshot." (+ → Photos → selfie)</li><li>"Edit one more photo: brighten the room." (+ → Photos → room)</li><li>"Where would you check what's left today?"</li></ol>
+  <h4>Event log</h4><div class="log" id="log"></div>
+  <div class="actions"><button class="btn" id="reset">Reset</button><button class="btn ghost" id="export">Download CSV</button><button class="btn ghost" id="fail">Simulate failed result</button></div>
+</aside>
+
+<script>
+if(new URLSearchParams(location.search).has('test')) document.body.classList.add('test');
+const LIMIT = 3;
+const PHOTOS = {
+  menu:  {label:'Menu photo', svg:'<svg viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice"><rect width="100" height="133" fill="#6b5a46"/><rect x="14" y="10" width="72" height="113" rx="2" fill="#efe6d2" transform="rotate(-3 50 66)"/><g transform="rotate(-3 50 66)"><text x="30" y="28" font-size="9" font-family="Georgia,serif" fill="#3b2f20">MENÚ DEL DÍA</text><g fill="#8a7a63"><rect x="22" y="38" width="52" height="3"/><rect x="22" y="46" width="42" height="3"/><rect x="22" y="58" width="56" height="3"/><rect x="22" y="66" width="36" height="3"/><rect x="22" y="78" width="50" height="3"/><rect x="22" y="86" width="44" height="3"/><rect x="22" y="98" width="30" height="3"/></g></g></svg>',
+    reply:'<b>Menu of the Day</b><br><br><b>Starters</b><br>Gazpacho Andalusian-style: tomato, cucumber and olive oil, €6<br>Ham croquettes: creamy and crispy, €8<br><br><b>Main dishes</b><br>Spanish omelette: potato, onion and egg, €9'},
+  selfie:{label:'Selfie', svg:'<svg viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9aa3a6"/><stop offset="1" stop-color="#5f6a70"/></linearGradient></defs><rect width="100" height="133" fill="url(#sg)"/><circle cx="18" cy="40" r="5" fill="#f2c27b" opacity=".7"/><circle cx="84" cy="30" r="4" fill="#f2c27b" opacity=".6"/><path d="M34 44c0-14 8-22 17-22s17 8 17 22v6H34z" fill="#2b2420"/><ellipse cx="51" cy="54" rx="15" ry="18" fill="#c99a78"/><path d="M14 133c2-26 18-40 37-40s35 14 37 40z" fill="#d8bfa6"/></svg>', reply:'Here is your professional headshot.', gen:'headshot'},
+  room:  {label:'Room', svg:'<svg viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice"><rect width="100" height="133" fill="#4b4741"/><rect x="0" y="92" width="100" height="41" fill="#38342f"/><rect x="58" y="22" width="28" height="40" fill="#8c877d"/><path d="M72 22v40M58 42h28" stroke="#4b4741" stroke-width="2"/><rect x="10" y="74" width="46" height="24" rx="4" fill="#2f2b27"/><rect x="14" y="66" width="38" height="12" rx="4" fill="#3a3530"/></svg>', reply:'Here is the room, brightened.', gen:'room'},
+};
+const GEN = {
+  headshot:'<svg viewBox="0 0 100 126" preserveAspectRatio="xMidYMid slice"><rect width="100" height="126" fill="#6f665c"/><path d="M60 126 100 70v56z" fill="#cdbb9f" opacity=".7"/><path d="M33 46c0-16 8-25 18-25s18 9 18 25v6H33z" fill="#221c18"/><ellipse cx="51" cy="57" rx="16" ry="19" fill="#c9987a"/><path d="M10 126c3-28 20-42 41-42s38 14 41 42z" fill="#1d1c1c"/><path d="M42 84l9 18 9-18" fill="#111"/></svg>',
+  room:'<svg viewBox="0 0 100 126" preserveAspectRatio="xMidYMid slice"><rect width="100" height="126" fill="#efe9df"/><rect x="0" y="88" width="100" height="38" fill="#d9cdb9"/><rect x="58" y="18" width="28" height="40" fill="#fdfcf7" stroke="#e2dbcf"/><path d="M72 18v40M58 38h28" stroke="#e2dbcf" stroke-width="2"/><rect x="10" y="70" width="46" height="24" rx="4" fill="#a9b7a6"/><rect x="14" y="62" width="38" height="12" rx="4" fill="#bfcabb"/><circle cx="30" cy="18" r="6" fill="#fff6d8"/></svg>'};
+const ACTS = '<div class="acts">'+['copy','speak','tup','tdown','redo','share'].map(i=>`<span><svg width="20" height="20"><use href="#i-${i}"/></svg></span>`).join('')+'</div>';
+let S;
+const $ = id => document.getElementById(id);
+const EMPTY = '<div class="empty" id="empty"><h2>What can I help with?</h2></div>';
+function reset(v){ S = {v: v || (S && S.v) || 'B', used:0, tool:null, photo:null, pending:null, start:Date.now(), events:[]};
+  $('thread').innerHTML = EMPTY;
+  ['chip','notice','attPrev','scrim','toolSheet','limitSheet','planPage','toast'].forEach(i=>$(i).classList.remove('on'));
+  $('input').value=''; $('log').textContent=''; document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on', b.dataset.v===S.v));
+  render(); log('reset', 'variant '+S.v); }
+function left(){ return LIMIT - S.used; }
+function log(ev, detail=''){ const s=((Date.now()-S.start)/1000).toFixed(1); S.events.push({t:s, ev, detail}); $('log').textContent += `${s}s  ${ev}${detail?'  '+detail:''}\n`; $('log').scrollTop=1e9; }
+function leftText(){ const l=left(); return l<=0?'none left today': l===1?'last one today': `${l} left today`; }
+function render(){
+  const B = S.v==='B';
+  document.querySelectorAll('.tool-left').forEach(e=>e.textContent = B ? leftText() : '');
+  $('chipLeft').textContent = leftText(); $('chipLeft').classList.toggle('low', left()<=1);
+  $('notice').classList.toggle('on', B && S.tool && left()===1);
+  $('noticeText').textContent = 'Last photo use for today. Resets at 3:40 pm.';
+  $('planLeft').textContent = `${Math.max(0,left())} of ${LIMIT} left`;
+  $('planBtn').style.visibility = B ? 'visible' : 'hidden';
+  updateBox();
+}
+function updateBox(){ const box=$('box');
+  box.classList.toggle('expanded', $('attPrev').classList.contains('on') || $('chip').classList.contains('on'));
+  box.classList.toggle('typed', !!$('input').value.trim() || $('attPrev').classList.contains('on')); }
+function open(id){ $('scrim').classList.add('on'); $(id).classList.add('on'); }
+function closeSheets(){ $('scrim').classList.remove('on'); $('toolSheet').classList.remove('on'); $('limitSheet').classList.remove('on'); $('picker').hidden=true; }
+function addMsg(cls, html){ const e=$('empty'); if(e) e.remove(); const d=document.createElement('div'); d.className='msg '+cls; d.innerHTML=html; $('thread').appendChild(d); $('thread').scrollTop=1e9; return d; }
+const esc = s => s.replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
+
+$('plus').onclick = ()=>{ log('tap +'); open('toolSheet'); };
+$('scrim').onclick = ()=>{ log('dismiss sheet'); closeSheets(); };
+$('input').oninput = updateBox;
+document.querySelectorAll('.other').forEach(b=>b.onclick=()=>log('tap other tool', b.dataset.other));
+document.querySelectorAll('.tool').forEach(b=>b.onclick=()=>{ S.tool=b.dataset.tool; log('pick tool', S.tool);
+  const p=$('picker'); p.innerHTML=''; Object.entries(PHOTOS).forEach(([k,v])=>{ const x=document.createElement('button'); x.innerHTML=v.svg; x.setAttribute('aria-label',v.label); x.onclick=()=>pickPhoto(k); p.appendChild(x); }); p.hidden=false; });
+function pickPhoto(k){ S.photo=k; log('pick photo', k); closeSheets();
+  $('attPrev').innerHTML=PHOTOS[k].svg; $('attPrev').classList.add('on');
+  if(S.v==='B'){ $('chipName').textContent = S.tool==='create'?'Create image':S.tool==='camera'?'Camera':'Photos'; $('chip').classList.add('on'); }
+  render(); $('input').focus(); }
+$('chipX').onclick = ()=>{ log('remove chip'); S.tool=null; S.photo=null; $('chip').classList.remove('on'); $('attPrev').classList.remove('on'); render(); };
+$('send').onclick = send; $('input').onkeydown = e=>{ if(e.key==='Enter') send(); };
+function send(){
+  const text=$('input').value.trim(); if(!text && !S.photo) return;
+  const ph=S.photo; log('send', (ph||'text')+(text?' "'+text.slice(0,40)+'"':''));
+  if(ph) addMsg('uimg', PHOTOS[ph].svg);
+  if(text) addMsg('user', esc(text));
+  $('input').value=''; $('attPrev').classList.remove('on'); updateBox();
+  if(!ph){ reply(()=>addMsg('ai', 'Sure. Text chat is unlimited on Free, so ask away.'+ACTS)); return; }
+  if(left()<=0){ return hitLimit(ph, text); }
+  S.used++; render();
+  reply(()=>{ const r=PHOTOS[ph]; addMsg('ai', r.reply+(r.gen?`<div class="gen">${GEN[r.gen]}</div>`:'')+ACTS); log('result', ph+' (used '+S.used+'/'+LIMIT+')');
+    S.tool=null; S.photo=null; $('chip').classList.remove('on'); render(); });
+}
+function reply(fn){ const d=addMsg('ai','<div class="dot"></div>'); setTimeout(()=>{ d.remove(); fn(); }, 900); }
+function hitLimit(ph, text){
+  S.pending={ph,text}; log('LIMIT HIT', 'variant '+S.v);
+  if(S.v==='A'){
+    reply(()=>{ addMsg('sys', `You've hit the Free plan limit for image uploads. Upgrade to Plus to keep going, or try again after 3:40 pm.<div class="btnrow"><button class="btn" onclick="log('tap upgrade (A)')">Get Plus</button></div>`); });
+  } else { open('limitSheet'); }
+  S.tool=null; S.photo=null; $('chip').classList.remove('on'); render();
+}
+document.querySelectorAll('#limitSheet .opt').forEach(b=>b.onclick=()=>{ const c=b.dataset.choice; log('limit choice', c); closeSheets();
+  if(c==='later'){ addMsg('sys','<div class="saved"><svg width="20" height="20" style="flex:none;margin-top:1px"><use href="#i-clock"/></svg><span>Saved. This will run at 3:40 pm and we\'ll notify you when it\'s ready.</span></div>'); toast('Allow notifications so we can tell you when it\'s ready?'); }
+  if(c==='text'){ $('input').value = S.pending && S.pending.ph==='room' ? 'How could I make my room look brighter?' : 'Describe how to do this edit'; updateBox(); $('input').focus(); }
+  if(c==='upgrade'){ toast('Plus: more photo and image uses every day. (Prototype ends here.)'); }
+});
+function toast(m){ $('toast').textContent=m; $('toast').classList.add('on'); setTimeout(()=>$('toast').classList.remove('on'), 3200); }
+$('planBtn').onclick = ()=>{ log('open plan'); $('planTitle').textContent='Your plan'; $('planPage').classList.add('on'); };
+// Both variants: ☰ → Settings › Usage. Since Aug 2026 the real Free plan shows remaining usage here (Engadget, 12 Aug 2026).
+$('menuBtn').onclick = ()=>{ log('open settings › usage'); $('planTitle').textContent='Settings › Usage'; $('planPage').classList.add('on'); };
+$('planBack').onclick = ()=>{ $('planPage').classList.remove('on'); };
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>reset(b.dataset.v));
+$('reset').onclick = ()=>reset();
+$('fail').onclick = ()=>{ log('simulated failure (not counted)'); addMsg('ai','Something went wrong creating that image. This one didn\'t count toward your limit.'+ACTS); };
+$('export').onclick = ()=>{ const rows=['t_seconds,event,detail', ...S.events.map(e=>`${e.t},${e.ev},"${(e.detail||'').replace(/"/g,'""')}"`)];
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'})); a.download=`session-${S.v}-${new Date().toISOString().slice(0,16).replace(/:/g,'')}.csv`; a.click(); };
+// URL params for static renders: ?v=A|B&used=n
+const q=new URLSearchParams(location.search); reset(q.get('v')||'B'); if(q.get('used')){ S.used=+q.get('used'); render(); }
+window.__proto = {S, pickPhoto, open, send, render, hitLimit, $};
+</script>
+<script>window.COMPARE = {app:'ChatGPT', title:'Hitting the photo limit: before and after',
+  question:'A free user is editing photos and runs out of uses. The same tasks, two designs.',
+  caseStudy:'../full/',
+  before:{try:'Tap <b>＋ → Photos</b>, pick any photo and send. Do it four times.', notice:'Nothing shows how many uses are left. The fourth send hits a wall with one way out: upgrade.'},
+  after:{try:'Do the same: <b>＋ → Photos</b>, pick a photo, send, four times.', notice:'The chip counts down, a warning comes before the last use, and at the limit you get three choices. Your photo is kept.'},
+  controls:[]};</script>
+<script src="/studies/_shared/compare.js"></script>
+</body></html>

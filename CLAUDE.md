@@ -6,7 +6,8 @@ Guidance for Claude Code in this repo: Mitul Vaghasiya's public portfolio site (
 - **Public repo.** Never add third-party screenshots, raw review data, private notes or anything from `PersonalResearch` that isn't in the sync script's publishable list.
 - **Content edits happen in the research repo**, then `scripts/sync_from_research.py`. Site templates, pages and styles are edited here.
 - **Honesty:** every number cited or labelled Hypothesis; prototype screens are labelled re-creations.
-- Before pushing: run `scripts/build.py`, serve `_site/`, and check there are no broken links, missing images or JS errors.
+- Before pushing: `npm run build`, serve `dist/` (`npx astro preview`), and crawl for broken links, missing images or JS errors.
+- Identity: product designer & researcher who also ships mobile apps. Case studies, analysis and writing lead; shipped work supports. Never mention Upwork or freelancing.
 
 ## Git rules
 - **Authorship:** every commit by **Mitul Vaghasiya <mr.vaghasiya197@gmail.com>** only.

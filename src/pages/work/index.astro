@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import { liveApps, otherWork, STORES_CHECKED } from '../../data/work';
+import { counts } from '../../data/profile';
+---
+<Base title="Work · Mitul Vaghasiya" active="Work" description="Mobile apps Mitul has shipped since 2019, and the projects behind them.">
+  <section class="wrap intro">
+    <p class="eyebrow">Work</p>
+    <h1>Apps I’ve built and led, since 2019.</h1>
+    <p class="lede">{counts.projectsWorkedOn} projects across commerce, health, agriculture, education and consumer apps, for clients in Canada, Germany, Korea, Japan, Brazil and India. {liveApps.length} are live in the stores today. Some others shipped and were later withdrawn, and some were stopped by their clients before launch. They’re all listed below, honestly labelled.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="head"><h2>Live in the stores</h2><span class="note">Checked {STORES_CHECKED}</span></div>
+    <div class="apps">
+      {liveApps.map(a => (
+        <article class="app">
+          <div class="tile" style={`background:${a.accent}`}>
+            {a.icon ? <img src={a.icon} alt="" width="72" height="72" /> : <span class="mono">{a.name.split(' ').map(w => w[0]).slice(0, 2).join('')}</span>}
+          </div>
+          <div class="info">
+            <p class="eyebrow">{a.category} · {a.period}</p>
+            <h3>{a.caseStudy ? <a href={`/work/${a.slug}/`}>{a.name}</a> : a.name}</h3>
+            <p class="desc">{a.oneLiner}</p>
+            <p class="sub">{a.client} · {a.role}{a.rating && <> · <b>{a.rating}</b></>}</p>
+            <p class="stores">
+              {a.appStore && <a class="link" href={a.appStore}>App Store</a>}
+              {a.playStore && <a class="link" href={a.playStore}>Google Play</a>}
+              {a.caseStudy && <a class="link strong" href={`/work/${a.slug}/`}>Case study →</a>}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap more">
+    <div class="head"><h2>Also built</h2><span class="note">Real work that can’t be checked in a store today</span></div>
+    <table>
+      <thead><tr><th>Project</th><th>What it does</th><th>Where</th><th>Years</th><th>Status</th></tr></thead>
+      <tbody>
+        {otherWork.map(o => <tr><td><b>{o.name}</b></td><td>{o.what}</td><td>{o.where}</td><td>{o.year}</td><td><span class="status">{o.status}</span></td></tr>)}
+      </tbody>
+    </table>
+    <p class="note">Plus more client projects that were paused or cancelled before launch, which brings the total past 35.</p>
+  </section>
+</Base>
+
+<style>
+  .intro { padding-top: 72px; padding-bottom: 48px; }
+  .intro h1 { font-size: clamp(40px, 4.8vw, 64px); margin: 16px 0 22px; max-width: 900px; }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 760px; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+  .head h2 { font-size: clamp(30px, 3vw, 40px); }
+  .note { font-size: 14px; color: var(--ink-3); }
+  .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .app { display: grid; grid-template-columns: 96px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .tile { width: 96px; height: 96px; border-radius: 22px; display: grid; place-items: center; }
+  .tile img { width: 72px; height: 72px; border-radius: 17px; }
+  .mono { font: 400 32px/1 var(--serif); color: var(--ink-2); }
+  .info h3 { font-size: 28px; margin: 6px 0 6px; }
+  .info h3 a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+  .desc { color: var(--ink-2); margin: 0 0 8px; }
+  .sub { font-size: 14px; color: var(--ink-3); margin: 0 0 10px; }
+  .sub b { color: var(--ink); font-weight: 600; }
+  .stores { display: flex; gap: 18px; font-size: 14px; margin: 0; flex-wrap: wrap; }
+  .stores .strong { font-weight: 600; }
+  .more { padding: 80px 0 40px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 14px 12px 10px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: top; }
+  td b { color: var(--ink); font-weight: 600; }
+  .status { font-size: 13px; background: var(--accent-soft); color: var(--ink-2); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  @media (max-width: 900px) {
+    .apps { grid-template-columns: 1fr; }
+    table, thead, tbody, tr, td, th { display: block; }
+    thead { display: none; }
+    tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+    td { border: 0; padding: 2px 0; }
+  }
+</style>

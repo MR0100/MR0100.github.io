@@ -38,3 +38,26 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
   .section { padding: 64px 0; }
   .section-head { flex-direction: column; gap: 8px; margin-bottom: 28px; }
 }
+
+/* Long-form reading (full analyses, documents, articles) */
+.prose { max-width: var(--text); margin: 0 auto; font-size: 18px; color: var(--ink-2); }
+.prose > *:first-child { margin-top: 0; }
+.prose h2 { font-size: clamp(28px, 2.8vw, 36px); color: var(--ink); margin: 64px 0 18px; }
+.prose h3 { font-family: var(--sans); font-size: 18px; font-weight: 600; letter-spacing: 0; color: var(--ink); margin: 36px 0 10px; line-height: 1.4; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1.1em; }
+.prose li { margin-bottom: .5em; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a { color: var(--ink); border-bottom: 1px solid #c9c7bf; }
+.prose a:hover { border-color: var(--ink); }
+.prose blockquote { margin: 28px 0; padding: 0 0 0 22px; border-left: 2px solid var(--accent); font: 400 23px/1.4 var(--serif); color: var(--ink); }
+.prose blockquote p { margin: 0; }
+.prose img { width: min(100%, 360px); margin: 32px auto 10px; border-radius: 16px; }
+.prose img + em, .prose p > em:only-child { display: block; font-size: 15px; color: var(--ink-3); text-align: center; max-width: 560px; margin: 0 auto 28px; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 24px 0 32px; display: block; overflow-x: auto; }
+.prose th, .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th { color: var(--ink); font-weight: 600; border-bottom-color: var(--ink-3); }
+.prose code { font-size: .88em; background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; }
+.prose .tag { font: 600 11px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; background: #f3ead6; color: #7a5a14; padding: 4px 7px; border-radius: 6px; vertical-align: 2px; }
+.prose .note-box { background: var(--accent-soft); color: var(--ink-2); font-size: 15px; border-radius: 12px; padding: 14px 18px; margin: 24px 0 8px; }
+.prose blockquote:first-child { font: 400 16px/1.6 var(--sans); color: var(--ink-2); border-left-color: var(--line); }
