@@ -3,6 +3,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import StudyTabs from '../../../components/StudyTabs.astro';
+import StudyPager from '../../../components/StudyPager.astro';
 export async function getStaticPaths() {
   return (await getCollection('prototypes')).map(p => ({ params: { slug: p.id }, props: { p } }));
 }
@@ -45,11 +46,8 @@ const sides = [
 
   <section class="wrap foot">
     <p class="disclaim">Both phones are live: tap through them. {d.note?.replace('Every screen below is', 'Both are')} Prices and numbers on screen are placeholders. <a class="link" href={`${base}sources/`}>Sources</a>.</p>
-    <div class="links">
-      <a class="btn" href={`${base}prototype/`}>Screen by screen →</a>
-      <a class="btn ghost" href={base}>Back to the study</a>
-    </div>
   </section>
+  <StudyPager slug={p.id} current="try" />
 </Base>
 
 <script>
@@ -104,8 +102,7 @@ const sides = [
   .btn.small { height: 38px; padding: 0 16px; font-size: 14px; border: 0; cursor: pointer; }
   .btn.small.ghost { border: 1px solid var(--line); background: transparent; }
   .status { font-size: 14px; color: var(--ink-3); }
-  .foot { padding-top: 24px; padding-bottom: 40px; }
+  .foot { padding-top: 24px; }
   .disclaim { font-size: 13px; color: var(--ink-3); max-width: 820px; }
-  .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .col { padding: 18px; } .head { padding-top: 32px; } }
 </style>

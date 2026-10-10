@@ -1,14 +1,12 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Doc from '../../../layouts/Doc.astro';
+import StudyDoc from '../../../layouts/StudyDoc.astro';
 export async function getStaticPaths() {
   return (await getCollection('research')).map(r => ({ params: { slug: r.id }, props: { r } }));
 }
 const { r } = Astro.props;
 const { Content } = await render(r);
 ---
-<Doc title={r.data.title} eyebrow={`Full analysis · ${r.data.app}`} back={{ href: `/studies/${r.id}/`, label: `${r.data.app} study` }}
-  crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: `/studies/${r.id}/`, label: r.data.app }, { label: 'Full analysis' }]}
-  study={{ slug: r.id, current: 'full' }}>
+<StudyDoc slug={r.id} app={r.data.app} current="full" label="Full analysis" title={r.data.title}>
   <Content />
-</Doc>
+</StudyDoc>

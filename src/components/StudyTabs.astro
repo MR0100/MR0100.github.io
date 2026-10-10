@@ -1,21 +1,9 @@
 ---
 // The same row of links on every page of a study, so you can always move between its parts or get back to it.
-import { getCollection } from 'astro:content';
 import Tabs from './Tabs.astro';
+import { studyTabs } from '../data/studyNav';
 interface Props { slug: string; current: string }
 const { slug, current } = Astro.props;
-const base = `/studies/${slug}/`;
-const docs = (await getCollection('docs')).filter(d => d.data.study === slug);
-const has = (k: string) => docs.some(d => d.data.kind === k);
-const evidence = docs.filter(d => d.data.kind.startsWith('evidence/'));
-const tabs = [
-  ['overview', 'Overview', base],
-  ['try', 'Try it', `${base}try/`],
-  ['screens', 'Screen by screen', `${base}prototype/`],
-  ['full', 'Full analysis', `${base}full/`],
-  ...(has('test-kit') ? [['test-kit', 'Test kit', `${base}test-kit/`]] : []),
-  ...evidence.map(e => [e.data.kind, 'Review coding', `${base}${e.data.kind}/`]),
-  ...(has('sources') ? [['sources', 'Sources', `${base}sources/`]] : []),
-];
+const tabs = await studyTabs(slug);
 ---
-<Tabs label="This study" items={tabs.map(([k, label, href]) => ({ label, href, current: k === current }))} />
+<Tabs label="This study" items={tabs.map(t => ({ label: t.label, href: t.href, current: t.key === current }))} />

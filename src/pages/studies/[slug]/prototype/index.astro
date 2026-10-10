@@ -3,6 +3,7 @@
 import { getCollection, getEntry } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import StudyTabs from '../../../../components/StudyTabs.astro';
+import StudyPager from '../../../../components/StudyPager.astro';
 export async function getStaticPaths() {
   return (await getCollection('prototypes')).map(p => ({ params: { slug: p.id }, props: { p } }));
 }
@@ -61,11 +62,8 @@ const groups = [
       </div>
     </div>
     <p class="disclaim">{d.note} <a class="link" href={`${base}sources/`}>Sources</a>.</p>
-    <div class="actions">
-      <a class="btn" href={`${base}try/`}>Try both versions →</a>
-      <a class="btn ghost" href={base}>Back to the study</a>
-    </div>
   </section>
+  <StudyPager slug={p.id} current="screens" />
 </Base>
 
 <style>
@@ -95,7 +93,6 @@ const groups = [
   .test { background: var(--accent-soft); border-radius: 14px; padding: 22px 24px; align-self: start; }
   .test p:last-child { margin: 8px 0 0; }
   .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; max-width: 760px; }
-  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 40px; }
   @media (max-width: 960px) { .steps, .steps.n2 { grid-template-columns: 1fr 1fr; } .learn { grid-template-columns: 1fr; padding: 24px; } }
   @media (max-width: 520px) { .head { padding-top: 32px; } }
 </style>

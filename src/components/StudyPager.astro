@@ -1,0 +1,25 @@
+---
+// Back on the left, next on the right: the previous and next parts of the same study.
+import { studyTabs } from '../data/studyNav';
+interface Props { slug: string; current: string }
+const { slug, current } = Astro.props;
+const tabs = await studyTabs(slug);
+const i = tabs.findIndex(t => t.key === current);
+const prev = tabs[i - 1], next = tabs[i + 1];
+---
+<nav class="wrap pager" aria-label="Study pages">
+  {prev ? <a class="prev" href={prev.href}><span class="k">← Back</span><span class="t">{prev.label}</span></a> : <span />}
+  {next ? <a class="next" href={next.href}><span class="k">Next →</span><span class="t">{next.label}</span></a> : <a class="next" href={tabs[0].href}><span class="k">Back to the start →</span><span class="t">Overview</span></a>}
+</nav>
+
+<style>
+  .pager { display: flex; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 48px; }
+  a { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 18px 22px; border-radius: 16px; border: 1px solid var(--line); transition: background .2s, border-color .2s; max-width: 48%; }
+  a:hover { background: var(--surface); border-color: var(--ink-3); }
+  .next { text-align: right; align-items: flex-end; margin-left: auto; background: var(--ink); border-color: var(--ink); color: #fff; }
+  .next:hover { background: #000; border-color: #000; }
+  .k { font: 500 12px/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .next .k { color: rgba(255,255,255,.65); }
+  .t { font: 400 24px/1.2 var(--serif); }
+  @media (max-width: 560px) { a { padding: 14px 16px; } .t { font-size: 20px; } }
+</style>

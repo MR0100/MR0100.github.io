@@ -58,10 +58,26 @@ def map_links(md, slug, depth_prefix=''):
     md = re.sub(r'\| App \| Type \|[^\n]*\n\|[-| ]+\|\n\|[^\n]*\|\n+(?:---\n+)?', '', md)
     # Third-party store/press images stay private; say so instead of showing them
     md = re.sub(r'!\[([^\]]*)\]\((?:\.\./)?assets/[^)]+\)',
-                r'<div class="note-box">\1: a third-party image (App Store or press) that I don’t republish here. The source is linked in the caption below.</div>', md)
+                r'<div class="note-box">\1: a third-party image (App Store or press) that I don’t republish here. The source is linked in the caption below.</div>\n', md)
     # Internal workflow lines aren't for readers
     md = '\n'.join(l for l in md.split('\n') if not re.search(r'report\.md|assets/|build\.py|Rebuild the site|python3 ', l))
     return md
+
+
+def inline_md(t):
+    t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
+    t = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', t)
+    t = re.sub(r'(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])', r'<em>\1</em>', t)
+    return t.replace('`', '')
+
+
+def figures(md):
+    """An image line followed by an italic caption line becomes a framed figure; runs of figures sit side by side."""
+    def fig(m):
+        cap = m.group(2).strip()
+        return f'<figure class="fig"><div class="frame"><img src="{m.group(1)}" alt="" loading="lazy" /></div><figcaption>{inline_md(cap)}</figcaption></figure>'
+    md = re.sub(r'^!\[[^\]]*\]\((/[^)]+)\)[ \t]*\n\*(.+)\*[ \t]*$', fig, md, flags=re.M)
+    return re.sub(r'(?:<figure class="fig">.*?</figure>\s*)+', lambda m: '<div class="figs">' + ''.join(re.findall(r'<figure class="fig">.*?</figure>', m.group(0))) + '</div>\n\n', md, flags=re.S)
 
 
 def first_heading(md):
@@ -103,7 +119,7 @@ def sync_studies():
                   open(out('src', 'content', 'prototypes', f'{slug}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         cs = open(os.path.join(s, 'case-study.md'), encoding='utf-8').read()
         open(out('src', 'content', 'research', f'{slug}.md'), 'w', encoding='utf-8').write(
-            fm({'title': first_heading(cs), 'app': app, 'study': slug}) + map_links(strip_h1(cs), slug))
+            fm({'title': first_heading(cs), 'app': app, 'study': slug}) + figures(map_links(strip_h1(cs), slug)))
         tk = os.path.join(s, 'test-kit.md')
         if os.path.exists(tk):
             t = open(tk, encoding='utf-8').read()

@@ -39,6 +39,7 @@ But the app still looks like one chat box. Users hear "unlimited" and then hit a
 > "I only uploaded one photo and asked a few questions, but I was quickly restricted and prompted to upgrade to Plus." (1★, UK, 5 Oct 2026)
 
 <div class="note-box">Fig. 1: a third-party image (App Store or press) that I don’t republish here. The source is linked in the caption below.</div>
+
 *Fig. 1. The App Store page sells photo and image features ("Edit your look"). Three of its eight screenshots are features a Free user is most likely to run out of. Source: [App Store](https://apps.apple.com/us/app/chatgpt/id6448311069).*
 
 ## Three insights
@@ -63,23 +64,7 @@ But the app still looks like one chat box. Users hear "unlimited" and then hit a
 
 I built the proposal as a working prototype so it can be tested with real people. Both variants re-create ChatGPT's real visual style (layout, composer, bubbles, colours, type, icon style) from the eight App Store screenshots of version 1.2026.272, pulled on 10 Oct 2026. Every screen carries a small "Re-creation for an independent study" tag. It has two variants: **A** copies today's pattern (a hard stop with an upgrade button), **B** is the proposal, drawn as if it shipped inside the same app.
 
-![Fig. 2](/studies/chatgpt/design/b2-chip-3-left.png)
-*Fig. 2. **Allowance on the tool chip.** Picking a photo tool adds a chip to the composer: "Photos · 3 left today". The count lives where the decision happens, not in settings. Chat, photo and composer re-created in ChatGPT's style from its App Store screenshots (10 Oct 2026); the chip is the proposal.*
-
-![Fig. 3](/studies/chatgpt/design/b4-last-one-warning.png)
-*Fig. 3. **Warning before the last use.** One line above the composer, no modal: "Last photo use for today. Resets at 3:40 pm." The chip turns amber.*
-
-![Fig. 4](/studies/chatgpt/design/b5-limit-sheet.png)
-*Fig. 4. **A soft landing with three equal choices.** The message and photo are kept. Save it for later (runs at reset, with a notification), do it in text (unlimited), or upgrade. Upgrade is one of three options, not the only exit. The sheet is the proposal, drawn in ChatGPT's style; no public screenshot of the real limit state exists to compare it with.*
-
-![Fig. 5](/studies/chatgpt/design/b6-saved-for-later.png)
-*Fig. 5. **Save for later.** The request is queued, and the notification permission is asked here, where the reason is obvious, not at first launch.*
-
-![Fig. 6](/studies/chatgpt/design/b7-plan-today.png)
-*Fig. 6. **The usage page, one tap away.** The real app already has a Usage section in Settings. Here the same information is one tap from the "Free · plan" pill: text unlimited, tools "0 of 3 left", the reset time, and that failed results don't count.*
-
-![Fig. 7](/studies/chatgpt/design/a1-limit-wall.png)
-*Fig. 7. **Variant A, for comparison.** The chat, photos and composer are re-created in ChatGPT's real style from its App Store screenshots (10 Oct 2026). The limit message itself is not: I found no public screenshot of it, so its wording and layout are my reconstruction from what reviewers and the OpenAI help centre describe (a notice after sending, with a reset time and a "Get Plus" button). The + menu is reconstructed the same way. Like the real app since August 2026, A also has Settings › Usage behind the ☰ menu (no public screenshot either). This is a test control, not a screenshot of ChatGPT.*
+<div class="figs"><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/b2-chip-3-left.png" alt="" loading="lazy" /></div><figcaption>Fig. 2. <strong>Allowance on the tool chip.</strong> Picking a photo tool adds a chip to the composer: "Photos · 3 left today". The count lives where the decision happens, not in settings. Chat, photo and composer re-created in ChatGPT's style from its App Store screenshots (10 Oct 2026); the chip is the proposal.</figcaption></figure><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/b4-last-one-warning.png" alt="" loading="lazy" /></div><figcaption>Fig. 3. <strong>Warning before the last use.</strong> One line above the composer, no modal: "Last photo use for today. Resets at 3:40 pm." The chip turns amber.</figcaption></figure><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/b5-limit-sheet.png" alt="" loading="lazy" /></div><figcaption>Fig. 4. <strong>A soft landing with three equal choices.</strong> The message and photo are kept. Save it for later (runs at reset, with a notification), do it in text (unlimited), or upgrade. Upgrade is one of three options, not the only exit. The sheet is the proposal, drawn in ChatGPT's style; no public screenshot of the real limit state exists to compare it with.</figcaption></figure><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/b6-saved-for-later.png" alt="" loading="lazy" /></div><figcaption>Fig. 5. <strong>Save for later.</strong> The request is queued, and the notification permission is asked here, where the reason is obvious, not at first launch.</figcaption></figure><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/b7-plan-today.png" alt="" loading="lazy" /></div><figcaption>Fig. 6. <strong>The usage page, one tap away.</strong> The real app already has a Usage section in Settings. Here the same information is one tap from the "Free · plan" pill: text unlimited, tools "0 of 3 left", the reset time, and that failed results don't count.</figcaption></figure><figure class="fig"><div class="frame"><img src="/studies/chatgpt/design/a1-limit-wall.png" alt="" loading="lazy" /></div><figcaption>Fig. 7. <strong>Variant A, for comparison.</strong> The chat, photos and composer are re-created in ChatGPT's real style from its App Store screenshots (10 Oct 2026). The limit message itself is not: I found no public screenshot of it, so its wording and layout are my reconstruction from what reviewers and the OpenAI help centre describe (a notice after sending, with a reset time and a "Get Plus" button). The + menu is reconstructed the same way. Like the real app since August 2026, A also has Settings › Usage behind the ☰ menu (no public screenshot either). This is a test control, not a screenshot of ChatGPT.</figcaption></figure></div>
 
 ### How I'd build it (developer's view)
 
