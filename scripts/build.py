@@ -215,7 +215,7 @@ def preprocess(md):
     return md
 
 
-def doc_page(md_text, title, app, slug, out, back_label):
+def doc_page(md_text, title, app, slug, out, back_label, up='../'):
     """Render a supporting document (test kit, review coding, sources) inside the site shell."""
     # Internal workflow notes (private files, rebuild steps) aren't for public readers
     md_text = '\n'.join(l for l in md_text.split('\n')
@@ -225,13 +225,13 @@ def doc_page(md_text, title, app, slug, out, back_label):
     body = markdown.markdown(md_text, extensions=['tables', 'sane_lists'])
     body = re.sub(r'<table>.*?</table>', lambda m: f'<div class="table-wrap">{m.group(0)}</div>', body, flags=re.S)
     # Relative links in these docs were written from the study folder; pages sit one level deeper
-    body = re.sub(r'href="(?!https?:|#|mailto:|/)([^"]+)"', lambda m: f'href="../{m.group(1)}"', body)
-    body = re.sub(r'href="\.\./(?:\.\./)*case-study\.md"', 'href="../"', body)
+    body = re.sub(r'href="(?!https?:|#|mailto:|/)([^"]+)"', lambda m: f'href="{up}{m.group(1)}"', body)
+    body = re.sub(r'href="(?:\.\./)+case-study\.md"', f'href="{up}"', body)
     body = re.sub(r'href="\.\./report\.md[^"]*"', 'href="../"', body)
     page = f'''<main class="layout"><article class="card" style="grid-column:1/-1">
-  <header><div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/#work">Case studies</a><span>/</span><a href="../">{app}</a><span>/</span>{back_label}</div>
+  <header><div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/#work">Case studies</a><span>/</span><a href="{up}">{app}</a><span>/</span>{back_label}</div>
   <h1>{html.escape(title)}</h1></header>{body}
-  <p style="margin-top:var(--s-6)"><a href="../">‹ Back to the {app} case study</a></p></article></main>'''
+  <p style="margin-top:var(--s-6)"><a href="{up}">‹ Back to the {app} case study</a></p></article></main>'''
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, 'w', encoding='utf-8').write(shell(f'{app}: {title}', page, '', title))
 
@@ -258,7 +258,7 @@ def publish_extras(dirname, slug, app):
     for f in glob.glob(os.path.join(s, 'data', '*.md')):
         name = os.path.splitext(os.path.basename(f))[0]
         txt = open(f, encoding='utf-8').read()
-        doc_page(txt, re.search(r'^# (.*)', txt, re.M).group(1), app, slug, os.path.join(t, 'evidence', name, 'index.html'), 'Evidence')
+        doc_page(txt, re.search(r'^# (.*)', txt, re.M).group(1), app, slug, os.path.join(t, 'evidence', name, 'index.html'), 'Evidence', up='../../')
     srcs = sorted(glob.glob(os.path.join(s, 'references', '**', 'SOURCE.md'), recursive=True))
     if srcs:
         txt = '# Sources for the re-created screens\n\nThe prototype screens are my re-creations. These are the public images and pages they were based on. The images themselves are not republished here.\n\n'
