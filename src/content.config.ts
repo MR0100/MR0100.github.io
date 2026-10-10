@@ -12,7 +12,8 @@ const docs = defineCollection({
 });
 const writing = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/writing' }),
-  schema: z.object({ title: z.string(), date: z.coerce.date(), dek: z.string(), format: z.string().optional(), cover: z.string().optional(), source: z.string().optional() }),
+  schema: z.object({ title: z.string(), date: z.coerce.date(), dek: z.string(), format: z.string().optional(), cover: z.string().optional(), source: z.string().optional(),
+    order: z.number().optional(), topic: z.string().optional(), minutes: z.number().optional() }),
 });
 const step = z.object({ image: z.string(), title: z.string(), text: z.string(), principle: z.string() });
 const prototypes = defineCollection({

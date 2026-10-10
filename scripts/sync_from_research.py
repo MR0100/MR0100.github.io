@@ -21,6 +21,7 @@ REPO = os.path.dirname(HERE)
 SRC_REPO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(REPO), 'PersonalResearch')
 CS = os.path.join(SRC_REPO, 'linkedin-growth', 'case-studies')
 POSTS = os.path.join(SRC_REPO, 'linkedin-growth', 'posts')
+ESSAYS = os.path.join(SRC_REPO, 'essays')
 
 STUDIES = [('01-chatgpt', 'chatgpt', 'ChatGPT'), ('02-duolingo', 'duolingo', 'Duolingo'), ('03-myfitnesspal', 'myfitnesspal', 'MyFitnessPal'),
            ('04-revolut', 'revolut', 'Revolut'), ('05-temu', 'temu', 'Temu'),
@@ -182,6 +183,16 @@ def sync_writing():
         open(out('src', 'content', 'writing', f'{date}-{slug}.md'), 'w', encoding='utf-8').write(
             fm({'title': title, 'date': date, 'dek': dek, 'format': fmt, 'cover': cover, 'source': 'LinkedIn'}) + body + '\n')
         n += 1
+    # Essays written for the site: copied as they are, with a reading time
+    for f in sorted(glob.glob(os.path.join(ESSAYS, '20*_*.md'))):
+        m = re.match(r'(\d{4}-\d\d-\d\d)_(.+)\.md', os.path.basename(f))
+        date, slug = m.group(1), m.group(2)
+        raw = open(f, encoding='utf-8').read()
+        _, head, body = raw.split('---', 2)
+        minutes = max(1, round(len(body.split()) / 230))
+        head = head.strip() + f'\nsource: "Essay"\nminutes: {minutes}\n'
+        open(out('src', 'content', 'writing', f'{date}-{slug}.md'), 'w', encoding='utf-8').write(f'---\n{head}---\n{body}')
+        n += 1
     return n
 
 
@@ -190,4 +201,4 @@ if __name__ == '__main__':
         sys.exit(f'Research repo not found at {CS}. Pass its path as the first argument.')
     sync_studies()
     n = sync_writing()
-    print(f'synced 5 studies and {n} articles from {SRC_REPO}')
+    print(f'synced {len(STUDIES)} studies and {n} articles from {SRC_REPO}')

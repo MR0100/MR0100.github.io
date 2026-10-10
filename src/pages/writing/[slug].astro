@@ -9,12 +9,14 @@ export async function getStaticPaths() {
 const { p } = Astro.props;
 const { Content } = await render(p);
 ---
-<Doc title={p.data.title} eyebrow={fmtDate(p.data.date)} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
+<Doc title={p.data.title} eyebrow={[p.data.source === 'Essay' ? 'Essay' : 'LinkedIn post', p.data.topic, fmtDate(p.data.date), p.data.minutes && `${p.data.minutes} min read`].filter(Boolean).join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
   <p slot="lede" class="dek">{p.data.dek}</p>
   {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}
   <Content />
-  <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
+  {p.data.source === 'Essay'
+    ? <p class="origin">Questions or a different experience? <a href={`mailto:${profile.email}`}>Write to me</a> or reply on <a href={profile.linkedin}>LinkedIn</a>.</p>
+    : <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>}
 </Doc>
 
 <style>

@@ -60,4 +60,3 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
 .prose code { font-size: .88em; background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; }
 .prose .tag { font: 600 11px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; background: #f3ead6; color: #7a5a14; padding: 4px 7px; border-radius: 6px; vertical-align: 2px; }
 .prose .note-box { background: var(--accent-soft); color: var(--ink-2); font-size: 15px; border-radius: 12px; padding: 14px 18px; margin: 24px 0 8px; }
-.prose blockquote:first-child { font: 400 16px/1.6 var(--sans); color: var(--ink-2); border-left-color: var(--line); }
