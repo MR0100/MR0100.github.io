@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import { liveApps, otherWork, projects, STORES_CHECKED } from '../../data/work';
 const past = otherWork.map(o => ({ ...o, p: projects.find(p => p.slug === o.slug)! }));
-const initials = (n: string) => n.split(/\s+/).filter(w => /[A-Za-z]/.test(w[0])).map(w => w[0]).slice(0, 2).join('');
 import { counts } from '../../data/profile';
 ---
 <Base title="Work · Mitul Vaghasiya" active="Work" description="Mobile apps Mitul has shipped since 2019, and the projects behind them.">
@@ -37,30 +36,16 @@ import { counts } from '../../data/profile';
   </section>
 
   <section class="wrap more">
-    <div class="head"><h2>Also built</h2><span class="note">Real work that can’t be checked in a store today</span></div>
+    <div class="head"><h2 class="small">Also built</h2><span class="note">Real work that can’t be checked in a store today</span></div>
     <div class="cards">
-      {past.map(({ p, ...o }) => {
-        const shot = p.images[0];
-        return (
-          <article class="card">
-            <a class="thumb" href={`/work/${o.slug}/`} style={`background:${p.accent}`} aria-label={o.name}>
-              {shot ? <img src={shot.src} alt="" loading="lazy" class:list={[shot.kind]} />
-                : p.icon ? <img src={p.icon} alt="" class="icon" loading="lazy" />
-                : <span class="mono">{initials(o.name)}</span>}
-            </a>
-            <div class="body">
-              <p class="eyebrow">{o.where !== '—' ? `${o.where} · ` : ''}{o.year}</p>
-              <h3><a href={`/work/${o.slug}/`}>{o.name}</a></h3>
-              <p class="desc">{o.what}</p>
-              <div class="foot">
-                <span class="status">{o.status}</span>
-                <span class="rec">{p.proof.length ? `${p.proof.length} public record${p.proof.length > 1 ? 's' : ''}` : 'No public record'}</span>
-              </div>
-              <a class="more-link" href={`/work/${o.slug}/`}>Project details →</a>
-            </div>
-          </article>
-        );
-      })}
+      {past.map(({ p, ...o }) => (
+        <a class="card" href={`/work/${o.slug}/`}>
+          <p class="eyebrow">{o.where !== '—' ? `${o.where} · ` : ''}{o.year}</p>
+          <h3>{o.name}</h3>
+          <p class="desc">{o.what}</p>
+          <p class="foot"><span class="status">{o.status}</span>{p.proof.length > 0 && <span>{p.proof.length} public record{p.proof.length > 1 ? 's' : ''}</span>}<span class="arrow">→</span></p>
+        </a>
+      ))}
     </div>
     <p class="note end">Plus more client projects that were paused or cancelled before launch, which brings the total past 35. Each project page links to the independent records that it existed, where any survive.</p>
   </section>
@@ -85,27 +70,22 @@ import { counts } from '../../data/profile';
   .sub b { color: var(--ink); font-weight: 600; }
   .stores { display: flex; gap: 18px; font-size: 14px; margin: 0; flex-wrap: wrap; }
   .stores .strong { font-weight: 600; }
+  .head h2.small { font-size: clamp(24px, 2.2vw, 30px); }
   .more { padding-top: 80px; padding-bottom: 40px; }
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-  .card { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
-  .thumb { display: grid; place-items: center; aspect-ratio: 1; border-radius: 18px; overflow: hidden; align-self: start; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-  .thumb img.phone { width: 62%; height: auto; align-self: end; margin-top: 22px; border-radius: 12px 12px 0 0; box-shadow: 0 16px 32px rgba(0,0,0,.12); }
-  .thumb img.icon { width: 80px; height: 80px; border-radius: 22px; object-fit: cover; }
-  .thumb .mono { font: 400 44px/1 var(--serif); color: var(--ink-3); }
-  .card:hover .thumb img:not(.icon) { transform: translateY(-4px); }
-  .body { display: flex; flex-direction: column; min-width: 0; }
-  .body h3 { font-size: 28px; margin: 6px 0 6px; }
-  .body h3 a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
-  .desc { color: var(--ink-2); margin: 0 0 14px; font-size: 16px; }
-  .foot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--ink-3); }
-  .status { font-size: 13px; background: var(--accent-soft); color: var(--ink-2); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-  .more-link { font-size: 14px; font-weight: 500; margin-top: 14px; align-self: flex-start; border-bottom: 1px solid var(--line); }
-  .more-link:hover { border-color: var(--ink); }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; }
+  .card { display: flex; flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .card .eyebrow { font-size: 11px; }
+  .card h3 { font-size: 22px; margin: 4px 0 4px; }
+  .card:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .desc { color: var(--ink-2); margin: 0 0 10px; font-size: 15px; line-height: 1.5; }
+  .foot { display: flex; align-items: center; gap: 10px; margin: auto 0 0; font-size: 12px; color: var(--ink-3); }
+  .status { background: var(--accent-soft); color: var(--ink-2); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .arrow { margin-left: auto; color: var(--ink); transition: transform .2s; }
+  .card:hover .arrow { transform: translateX(3px); }
   .end { margin-top: 48px; max-width: 760px; }
   @media (max-width: 900px) {
     .apps { grid-template-columns: 1fr; }
-    .cards { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 520px) { .card { grid-template-columns: 112px 1fr; gap: 18px; } .body h3 { font-size: 24px; } }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
 </style>
