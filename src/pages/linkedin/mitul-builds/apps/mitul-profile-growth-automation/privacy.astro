@@ -1,0 +1,48 @@
+---
+// Privacy policy for the LinkedIn developer app "Mitul Profile Growth Automation" (Page: Mitul Builds).
+// Pattern for future apps: /linkedin/<page>/apps/<app>/privacy/
+import Legal from '../../../../../layouts/Legal.astro';
+import { profile } from '../../../../../data/profile';
+const updated = '11 October 2026';
+---
+<Legal
+  title="Privacy policy: Mitul Profile Growth Automation"
+  eyebrow="Mitul Builds · LinkedIn app"
+  description="What the Mitul Profile Growth Automation LinkedIn app accesses, stores and shares."
+>
+  <p slot="lede" class="lede">Last updated {updated}.</p>
+
+  <h2>What this app is</h2>
+  <p><strong>Mitul Profile Growth Automation</strong> is a personal tool built and used only by Mitul Vaghasiya. It publishes posts that Mitul has written and scheduled to <strong>his own LinkedIn profile</strong>, at the times he chose, through LinkedIn’s official API. It is not offered to anyone else, and no one else signs in to it.</p>
+
+  <h2>What it accesses on LinkedIn</h2>
+  <ul>
+    <li><strong>Sign in (OpenID Connect: <code>openid</code>, <code>profile</code>)</strong>: used once to read the account’s member ID, so that posts are published as that member.</li>
+    <li><strong>Posting (<code>w_member_social</code>)</strong>: used to upload the images, documents and videos attached to a scheduled post, publish the post, edit its text, or delete it when Mitul asks.</li>
+  </ul>
+  <p>It does <strong>not</strong> read your feed, connections, messages, comments, reactions or analytics, and it never likes, comments, messages or connects with anyone.</p>
+
+  <h2>What it stores, and where</h2>
+  <ul>
+    <li>The LinkedIn access token, the member ID and the token’s expiry date, kept on Mitul’s own computer and as encrypted secrets in a private GitHub repository that runs the scheduler.</li>
+    <li>A record of the posts it published (post ID, link and time), kept in the same private repository.</li>
+  </ul>
+  <p>Nothing else is collected. There are no cookies, no tracking and no advertising.</p>
+
+  <h2>Who it is shared with</h2>
+  <p>No one. Data is only sent to <strong>LinkedIn</strong> (to publish the posts) and handled by <strong>GitHub</strong> (which runs the private scheduler and stores its encrypted secrets). It is never sold, rented or shared with anyone else.</p>
+
+  <h2>How long it is kept, and how to remove it</h2>
+  <ul>
+    <li>LinkedIn access tokens expire after about 60 days unless renewed by signing in again.</li>
+    <li>Access can be withdrawn at any time in LinkedIn: <em>Settings › Data privacy › Permitted services</em>. Removing the app there stops all access straight away.</li>
+    <li>Deleting the private repository and the local token file removes everything the app stored.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Questions about this app or this policy: <a class="link" href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+</Legal>
+
+<style>
+  .lede { color: var(--ink-3); margin-top: 16px; }
+</style>
