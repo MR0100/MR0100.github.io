@@ -1,14 +1,13 @@
 ---
 // Privacy policy for the LinkedIn developer app "Mitul Profile Growth Automation" (Page: Mitul Builds).
 // Pattern for future apps: /linkedin/<page>/apps/<app>/privacy/
-import Doc from '../../../../../layouts/Doc.astro';
+import Legal from '../../../../../layouts/Legal.astro';
 import { profile } from '../../../../../data/profile';
 const updated = '11 October 2026';
 ---
-<Doc
+<Legal
   title="Privacy policy: Mitul Profile Growth Automation"
   eyebrow="Mitul Builds · LinkedIn app"
-  active=""
   description="What the Mitul Profile Growth Automation LinkedIn app accesses, stores and shares."
 >
   <p slot="lede" class="lede">Last updated {updated}.</p>
@@ -42,7 +41,7 @@ const updated = '11 October 2026';
 
   <h2>Contact</h2>
   <p>Questions about this app or this policy: <a class="link" href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
-</Doc>
+</Legal>
 
 <style>
   .lede { color: var(--ink-3); margin-top: 16px; }

@@ -1,0 +1,35 @@
+---
+// Standalone layout for app legal pages (privacy, terms): no site header, nav or footer.
+// Used under /linkedin/<page>/apps/<app>/... so each app's pages stand on their own.
+import '../styles/global.css';
+interface Props { title: string; eyebrow: string; description?: string }
+const { title, eyebrow, description = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="legal wrap">
+    <header>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <slot name="lede" />
+    </header>
+    <div class="prose"><slot /></div>
+  </main>
+</body>
+</html>
+
+<style>
+  .legal { padding-top: 72px; padding-bottom: 96px; }
+  header { max-width: var(--text); margin: 0 auto 48px; }
+  h1 { font-size: clamp(34px, 4vw, 52px); margin: 14px 0 0; }
+</style>
