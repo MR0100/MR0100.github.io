@@ -1,0 +1,66 @@
+{
+ "app": "Temu",
+ "title": "Keep the fun, fix the contract: shopping games that play fair",
+ "intro": "Temu’s games do real work: a reason to open the app daily, cheap growth through referrals, and browsing that turns into buying. In 450 App Store reviews, players enjoy them. The anger is about the rules: in the 111 reviews about the games, 17 say progress crawls near the end and 14 say “free” turned into spend. This keeps the spin, the celebration and the countdowns, and makes the rules visible, fixed and true.",
+ "today": [
+  {
+   "image": "a0-wheel-gate.png",
+   "title": "A wheel before the shop",
+   "text": "The wheel opens first and says nothing about what the prize will require. There’s no way to skip it or switch it off.",
+   "principle": "User control and freedom"
+  },
+  {
+   "image": "a3-gift-crawl.png",
+   "title": "Each tap is worth less",
+   "text": "+2.6%, +1.9% … +0.01%, until 99.99% and “invite 2 new users”. A simplified test control built from reviews, not a screenshot.",
+   "principle": "Goal-gradient used against the user"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b1-wheel-rules-first.png",
+   "title": "Same wheel, rules on it",
+   "text": "It still opens, lights up and spins. The chips say every spin wins, €5 to €20, use on €15+, no invites. Skip and “don’t show on open” are there.",
+   "principle": "Informed choice"
+  },
+  {
+   "image": "b2-win-real-deadline.png",
+   "title": "The win still celebrates",
+   "text": "Confetti and a big “€10 off”. The 48-hour countdown is real, from the server, and the credit is already in the account.",
+   "principle": "Honest urgency"
+  },
+  {
+   "image": "b4-gift-fixed-steps.png",
+   "title": "Steps that never shrink",
+   "text": "Six steps, each worth the same: check in, look at deals, order, invite any friend. It shows the finish date and last month’s finish rate.",
+   "principle": "Goal-gradient, used fairly"
+  },
+  {
+   "image": "b7-order-steps-promise.png",
+   "title": "It pays out what it said",
+   "text": "The order adds its 2 steps and unlocks the mug. The late-delivery credit, the most-praised reward in the reviews, is promised up front.",
+   "principle": "Fairness and trust"
+  }
+ ],
+ "lessons": [
+  "Find out what a feature does for the business before you redesign it. Removing the fun would have removed the habit.",
+  "Read the five-star reviews too. They tell you what to keep.",
+  "Keep the urgency and the celebration. Make every rule visible before the tap, and make progress worth the same at every step."
+ ],
+ "test": "Does B stay as <em>fun</em> as A while feeling fairer? If 3 of 5 testers find it clearly less exciting, or stop the gift game once they see the real cost, the reward itself needs rethinking.",
+ "compare": {
+  "app": "Temu",
+  "title": "Shopping games: before and after",
+  "question": "A first-time shopper opens a discount app. Both versions keep the wheel, the win, the countdowns and the free-gift game. What changes is when you learn the rules, and whether progress is fair.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap <b>Spin</b> in the middle of the wheel, then <b>Claim now</b>. Tap the blue <b>Free gift</b> card and press <b>Collect coins</b> until you run out. Then add the <b>travel plug adapter</b> and <b>Checkout</b>.",
+   "notice": "Each tap is worth less than the last, and the last steps need new users. The conditions and the €10 minimum appear after you’ve committed."
+  },
+  "after": {
+   "try": "Read the chips under the wheel, then tap <b>Spin</b>. Open the blue <b>Free gift</b> card and tap <b>Daily check-in</b>. Open 3 deals, then check out with the <b>travel plug adapter</b>.",
+   "notice": "Same spin, same celebration, same countdowns. But the rules come first, every step is worth the same, any friend counts, and the minimum shows from the first item."
+  },
+  "controls": []
+ }
+}

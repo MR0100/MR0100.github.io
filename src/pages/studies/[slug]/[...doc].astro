@@ -9,6 +9,8 @@ const { d } = Astro.props;
 const { Content } = await render(d);
 const label = LABELS[d.data.kind] ?? 'Evidence';
 ---
-<Doc title={d.data.title} eyebrow={`${label} · ${d.data.app}`} back={{ href: `/studies/${d.data.study}/`, label: `${d.data.app} study` }}>
+<Doc title={d.data.title} eyebrow={`${label} · ${d.data.app}`} back={{ href: `/studies/${d.data.study}/`, label: `${d.data.app} study` }}
+  crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: `/studies/${d.data.study}/`, label: d.data.app }, { label }]}
+  study={{ slug: d.data.study, current: d.data.kind }}>
   <Content />
 </Doc>

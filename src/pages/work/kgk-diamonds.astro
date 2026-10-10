@@ -1,5 +1,8 @@
 ---
 import CaseStudy from '../../layouts/CaseStudy.astro';
+import { projects } from '../../data/work';
+const kgk = projects.find(p => p.slug === 'kgk-diamonds')!;
+const phones = kgk.images.filter(i => i.kind === 'phone');
 // Mitul's own version, written from his résumé (Sep 2026) and the public store listings (checked 11 Oct 2026).
 // Mitul is preparing a fuller case study with new visuals; it replaces this one when ready.
 const meta = [
@@ -16,13 +19,23 @@ const meta = [
   summary="KGK Diamonds lets wholesalers in 10+ countries browse and buy certified diamonds from a 120-year-old group. I joined in 2025 to lead the mobile team on the live app, with one goal: a trader on an entry-level phone and a slow connection should never wait on the catalogue."
   meta={meta}
   accent="#e9e4da"
-  icon="/images/apps/kgk-diamonds.jpg"
-  next={{ href: '/studies/temu/', label: 'Product study: Temu’s hidden rules' }}
+  kind="Case study"
+  crumbs={[{ href: '/work/', label: 'Work' }, { label: 'KGK Diamonds' }]}
+  next={{ href: '/work/mytarot/', label: 'MyTarot (Tarot Cat): a daily-tarot app for the Korean market' }}
 >
+  <div slot="hero" class="pair">
+    {phones.slice(0, 2).map((i, n) => <figure><img src={i.src} alt={i.alt} /><figcaption>{n ? 'Stone detail' : 'The inventory'}</figcaption></figure>)}
+  </div>
   <div class="wide"><div class="tldr">
     <div><h3>The problem</h3><p>The inventory grid, the screen traders live in, dropped frames and took 5 seconds to show anything on the phones many of them use.</p></div>
     <div><h3>What I did</h3><p>Re-engineered the grid, set one architecture for the whole team, and owned the release pipeline from code to both stores.</p></div>
-    <div><h3>The outcome</h3><p>60 FPS scrolling, the grid on screen in 2 seconds, releases in 1.5 days instead of 4, and 99.9% crash-free sessions.</p></div>
+    <div><h3>The outcome</h3><p>60 FPS scrolling, the grid on screen in 2 seconds, releases in 1.5 days instead of 4, and 99.9% crash-free sessions.</p>
+  </section>
+
+  <div class="wide"><div class="stats">
+    <div><b>60 FPS</b><span>scrolling on entry-level Android, up from 50</span></div>
+    <div><b>5s → 2s</b><span>until the inventory grid appears</span></div>
+    <div><b>99.9%</b><span>crash-free sessions on both stores</span></div>
   </div></div>
 
   <section>
@@ -31,8 +44,6 @@ const meta = [
     <p>Wholesalers don’t browse for pleasure. They compare stones by cut, clarity, colour and certificate, often on a phone between meetings, and often on a mid-range Android device on a patchy network. If the catalogue stutters, they call a salesperson instead, and the app loses its reason to exist.</p>
     <p>The app was already live when I joined. My job was to make it fast and dependable, and to set up a team that could keep it that way.</p>
   </section>
-
-  <div class="wide"><div class="visual pending">Visual coming: the inventory grid, before and after<br />(Mitul is preparing updated screens)</div></div>
 
   <section>
     <p class="eyebrow">Key decisions</p>
@@ -46,9 +57,16 @@ const meta = [
     <p>On entry-level Android, scrolling went from 50 to a steady 60 FPS, and the first paint of the grid dropped from 5 seconds to 2, measured on traders’ real network conditions. Tree-shaking, deferred asset loading and cache priming also cut the app size by 10% and cold start by 45% on mid-tier Android 12 phones.</p>
   </section>
 
-  <div class="wide"><div class="decision">
-    <div><p class="eyebrow">Team</p><h3>One architecture for everyone</h3><p>I made Clean Architecture with MVVM and BLoC the team standard across KGK’s apps. Cross-feature merge conflicts fell about 65%, and new engineers became productive in 2 weeks instead of 5.</p></div>
-    <div><p class="eyebrow">Trust</p><h3>Pricing data stays on the device</h3><p>Prices are commercially sensitive. Screen capture is blocked on pricing screens, the app refuses to run when it detects traffic-sniffing tools, and credentials and cached inventory sit in encrypted storage behind JWT and OAuth 2.0.</p></div>
+  <section>
+    <p class="eyebrow">Team</p>
+    <h2>One architecture for everyone</h2>
+    <p>I made Clean Architecture with MVVM and BLoC the team standard across KGK’s apps. Cross-feature merge conflicts fell about 65%, and new engineers became productive in 2 weeks instead of 5.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Trust</p>
+    <h2>Pricing data stays on the device</h2>
+    <p>Prices are commercially sensitive. Screen capture is blocked on pricing screens, the app refuses to run when it detects traffic-sniffing tools, and credentials and cached inventory sit in encrypted storage behind JWT and OAuth 2.0.</p></div>
   </div></div>
 
   <section>
@@ -57,11 +75,6 @@ const meta = [
     <p>I own the release pipeline end to end: Git workflow, CI builds, a test suite of unit, widget and Patrol end-to-end tests at about 80% coverage gated on every pull request, and Fastlane signing and upload to both stores. A release used to take 4 days; it now takes 1.5.</p>
   </section>
 
-  <div class="wide"><div class="stats">
-    <div><b>60 FPS</b><span>scrolling on entry-level Android, up from 50</span></div>
-    <div><b>5s → 2s</b><span>until the inventory grid appears</span></div>
-    <div><b>99.9%</b><span>crash-free sessions on both stores</span></div>
-  </div></div>
 
   <section>
     <p class="eyebrow">Leadership</p>
@@ -74,4 +87,39 @@ const meta = [
     <h2>Measure the trader, not just the app</h2>
     <p>The technical numbers are strong. The next step is the one I push in my product studies: tie them to behaviour. Do faster grids mean more enquiries per session, and fewer calls to sales? That’s the case I want this app to make next.</p>
   </section>
+  <div class="wide">
+    <p class="eyebrow figs-head">The app today</p>
+    <div class="figs">
+      {phones.slice(2, 6).map(f => <figure><div class="frame"><img src={f.src} alt={f.alt} loading="lazy" /></div><figcaption>{f.alt}</figcaption></figure>)}
+    </div>
+    <p class="disclaim">{kgk.imageSource}</p>
+  </div>
+
+  <div class="wide"><div class="deeper">
+    <p class="eyebrow">Go deeper</p>
+    <a href="https://apps.apple.com/in/app/kgk-diamonds-buy-diamonds/id6479595403" rel="noopener"><b>App Store ↗</b><span>The live app, rated 5.0</span></a>
+    <a href="https://play.google.com/store/apps/details?id=com.kgk.diamonds" rel="noopener"><b>Google Play ↗</b><span>The live app on Android</span></a>
+    <a href="/work/kgk-hrms/"><b>KGK HRMS</b><span>The group’s HR app, same team</span></a>
+  </div></div>
 </CaseStudy>
+
+<style>
+  .pair { display: flex; gap: clamp(20px, 5vw, 72px); justify-content: center; align-items: flex-end; padding: 48px 24px 0; width: 100%; }
+  .pair figure { margin: 0; width: min(30%, 260px); display: flex; flex-direction: column; align-items: center; }
+  .pair img { width: 100%; border-radius: 22px; box-shadow: 0 24px 48px rgba(0,0,0,.12); }
+  .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .figs-head { margin: 0 0 24px; }
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .figs figure { margin: 0; }
+  .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; background: #e9e4da; }
+  .frame img { width: 88%; border-radius: 14px 14px 0 0; }
+  .figs figcaption { font-size: 15px; color: var(--ink-2); margin-top: 14px; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; }
+  .deeper { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
+  .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+  .deeper a b { font: 400 24px/1.2 var(--serif); }
+  .deeper a span { font-size: 14px; color: var(--ink-3); }
+  .deeper a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 900px) { .figs { grid-template-columns: 1fr 1fr; } .deeper { grid-template-columns: 1fr; } }
+</style>

@@ -1,13 +1,15 @@
 ---
 import Base from './Base.astro';
+import StudyTabs from '../components/StudyTabs.astro';
 interface Meta { label: string; value: string }
-interface Props {
+interface Props { study?: { slug: string; current: string };
   title: string; app: string; summary: string; meta: Meta[]; accent: string; icon?: string;
-  kind?: string; next?: { href: string; label: string }; active?: string;
+  kind?: string; next?: { href: string; label: string }; active?: string; crumbs?: { href?: string; label: string }[];
 }
-const { title, app, summary, meta, accent, icon, kind = 'Case study', next, active = 'Work' } = Astro.props;
+const { title, app, summary, meta, accent, icon, kind = 'Case study', next, active = 'Work', crumbs = [], study } = Astro.props;
 ---
-<Base title={`${app} · ${title} · Mitul Vaghasiya`} description={summary} active={active}>
+<Base title={app === title ? `${app} · Mitul Vaghasiya` : `${app} · ${title} · Mitul Vaghasiya`} description={summary} active={active} crumbs={crumbs}>
+  {study && <StudyTabs {...study} />}
   <article>
     <header class="wrap head">
       <div class="lead">
@@ -30,7 +32,7 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', next, acti
 </Base>
 
 <style>
-  .head { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; padding-top: 64px; padding-bottom: 48px; align-items: end; }
+  .head { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; padding-top: 48px; padding-bottom: 48px; align-items: end; }
   .head h1 { font-size: clamp(40px, 4.6vw, 64px); margin: 16px 0 20px; }
   .summary { font-size: 19px; color: var(--ink-2); max-width: 620px; margin: 0; }
   .meta { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }

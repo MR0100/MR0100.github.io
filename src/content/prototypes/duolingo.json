@@ -1,0 +1,73 @@
+{
+ "app": "Duolingo",
+ "title": "Earn it back: a way home after a broken streak",
+ "intro": "When a long streak breaks, it resets to zero and the way back costs gems. In June 2026, 15.4 million learners took a one-month offer to revive a lost streak, and they kept learning better than a typical returning group. Then the offer ended. This makes the way back permanent.",
+ "today": [
+  {
+   "image": "a1-streak-zero.png",
+   "title": "Months of effort shown as 0",
+   "text": "The streak is gone, and repairing it costs gems the learner doesn’t have. Gem numbers are placeholders.",
+   "principle": "Loss aversion"
+  },
+  {
+   "image": "a2-home-zero.png",
+   "title": "Home starts from nothing",
+   "text": "Nothing on Home shows the 214 days that came before. Once a goal feels broken, people tend to give up on it.",
+   "principle": "What-the-hell effect"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b1-paused-not-gone.png",
+   "title": "Paused, not gone",
+   "text": "The number stays, in grey. Lifetime effort sits underneath. Two equal choices: earn it back, or start fresh.",
+   "principle": "Loss aversion, used kindly"
+  },
+  {
+   "image": "b2-home-plan.png",
+   "title": "A short plan on Home",
+   "text": "Three steps, one a day, within a week. The flame shows “214 paused”, never 0.",
+   "principle": "Goal-gradient effect"
+  },
+  {
+   "image": "b3-warmup-rusty.png",
+   "title": "Day 1 costs no energy",
+   "text": "A warm-up built from the learner’s weakest words. A miss is “a bit rusty”, and the answer is shown.",
+   "principle": "Less friction at high intent"
+  },
+  {
+   "image": "b6-restored.png",
+   "title": "Back, and honest about it",
+   "text": "The missed day gets a dashed ring, so a restored streak is never passed off as an unbroken one.",
+   "principle": "Fairness and trust"
+  }
+ ],
+ "lessons": [
+  "Treat a break as a pause, not a reset. Keep lifetime effort visible.",
+  "Remove friction when people try to come back. That is when they are most motivated and have the least to spend.",
+  "Earn it back through practice rather than a purchase, and mark it honestly, so the number still means learning."
+ ],
+ "test": "Does a safety net make people <em>practise less</em> on busy days? If 3 of 5 testers say yes, or say a restored streak “doesn’t count”, the idea needs rethinking.",
+ "compare": {
+  "app": "Duolingo",
+  "title": "A broken streak: before and after",
+  "question": "A learner with a 214-day streak missed Friday. The same moment, two designs.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap <b>Repair streak</b>, then <b>Start a new streak</b>.",
+   "notice": "214 days become 0, and the way back costs gems the learner doesn’t have."
+  },
+  "after": {
+   "try": "Tap <b>Earn it back</b>, do the warm-up, then press <b>Next day</b> and do one lesson a day.",
+   "notice": "The streak is paused, not gone. Day 1 uses no energy, and the restored day keeps an honest mark."
+  },
+  "controls": [
+   {
+    "side": "after",
+    "label": "Next day →",
+    "click": "nextDay",
+    "status": "dayLabel"
+   }
+  ]
+ }
+}

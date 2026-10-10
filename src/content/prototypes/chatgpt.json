@@ -1,0 +1,66 @@
+{
+ "app": "ChatGPT",
+ "title": "Visible allowance: a softer landing at the usage limit",
+ "intro": "Free users find the photo and image tools. What makes them leave is a limit they couldn’t see, arriving in the middle of a task. In 147 negative App Store reviews, 54 were about usage limits and only 1 was about finding a feature.",
+ "today": [
+  {
+   "image": "a0-tools-no-count.png",
+   "title": "No count where you choose",
+   "text": "The tools sheet doesn’t say how many uses are left. Since Aug 2026 the count exists, but only in Settings › Usage.",
+   "principle": "Visibility of system status"
+  },
+  {
+   "image": "a1-limit-wall.png",
+   "title": "The wall comes after sending",
+   "text": "The limit appears only once the request is sent. The only way out is to upgrade, so the offer reads as a punishment.",
+   "principle": "Peak-end rule"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b2-chip-3-left.png",
+   "title": "The count sits on the chip",
+   "text": "“Photos · 3 left today” appears where the decision is made, not hidden in settings.",
+   "principle": "Visibility of system status"
+  },
+  {
+   "image": "b4-last-one-warning.png",
+   "title": "A warning before the last use",
+   "text": "One line above the composer, no pop-up. The chip turns amber.",
+   "principle": "Error prevention"
+  },
+  {
+   "image": "b5-limit-sheet.png",
+   "title": "Three equal ways forward",
+   "text": "Save it for later, do it in text, or upgrade. The message and photo are kept, so nothing is lost.",
+   "principle": "User control and freedom"
+  },
+  {
+   "image": "b7-plan-today.png",
+   "title": "One place to check",
+   "text": "Text is unlimited, tools show “0 of 3 left”, the reset time is clear, and failed results don’t count.",
+   "principle": "Trust and predictability"
+  }
+ ],
+ "lessons": [
+  "Put the meter where the decision happens, not in a settings page.",
+  "Warn before the limit, not after. A surprise at the moment of highest intent is what people remember.",
+  "Give more than one way out. Upgrading works better as one choice among several than as the only exit."
+ ],
+ "test": "Does seeing the meter make people <em>ration</em> their use? If 3 of 5 testers hold back because they can see the count, the idea needs rethinking.",
+ "compare": {
+  "app": "ChatGPT",
+  "title": "Hitting the photo limit: before and after",
+  "question": "A free user is editing photos and runs out of uses. The same tasks, two designs.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap <b>＋ → Photos</b>, pick any photo and send. Do it four times.",
+   "notice": "Nothing shows how many uses are left. The fourth send hits a wall with one way out: upgrade."
+  },
+  "after": {
+   "try": "Do the same: <b>＋ → Photos</b>, pick a photo, send, four times.",
+   "notice": "The chip counts down, a warning comes before the last use, and at the limit you get three choices. Your photo is kept."
+  },
+  "controls": []
+ }
+}

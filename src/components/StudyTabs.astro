@@ -1,0 +1,34 @@
+---
+// The same row of links on every page of a study, so you can always move between its parts or get back to it.
+import { getCollection } from 'astro:content';
+interface Props { slug: string; current: string }
+const { slug, current } = Astro.props;
+const base = `/studies/${slug}/`;
+const docs = (await getCollection('docs')).filter(d => d.data.study === slug);
+const has = (k: string) => docs.some(d => d.data.kind === k);
+const evidence = docs.filter(d => d.data.kind.startsWith('evidence/'));
+const tabs = [
+  ['overview', 'Overview', base],
+  ['try', 'Try it', `${base}try/`],
+  ['screens', 'Screen by screen', `${base}prototype/`],
+  ['full', 'Full analysis', `${base}full/`],
+  ...(has('test-kit') ? [['test-kit', 'Test kit', `${base}test-kit/`]] : []),
+  ...evidence.map(e => [e.data.kind, 'Review coding', `${base}${e.data.kind}/`]),
+  ...(has('sources') ? [['sources', 'Sources', `${base}sources/`]] : []),
+];
+---
+<nav class="tabs" aria-label="This study">
+  <div class="wrap row">
+    {tabs.map(([k, label, href]) => <a href={href} class:list={{ on: k === current }} aria-current={k === current ? 'page' : undefined}>{label}</a>)}
+  </div>
+</nav>
+
+<style>
+  .tabs { border-bottom: 1px solid var(--line); margin-top: 20px; }
+  .row { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .row::-webkit-scrollbar { display: none; }
+  a { flex: none; padding: 12px 0 13px; font-size: 15px; color: var(--ink-3); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+  a:hover { color: var(--ink); }
+  a.on { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+  @media (max-width: 760px) { .row { gap: 22px; } a { font-size: 14px; } }
+</style>

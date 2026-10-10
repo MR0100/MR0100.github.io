@@ -1,0 +1,85 @@
+{
+ "app": "MyFitnessPal",
+ "title": "Log it again: the meals you repeat, in one tap",
+ "intro": "People stop logging food because it feels tedious, and logging often is what predicts results. In 145 recent App Store reviews rated one to three stars, 42 blamed a redesign that made logging slower and 15 named the paywalled barcode scanner. Most meals are repeats, so this makes them one tap and puts the diary back on the home screen. Camera tools stay Premium.",
+ "today": [
+  {
+   "image": "a1-today-summary.png",
+   "title": "The diary sits below the summary",
+   "text": "The home screen leads with totals, a Premium card and progress. The diary, used several times a day, is at the bottom behind “View all”.",
+   "principle": "Frequency-of-use ordering"
+  },
+  {
+   "image": "a3-back-to-top.png",
+   "title": "Every save goes back to the top",
+   "text": "One food at a time, and each save returns to the top of Today, as reviewers describe. Three foods means three trips.",
+   "principle": "Preserve the user’s context"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b1-usual-breakfast.png",
+   "title": "Your usual meal, one tap",
+   "text": "At 8 am the diary offers the breakfast you had on most recent mornings, with its items and total. Log it, or change it first.",
+   "principle": "Recognition over recall"
+  },
+  {
+   "image": "b4-edit-in-place.png",
+   "title": "Edits save where you are",
+   "text": "Serving chips open under the entry and save as you tap. The screen doesn’t move.",
+   "principle": "User control and freedom"
+  },
+  {
+   "image": "b5-add-your-foods.png",
+   "title": "Your foods first, no ads",
+   "text": "The add sheet ranks your own foods by how often you log them. Barcode scan stays Premium, as one quiet line.",
+   "principle": "Efficiency of use"
+  },
+  {
+   "image": "b6-copy-lunch.png",
+   "title": "Copy a meal into the right slot",
+   "text": "Copy one meal or a whole day from any recent day. Items keep their slots and amounts, and Undo is always there.",
+   "principle": "Support habitual behaviour"
+  }
+ ],
+ "lessons": [
+  "Put the most frequent job on the home screen. A summary can be one tap away; the daily task can’t.",
+  "Speed for repeat actions doesn’t need AI. The user’s own history is fast, cheap and already accurate.",
+  "Keep the user’s place. Sending people back to the top after every edit turns small changes into chores."
+ ],
+ "test": "Does one-tap logging make people <em>stop checking</em> what they log, or stop seeing a reason to upgrade? If 3 of 5 testers say either, the idea needs rethinking.",
+ "compare": {
+  "app": "MyFitnessPal",
+  "title": "Logging the same breakfast again: before and after",
+  "question": "A free user eats the same breakfast most mornings: oats, a banana and a coffee. It’s 8 am. The same moment, two designs, both re-created in MyFitnessPal’s visual style.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap <b>Log</b> next to Breakfast and add <b>Oats with milk</b> (tap the name, then <b>Add to Breakfast</b>, or tap <b>+</b>). Now do the banana and the coffee.",
+   "notice": "The diary sits below the calorie and macro summary. Each food is added on its own, and every save sends you back to the top of Today. The barcode scanner is Premium."
+  },
+  "after": {
+   "try": "Tap <b>Log breakfast</b>. Then tap <b>Banana</b> and pick <b>½</b>. Press <b>Later</b> and tap <b>Copy</b> on Lunch.",
+   "notice": "The diary leads the home screen, the meal you repeat is one tap, and edits save in place. Scanning stays Premium, as a quiet option."
+  },
+  "controls": [
+   {
+    "side": "before",
+    "label": "Reset tap count",
+    "click": "tapReset",
+    "status": "tapA"
+   },
+   {
+    "side": "after",
+    "label": "Reset tap count",
+    "click": "tapReset",
+    "status": "tapB"
+   },
+   {
+    "side": "after",
+    "label": "Later →",
+    "click": "nextTime",
+    "status": "timeLabel"
+   }
+  ]
+ }
+}

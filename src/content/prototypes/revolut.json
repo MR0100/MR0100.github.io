@@ -1,0 +1,79 @@
+{
+ "app": "Revolut",
+ "title": "Live status: what a bank owes you when a hold turns into a case",
+ "intro": "Holds stop fraud and meet the law. Revolut already handles the quick case well: a declined payment opens an in-app questionnaire, and confirming it unfreezes the card. In 4,391 recent App Store reviews, 61 describe a hold: 6 resolved fast and happily, 55 turned into cases that ran for days, and 23 of those complain about no timeline. This keeps the quick check and puts Revolut’s own 3-hour target on the screen for the long ones.",
+ "today": [
+  {
+   "image": "a3-restricted-generic.png",
+   "title": "“Supporting documents”, nothing more",
+   "text": "After the card is fixed, the hold gets a generic page: some features restricted, upload “supporting documents”, no timeline.",
+   "principle": "Visibility of system status"
+  },
+  {
+   "image": "a5-new-agent-next.png",
+   "title": "Every conversation starts again",
+   "text": "Chat replies fast, but nobody can give a timeframe, and the next agent asks what the issue is. Built from reviews and help pages.",
+   "principle": "Recognition over recall"
+  }
+ ],
+ "proposal": [
+  {
+   "image": "b4-home-hold-status.png",
+   "title": "A calm status on Home",
+   "text": "“£1,200 of this is on a short hold”, only Move carries a pause mark, and the card says everything else still works.",
+   "principle": "Match with the real world"
+  },
+  {
+   "image": "b7-items-accepted.png",
+   "title": "Exactly what’s needed",
+   "text": "A statement showing this £1,200 on 9 Oct, and what it’s for. Each item is checked for glare and turns “Accepted” on arrival.",
+   "principle": "Error prevention"
+  },
+  {
+   "image": "b8-live-3h-clock.png",
+   "title": "A live clock on its own promise",
+   "text": "“2h 20m left of our 3-hour target”, from the moment everything arrived. What still works and what’s paused, as chips.",
+   "principle": "Uncertain waits feel longer"
+  },
+  {
+   "image": "b9-delay-told-early.png",
+   "title": "Delays announced early",
+   "text": "If the target will slip, the app says why in plain terms, gives a new estimate, and says nothing is needed, before the first one passes.",
+   "principle": "Honest urgency"
+  }
+ ],
+ "lessons": [
+  "Check what the product already does before proposing it. Revolut’s quick payment check exists and works; keep it.",
+  "People can accept not knowing why. They can’t accept not knowing when. Show the target you already have.",
+  "Ask for the exact item and confirm it on arrival. Vague requests make cases longer for everyone."
+ ],
+ "test": "Does the live clock make people <em>calmer</em>, or add pressure? If 3 of 5 testers say it makes them more anxious, or a moved estimate costs more trust than no estimate, the idea needs rethinking.",
+ "compare": {
+  "app": "Revolut",
+  "title": "Money on hold: before and after",
+  "question": "You’re abroad. A card payment is paused, then a £1,200 transfer from your other bank is held for review. Both versions keep Revolut’s real payment check and fast 24/7 chat. What changes is what you can see while the longer hold runs. Both phones are re-created in Revolut’s current visual style for an independent study.",
+  "caseStudy": "../full/",
+  "before": {
+   "try": "Tap the <b>push</b> → <b>Yes, it was me</b> (Revolut’s real payment check). Then tap the <b>restricted</b> banner, upload, open <b>Chat</b> → <b>Talk to a person</b>, and press <b>3 hours later</b> twice.",
+   "notice": "The card check works well today. Then the hold: “supporting documents” with no specifics, no timeline, and a new agent who starts from zero."
+  },
+  "after": {
+   "try": "Same card check. Then open the <b>£1,200</b> card, send the 2 items, and press <b>3 hours later</b> twice.",
+   "notice": "Same card check. The hold shows exactly what’s needed, what still works, and a live clock against Revolut’s own 3-hour target. A delay is announced before the estimate passes."
+  },
+  "controls": [
+   {
+    "side": "before",
+    "label": "3 hours later →",
+    "click": "later",
+    "status": "clockLbl"
+   },
+   {
+    "side": "after",
+    "label": "3 hours later →",
+    "click": "later",
+    "status": "clockLbl"
+   }
+  ]
+ }
+}

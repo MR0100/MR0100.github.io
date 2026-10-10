@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
 import { profile } from '../data/profile';
-interface Props { title: string; description?: string; active?: string }
-const { title, description = 'Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Case studies, analysis and writing.', active = '' } = Astro.props;
+// crumbs: where this page sits, shown under the header on every inner page. The last one is the current page (not a link).
+interface Crumb { href?: string; label: string }
+interface Props { title: string; description?: string; active?: string; crumbs?: Crumb[] }
+const { title, description = 'Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Case studies, analysis and writing.', active = '', crumbs = [] } = Astro.props;
 const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '/work/'], ['About', '/about/']];
 ---
 <!doctype html>
@@ -23,13 +25,21 @@ const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '
 <body>
   <header class="top">
     <div class="wrap bar">
-      <a class="mark" href="/">Mitul Vaghasiya</a>
+      <a class="mark" href="/">Mitul<span class="last"> Vaghasiya</span></a>
       <nav>
         {nav.map(([label, href]) => <a class:list={['navlink', { on: active === label }]} href={href}>{label}</a>)}
       </nav>
     </div>
   </header>
-  <main><slot /></main>
+  <main>
+    {crumbs.length > 0 && (
+      <nav class="wrap crumbs" aria-label="Breadcrumb">
+        <a class="up" href={crumbs.findLast(c => c.href)?.href} aria-label={`Back to ${crumbs.findLast(c => c.href)?.label}`}>←</a>
+        <ol>{crumbs.map(c => <li>{c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}</ol>
+      </nav>
+    )}
+    <slot />
+  </main>
   <footer class="foot">
     <div class="wrap">
       <div class="cta">
@@ -55,6 +65,13 @@ const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '
   nav { display: flex; align-items: center; gap: 28px; }
   .navlink { font-size: 15px; color: var(--ink-2); }
   .navlink:hover, .navlink.on { color: var(--ink); }
+  .crumbs { display: flex; align-items: center; gap: 14px; padding-top: 20px; font-size: 14px; color: var(--ink-3); }
+  .crumbs .up { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); flex: none; transition: background .2s; }
+  .crumbs .up:hover { background: var(--surface); }
+  .crumbs ol { display: flex; flex-wrap: wrap; gap: 4px 0; list-style: none; margin: 0; padding: 0; min-width: 0; }
+  .crumbs li + li::before { content: '/'; margin: 0 10px; color: var(--line); }
+  .crumbs a:hover { color: var(--ink); }
+  .crumbs span { color: var(--ink-2); }
   .btn.small { height: 38px; padding: 0 16px; font-size: 14px; }
   .foot { background: var(--accent); color: #eef1ec; margin-top: 40px; }
   .cta { padding: 96px 0 72px; max-width: 760px; }
@@ -65,9 +82,13 @@ const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '
   .links { display: flex; gap: 20px; }
   .links a:hover { color: #fff; }
   @media (max-width: 760px) {
-    nav { gap: 16px; }
+    .bar { height: 60px; }
     nav { gap: 14px; }
     .navlink { font-size: 14px; }
-    .navlink:nth-child(3) { display: none; }
+    .crumbs { padding-top: 14px; }
+  }
+  @media (max-width: 420px) {
+    .mark .last { display: none; }
+    nav { gap: 12px; }
   }
 </style>

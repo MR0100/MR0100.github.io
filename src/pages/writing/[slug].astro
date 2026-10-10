@@ -9,7 +9,8 @@ export async function getStaticPaths() {
 const { p } = Astro.props;
 const { Content } = await render(p);
 ---
-<Doc title={p.data.title} eyebrow={fmtDate(p.data.date)} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}>
+<Doc title={p.data.title} eyebrow={fmtDate(p.data.date)} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
+  crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
   <p slot="lede" class="dek">{p.data.dek}</p>
   {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}
   <Content />

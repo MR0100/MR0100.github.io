@@ -7,6 +7,8 @@ export async function getStaticPaths() {
 const { r } = Astro.props;
 const { Content } = await render(r);
 ---
-<Doc title={r.data.title} eyebrow={`Full analysis · ${r.data.app}`} back={{ href: `/studies/${r.id}/`, label: `${r.data.app} study` }}>
+<Doc title={r.data.title} eyebrow={`Full analysis · ${r.data.app}`} back={{ href: `/studies/${r.id}/`, label: `${r.data.app} study` }}
+  crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: `/studies/${r.id}/`, label: r.data.app }, { label: 'Full analysis' }]}
+  study={{ slug: r.id, current: 'full' }}>
   <Content />
 </Doc>

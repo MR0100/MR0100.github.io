@@ -7,13 +7,14 @@ Writes:
   src/content/docs/<slug>--<kind>.md    test kit, review-coding evidence, source lists
   src/content/writing/<date>-<slug>.md  LinkedIn posts as articles (published on their date)
   public/studies/<slug>/design/*.png    my re-created screens
-  public/studies/<slug>/prototype/      the study page and the live side-by-side prototype
+  src/content/prototypes/<slug>.json    the screen-by-screen flow and the before/after guide, rendered by the site
+  public/studies/<slug>/prototype/try.html   the live phones (embedded by /studies/<slug>/try/)
   public/studies/_shared/compare.js, public/design-system/tokens.css
 
 Never copied: report.md (full report, available on request), raw review data (*.json), App Store / press
 reference images, assets/ (third-party store and press images), render scripts.
 """
-import glob, os, re, shutil, sys
+import glob, json, os, re, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -47,7 +48,8 @@ def map_links(md, slug, depth_prefix=''):
     md = re.sub(r'\((?:\.\./)?test-kit\.md\)', f'({base}test-kit/)', md)
     md = re.sub(r'\[`?data/([\w-]+)\.md`?\]\(data/[\w-]+\.md\)', lambda m: f'[the review coding]({base}evidence/{m.group(1)}/)', md)
     md = re.sub(r'\]\((?:\.\./)?references/[^)]*\)', f']({base}sources/)', md)
-    md = re.sub(r'\[`?prototype/try\.html`?\]\(prototype/try\.html\)', f'[the live prototype]({base}prototype/try.html)', md)
+    md = re.sub(r'\[`?prototype/try\.html`?\]\(prototype/try\.html\)', f'[the live prototype]({base}try/)', md)
+    md = re.sub(r'\]\((?:\.\./)?prototype/try\.html\)', f']({base}try/)', md)
     md = re.sub(r'\]\((?:\.\./)?prototype/', f']({base}prototype/', md)
     md = re.sub(r'\]\((?:\.\./)?design/', f']({base}design/', md)
     md = re.sub(r'\]\((?:\.\./)?case-study\.md\)', f']({base}full/)', md)
@@ -77,8 +79,15 @@ def fix_prototype(text):
     return GH_CASE.sub('../full/', text)
 
 
+def compare_data(try_html):
+    """window.COMPARE from try.html (a JS object literal) as plain data."""
+    m = re.search(r'window\.COMPARE\s*=\s*(\{.*?\});\s*</script>', try_html, re.S)
+    js = 'process.stdout.write(JSON.stringify(eval("(" + require("fs").readFileSync(0, "utf8") + ")")))'
+    return json.loads(subprocess.run(['node', '-e', js], input=m.group(1), capture_output=True, text=True, check=True).stdout)
+
+
 def sync_studies():
-    for d in ('src/content/research', 'src/content/docs'):
+    for d in ('src/content/research', 'src/content/docs', 'src/content/prototypes'):
         shutil.rmtree(os.path.join(REPO, d), ignore_errors=True)
     for dirname, slug, app in STUDIES:
         s = os.path.join(CS, dirname)
@@ -86,9 +95,11 @@ def sync_studies():
         for sub in ('design', 'prototype'):
             shutil.rmtree(os.path.join(dst, sub), ignore_errors=True)
         shutil.copytree(os.path.join(s, 'design'), os.path.join(dst, 'design'))
-        for f in ('index.html', 'try.html'):
-            open(out('public', 'studies', slug, 'prototype', f), 'w', encoding='utf-8').write(
-                fix_prototype(open(os.path.join(s, 'prototype', f), encoding='utf-8').read()))
+        try_html = fix_prototype(open(os.path.join(s, 'prototype', 'try.html'), encoding='utf-8').read())
+        open(out('public', 'studies', slug, 'prototype', 'try.html'), 'w', encoding='utf-8').write(try_html)
+        screens = json.load(open(os.path.join(s, 'prototype', 'screens.json'), encoding='utf-8'))
+        json.dump({**screens, 'compare': compare_data(try_html)},
+                  open(out('src', 'content', 'prototypes', f'{slug}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         cs = open(os.path.join(s, 'case-study.md'), encoding='utf-8').read()
         open(out('src', 'content', 'research', f'{slug}.md'), 'w', encoding='utf-8').write(
             fm({'title': first_heading(cs), 'app': app, 'study': slug}) + map_links(strip_h1(cs), slug))
@@ -111,6 +122,9 @@ def sync_studies():
                 fm({'title': 'Sources for the re-created screens', 'app': app, 'study': slug, 'kind': 'sources'}) + map_links(body, slug))
     shutil.copy2(os.path.join(CS, '_shared', 'compare.js'), out('public', 'studies', '_shared', 'compare.js'))
     t = open(out('public', 'studies', '_shared', 'compare.js'), encoding='utf-8').read()
+    # On the site, the side-by-side view is the /studies/<slug>/try/ page; try.html only serves the phones inside it
+    t = t.replace("if (q.has('v') || q.has('test')) return;",
+                  "if (q.has('v') || q.has('test')) return;\n  location.replace('../try/'); return;")
     open(out('public', 'studies', '_shared', 'compare.js'), 'w', encoding='utf-8').write(fix_prototype(t))
     shutil.copy2(os.path.join(CS, '_shared', 'tokens.css'), out('public', 'design-system', 'tokens.css'))
 

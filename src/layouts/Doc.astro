@@ -1,12 +1,14 @@
 ---
 import Base from './Base.astro';
-interface Props { title: string; eyebrow: string; back?: { href: string; label: string }; description?: string; active?: string }
-const { title, eyebrow, back, description, active = 'Case studies' } = Astro.props;
+import StudyTabs from '../components/StudyTabs.astro';
+interface Crumb { href?: string; label: string }
+interface Props { study?: { slug: string; current: string }; title: string; eyebrow: string; back?: { href: string; label: string }; crumbs?: Crumb[]; description?: string; active?: string }
+const { title, eyebrow, back, crumbs, description, active = 'Case studies', study } = Astro.props;
 ---
-<Base title={`${title} · Mitul Vaghasiya`} description={description} active={active}>
+<Base title={`${title} · Mitul Vaghasiya`} description={description} active={active} crumbs={crumbs ?? (back ? [back, { label: title }] : [])}>
+  {study && <StudyTabs {...study} />}
   <article class="doc wrap">
     <header>
-      {back && <a class="back" href={back.href}>← {back.label}</a>}
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <slot name="lede" />
@@ -17,10 +19,8 @@ const { title, eyebrow, back, description, active = 'Case studies' } = Astro.pro
 </Base>
 
 <style>
-  .doc { padding-top: 56px; padding-bottom: 72px; }
+  .doc { padding-top: 48px; padding-bottom: 72px; }
   header { max-width: var(--text); margin: 0 auto 48px; }
-  .back { display: inline-block; font-size: 15px; color: var(--ink-3); margin-bottom: 28px; }
-  .back:hover { color: var(--ink); }
   h1 { font-size: clamp(38px, 4.4vw, 58px); margin: 14px 0 0; }
   .end { max-width: var(--text); margin: 56px auto 0; font-size: 15px; }
 </style>

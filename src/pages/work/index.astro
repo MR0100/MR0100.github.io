@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { liveApps, otherWork, STORES_CHECKED } from '../../data/work';
+import { liveApps, otherWork, projects, STORES_CHECKED } from '../../data/work';
+const proofOf = (slug: string) => projects.find(p => p.slug === slug)?.proof ?? [];
 import { counts } from '../../data/profile';
 ---
 <Base title="Work · Mitul Vaghasiya" active="Work" description="Mobile apps Mitul has shipped since 2019, and the projects behind them.">
@@ -20,13 +21,13 @@ import { counts } from '../../data/profile';
           </div>
           <div class="info">
             <p class="eyebrow">{a.category} · {a.period}</p>
-            <h3>{a.caseStudy ? <a href={`/work/${a.slug}/`}>{a.name}</a> : a.name}</h3>
+            <h3><a href={`/work/${a.slug}/`}>{a.name}</a></h3>
             <p class="desc">{a.oneLiner}</p>
             <p class="sub">{a.client} · {a.role}{a.rating && <> · <b>{a.rating}</b></>}</p>
             <p class="stores">
               {a.appStore && <a class="link" href={a.appStore}>App Store</a>}
               {a.playStore && <a class="link" href={a.playStore}>Google Play</a>}
-              {a.caseStudy && <a class="link strong" href={`/work/${a.slug}/`}>Case study →</a>}
+              <a class="link strong" href={`/work/${a.slug}/`}>{a.caseStudy ? 'Case study →' : 'Project details →'}</a>
             </p>
           </div>
         </article>
@@ -37,9 +38,15 @@ import { counts } from '../../data/profile';
   <section class="wrap more">
     <div class="head"><h2>Also built</h2><span class="note">Real work that can’t be checked in a store today</span></div>
     <table>
-      <thead><tr><th>Project</th><th>What it does</th><th>Where</th><th>Years</th><th>Status</th></tr></thead>
+      <thead><tr><th>Project</th><th>What it does</th><th>Where</th><th>Years</th><th>Status</th><th>Public record</th></tr></thead>
       <tbody>
-        {otherWork.map(o => <tr><td><b>{o.name}</b></td><td>{o.what}</td><td>{o.where}</td><td>{o.year}</td><td><span class="status">{o.status}</span></td></tr>)}
+        {otherWork.map(o => (
+          <tr>
+            <td><a class="pname" href={`/work/${o.slug}/`}>{o.name} →</a></td><td>{o.what}</td><td>{o.where}</td><td>{o.year}</td>
+            <td><span class="status">{o.status}</span></td>
+            <td class="proof">{proofOf(o.slug).length ? proofOf(o.slug).map(x => <a class="link" href={x.href} rel="noopener">{x.label} ↗</a>) : <span class="none">Client project, no public record</span>}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
     <p class="note">Plus more client projects that were paused or cancelled before launch, which brings the total past 35.</p>
@@ -70,6 +77,11 @@ import { counts } from '../../data/profile';
   th { text-align: left; font-weight: 500; color: var(--ink-3); padding: 14px 12px 10px 0; border-bottom: 1px solid var(--line); }
   td { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: top; }
   td b { color: var(--ink); font-weight: 600; }
+  .pname { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  .pname:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .proof { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+  .proof .link { color: var(--ink); align-self: flex-start; }
+  .none { color: var(--ink-3); font-size: 13px; }
   .status { font-size: 13px; background: var(--accent-soft); color: var(--ink-2); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
   @media (max-width: 900px) {
     .apps { grid-template-columns: 1fr; }
@@ -77,5 +89,6 @@ import { counts } from '../../data/profile';
     thead { display: none; }
     tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
     td { border: 0; padding: 2px 0; }
+    .proof { margin-top: 6px; }
   }
 </style>

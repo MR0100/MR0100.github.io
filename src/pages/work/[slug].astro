@@ -1,0 +1,102 @@
+---
+// One page per project, in the same layout as the case studies. KGK Diamonds has its own full case study (kgk-diamonds.astro).
+import CaseStudy from '../../layouts/CaseStudy.astro';
+import { projects, STORES_CHECKED, type Project } from '../../data/work';
+export function getStaticPaths() {
+  const list = projects.filter(p => p.slug !== 'kgk-diamonds');
+  return list.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: list[(i + 1) % list.length] } }));
+}
+const { p, next } = Astro.props as { p: Project; next: Project };
+const live = p.status === 'live';
+const stores = [p.appStore && `<a class="link" href="${p.appStore}">App Store</a>`, p.playStore && `<a class="link" href="${p.playStore}">Google Play</a>`].filter(Boolean).join(' · ');
+const meta = [
+  p.client && { label: 'Client', value: p.client },
+  p.role && { label: 'My role', value: p.role },
+  p.period && { label: 'When', value: p.period },
+  p.platforms?.length && { label: 'Platform', value: p.platforms.join(' · ') },
+  { label: live ? 'Live' : 'Status', value: live ? stores : p.statusLabel },
+].filter(Boolean) as { label: string; value: string }[];
+const phones = p.images.filter(i => i.kind === 'phone');
+const hero = phones.length >= 2 ? phones.slice(0, 2) : [];
+const heroOne = !hero.length ? p.images[0] : undefined;
+const gallery = p.images.filter(i => !hero.includes(i) && i !== heroOne);
+const links = [
+  ...(p.appStore ? [{ label: 'App Store', note: 'The live listing', href: p.appStore }] : []),
+  ...(p.playStore ? [{ label: 'Google Play', note: 'The live listing', href: p.playStore }] : []),
+  ...p.proof.map(x => ({ label: x.label, note: x.note ?? 'Public record', href: x.href })),
+];
+---
+<CaseStudy app={p.name} kind={`Project · ${p.category}`} title={p.name} summary={p.oneLiner} meta={meta} accent={p.accent}
+  crumbs={[{ href: '/work/', label: 'Work' }, { label: p.name }]}
+  next={{ href: `/work/${next.slug}/`, label: `${next.name}: ${next.oneLiner}` }}>
+  <div slot="hero" class:list={['shots', { single: !hero.length }]}>
+    {hero.map(i => <img src={i.src} alt={i.alt} />)}
+    {heroOne && <img src={heroOne.src} alt={heroOne.alt} class:list={[heroOne.kind]} />}
+    {!p.images.length && p.icon && <img src={p.icon} alt="" class="icon" />}
+  </div>
+
+  <div class="wide"><div class="tldr">
+    <div><h3>The product</h3><p>{p.about}</p></div>
+    <div><h3>Who it’s for</h3><p>{p.audience ?? '—'}</p></div>
+    <div><h3>My part</h3><p>{p.role}{p.team ? `, in a team of ${p.team}` : ''}.</p></div>
+  </div></div>
+
+  {p.contributions.length > 0 && (
+    <section>
+      <p class="eyebrow">What I did</p>
+      <h2>How I contributed</h2>
+      <ul>{p.contributions.map(c => <li set:html={c} />)}</ul>
+    </section>
+  )}
+
+  {p.stack.length > 0 && (
+    <section>
+      <p class="eyebrow">Built with</p>
+      <p class="stack">{p.stack.map(s => <span>{s}</span>)}</p>
+    </section>
+  )}
+
+  {gallery.length > 0 && (
+    <div class="wide">
+      <p class="eyebrow figs-head">The product</p>
+      <div class:list={['figs', { land: gallery.some(g => g.kind !== 'phone') }]}>
+        {gallery.map(g => <figure><div class="frame" style={`background:${p.accent}`}><img src={g.src} alt={g.alt} loading="lazy" class:list={[g.kind]} /></div></figure>)}
+      </div>
+      {p.imageSource && <p class="disclaim">{p.imageSource}</p>}
+    </div>
+  )}
+
+  {links.length > 0 && (
+    <div class="wide"><div class="deeper">
+      <p class="eyebrow">{live ? `Check it yourself · stores checked ${STORES_CHECKED}` : 'Where it was recorded'}</p>
+      {links.map(l => <a href={l.href} rel="noopener"><b>{l.label} ↗</b><span>{l.note}</span></a>)}
+    </div></div>
+  )}
+  {!live && <div class="wide"><p class="disclaim">{p.statusNote ?? 'This app is no longer available in the stores. The links above are independent records that it existed.'}</p></div>}
+</CaseStudy>
+
+<style>
+  .shots { display: flex; gap: clamp(20px, 5vw, 64px); justify-content: center; align-items: flex-end; padding: 48px 24px 0; width: 100%; }
+  .shots img { width: min(30%, 260px); border-radius: 22px 22px 0 0; box-shadow: 0 24px 48px rgba(0,0,0,.12); }
+  .shots.single { align-items: center; padding: 48px 24px; }
+  .shots.single img { width: auto; max-width: min(100%, 820px); max-height: 420px; border-radius: 16px; }
+  .shots.single img.phone { max-height: 420px; }
+  .shots .icon { width: 140px !important; border-radius: 32px !important; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .stack span { font-size: 14px; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); }
+  .figs-head { margin: 0 0 24px; }
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .figs.land { grid-template-columns: repeat(2, 1fr); }
+  .figs figure { margin: 0; }
+  .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; height: 100%; }
+  .frame img { width: 88%; border-radius: 14px 14px 0 0; }
+  .frame img.landscape, .frame img.graphic { width: 100%; border-radius: 12px; margin-bottom: 18px; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin: 20px 0 0; }
+  .deeper { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
+  .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+  .deeper a b { font: 400 24px/1.2 var(--serif); }
+  .deeper a span { font-size: 14px; color: var(--ink-3); }
+  .deeper a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 900px) { .figs { grid-template-columns: 1fr 1fr; } .figs.land, .deeper { grid-template-columns: 1fr; } }
+</style>

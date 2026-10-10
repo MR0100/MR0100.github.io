@@ -19,6 +19,7 @@
     return;
   }
   if (q.has('v') || q.has('test')) return;
+  location.replace('../try/'); return;
 
   // Side-by-side page. The phone's own script already ran on this page; stop its timers before replacing the DOM
   for (let id = setTimeout(() => {}, 0); id > 0; id--) { clearTimeout(id); clearInterval(id); }
