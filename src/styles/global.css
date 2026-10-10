@@ -57,6 +57,6 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
 .prose table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 24px 0 32px; display: block; overflow-x: auto; }
 .prose th, .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .prose th { color: var(--ink); font-weight: 600; border-bottom-color: var(--ink-3); }
-.prose code { font-size: .88em; background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; }
+.prose code { font-size: .88em; background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
 .prose .tag { font: 600 11px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; background: #f3ead6; color: #7a5a14; padding: 4px 7px; border-radius: 6px; vertical-align: 2px; }
 .prose .note-box { background: var(--accent-soft); color: var(--ink-2); font-size: 15px; border-radius: 12px; padding: 14px 18px; margin: 24px 0 8px; }

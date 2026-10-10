@@ -3,6 +3,7 @@ title: "A five-person test you can run this week"
 dek: "You don't need a research team or a lab to find out whether a design works. You need five people, a prototype, and a decision written down before you start."
 date: 2026-10-11
 order: 5
+cover: "/writing/five-person-test/cover.png"
 topic: "Research"
 source: "Essay"
 minutes: 4
@@ -23,6 +24,9 @@ This is the step that turns a usability session into evidence. Before you recrui
 - **Kill signal:** what result would make you stop?
 
 For example, from my Temu study: *Pass if my version scores within one point of today's on "fun", clearly higher on "fair", and at least four of five people can say what the reward requires and by when. Kill if three of five say it's clearly less exciting.*
+
+
+<figure class="essay-fig"><img src="/writing/five-person-test/signals.png" alt="Pass and kill signals from the Temu test kit." loading="lazy" /><figcaption>Pass and kill signals from the Temu test kit.</figcaption></figure>
 
 Writing this first protects you from yourself. Without it, every result can be read as encouraging. With it, you'll know within the hour.
 
@@ -53,6 +57,9 @@ A session takes about 35 minutes:
 4. **Ratings.** One or two 1–7 scales that match your pass signal ("How sure were you?", "How fair did that feel?").
 5. **Compare (3 min).** *"Which would you rather use, and why?"*
 
+
+<figure class="essay-fig"><img src="/writing/five-person-test/session.png" alt="Where the 35 minutes go, and the order each person sees the versions." loading="lazy" /><figcaption>Where the 35 minutes go, and the order each person sees the versions.</figcaption></figure>
+
 Then stay quiet. The hardest part of running a test is not helping. When someone hesitates, count to five before you say anything, and when you do speak, ask a question: *"What are you looking for?"*
 
 ## Measure behaviour, not opinions
@@ -80,6 +87,9 @@ Then go back to the two sentences you wrote at the start. Did you hit the pass s
 Five people are good at finding problems and bad at measuring how big they are. "Three of five got stuck" means there's a real problem; it doesn't mean 60% of your users will get stuck. For how much a change moves a metric, you need a staged rollout or an A/B test in production, with a primary metric and a couple of guardrails written down in advance.
 
 The two methods work together. The small test tells you whether the design is worth building and what to fix first. The rollout tells you how much it's worth.
+
+
+<aside class="try"><p class="k">Try this</p><p>Book five 35-minute slots for next week now, before you’re ready. Having the sessions in the calendar is what makes the prototype and the script get finished.</p></aside>
 
 ## The cost of not doing it
 

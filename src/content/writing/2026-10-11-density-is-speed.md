@@ -3,6 +3,7 @@ title: "For expert users, density is speed"
 dek: "Professional users punish redesigns that look cleaner but show less. How to add what they need without taking away what they scan."
 date: 2026-10-11
 order: 3
+cover: "/writing/density-is-speed/cover.png"
 topic: "Design"
 source: "Essay"
 minutes: 4
@@ -38,6 +39,9 @@ MyFitnessPal shows the same pattern with a different kind of expert: someone who
 
 None of this means expert screens can't improve. The KGK study is a good example. Its result card shows codes and three unlabelled prices, but no picture of the stone, even though how a stone looks is half the buying decision. The obvious fix is a big photo on each card. The reviews say that would be a disaster.
 
+
+<figure class="essay-fig"><img src="/writing/density-is-speed/kgk-before-after.png" alt="KGK Diamonds: the same four stones, now with the stone, a labelled price and a tint check." loading="lazy" /><figcaption>KGK Diamonds: the same four stones, now with the stone, a labelled price and a tint check.</figcaption></figure>
+
 Here's how I approached it instead, and the principles generalise:
 
 **1. Set a density budget before you design.** Count how many items fit on screen today and treat that number as a requirement. In KGK's case: four stones visible on a standard phone, before and after.
@@ -50,6 +54,9 @@ Here's how I approached it instead, and the principles generalise:
 
 **5. Keep the controls where they are.** Muscle memory is a feature. If a control has to move, move it once, explain why, and don't move it again.
 
+
+<figure class="essay-fig"><img src="/writing/density-is-speed/rules.png" alt="The five rules at a glance." loading="lazy" /><figcaption>The five rules at a glance.</figcaption></figure>
+
 ## How to test it
 
 Testing expert screens with newcomers will mislead you; newcomers will always prefer the cleaner version. Test with the people who use the screen for a living, and test the job, not the look:
@@ -59,6 +66,9 @@ Testing expert screens with newcomers will mislead you; newcomers will always pr
 - Ask directly: *"Could you see enough at once? Was anything slower?"*
 
 Write your failure condition before the test. For the KGK prototype, it's simple: if three of five buyers say the new card shows too few stones or feels slower, it's back to the drawing board, however much nicer it looks.
+
+
+<aside class="try"><p class="k">Try this</p><p>Open the screen your most experienced users spend the most time in. Count how many items fit today and write that number at the top of the brief. Any proposal that shows fewer needs a very good reason.</p></aside>
 
 ## The short version
 

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import EssayCard from '../components/EssayCard.astro';
 import { profile, counts, testimonials, experienceLabel } from '../data/profile';
 import { liveApps } from '../data/work';
 import { publishedWriting, nextScheduled, fmtDate } from '../data/published';
@@ -58,7 +59,9 @@ const quotes = import.meta.env.DEV ? testimonials : testimonials.filter(t => !t.
     <div class="section-head"><h2>Writing</h2><a class="link" href="/writing/">All writing →</a></div>
     {posts.length > 0 ? (
       <ol class="posts">
-        {posts.map(p => <li><a href={`/writing/${p.id.replace(/^\d{4}-\d\d-\d\d-/, '')}/`}><time>{fmtDate(p.data.date)}{p.data.source === 'Essay' && ` · ${p.data.minutes} min read`}</time><h3>{p.data.title}</h3><p>{p.data.dek}</p></a></li>)}
+        {posts.map(p => p.data.source === 'Essay'
+          ? <li><EssayCard p={p} /></li>
+          : <li><a href={`/writing/${p.id.replace(/^\d{4}-\d\d-\d\d-/, '')}/`}><time>{fmtDate(p.data.date)}</time><h3>{p.data.title}</h3><p>{p.data.dek}</p></a></li>)}
       </ol>
     ) : (
       <p class="soon">Short notes on research, mobile UX and building what people keep. The first one goes out on {upcoming ? fmtDate(upcoming.data.date) : 'soon'}.</p>

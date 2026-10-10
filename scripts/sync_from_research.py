@@ -189,7 +189,16 @@ def sync_writing():
         date, slug = m.group(1), m.group(2)
         raw = open(f, encoding='utf-8').read()
         _, head, body = raw.split('---', 2)
-        minutes = max(1, round(len(body.split()) / 230))
+        minutes = max(1, round(len(re.sub(r'<[^>]+>|!\[[^\]]*\]\([^)]*\)', ' ', body).split()) / 230))
+        # Graphics: essays/assets/<slug>/ -> public/writing/<slug>/; image + italic caption -> a figure
+        src_assets = os.path.join(ESSAYS, 'assets', slug)
+        if os.path.isdir(src_assets):
+            for img in glob.glob(os.path.join(src_assets, '*.png')):
+                shutil.copy2(img, out('public', 'writing', slug, os.path.basename(img)))
+        head = head.replace(f'assets/{slug}/', f'/writing/{slug}/')
+        body = re.sub(r'^!\[([^\]]*)\]\(assets/[^/]+/([^)]+)\)[ \t]*\n\*(.+)\*[ \t]*$',
+                      lambda m: f'<figure class="essay-fig"><img src="/writing/{slug}/{m.group(2)}" alt="{m.group(1)}" loading="lazy" /><figcaption>{inline_md(m.group(3))}</figcaption></figure>',
+                      body, flags=re.M)
         head = head.strip() + f'\nsource: "Essay"\nminutes: {minutes}\n'
         open(out('src', 'content', 'writing', f'{date}-{slug}.md'), 'w', encoding='utf-8').write(f'---\n{head}---\n{body}')
         n += 1

@@ -3,6 +3,7 @@ title: "Before you redesign a feature, find out what it's for"
 dek: "The fastest way to ship a beautiful redesign that hurts the business is to fix what users complain about without asking why the thing exists. Three questions I now answer first."
 date: 2026-10-11
 order: 2
+cover: "/writing/what-is-it-for/cover.png"
 topic: "Product"
 source: "Essay"
 minutes: 4
@@ -25,7 +26,8 @@ Temu's games do at least three:
 - **Cheap growth.** Inviting friends to earn rewards brings in new users for far less than advertising.
 - **Browsing that turns into buying.** Many tasks are "look at these items" or "place an order", which is exactly what the business wants.
 
-My calm offer card kept none of those. The final design kept the wheel, the confetti and the countdowns, and changed only the rules: shown before you play, worth the same at every step, and true.
+My calm offer card kept none of those. 
+<figure class="essay-fig"><img src="/writing/what-is-it-for/temu-before-after.png" alt="The same game with fairer rules: progress that never shrinks." loading="lazy" /><figcaption>The same game with fairer rules: progress that never shrinks.</figcaption></figure>
 
 Revolut taught me a different version of the same lesson. Account holds frustrate customers, and my first instinct was to make them gentler. But holds stop fraud and meet anti-money-laundering law. Revolut says its checks saved customers an estimated £632 million in potentially fraudulent transactions in 2024. A redesign that weakened the hold would have been a disaster dressed as a kindness. The right redesign kept the hold exactly as it was and changed only what the customer could *see* while it ran.
 
@@ -53,6 +55,9 @@ Each of these is small enough to design for, and specific enough to test.
 
 ## The checklist I use
 
+
+<figure class="essay-fig"><img src="/writing/what-is-it-for/three-lists.png" alt="The three lists, filled in for Temu’s games." loading="lazy" /><figcaption>The three lists, filled in for Temu’s games.</figcaption></figure>
+
 Before any redesign, I write three short lists:
 
 1. **The job.** What does this feature do for the business? (With a source.)
@@ -60,6 +65,9 @@ Before any redesign, I write three short lists:
 3. **Fix.** What exactly do they resent? (One moment, one rule, one missing piece.)
 
 Then every design option gets judged against all three. An option that fixes the resentment but breaks the job is out, however good it looks. An option that keeps the job and the enjoyment while fixing the resentment is usually smaller, cheaper and easier to get approved than the redesign you first imagined.
+
+
+<aside class="try"><p class="k">Try this</p><p>Take the feature on your roadmap that people complain about most. Before anyone sketches, write the three lists on one page, with a source for the job, and share it with whoever owns the metric.</p></aside>
 
 ## Why this makes you more persuasive, too
 

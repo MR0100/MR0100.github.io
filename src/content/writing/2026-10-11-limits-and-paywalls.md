@@ -3,6 +3,7 @@ title: "Put the meter where the decision happens"
 dek: "Usage limits and paywalls don't make people leave. Surprises do. Four rules for limits that feel fair and still sell the upgrade."
 date: 2026-10-11
 order: 4
+cover: "/writing/limits-and-paywalls/cover.png"
 topic: "Product"
 source: "Essay"
 minutes: 4
@@ -47,6 +48,9 @@ When someone does reach the limit, an "Upgrade" button as the only exit feels li
 
 Counter-intuitively, offering alternatives tends to make the upgrade *more* attractive, not less, because it's now a choice rather than a toll. And the people who choose "save for later" come back tomorrow, which is worth more than an angry uninstall.
 
+
+<figure class="essay-fig"><img src="/writing/limits-and-paywalls/chatgpt-flow.png" alt="Rules 1 to 3 in my ChatGPT proposal: the meter on the chip, a warning before the last use, three ways forward." loading="lazy" /><figcaption>Rules 1 to 3 in my ChatGPT proposal: the meter on the chip, a warning before the last use, three ways forward.</figcaption></figure>
+
 ## Rule 4: Never lose the work
 
 Whatever happens at the limit, keep what the person made. The message, the uploaded photo, the half-filled form. If they upgrade, it continues. If they wait, it's there tomorrow. Nothing destroys goodwill faster than a limit that also deletes effort.
@@ -62,6 +66,11 @@ My proposal kept the scanner paid, and added a free "log it again" for meals peo
 The honest risk with visible meters is rationing: people who can see "3 left" might hold back and get less value. That's a real possibility, and it's testable in an afternoon. In my ChatGPT test plan, the failure condition is written down in advance: if three of five people say they'd hold back because they can see the count, the idea needs rethinking.
 
 In production, I'd watch two numbers together: upgrades from the limit moment, and whether people come back the day after hitting the limit. A good limit design raises both.
+
+
+<figure class="essay-fig"><img src="/writing/limits-and-paywalls/rules.png" alt="The four rules." loading="lazy" /><figcaption>The four rules.</figcaption></figure>
+
+<aside class="try"><p class="k">Try this</p><p>Find the moment your product says “you’ve run out”. Screenshot it, then ask: did the person see it coming, can they keep their work, and is upgrading their only way out? Fix whichever answer is no.</p></aside>
 
 ## The short version
 

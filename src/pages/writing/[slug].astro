@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Doc from '../../layouts/Doc.astro';
+import Essay from '../../layouts/Essay.astro';
 import { publishedWriting, fmtDate } from '../../data/published';
 import { profile } from '../../data/profile';
 export async function getStaticPaths() {
@@ -9,15 +10,14 @@ export async function getStaticPaths() {
 const { p } = Astro.props;
 const { Content } = await render(p);
 ---
-<Doc title={p.data.title} eyebrow={[p.data.source === 'Essay' ? 'Essay' : 'LinkedIn post', p.data.topic, fmtDate(p.data.date), p.data.minutes && `${p.data.minutes} min read`].filter(Boolean).join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
+{p.data.source === 'Essay' ? <Essay p={p}><Content /></Essay> : (
+<Doc title={p.data.title} eyebrow={['LinkedIn post', fmtDate(p.data.date)].join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
   <p slot="lede" class="dek">{p.data.dek}</p>
   {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}
   <Content />
-  {p.data.source === 'Essay'
-    ? <p class="origin">Questions or a different experience? <a href={`mailto:${profile.email}`}>Write to me</a> or reply on <a href={profile.linkedin}>LinkedIn</a>.</p>
-    : <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>}
-</Doc>
+  <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
+</Doc>)}
 
 <style>
   .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 20px 0 0; }

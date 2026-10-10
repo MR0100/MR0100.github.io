@@ -3,6 +3,7 @@ title: "Make your app feel fast on the phone your users actually own"
 dek: "Most apps are built on new flagships and used on mid-range Android. A practical guide to measuring and fixing speed where it matters, for designers and developers."
 date: 2026-10-11
 order: 6
+cover: "/writing/fast-on-cheap-phones/cover.png"
 topic: "Mobile"
 source: "Essay"
 minutes: 4
@@ -35,6 +36,9 @@ Speed isn't linear in how people perceive it. Jakob Nielsen's response-time limi
 - **1 second** keeps someone's flow of thought, though they notice the delay.
 - **10 seconds** is about the limit of attention; beyond that, people switch away.
 
+
+<figure class="essay-fig"><img src="/writing/fast-on-cheap-phones/thresholds.png" alt="Nielsen’s three limits, and where our grid sat before and after." loading="lazy" /><figcaption>Nielsen’s three limits, and where our grid sat before and after.</figcaption></figure>
+
 Our 5-second grid sat in the worst zone: long enough to notice and lose flow, short enough that it didn't feel like it deserved a progress bar. Getting under 2 seconds moved it into "noticeable but fine".
 
 ## 3. Build only what's on screen
@@ -42,6 +46,8 @@ Our 5-second grid sat in the worst zone: long enough to notice and lose flow, sh
 The most common cause of a slow list is rendering everything at once. A list of 500 results should build the 10 or so rows visible on screen, plus a few ahead, and recycle them as you scroll. In Flutter that means lazy builders (`ListView.builder`, `SliverList`) rather than building every child up front; in native Android it's `RecyclerView` or a lazy list in Compose; on iOS, reusable cells or `LazyVStack`. Flutter's own performance guide covers the details ([Flutter docs](https://docs.flutter.dev/perf/best-practices)).
 
 This one change usually does more for scrolling than every other optimisation combined.
+
+<figure class="essay-fig"><img src="/writing/fast-on-cheap-phones/lazy-list.png" alt="A lazy list builds what fits on screen, plus a few rows ahead." loading="lazy" /><figcaption>A lazy list builds what fits on screen, plus a few rows ahead.</figcaption></figure>
 
 ## 4. Ask the server for less
 
@@ -72,6 +78,11 @@ Speed rots. A screen that's fast today gets slower as features are added, unless
 - **The cheap phone stays on the desk.** Every release gets a quick scroll on it before it ships.
 
 After the changes, the grid scrolls at a steady 60 frames per second on entry-level Android, and the first stones appear in about 2 seconds instead of 5.
+
+<figure class="essay-fig"><img src="/writing/fast-on-cheap-phones/results.png" alt="What changed in KGK Diamonds." loading="lazy" /><figcaption>What changed in KGK Diamonds.</figcaption></figure>
+
+
+<aside class="try"><p class="k">Try this</p><p>Ask your team for the oldest Android phone in the office, or buy a budget one. Open your busiest screen on it and time how long until the first useful content appears. Write that number down; it’s your baseline.</p></aside>
 
 ## For designers: this is your problem too
 

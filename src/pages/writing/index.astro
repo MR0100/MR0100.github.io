@@ -1,42 +1,61 @@
 ---
 import Base from '../../layouts/Base.astro';
+import EssayCard from '../../components/EssayCard.astro';
 import { publishedWriting, nextScheduled, fmtDate } from '../../data/published';
-const posts = await publishedWriting();
+const all = await publishedWriting();
+const essays = all.filter(p => p.data.source === 'Essay');
+const posts = all.filter(p => p.data.source !== 'Essay');
+const [lead, ...rest] = essays;
 const upcoming = await nextScheduled();
+const topics = [...new Set(essays.map(e => e.data.topic).filter(Boolean))];
 ---
-<Base title="Writing · Mitul Vaghasiya" active="Writing" description="Notes on product research, mobile UX and building apps people keep.">
+<Base title="Writing · Mitul Vaghasiya" active="Writing" description="Essays and notes on product research, mobile UX and building apps people keep.">
   <section class="wrap intro">
     <p class="eyebrow">Writing</p>
     <h1>Notes on research, mobile UX and building what people keep.</h1>
-    <p class="lede">Essays you can put to work: how to read reviews, test a design, redesign for experts, and make apps fast where users really are. Plus shorter posts first shared on LinkedIn.</p>
+    <p class="lede">Essays you can put to work this week, drawn from my case studies and from shipping mobile apps since 2019. Each ends with one thing to try.</p>
+    {topics.length > 0 && <p class="topics">{topics.map(t => <span>{t}</span>)}</p>}
   </section>
-  <section class="wrap">
-    {posts.length === 0 && <p class="empty">The first article goes out on {upcoming ? fmtDate(upcoming.data.date) : 'soon'}. It will appear here the same day.</p>}
-    <ol class="posts">
-      {posts.map(p => (
-        <li><a href={`/writing/${p.id.replace(/^\d{4}-\d\d-\d\d-/, '')}/`}>
-          <div class="meta"><time>{fmtDate(p.data.date)}</time><span>{p.data.source === 'Essay' ? `Essay · ${p.data.minutes} min read` : 'LinkedIn post'}</span></div>
-          <div>{p.data.topic && <p class="eyebrow">{p.data.topic}</p>}<h2>{p.data.title}</h2><p class="dek">{p.data.dek}</p></div>
-        </a></li>
-      ))}
-    </ol>
+
+  {lead && <section class="wrap lead"><EssayCard p={lead} big /></section>}
+
+  {rest.length > 0 && (
+    <section class="wrap">
+      <div class="grid">{rest.map(p => <EssayCard p={p} />)}</div>
+    </section>
+  )}
+
+  <section class="wrap posts-wrap">
+    <div class="head"><h2>Short posts</h2><span class="note">First shared on LinkedIn</span></div>
+    {posts.length === 0
+      ? <p class="empty">The first post goes out on {upcoming ? fmtDate(upcoming.data.date) : 'soon'}. It appears here the same day.</p>
+      : <div class="posts">{posts.map(p => (
+          <a href={`/writing/${p.id.replace(/^\d{4}-\d\d-\d\d-/, '')}/`}>
+            {p.data.cover ? <img src={p.data.cover} alt="" loading="lazy" /> : <span class="ph" />}
+            <div><time>{fmtDate(p.data.date)}</time><h3>{p.data.title}</h3></div>
+          </a>
+        ))}</div>}
   </section>
 </Base>
 
 <style>
-  .intro { padding-top: 72px; padding-bottom: 40px; }
+  .intro { padding-top: 72px; padding-bottom: 48px; }
   .intro h1 { font-size: clamp(40px, 4.8vw, 64px); margin-top: 16px; max-width: 900px; }
-  .posts { list-style: none; margin: 0 0 56px; padding: 0; }
-  .posts a { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 28px 0; border-top: 1px solid var(--line); }
-  .posts li:last-child a { border-bottom: 1px solid var(--line); }
-  .meta { display: flex; flex-direction: column; gap: 4px; padding-top: 6px; }
-  time { color: var(--ink-2); font-size: 15px; }
-  .meta span { color: var(--ink-3); font-size: 13px; }
-  .posts .eyebrow { margin: 0 0 6px; }
   .lede { font-size: 19px; color: var(--ink-2); max-width: 720px; margin: 20px 0 0; }
-  .posts h2 { font-size: clamp(26px, 2.6vw, 34px); }
-  .posts .dek { color: var(--ink-2); margin: 8px 0 0; }
-  .posts a:hover h2 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
-  .empty { color: var(--ink-2); font-size: 19px; padding: 32px 0 72px; border-top: 1px solid var(--line); }
-  @media (max-width: 700px) { .posts a { grid-template-columns: 1fr; gap: 6px; } .meta { flex-direction: row; gap: 10px; } }
+  .topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+  .topics span { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+  .lead { padding-bottom: 72px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 56px 40px; padding-top: 56px; border-top: 1px solid var(--line); }
+  .posts-wrap { padding-top: 96px; padding-bottom: 40px; }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+  .head h2 { font-size: clamp(26px, 2.4vw, 32px); }
+  .note { font-size: 14px; color: var(--ink-3); }
+  .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; }
+  .posts a { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .posts img, .posts .ph { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; background: var(--accent-soft); }
+  .posts time { font-size: 13px; color: var(--ink-3); }
+  .posts h3 { font-size: 20px; line-height: 1.15; margin-top: 4px; }
+  .posts a:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .empty { color: var(--ink-2); padding: 24px 0 40px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .posts { grid-template-columns: 1fr; } }
 </style>
