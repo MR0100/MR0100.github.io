@@ -1,0 +1,351 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revolut: Revolut makes everyday money effortless, then goes quiet on your worst day</title><meta name="description" content="Trust: what a banking app owes you on your worst day.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../design-system/tokens.css"><link rel="stylesheet" href="../../design-system/components.css"></head><body>
+<div class="announce">New case study every two weeks · <a href="#subscribe">Get it by email</a></div>
+<header class="site-header">
+  <nav><a href="../../site/index.html#work">Work</a><a href="../../site/index.html#writing">Writing</a><a href="../../site/index.html#about">About</a></nav>
+  <a class="wordmark" href="../../site/index.html">Mitul Vaghasiya</a>
+  <nav><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></nav>
+</header>
+<main class="layout">
+<article class="card">
+  <header>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#work">Case studies</a><span>/</span>Revolut</div>
+    <div class="meta"><b>Independent study</b><span class="dot">·</span>21 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
+    <h1>Revolut makes everyday money effortless, then goes quiet on your worst day</h1>
+  </header>
+  
+<div class="callout"><p><strong>Disclaimer.</strong> This is an independent design study by Mitul Vaghasiya. It is not affiliated with, commissioned by or endorsed by Revolut Ltd or any company named here. All screens are public App Store marketing screenshots. They are used here for research commentary and will be re-captured or redrawn for the public portfolio. Facts are cited. Anything I could not verify is labelled <span class="tag hypothesis">Hypothesis</span>.</p></div>
+<p class="lead">I started with a common assumption: Revolut has added so many products that the core jobs are getting buried. The public evidence does not support that. Recent reviews praise how easy the app is, and only 1 of 280 recent "most helpful" App Store reviews complained about finding things. The pain is in a rarer, high-stakes moment. When an account or a payment is restricted, customers describe no timeline, no clear next step and support loops. That one moment drives a large share of the angriest reviews. The law limits what Revolut can say about <em>why</em> an account was restricted. It does not stop Revolut from saying <em>what happens next and when</em>. Revolut already does this in its Business app.</p>
+
+<dl class="facts"><div><dt>App</dt><dd>Revolut, "Revolut — Mobile Finance" (iOS, also on Android)</dd></div><div><dt>Category</dt><dd>FinTech / digital banking</dd></div><div><dt>Platform studied</dt><dd>iOS (UK App Store listing)</dd></div><div><dt>Version / date studied</dt><dd>10.151, released 9 Oct 2026 (<a href="https://itunes.apple.com/lookup?id=932493382&amp;country=gb">App Store lookup</a>). Study done 10 Oct 2026.</dd></div><div><dt>Methods</dt><dd>Review mining (700 App Store reviews; method in §3), Revolut 2025 Annual Report, press and regulator sources, competitor benchmark from public App Store screenshots</dd></div><div><dt>Role</dt><dd>Independent study by Mitul Vaghasiya (research, analysis, proposal)</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#why-this-app">Why this app</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#journey-audit-my-money-is-held">Journey audit: "My money is held"</a></li><li><a href="#insights">Insights</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#options-considered">Options considered</a></li><li><a href="#proposed-solution-the-case-tracker">Proposed solution: the Case Tracker</a></li><li><a href="#success-metrics-and-validation-plan">Success metrics and validation plan</a></li><li><a href="#risks-and-open-questions-only-revolut-knows">Risks and open questions (only Revolut knows)</a></li><li><a href="#linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+<p><strong>Limits of this study.</strong> I do not have a Revolut account in a restricted state, and Mobbin was unavailable to me, so I could not see the live restricted-account screens. Screens shown are store marketing images, which show the app at its best. My review sample is described in §3.</p>
+<h2 id="why-this-app">Why this app</h2>
+<ul>
+<li><strong>Scale.</strong> Revolut ended 2025 with <strong>68.3 million retail customers</strong> (+30%) and 767,000 business customers. Revenue was <strong>£4.5bn</strong> and profit before tax <strong>£1.7bn</strong> (<a href="https://assets.revolut.com/pdf/annualreport2025.pdf">Revolut Annual Report 2025, p.4 and p.12</a>; <a href="https://www.cnbc.com/2026/03/24/revolut-2025-earnings-record-profit.html">CNBC, 24 Mar 2026</a>). Its UK App Store listing now says "Join the 80+ million" and shows a 4.86 average from about 1.09 million ratings (<a href="https://apps.apple.com/gb/app/id932493382">App Store</a>; <a href="https://itunes.apple.com/lookup?id=932493382&amp;country=gb">lookup data</a>, 10 Oct 2026).</li>
+<li><strong>Business model.</strong> Most revenue comes from fees: card payments 22.2%, interest 21.6%, subscriptions 15.7%, wealth 14.7%, FX 13.4%. Revolut says 11 product lines each passed £100m revenue in 2025, and paid-plan adoption grew 42% (<a href="https://assets.revolut.com/pdf/annualreport2025.pdf">Annual Report 2025, p.9 and p.13</a>).</li>
+<li><strong>The metric that matters: trust.</strong> Card payments, subscriptions, wealth and interest all depend on one behaviour: customers keeping their salary and savings in the app. Revolut says it is chasing that "primary account" role. It launched its biggest redesign, Revolut 10, to win it (<a href="https://www.revolut.com/news/revolut_launches_revolut_10_as_it_targets_primary_accounts_and_passes_35m_customers_worldwide">Revolut press release, Oct 2023</a>). For a primary account, the question is not only whether people try a new product. It is whether they trust the app with their money when something goes wrong.</li>
+</ul>
+<h2 id="the-problem">The problem</h2>
+<h3>What I expected vs. what I found</h3>
+<p><strong>My starting hypothesis</strong> was super-app overload: stocks, crypto, travel, lounges, eSIMs and more crowding out the core jobs.</p>
+<p><strong>Method.</strong> I pulled Apple's public review feed for Revolut (app id 932493382), sorted by "most helpful", for the UK, Ireland and US (<a href="https://itunes.apple.com/gb/rss/customerreviews/page=1/id=932493382/sortby=mosthelpful/json">GB feed</a>). After removing duplicates that gave 700 reviews. I kept the <strong>280 reviews dated 1 Jan 2025 to 8 Oct 2026</strong>. Of those, <strong>65 were 1★ or 2★</strong>. I read and coded all 65 by hand. One review can have several themes.</p>
+<p><strong>Bias warning.</strong> "Most helpful" is not a random sample. It favours long, emotional reviews. The count shows which themes are common, not how common they are in the whole customer base. A second pull of the 250 <em>most recent</em> UK reviews (5 to 8 Oct 2026) was 95% five-star (238 of 250). That is a reminder that most customers are happy day to day.</p>
+<p><strong>Clutter barely appears.</strong> Among the 280 reviews from 2025 and 2026, <strong>one</strong> (4★, Ireland, Feb 2026) complained about navigation: <em>"Often things like simple transfer, pay credit card etc are not where I would expect to find."</em> Many 5★ reviews praise the opposite: "easy to navigate", "simple", "clean". On public evidence, the super-app angle is weak. I dropped it.</p>
+<h3>Themes in 65 negative reviews (2025 to 2026)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Reviews</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Support:</strong> bots, scripted replies, no human, repeated hand-offs, no reply</td>
+<td>39</td>
+<td>60%</td>
+</tr>
+<tr>
+<td><strong>Account or funds restricted, held, blocked or closed</strong></td>
+<td>24</td>
+<td>37%</td>
+</tr>
+<tr>
+<td>↳ <em>of these, also complain about support</em></td>
+<td>16 of 24</td>
+<td></td>
+</tr>
+<tr>
+<td>↳ <em>of these, say they got no reason or no timeline</em></td>
+<td>11 of 24</td>
+<td></td>
+</tr>
+<tr>
+<td>Fees, plan terms, unclear charges</td>
+<td>12</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>Identity or document verification rejected or unclear</td>
+<td>12</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>Fraud or scam claims declined</td>
+<td>10</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>App bugs and onboarding errors</td>
+<td>10</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Transfers failed or delayed (no account restriction)</td>
+<td>7</td>
+<td>11%</td>
+</tr>
+<tr>
+<td>Home screen clutter or "too many features"</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Short verbatim quotes, all from the feed above:</p>
+<ul>
+<li><em>"no clear explanation of what is happening, no indication of how or when the issue will be resolved, and no proper point of contact"</em> (1★, IE, 2 Oct 2026, v10.149)</li>
+<li><em>"No customer support rep can give me any information about when this process will be done."</em> (1★, US, 31 Dec 2025)</li>
+<li><em>"If you don't respond fast enough it gets passed to another rep with no prior history and the process starts over again."</em> (1★, US, 16 Feb 2026)</li>
+<li><em>"all I get are vague, automated responses or empty reassurances that my case is being 'reviewed.'"</em> (1★, IE, 20 Jan 2025)</li>
+</ul>
+<h3>Outside signals</h3>
+<ul>
+<li><strong>Ombudsman and fraud complaints.</strong> Which? (via FOI) reported that Revolut customers took <strong>3,242</strong> authorised push payment fraud complaints to the UK Financial Ombudsman in 2024, more than Monzo (2,344) or Barclays (1,704) (<a href="https://www.finextra.com/newsarticle/46691/revolut-still-the-worst-uk-firm-for-fraud-complaints-warns-which">Finextra, Oct 2025</a>; <a href="https://www.crowdfundinsider.com/2025/10/253582-revolut-remains-worst-uk-company-for-fraud-complaints-claims-which/">Crowdfund Insider, Oct 2025</a>). <em>These pages blocked my fetch, so the figures come from search snippets of these articles; verify before publishing. Revolut's customer base is also much larger, so raw counts overstate the rate.</em></li>
+<li><strong>Ombudsman decisions</strong> on blocked Revolut accounts often find the block itself reasonable, but sometimes award compensation for poor communication. One investigator found Revolut "wasn't clear in what it needed" (<a href="https://www.financial-ombudsman.org.uk/decision/DRN-2698519.pdf">e.g. DRN-2698519</a>; summary via search).</li>
+<li><strong>Mass restriction events.</strong> In Nov 2025 Revolut restricted accounts of some Russian customers in the EU to meet sanctions rules. For a time, a technical issue stopped them uploading the documents needed to restore access (<a href="https://meduza.io/en/feature/2025/11/03/russian-clients-living-in-the-e-u-struggle-to-regain-banking-access-after-fintech-company-revolut-freezes-accounts">Meduza, 3 Nov 2025</a>).</li>
+<li><strong>Regulatory pressure is real.</strong> The Bank of Lithuania fined Revolut Bank €3.5m in April 2025 for anti-money-laundering monitoring weaknesses (<a href="https://www.lrt.lt/en/news-in-english/19/2531818/revolut-bank-fined-eur3-5m-for-breaching-anti-money-laundering-rules">LRT, 8 Apr 2025</a>). Revolut grew Risk &amp; Compliance headcount 42% in 2025 (<a href="https://assets.revolut.com/pdf/annualreport2025.pdf">Annual Report, p.14</a>). Restrictions are not going away. They will happen more often, not less.</li>
+</ul>
+<h3>What Revolut says</h3>
+<ul>
+<li>Revolut calls restrictions rare and "a last resort", and says it cannot always share the exact reason for legal reasons (<a href="https://www.revolut.com/blog/post/why-does-revolut-restrict-accounts/">Revolut blog</a>, via search snippet).</li>
+<li>Its AI "Assistant" now resolves <strong>over 75% of customer queries</strong>. Retail resolution time fell by over 40%, and support NPS rose about 12 points in 2025. Revolut says this frees human agents for "the most complex and sensitive queries" (<a href="https://assets.revolut.com/pdf/annualreport2025.pdf">Annual Report 2025, p.9, p.14, p.28</a>).</li>
+<li>In 2025 Revolut added <strong>in-app calling</strong> and a banner confirming whether a call is really from Revolut (<a href="https://assets.revolut.com/pdf/annualreport2025.pdf">Annual Report, p.29</a>).</li>
+</ul>
+<p>These are real improvements, and I believe the averages. My point is about the tail. Restricted-account cases are, by Revolut's own definition, the complex and sensitive ones. The reviews suggest some of them still meet the bot-first path.</p>
+<p><strong>The legal constraint is real, and it is narrow.</strong> UK "tipping-off" rules can stop a bank explaining <em>why</em> it froze an account (<a href="https://monzo.com/blog/2019/04/04/why-we-block-freeze-close-monzo-accounts/">Monzo's explainer, 2019</a>). From April 2026, UK rules require 90 days' notice and a clear explanation for most account closures, with exceptions for financial crime (<a href="https://www.gov.uk/government/news/millions-of-people-and-businesses-protected-against-debanking">HM Treasury, 28 Apr 2025</a>). Neither rule stops a bank telling a customer <strong>what is limited, what they need to do, and when they will hear back</strong>.</p>
+<h2 id="journey-audit-my-money-is-held">Journey audit: "My money is held"</h2>
+<p>Figures are public App Store screenshots (UK listing, Oct 2026). None of the four apps shows its restricted-account state in store images, which is itself telling.</p>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-01-revolut-home-accounts.webp" alt="Fig. 1" decoding="async"></div><figcaption><em>Fig. 1. Revolut home: balance, Add money / Move / Details / More, then automations. Clean and calm. There is no help entry point in view. Source: <a href="https://apps.apple.com/gb/app/id932493382">Revolut, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-02-revolut-security-hub.webp" alt="Fig. 2" decoding="async"></div><figcaption><em>Fig. 2. Revolut Security hub: Report fraud, Lost card, Lost device, Card security, Payments, Devices. Strong for incidents the customer starts. There is no "account status" or "open cases" entry. Source: <a href="https://apps.apple.com/gb/app/id932493382">Revolut, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-03-revolut-send-money.webp" alt="Fig. 3" decoding="async"></div><figcaption><em>Fig. 3. Send money as a chat thread with the recipient. A friendly, fast core job, which reviews praise. Source: <a href="https://apps.apple.com/gb/app/id932493382">Revolut, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-04-revolut-stocks.webp" alt="Fig. 4" decoding="async"></div><figcaption><em>Fig. 4. Stocks and Shares ISA reuse the same account template (balance, four actions, list). This consistency is likely why product breadth does not show up as clutter in reviews. Source: <a href="https://apps.apple.com/gb/app/id932493382">Revolut, App Store UK</a>.</em></figcaption></figure>
+<p>The restricted-account journey, rebuilt from reviews and Revolut's help pages (I could not observe it directly):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+<th>Issue (evidence)</th>
+<th>Principle</th>
+<th>Severity (1–4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Payment declined or account restricted, often with no warning</td>
+<td>Customer finds out mid-payment (<em>"50% of my transactions were declined"</em>, 1★ GB, Mar 2025)</td>
+<td>Visibility of system status (Nielsen #1)</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Opens app to understand</td>
+<td>Reviews say it is unclear what still works and what is blocked</td>
+<td>Match between system and real world</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Asked for documents</td>
+<td>12 reviews describe rejected or unclear document requests (<em>"I don't know what documents I suppose to have"</em>)</td>
+<td>Error prevention; help users recover from errors</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Waits for review</td>
+<td>Most common complaint: no timeline (11 of 24 restriction reviews)</td>
+<td>Uncertain, unexplained waits feel longer (<a href="https://davidmaister.com/articles/the-psychology-of-waiting-lines/">Maister, 1985</a>)</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Contacts support</td>
+<td>Bot replies, repeated scripts, new agent with no history (16 of 24 restriction reviews)</td>
+<td>Recognition over recall; continuity of context</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Outcome (lifted or closed)</td>
+<td>Some report "restrictions lifted" emails while still restricted (1★ IE, May 2025)</td>
+<td>Consistency of status across channels</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>After</td>
+<td>Customer warns others in public reviews</td>
+<td>Peak-end rule: the worst moment defines the memory</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="insights">Insights</h2>
+<p class="insight"><strong>1. Product breadth is not the public problem. The design system is doing its job.</strong>
+<em>Observation:</em> Every product I could see uses the same template: big balance, four round actions, then a list (Figs. 1 and 4). <em>Evidence:</em> 0 of 65 negative reviews and 1 of 280 reviews overall mention clutter. <em>Why it matters:</em> consistency lowers cognitive load (Jakob's Law: users carry patterns from one screen to the next). A redesign of the home screen would be solving a problem customers are not reporting.</p>
+<p class="insight"><strong>2. The trust risk is concentrated in one rare, high-stakes state: "my money is held".</strong>
+<em>Evidence:</em> 37% of negative reviews in the sample describe restricted, held or closed accounts or funds. Most of them pair it with support complaints. <em>Why it matters:</em> loss aversion means losing access to your own money weighs far more than any feature gain. By the peak-end rule, that one week can outweigh years of good everyday use (<em>"I loved them until they did this to me"</em>, 1★ US, Jun 2026, after almost 10 years as a customer).</p>
+<p class="insight"><strong>3. The missing piece is status, not reason.</strong>
+<em>Evidence:</em> reviewers rarely demand the compliance reason itself. They ask <em>when</em>, <em>what next</em> and <em>who</em>. Revolut Business already shows, on its Home screen, a tile listing what information is requested, its status and the time remaining. It also says it aims to review submissions within 3 business days (<a href="https://help.revolut.com/en-US/business/help/restrictions-and-verifications-on-your-active-account/restrictions-on-my-account/why-do-i-need-to-provide-information-again/">Revolut Business help</a>, via search snippet). <strong>Hypothesis:</strong> the retail app has no equal status surface for restricted personal accounts. I could not confirm this without a restricted account. <em>Why it matters:</em> operational transparency, meaning showing the work being done, raises perceived value and patience (<a href="https://pubsonline.informs.org/doi/10.1287/mnsc.1110.1376">Buell &amp; Norton, 2011</a>).</p>
+<p class="insight"><strong>4. AI support wins on the average and can lose on the tail.</strong>
+<em>Evidence:</em> 75% AI resolution and +12 NPS points (Revolut) next to reviews describing <em>"a loop of useless bots giving the same scripted answers for weeks"</em> (1★ US, May 2026). <em>Why it matters:</em> a restricted-account case is exactly the "complex and sensitive" query Revolut says humans should own. Routing by <strong>account state</strong>, not by message text, would send these to people by default. <strong>Hypothesis:</strong> this routing does not exist today, or does not cover all restriction types.</p>
+<h2 id="benchmark">Benchmark</h2>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-05-monzo-home-help-tab.webp" alt="Fig. 5" decoding="async"></div><figcaption><em>Fig. 5. Monzo puts </em><em>Help</em><em> as one of four bottom tabs (Home, Trends, Payments, Help). Help is never more than one tap away, including on a bad day. Source: <a href="https://apps.apple.com/gb/app/id1052238659">Monzo, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-06-monzo-call-status.webp" alt="Fig. 6" decoding="async"></div><figcaption><em>Fig. 6. Monzo "Call Status" shows live whether Monzo is talking to you ("Talking to you now · 1:23 · Kemoy from Monzo"), plus a 24/7 support claim. This is a status surface for a trust moment. Revolut's 2025 call-ID banner does the same job. Source: <a href="https://apps.apple.com/gb/app/id1052238659">Monzo, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-07-n26-support-chat.webp" alt="Fig. 7" decoding="async"></div><figcaption><em>Fig. 7. N26 markets "24/7 chat support in your language" as a headline store screen, treating support as a product feature. Source: <a href="https://apps.apple.com/gb/app/id956857223">N26, App Store UK</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/04-revolut/assets/fig-08-wise-home.webp" alt="Fig. 8" decoding="async"></div><figcaption><em>Fig. 8. Wise home: Send, Add money and Request first, then balances and transactions. It is narrow and focused. Wise sends people to log in and use in-app Help for contact (<a href="https://wise.com/help/articles/4ijaGT6BdeHNVjzbRip4gI/how-do-i-contact-wise">Wise help</a>). Source: <a href="https://apps.apple.com/gb/app/id612261027">Wise, App Store UK</a>.</em></figcaption></figure>
+<p><strong>What the benchmark shows.</strong> No competitor shows its restricted-account state publicly either, so nobody is clearly "solving" it in public. The useful patterns are: Help as a permanent tab (Monzo), live status for trust moments (Monzo Call Status, Revolut's own call banner), support as a marketed promise (N26, Monzo 24/7 for urgent issues (<a href="https://monzo.com/help/app-help/contacting-support/">Monzo help</a>)), and <strong>Revolut Business's own status-plus-deadline tile</strong>. The strongest benchmark is internal.</p>
+<h2 id="options-considered">Options considered</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>User value</th>
+<th>Business value</th>
+<th>Effort</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Smarter AI for restricted cases</strong> (Assistant explains the restriction flow)</td>
+<td>Medium</td>
+<td>Low cost per case</td>
+<td>Low</td>
+<td>High: more bot loops in the most emotional moment, and a risk of tipping off</td>
+</tr>
+<tr>
+<td><strong>B. Case Tracker: status card, steps, "next update by" date, one case thread</strong></td>
+<td>High</td>
+<td>Fewer repeat contacts, fewer complaints, better retention</td>
+<td>Medium</td>
+<td>Low to medium: needs honest SLAs and legal-approved copy</td>
+</tr>
+<tr>
+<td><strong>C. Human-first routing for restricted accounts</strong> (callback or priority queue)</td>
+<td>High</td>
+<td>Costly per case</td>
+<td>Medium to high</td>
+<td>Staffing cost; queue abuse</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Chosen: B, with the routing rule from C</strong> (route by account state to a human after one bot turn). B fixes the most-cited gap, <em>no timeline</em>, and it reuses a pattern Revolut already ships in Business. The routing rule addresses the second-biggest gap, <em>no human</em>, without a full new channel.</p>
+<p><strong>Deliberately not building:</strong> a home-screen declutter or a "simple mode". The evidence does not support it, and it would spend design time on a problem customers are not reporting. I would also not build any feature that explains <em>why</em> a restriction happened. That is a legal decision, not a design one.</p>
+<h2 id="proposed-solution-the-case-tracker">Proposed solution: the Case Tracker</h2>
+<p><strong>Screen 1. Home status card (only when a restriction is active).</strong> It sits above the balance and is impossible to miss. Example copy: <em>"Some features are paused while we review your account. Step 2 of 4. We'll update you by Tue 14 Oct."</em> It has one primary button: <strong>View your case</strong>.</p>
+<p><strong>Screen 2. Case page.</strong></p>
+<ul>
+<li><strong>What's paused / what still works.</strong> Two short lists, e.g. "Paused: card payments, transfers out. Still works: receiving money, viewing statements."</li>
+<li><strong>Steps:</strong> Info requested → Info received → Under review → Decision. The current step is highlighted, with a date stamp on each completed step.</li>
+<li><strong>"Next update by"</strong>: a committed date for the next update, not for the final decision. If the date slips, the app says so before it passes.</li>
+<li><strong>Copy we can say</strong> (approved by legal): "We can't share the specific reason because of legal rules that apply to all banks. Here is what we can tell you."</li>
+</ul>
+<p><strong>Screen 3. Document request as a checklist.</strong> Each item names the exact document and gives an example (e.g. "Payslip showing the £1,200 payment on 3 Oct"). The camera checks blur and glare before upload. If a document is rejected, the item shows the reason ("Name not readable") instead of a generic failure.</p>
+<p><strong>Screen 4. One case thread.</strong> Chat, email and calls attach to the same case ID, so any agent sees the history. If the account is restricted, the bot hands off to a person after one exchange, and the thread shows "A specialist is on your case" with a reply-time estimate.</p>
+<p><strong>Screen 5. Outcome.</strong> "Restrictions lifted" appears only when the system state has actually changed, so the email and the app never disagree. If the account is being closed, the screen shows the notice period, how to withdraw funds, and how to complain, including the Ombudsman route the UK rules require.</p>
+<h3>Build note (mobile developer's view)</h3>
+<ul>
+<li><strong>Complexity: medium. Most of the work is in the backend, not the UI.</strong> The screens are simple. The hard part is a reliable <strong>case state</strong> from back-office tooling, exposed as one API: state, step, timestamps, next-update date, paused capabilities. I would render the card and case page from that payload (server-driven UI), so compliance teams can change copy and steps without an app release. Native and Flutter both handle this pattern well.</li>
+<li><strong>Restricted mode must not lock out help.</strong> The app has to let a restricted user log in and reach the case page, the document upload and the thread. Feature flags per capability ("card", "transfers out") are better than one global "restricted" boolean.</li>
+<li><strong>Notifications and deep links.</strong> Send a push and an email on every state change, each deep-linking to the case page. Use one source of truth so channels cannot disagree (journey step 6).</li>
+<li><strong>Document capture.</strong> On-device quality checks (Apple Vision / Google ML Kit) before upload cut avoidable rejections. Handle large uploads on poor networks with resumable uploads.</li>
+<li><strong>Platform constraints.</strong> Push permission may be off, so the status card on Home is the fallback that always works. Copy must be localised and pass accessibility checks (screen readers announce the step and date).</li>
+<li><strong>Ship first:</strong> the read-only status card and case page with "what's paused" and "next update by", driven by data that already exists. Then the document checklist. Then the unified thread and routing rule, which need the most back-office change.</li>
+</ul>
+<h2 id="success-metrics-and-validation-plan">Success metrics and validation plan</h2>
+<ul>
+<li><strong>Primary metric:</strong> support contacts per restricted case (target: down). This is the clearest sign that status is replacing chasing.</li>
+<li><strong>Secondary:</strong> document rejection rate; time from request to complete submission; share of restricted cases with 3 or more contacts; 1★ reviews mentioning restriction or support.</li>
+<li><strong>Guardrails:</strong> fraud and money-laundering detection rates unchanged; no increase in review time; zero legal or tipping-off incidents in copy; complaints and Ombudsman referrals not rising.</li>
+<li><strong>Experiment:</strong> staged rollout by market (e.g. one EEA market first), or a randomised holdout of a share of new restricted cases. The control group keeps today's experience, so nobody is made worse off. Run it long enough to cover full case lifecycles (<strong>Hypothesis:</strong> 6 to 8 weeks, depending on internal case durations).</li>
+</ul>
+<h3>5-user test script</h3>
+<p><strong>Recruit:</strong> 5 people who have had a bank or fintech account or payment held in the last two years (any provider), mixed ages, at least two not native English speakers. Use a clickable prototype of the current-style flow (A) and the Case Tracker (B), in alternating order.</p>
+<ol>
+<li><strong>Intro (2 min).</strong> "We're testing a design, not you. Please think aloud."</li>
+<li><strong>Recall (5 min).</strong> "Tell me about the last time your money was held. What did you do first? What did you most want to know?" <em>(Listen for: why vs when vs what next.)</em></li>
+<li><strong>Task 1 (3 min).</strong> "Your card was just declined at a shop. Use the app to find out what's going on." <em>Measure:</em> time to find the status; first tap.</li>
+<li><strong>Task 2 (3 min).</strong> "What can you still do with your account right now?" <em>Measure:</em> correct answer yes/no.</li>
+<li><strong>Task 3 (4 min).</strong> "The bank needs proof for a payment. Upload what it asks for." <em>Measure:</em> did they pick the right document; confidence 1–5.</li>
+<li><strong>Task 4 (3 min).</strong> "When will you hear back? What will you do until then?" <em>Measure:</em> did they find the date; would they contact support anyway (yes/no).</li>
+<li><strong>Trust check (3 min).</strong> "We can't tell you the exact reason for legal reasons." Read it aloud. "How does that land? What would make it acceptable?"</li>
+<li><strong>Compare (5 min).</strong> Show A and B side by side. "Which would make you <em>less</em> likely to message support? Why?"</li>
+<li><strong>Wrap (2 min).</strong> "If this happened to you with this design, would you keep your salary here?"</li>
+</ol>
+<p><strong>Pass signal:</strong> at least 4 of 5 find the next-update date within 30 seconds, and at least 3 of 5 say they would not contact support before that date.</p>
+<h2 id="risks-and-open-questions-only-revolut-knows">Risks and open questions (only Revolut knows)</h2>
+<ul>
+<li>What share of customers are restricted each month, and how long do cases last? (This decides whether the tracker is a small fix or a big lever.)</li>
+<li>Can back-office tooling produce a reliable "next update by" date for every restriction type, including law-enforcement holds?</li>
+<li>Which restriction types legally allow showing a step tracker at all? Some cases may only allow "under review".</li>
+<li>Does showing the steps help bad actors learn how to game reviews? Compliance would need to sign off on the level of detail.</li>
+<li>How do current repeat-contact rates for restricted cases compare with the overall 75% AI resolution average?</li>
+<li>Does the retail app already have a status surface that reviewers are not finding? If so, the fix is discoverability, not a new feature.</li>
+</ul>
+<h2 id="linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</h2>
+<ol>
+<li>
+<p><strong>Tension + Proof + Open loop:</strong>
+   "I read 280 recent Revolut reviews looking for 'too many features'. I found one.
+   The real problem was hiding somewhere else."
+   <em>Visual:</em> the home screen (Fig. 1) with a lime ✓ ("not the problem") next to a blank "Account restricted" card with a red circle ("the problem").</p>
+</li>
+<li>
+<p><strong>Sides + Tension:</strong>
+   "Compliance says: 'We can't tell you why.' Customers say: 'Then tell me when.'
+   Only one of those is a legal problem."
+   <em>Visual:</em> two-column card, "Why" (padlock, grey) vs "When / What next" (lime, a step tracker).</p>
+</li>
+<li>
+<p><strong>Silent loss + Proof:</strong>
+   "A frozen account isn't just a compliance problem. It's a design problem.
+   24 of 65 angry Revolut reviews were about that one moment."
+   <em>Visual:</em> a big "37%" on an ink background, then a carousel: today's flow → Case Tracker wireframe → verdict slide ("Status beats silence").</p>
+</li>
+</ol>
+<p><em>Body rule from the playbook: the hook can sting, but the post must credit what Revolut does well (75% AI resolution, +12 NPS, call-ID banner) and end with the fix.</em></p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Revolut Group Holdings, <em>Annual Report 2025</em>: https://assets.revolut.com/pdf/annualreport2025.pdf (pp. 4, 9, 10, 12, 13, 14, 28, 29)</li>
+<li>Revolut 2025 results news: https://www.revolut.com/en-US/news/revolut_reports_record_profit_of_2_3bn_for_2025_as_revenue_surges_to_6bn/</li>
+<li>CNBC, 24 Mar 2026: https://www.cnbc.com/2026/03/24/revolut-2025-earnings-record-profit.html</li>
+<li>Revolut 10 launch, Oct 2023: https://www.revolut.com/news/revolut_launches_revolut_10_as_it_targets_primary_accounts_and_passes_35m_customers_worldwide · https://fintechnews.sg/78771/digital-banking-news-singapore/revolut-launches-its-biggest-update-yet-for-over-35-million-users/</li>
+<li>Revolut App Store listing (UK): https://apps.apple.com/gb/app/id932493382 · metadata: https://itunes.apple.com/lookup?id=932493382&amp;country=gb</li>
+<li>App Store review feeds (sampled 10 Oct 2026): https://itunes.apple.com/gb/rss/customerreviews/page=1/id=932493382/sortby=mosthelpful/json (also <code>/ie/</code> and <code>/us/</code>, pages 1–10; and <code>sortby=mostrecent</code>)</li>
+<li>Revolut, "Why does Revolut restrict accounts?": https://www.revolut.com/blog/post/why-does-revolut-restrict-accounts/</li>
+<li>Revolut help, "My account was restricted or closed": https://help.revolut.com/en-US/help/profile-and-plan/security-and-personal-data/my-account-is-locked/why-is-my-account-locked/</li>
+<li>Revolut Business help, information requests: https://help.revolut.com/en-US/business/help/restrictions-and-verifications-on-your-active-account/restrictions-on-my-account/why-do-i-need-to-provide-information-again/</li>
+<li>Finextra (Which? FOI data), Oct 2025: https://www.finextra.com/newsarticle/46691/revolut-still-the-worst-uk-firm-for-fraud-complaints-warns-which</li>
+<li>Crowdfund Insider, Oct 2025: https://www.crowdfundinsider.com/2025/10/253582-revolut-remains-worst-uk-company-for-fraud-complaints-claims-which/</li>
+<li>Financial Ombudsman decision DRN-2698519: https://www.financial-ombudsman.org.uk/decision/DRN-2698519.pdf</li>
+<li>Meduza, 3 Nov 2025: https://meduza.io/en/feature/2025/11/03/russian-clients-living-in-the-e-u-struggle-to-regain-banking-access-after-fintech-company-revolut-freezes-accounts</li>
+<li>LRT, Bank of Lithuania fine, 8 Apr 2025: https://www.lrt.lt/en/news-in-english/19/2531818/revolut-bank-fined-eur3-5m-for-breaching-anti-money-laundering-rules</li>
+<li>HM Treasury, debanking protections, 28 Apr 2025: https://www.gov.uk/government/news/millions-of-people-and-businesses-protected-against-debanking</li>
+<li>Monzo, "Why we sometimes freeze, block or close Monzo accounts" (2019): https://monzo.com/blog/2019/04/04/why-we-block-freeze-close-monzo-accounts/</li>
+<li>Monzo help, contacting support: https://monzo.com/help/app-help/contacting-support/</li>
+<li>Wise help, how to contact Wise: https://wise.com/help/articles/4ijaGT6BdeHNVjzbRip4gI/how-do-i-contact-wise</li>
+<li>Competitor App Store listings (UK): Monzo https://apps.apple.com/gb/app/id1052238659 · Wise https://apps.apple.com/gb/app/id612261027 · N26 https://apps.apple.com/gb/app/id956857223</li>
+<li>Maister, <em>The Psychology of Waiting Lines</em> (1985): https://davidmaister.com/articles/the-psychology-of-waiting-lines/</li>
+<li>Buell &amp; Norton, <em>The Labor Illusion</em>, Management Science (2011): https://pubsonline.informs.org/doi/10.1287/mnsc.1110.1376</li>
+</ul>
+  <div class="pager"><a href="myfitnesspal.html"><span class="dir">‹ Previous case study</span><span class="t">MyFitnessPal</span></a><a class="next" href="temu.html"><span class="dir">Next case study ›</span><span class="t">Temu</span></a></div>
+</article>
+<aside class="sidebar">
+  <div class="panel sand" id="subscribe"><h4 style="margin:0 0 var(--s-4)">Get the next teardown in your inbox.</h4><input class="input" type="email" placeholder="Your email" aria-label="Email"><a class="btn block" href="mailto:mr.vaghasiya197@gmail.com?subject=Subscribe">Subscribe</a></div>
+  <div class="panel"><div class="eyebrow" style="margin-bottom:var(--s-3)">The question</div><p style="margin:0">Trust: what a banking app owes you on your worst day.</p></div>
+</aside>
+</main>
+<footer class="site-footer"><div class="inner">
+  <div><h5>Validate first. Then build what users keep.</h5><p style="max-width:44ch;color:var(--ink-75)">Senior mobile developer and team lead. I research and test ideas before building, so the apps I ship are the ones people keep.</p></div>
+  <div><h5>Work</h5><ul><li><a href="../../site/case-studies/chatgpt.html">ChatGPT</a></li><li><a href="../../site/case-studies/duolingo.html">Duolingo</a></li><li><a href="../../site/case-studies/myfitnesspal.html">MyFitnessPal</a></li><li><a href="../../site/case-studies/revolut.html">Revolut</a></li><li><a href="../../site/case-studies/temu.html">Temu</a></li></ul></div>
+  <div><h5>Elsewhere</h5><ul><li><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a></li><li><a href="https://github.com/MR0100">GitHub</a></li><li><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></li></ul></div>
+</div><p class="legal">Independent studies. Not affiliated with or endorsed by the companies named. Screens © their owners, used for commentary.</p></footer>
+</body></html>

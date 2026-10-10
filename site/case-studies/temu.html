@@ -1,0 +1,346 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Temu: Temu&#x27;s games aren&#x27;t the problem. The hidden rules are.</title><meta name="description" content="Conversion: where persuasion becomes pressure, and what it costs.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../design-system/tokens.css"><link rel="stylesheet" href="../../design-system/components.css"></head><body>
+<div class="announce">New case study every two weeks · <a href="#subscribe">Get it by email</a></div>
+<header class="site-header">
+  <nav><a href="../../site/index.html#work">Work</a><a href="../../site/index.html#writing">Writing</a><a href="../../site/index.html#about">About</a></nav>
+  <a class="wordmark" href="../../site/index.html">Mitul Vaghasiya</a>
+  <nav><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></nav>
+</header>
+<main class="layout">
+<article class="card">
+  <header>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#work">Case studies</a><span>/</span>Temu</div>
+    <div class="meta"><b>Independent study</b><span class="dot">·</span>21 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
+    <h1>Temu's games aren't the problem. The hidden rules are.</h1>
+  </header>
+  
+<div class="callout"><p><strong>Disclaimer.</strong> This is an independent case study by Mitul Vaghasiya. I am not affiliated with, paid by or endorsed by Temu, PDD Holdings, or any company named here. Everything below is either a cited public fact or is labelled <span class="tag hypothesis">Hypothesis</span>. I had no access to Temu's internal data. Where regulators have made findings, I report what they said. I draw no legal conclusions of my own.</p></div>
+<p class="lead">Temu turned shopping into a game (spin wheels, countdowns, "free gifts", credits and referral challenges) and became the most downloaded shopping app in the world in 2025. EU consumer authorities did not object to the games as such. They objected to what the games hide: the conditions attached to rewards, deadlines and stock claims that may not be true, and minimum spends shown too late. My view is that Temu can keep most of the conversion lift by making every reward state its true cost before the user plays. That is cheap to build, fair to the user, and it protects the second order, which is the one that matters.</p>
+<dl class="facts"><div><dt>App</dt><dd>Temu: Shop Like a Billionaire</dd></div><div><dt>Category</dt><dd>E-commerce marketplace</dd></div><div><dt>Platform</dt><dd>iOS (Android data cited)</dd></div><div><dt>Version / date studied</dt><dd>iOS 4.88.0, App Store listing dated 9 Oct 2026; regulator observations dated 2024–2026</dd></div><div><dt>Methods</dt><dd>Regulator and court documents, review mining (n = 43), App Store screenshots of Temu and 3 competitors, behavioural-science literature</dd></div><div><dt>Role</dt><dd>Independent study by Mitul Vaghasiya</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#why-this-app">Why this app</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#journey-audit">Journey audit</a></li><li><a href="#insights">Insights</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#options-considered">Options considered</a></li><li><a href="#proposed-solution-wireframe-level">Proposed solution (wireframe level)</a></li><li><a href="#success-metrics-and-validation-plan">Success metrics and validation plan</a></li><li><a href="#risks-and-open-questions">Risks and open questions</a></li><li><a href="#linkedin-spin-offs">LinkedIn spin-offs</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+
+<h2 id="why-this-app">Why this app</h2>
+<p><strong>Scale.</strong> Sensor Tower's <em>State of Mobile 2026</em> ranked Temu the No. 1 shopping app by global downloads in 2025, ahead of Shein and Amazon (<a href="https://www.ecomcrew.com/temu-and-shein-top-the-global-shopping-app-download-charts-in-2025/">EcomCrew summary of Sensor Tower, Feb 2026</a>). Google Play shows <strong>1B+ downloads</strong> and a 4.4 rating from about 12.9M reviews. The US App Store shows <strong>4.7 from about 2.23M ratings</strong> (both accessed 10 Oct 2026: <a href="https://play.google.com/store/apps/details?id=com.einnovation.temu">Google Play</a>, <a href="https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558">App Store</a>). In the EU, Temu declared <strong>92 million monthly users</strong> in September 2024 (<a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5622">European Commission, 31 Oct 2024</a>). Its own DSA transparency page reportedly gives about 124 million for H1 2026 (<a href="https://www.temu.com/de-en/digital-services-act.html">Temu DSA page</a>; the page is rendered by script and I could not read the figure directly).</p>
+<p><strong>Business model.</strong> Temu is owned by PDD Holdings. PDD reported 2025 revenue of RMB 431.8 billion (about US$61.8 billion) but does not report Temu on its own (<a href="https://www.sec.gov/Archives/edgar/data/1737806/000110465926050727/pdd-20251231x20f.htm">PDD 20-F for FY2025, SEC</a>). Temu sells very low-priced goods, mostly shipped from China, and has relied on heavy paid acquisition. When the US ended the "de minimis" duty exemption on 2 May 2025, Temu cut US advertising and its US daily active users fell 58% in May, according to Sensor Tower (<a href="https://www.investing.com/news/economy-news/retailer-temus-daily-us-users-nearly-halve-following-end-of-de-minimis-loophole-4081081">Reuters via Investing.com, Jun 2025</a>).</p>
+<p><strong>The one metric that matters: repeat purchase.</strong> When a business depends on paid installs, the second order decides whether acquisition pays back. Earnest Analytics found that "over 28% of Temu customers made a transaction on the platform 16 months after their first purchase", which is "nearly double Walmart's and Target's" but "around half of Amazon's" (<a href="https://www.earnestanalytics.com/insights/temus-retention-grows-over-time-leads-walmart-trails-amazon">Earnest, 18 Mar 2024</a>). Trust is the weak point. In an April 2024 survey of 4,000 shoppers in the US, UK, Canada and Australia, only 6.4% said they trust Temu over Amazon, although 48% had shopped on Temu in the past year (<a href="https://www.omnisend.com/temu-vs-amazon/">Omnisend/Cint</a>).</p>
+<h2 id="the-problem">The problem</h2>
+<p><strong>Who is affected.</strong> New and casual shoppers, who meet the game layer first. Price-sensitive and less experienced users are the most exposed: experiments show that less-educated people are much more susceptible to mild dark patterns (<a href="https://academic.oup.com/jla/article/13/1/43/6180579">Luguri &amp; Strahilevitz, <em>Journal of Legal Analysis</em>, 2021</a>). These patterns are common across e-commerce, not unique to Temu. A crawl of about 11K shopping sites found 1,818 dark-pattern instances (<a href="https://arxiv.org/abs/1907.07032">Mathur et al., 2019</a>).</p>
+<p><strong>What goes wrong.</strong> Regulators describe the problem as a gap between what the interface promises and what it hides.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Body</th>
+<th>What was stated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14 May 2024</td>
+<td>vzbv (Federation of German Consumer Organisations)</td>
+<td>After a warning letter in March, Temu signed a cease-and-desist declaration covering checkout dark patterns such as <em>"Beeile dich! Über 126 Personen haben diesen Artikel in ihrem Warenkorb"</em> ("Hurry! Over 126 people have this item in their cart") and unexplained crossed-out prices (<a href="https://www.vzbv.de/pressemitteilungen/nach-vzbv-abmahnung-temu-bessert-nach">vzbv</a>).</td>
+</tr>
+<tr>
+<td>16 May 2024</td>
+<td>BEUC + 17 member groups</td>
+<td>Complaint under the DSA. Temu is "rife with manipulative techniques"; users face "an obstacle course to close down their account" (<a href="https://beuc.eu/press-releases/surging-online-marketplace-temu-flouting-new-eu-law-meant-keep-consumers-safe">BEUC</a>).</td>
+</tr>
+<tr>
+<td>31 Oct 2024</td>
+<td>European Commission (DSA)</td>
+<td>Formal proceedings, including "the risks linked to the addictive design of the service, including game-like reward programmes" (<a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5622">IP/24/5622</a>).</td>
+</tr>
+<tr>
+<td>8 Nov 2024</td>
+<td>CPC Network + Commission</td>
+<td>Practices it considers in breach of EU consumer law: fake discounts, <strong>pressure selling</strong> ("false claims about limited supplies or false purchase deadlines"), <strong>forced gamification</strong> ("forcing consumers to play a 'spin the fortune wheel' game to access the online marketplace, while hiding essential information about the conditions of use linked to the rewards"), a minimum order value not shown in advance, review authenticity, and hidden contact details (<a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5707">IP/24/5707</a>).</td>
+</tr>
+<tr>
+<td>28 Jul 2025</td>
+<td>European Commission</td>
+<td>Preliminary DSA breach on illegal-product risk. Investigation continues on "the use of addictive design features" (<a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1913">IP/25/1913</a>).</td>
+</tr>
+<tr>
+<td>5 Sep 2025</td>
+<td>US FTC / DOJ</td>
+<td>$2M civil penalty under the INFORM Consumers Act (seller disclosure and reporting), the first case under that law. Temu neither admitted nor denied the allegations (<a href="https://www.mcdermottlaw.com/insights/ftc-settles-first-inform-consumers-act-case-over-online-marketplace-disclosure-violations/">McDermott summary</a>).</td>
+</tr>
+<tr>
+<td>28 May 2026</td>
+<td>European Commission</td>
+<td><strong>€200M fine</strong> for failing to assess illegal-product risks properly. The decision does not cover the addictive-design strand, and I found no published outcome on that strand yet (<a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1178">IP/26/1178</a>). Temu says it disagrees with the decision.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The fine is about product safety, not gamification. I keep the two separate. The gamification evidence comes from the CPC, vzbv and BEUC, and the DSA addictive-design question is still open.</p>
+<p><strong>Review mining.</strong> I read the first two pages of Temu's UK Trustpilot profile (most recent first) on 10 Oct 2026. That gave 44 reviews. I removed one duplicate text, leaving <strong>n = 43</strong>, and coded each review into one or more themes. At the time the profile showed a TrustScore of <strong>1.8 from 56,425 reviews</strong> (<a href="https://uk.trustpilot.com/review/www.temu.com">Trustpilot UK</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Theme (multi-coded)</th>
+<th>Count</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Promotions, games, "free" gifts with conditions (min spend, more orders, invites)</td>
+<td>12</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>Refunds and returns (4 say the refund was pushed into wallet credit)</td>
+<td>12</td>
+<td>28%</td>
+</tr>
+<tr>
+<td>Customer support unreachable or templated</td>
+<td>11</td>
+<td>26%</td>
+</tr>
+<tr>
+<td>Product quality / not as described / wrong item</td>
+<td>8</td>
+<td>19%</td>
+</tr>
+<tr>
+<td>Delivery (late, partial, lost)</td>
+<td>7</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>Unexpected charges / unordered items</td>
+<td>3</td>
+<td>7%</td>
+</tr>
+<tr>
+<td>Positive</td>
+<td>2</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Verbatim examples: "Shopping on TEMU felt less like normal online shopping and more like being inside a casino-style game"; "Do not fall for the timers or star games"; "not quite enough, please make another purchase to fulfill promotional obligations" (all Trustpilot UK, Oct 2026). A 2023 App Store review titled "DON'T MISS OUT" warns: "most the time when they offer free gifts you are going to have to get friends to sign up" (<a href="https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558">App Store</a>).</p>
+<p><strong>The limits of this sample.</strong> Trustpilot leans towards unhappy and recent customers, and 43 reviews is a small sample. The App Store's 4.7 shows that many users are satisfied. The gap is the finding. Many people are happy with the first order, but when something goes wrong, the most common complaint is a reward that cost more than it said.</p>
+<h2 id="journey-audit">Journey audit</h2>
+<p><strong>How I studied the screens.</strong> Mobbin's API refused access (paid plan required), so I could not load real in-app flows. The figures are Temu's and its competitors' own <strong>App Store screenshots</strong> (US store, 10 Oct 2026). These are marketing images, not live app captures. The game steps below come from regulator descriptions and first-person press accounts and are cited as such. Before this is published, the live flows will be re-captured on a test device.</p>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-01-temu-home-trust-strip.webp" alt="Fig. 1" decoding="async"></div><figcaption><em>Fig. 1. Temu home feed as shown in its App Store listing. A green "Secure privacy | Safe payments" strip sits under the category tabs. Source: <a href="https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-02-temu-product-grid-sold-counts.webp" alt="Fig. 2" decoding="async"></div><figcaption><em>Fig. 2. Product grid with social proof on every tile: star counts such as "(9,433)" and sales such as "100K+ sold". Source: <a href="https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-03-temu-customer-service-promise.webp" alt="Fig. 3" decoding="async"></div><figcaption><em>Fig. 3. "24/7 Customer Service – Contact us whenever you need help." Compare with the 26% of sampled reviews about unreachable support. Source: <a href="https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558">App Store</a>.</em></figcaption></figure>
+<p>One thing stands out. <strong>Temu's store listing shows no wheels, timers or games.</strong> The listing sells calm and trust. The in-app experience that regulators and users describe is louder: "spinning wheels, countdown clocks, coins, coupons and treasure chests… I was constantly winning something" (<a href="https://www.businessday.co.za/opinion/2026-10-02-shaun-read-confessions-of-a-temu-addict/">Business Day column, 2 Oct 2026</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+<th>Issue (source)</th>
+<th>Principle</th>
+<th>Severity (1–4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>First open</td>
+<td>Spin-the-wheel gate before browsing; reward conditions hidden (CPC 2024)</td>
+<td>User control and freedom (Nielsen); DSA Art. 25 on interface design</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reward won</td>
+<td>Countdown to claim; "given only a few minutes" (Business Day)</td>
+<td>Artificial urgency (FTC 2022)</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Product page</td>
+<td>Crossed-out prices without explanation (vzbv 2024; CPC "fake discounts")</td>
+<td>Price transparency; EU prior-price rule</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cart</td>
+<td>"Over 126 people have this in their cart" (vzbv 2024); minimum order shown late (CPC)</td>
+<td>False social proof; surprise cost</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Free-gift / farm / fish games</td>
+<td>Progress slows near the goal; completing needs extra orders or invites (reviews)</td>
+<td>Goal-gradient used against the user</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Refund</td>
+<td>Refund pushed into credit (4 of 43 reviews)</td>
+<td>Lock-in; consent</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Leave</td>
+<td>Account closure is an "obstacle course" (BEUC)</td>
+<td>Roach motel (asymmetric exit)</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+</tbody>
+</table></div>
+<p>Severity is my own judgement. Steps 1, 3 and 4 reflect what authorities described in 2024. Temu made commitments in Germany and was asked to make them EU-wide, so some of these may have changed since.</p>
+<h2 id="insights">Insights</h2>
+<p class="insight"><strong>1. The lift comes from the game. The harm comes from the hidden terms.</strong>
+<em>Observation:</em> the CPC did not call the wheel itself unlawful. It flagged forcing the wheel on users "while hiding essential information about the conditions." <em>Evidence:</em> 12 of 43 reviews are about rewards whose conditions appeared late. <em>Why it matters:</em> the <strong>endowed-progress effect</strong> means a head start towards a reward raises completion. In a car-wash field study, 34% completed with two free stamps versus 19% without (<a href="https://doi.org/10.1086/500480">Nunes &amp; Drèze, 2006</a>). The <strong>goal-gradient effect</strong> means people speed up near a goal (<a href="https://doi.org/10.1509/jmkr.43.1.39">Kivetz, Urminsky &amp; Zheng, 2006</a>). Both work honestly. They become manipulative when the "last 1%" secretly needs a purchase or five invites.</p>
+<p class="insight"><strong>2. Urgency works when it can be checked. Urgency that can't be checked is what regulators act on.</strong>
+<em>Observation:</em> Shein and AliExpress also use timers and stock labels (Figs. 4–6), and Amazon shows deal badges (Fig. 8). <em>Evidence:</em> the authorities' wording targets "false claims about limited supplies or false purchase deadlines", not timers as such. <em>Why it matters:</em> scarcity raises perceived value (<a href="https://doi.org/10.1037/0022-3514.32.5.906">Worchel, Lee &amp; Adewole, 1975</a>), and losing a claimed reward hurts more than gaining one pleases (<a href="https://doi.org/10.2307/1914185">Kahneman &amp; Tversky, 1979</a>). The FTC treats fake countdowns and false scarcity as dark patterns (<a href="https://www.ftc.gov/reports/bringing-dark-patterns-light">FTC, <em>Bringing Dark Patterns to Light</em>, Sep 2022</a>), and the OECD describes dark commercial patterns as design that steers, deceives, coerces or manipulates (<a href="https://www.oecd.org/digital/dark-commercial-patterns-44f5e846-en.htm">OECD, 2022</a>). The design question is whether the claim is true and explained, not whether to show a timer.</p>
+<p class="insight"><strong>3. Pressure wears off, and resentment builds.</strong>
+<em>Evidence:</em> in Luguri &amp; Strahilevitz's experiments, mild dark patterns more than doubled sign-ups (11.3% to 25.8%) without backlash. Aggressive ones nearly quadrupled them (41.9%) but "generated a powerful backlash" (<a href="https://academic.oup.com/jla/article/13/1/43/6180579">JLA, 2021</a>). The Business Day columnist says the countdown clocks soon "ceased to frighten me." <em>Why it matters:</em> <strong>Hypothesis.</strong> Each extra pressure layer buys less conversion over time and costs more trust, which may explain part of the gap between Temu's 16-month retention and Amazon's. I cannot prove the cause from public data.</p>
+<p class="insight"><strong>4. Credits can turn a service failure into a trust failure.</strong>
+<em>Evidence:</em> 4 of 43 reviewers say refunds went to wallet credit without their consent ("forcefully dumped AED 80.56 into wallet credits without my consent", Trustpilot UK, Oct 2026). These are claims by users, not verified findings. <em>Why it matters:</em> a refund is the moment a customer decides whether to come back. A refund that feels forced into credit can damage trust in the same way a hidden reward condition does.</p>
+<h2 id="benchmark">Benchmark</h2>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-04-aliexpress-welcome-gifts-countdown.webp" alt="Fig. 4" decoding="async"></div><figcaption><em>Fig. 4. AliExpress "Welcome gifts": "Pick ? free item(s) with one purchase", "Time left 00:59:47", "Free shipping | Free returns". The condition ("with one purchase") sits in the header, before the user picks. Source: <a href="https://apps.apple.com/us/app/aliexpress-shopping-app/id436672029">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-05-aliexpress-product-scarcity-label.webp" alt="Fig. 5" decoding="async"></div><figcaption><em>Fig. 5. AliExpress product page: "Early bird deal, only 5 left", "1 sold", "Price shown before tax". The scarcity is specific and the tax caveat is stated. Source: <a href="https://apps.apple.com/us/app/aliexpress-shopping-app/id436672029">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-06-shein-flash-sale-timer-limit.webp" alt="Fig. 6" decoding="async"></div><figcaption><em>Fig. 6. Shein flash sale: "Ends in 13:00:20", "Limited purchase of 20 products" with an info (?) icon that explains the rule. Source: <a href="https://apps.apple.com/us/app/shein-shopping-online/id878577184">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-07-shein-home-new-user-credit.webp" alt="Fig. 7" decoding="async"></div><figcaption><em>Fig. 7. Shein home: a "$200 Credit Reward" for new users, labelled "Condition applies". There is a disclosure, but it is vague. Source: <a href="https://apps.apple.com/us/app/shein-shopping-online/id878577184">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-08-amazon-deal-badges.webp" alt="Fig. 8" decoding="async"></div><figcaption><em>Fig. 8. Amazon deals grid: "Up to 46% off" + "Top deal" badges. Amazon's Lightning Deals pair a timer with a "% claimed" bar tied to a limited deal quantity (<a href="https://roirevolution.com/blog/top-4-types-of-amazon-advertising-deals-discounts/">ROI Revolution</a>). Source: <a href="https://apps.apple.com/us/app/amazon-shopping/id297606951">App Store</a>.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/05-temu/assets/fig-09-amazon-review-distribution.webp" alt="Fig. 9" decoding="async"></div><figcaption><em>Fig. 9. Amazon reviews: the full star distribution (83% / 10% / 3% / 1% / 3%), a "How customer reviews and ratings work" link, and the count of ratings with written reviews. Source: <a href="https://apps.apple.com/us/app/amazon-shopping/id297606951">App Store</a>.</em></figcaption></figure>
+<p><strong>What I take from this.</strong> All four apps use urgency and incentives, so Temu is not unusual for using them. What differs is how <strong>checkable</strong> the claims are. The better patterns tie a timer to a real end time or quantity (Amazon), explain the rule in place (Shein's "?"), and state the condition before the user commits (AliExpress "with one purchase"). Amazon goes further and explains how its own reviews work. Shein's "Condition applies" shows the weak version of disclosure.</p>
+<h2 id="options-considered">Options considered</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>User value</th>
+<th>Business value</th>
+<th>Effort</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. Remove games and timers entirely</td>
+<td>High</td>
+<td>Likely large short-term conversion loss <span class="tag hypothesis">Hypothesis</span></td>
+<td>Low</td>
+<td>Hands the "fun" to rivals; won't be adopted</td>
+</tr>
+<tr>
+<td><strong>B. "Honest games": keep the mechanics, show the true cost first, make every claim checkable</strong></td>
+<td>High</td>
+<td>Keeps most of the lift; lowers complaints and regulatory exposure <span class="tag hypothesis">Hypothesis</span></td>
+<td>Medium</td>
+<td>Some users will skip games once they see the cost</td>
+</tr>
+<tr>
+<td>C. Leave front-end as is; invest only in refunds and support</td>
+<td>Medium</td>
+<td>Helps retention, but leaves the hidden-terms issue that regulators flagged</td>
+<td>High (operations)</td>
+<td>Doesn't address the CPC's "forced gamification" finding</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Chosen: B, with C's refund default.</strong> It addresses the exact wording of the regulators' concerns and keeps the behavioural mechanics that work honestly.</p>
+<p><strong>Deliberately not building:</strong> more trust badges. Temu already shows "Secure privacy | Safe payments" and "24/7 Customer Service" (Figs. 1, 3). A badge that the experience contradicts lowers trust.</p>
+<h2 id="proposed-solution-wireframe-level">Proposed solution (wireframe level)</h2>
+<ol>
+<li><strong>First open: an offer card instead of a wheel gate.</strong> One card: "€X off your first order over €Y · valid until 12 Oct, 23:59". "Start shopping" and "Play for a bigger reward" carry equal visual weight. Nothing blocks the feed.</li>
+<li><strong>"What it takes" sheet before any game.</strong> Before the first tap, the game shows: reward value, required actions (orders, minimum spend, invites), an honest estimate of time to finish, expiry, and whether the reward is guaranteed or a chance. The progress bar is linear and never slows in the last 10%.</li>
+<li><strong>Product page: checkable claims only.</strong> "Only 5 left from this seller · updated 2 min ago" (from inventory). Crossed-out price shows "Lowest price in last 30 days: €x", in line with the EU prior-price rule (<a href="https://eur-lex.europa.eu/eli/dir/2019/2161/oj">Directive 2019/2161, Art. 6a of 98/6/EC</a>). Social-proof counts appear only if they come from live data and say what they count.</li>
+<li><strong>Cart.</strong> The minimum order value is shown from the first item ("€6.40 more to checkout") instead of at checkout. Timers come only from server end times.</li>
+<li><strong>Refund.</strong> The original payment method is the default. Credit is an opt-in with a stated bonus ("+5% if you take credit").</li>
+<li><strong>Account.</strong> "Delete account" is reachable within three taps from Profile, with no retention maze.</li>
+</ol>
+<p><strong>Build note (mobile developer's view).</strong></p>
+<ul>
+<li><strong>Make terms required in the type system.</strong> Every promotion component (wheel, farm, coupon, timer) renders from one <code>PromotionTerms</code> model: <code>value</code>, <code>conditions[]</code>, <code>expiresAt</code>, <code>isChance</code>, <code>source</code>. In Flutter, the widget does not compile without it. That is a cheap guardrail across hundreds of server-driven promo modules.</li>
+<li><strong>Timers come from the server, never the device clock.</strong> Send <code>endsAt</code> in UTC plus server time on each response, correct for clock skew, and hide the timer if it can't be verified. Scarcity numbers carry <code>asOf</code> and <code>sourceId</code> so every claim can be audited later. This log is also the evidence a regulator would ask for.</li>
+<li><strong>Server-driven UI + remote config + feature flags</strong>, so each market can switch patterns on or off without an app release. That matters because EU, US and other rules differ, and App Store review cycles are slow.</li>
+<li><strong>Complexity:</strong> the terms sheet and the offer card are small. Truthful timers and scarcity are medium, because they depend on backend inventory and pricing services. Refund defaults are product and operations work more than mobile work.</li>
+<li><strong>Ship first:</strong> the "What it takes" sheet and server-verified timers in one EU market. They are the closest match to the CPC's wording and the easiest to measure.</li>
+</ul>
+<h2 id="success-metrics-and-validation-plan">Success metrics and validation plan</h2>
+<ul>
+<li><strong>Primary metric:</strong> share of new customers who place a <strong>second order within 90 days</strong>.</li>
+<li><strong>Guardrails:</strong> first-order conversion (set a non-inferiority margin before launch, for example no worse than −3% relative. The real margin is a business decision), average first-order value, game-related support contacts per 1,000 orders, refund-to-credit complaints, 7-day uninstall, push opt-out rate.</li>
+<li><strong>Design:</strong> user-level A/B test in one EU market, 5% → 25% → 50% staged rollout, plus a long-term holdout of at least 90 days, because the effect shows up on the <em>second</em> order. Read conversion at 14 days and retention at 90 days.</li>
+</ul>
+<p><strong>5-user test script (moderated, 30 min, remote).</strong> Recruit five people who have shopped on Temu, Shein or AliExpress in the past 6 months, with a mix of ages and at least two first-time Temu users. Show prototypes A (current pattern, re-created) and B (honest) in alternating order.</p>
+<ol>
+<li><em>Warm-up:</em> "Tell me about the last time you got something 'free' from a shopping app. What happened?"</li>
+<li><em>First open:</em> "Open the app and do what you'd normally do." (Observe: do they play or skip? Time to first product view.)</li>
+<li><em>Comprehension:</em> "Without scrolling back: what do you need to do to get this reward? By when?" (Success = correct conditions and deadline.)</li>
+<li><em>Product page:</em> "Is this a good deal? How do you know?" (Do they notice or trust the prior-price and stock labels?)</li>
+<li><em>Cart:</em> "Check out with only this €3 item." (Is the minimum spend a surprise?)</li>
+<li><em>Refund:</em> "This item arrived broken. Get your money back." (Which option do they pick? Do they feel steered?)</li>
+<li><em>Trust rating:</em> "On 1–7, how much do you trust this app to treat you fairly? Would you order again next month? Why?"</li>
+<li><em>Close:</em> "What, if anything, felt like a trick?"</li>
+</ol>
+<p>Five users won't measure conversion. They will show whether people understand the reward terms, and that is the cause the A/B test then measures.</p>
+<h2 id="risks-and-open-questions">Risks and open questions</h2>
+<ul>
+<li>What share of Temu's GMV and new buyers comes through games and referrals? Only Temu knows how much option B puts at risk.</li>
+<li>Game completion rates and the real cost to complete. Players claim progress slows near the end (<a href="https://factually.co/fact-checks/electronics-tech/temu-fishland-vs-farmland-easier-to-win-996186">Factually, Jul 2026</a>), but I could not verify it.</li>
+<li>What Temu has already changed after the 2024 commitments. Some steps in the audit may be out of date.</li>
+<li>The DSA addictive-design strand is still open. Its outcome, and the planned EU Digital Fairness Act (announced for Q4 2026, <a href="https://www.europarl.europa.eu/legislative-train/theme-protecting-our-democracy-upholding-our-values/file-digital-fairness-act">European Parliament Legislative Train</a>), may set rules that make option B mandatory.</li>
+<li>The 4.7 vs 1.8 rating gap probably reflects who leaves reviews and when they are asked <span class="tag hypothesis">Hypothesis</span>. Internal NPS data would settle it.</li>
+</ul>
+<h2 id="linkedin-spin-offs">LinkedIn spin-offs</h2>
+<ol>
+<li><strong>"Temu's spin wheel isn't what EU regulators objected to. The fine print behind it is."</strong> (Sides + Tension + Open loop) <em>Visual:</em> a redrawn wheel with one red circle on a blank "conditions" area, next to the CPC quote.</li>
+<li><strong>"4.7 stars on the App Store. 1.8 on Trustpilot. Same app. Which number predicts the second order?"</strong> (Proof + Open loop) <em>Visual:</em> two big numbers side by side, with the review-theme table as the second carousel slide.</li>
+<li><strong>"'Add a countdown timer.' Founders ask me this every month. Here's the only kind I'll build."</strong> (Tension + Sides; the "request I hear every month" pattern) <em>Visual:</em> Shein's timer with its "?" rule next to a timer with no source, one marked "checkable" and one marked "not checkable".</li>
+</ol>
+<p>Each post resolves the same way: keep the game, show the cost, verify the claim.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>European Commission, <em>Commission opens formal proceedings against Temu under the DSA</em>, 31 Oct 2024 — https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5622</li>
+<li>European Commission, <em>Commission and national authorities urge Temu to respect EU consumer protection laws</em>, 8 Nov 2024 — https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5707</li>
+<li>European Commission, <em>Commission preliminarily finds Temu in breach of the DSA…</em>, 28 Jul 2025 — https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1913</li>
+<li>European Commission, <em>Commission fines Temu €200 million…</em>, 28 May 2026 — https://ec.europa.eu/commission/presscorner/detail/en/ip_26_1178 (also https://digital-strategy.ec.europa.eu/en/news/commission-fines-temu-eu200-million-breaching-digital-services-act)</li>
+<li>vzbv, <em>Nach vzbv-Abmahnung: Temu bessert nach</em>, 14 May 2024 — https://www.vzbv.de/pressemitteilungen/nach-vzbv-abmahnung-temu-bessert-nach</li>
+<li>BEUC, <em>Surging online marketplace Temu flouting new EU law…</em>, 16 May 2024 — https://beuc.eu/press-releases/surging-online-marketplace-temu-flouting-new-eu-law-meant-keep-consumers-safe</li>
+<li>McDermott Will &amp; Schulte, <em>FTC settles first INFORM Consumers Act case</em>, Sep 2025 — https://www.mcdermottlaw.com/insights/ftc-settles-first-inform-consumers-act-case-over-online-marketplace-disclosure-violations/</li>
+<li>Greenberg Traurig, <em>Nebraska AG files lawsuit against Temu</em> (allegations, not findings), Jun 2025 — https://www.gtlaw.com/en/insights/2025/6/nebraska-attorney-general-files-lawsuit-against-temu-alleging-consumer-protection-violations</li>
+<li>Regulation (EU) 2022/2065 (Digital Services Act), Art. 25 — https://eur-lex.europa.eu/eli/reg/2022/2065/oj</li>
+<li>Directive (EU) 2019/2161 (Omnibus; prior-price rule) — https://eur-lex.europa.eu/eli/dir/2019/2161/oj</li>
+<li>FTC, <em>Bringing Dark Patterns to Light</em>, Sep 2022 — https://www.ftc.gov/reports/bringing-dark-patterns-light</li>
+<li>OECD, <em>Dark Commercial Patterns</em>, Digital Economy Paper No. 336, Oct 2022 — https://www.oecd.org/digital/dark-commercial-patterns-44f5e846-en.htm</li>
+<li>European Parliament, Legislative Train: Digital Fairness Act — https://www.europarl.europa.eu/legislative-train/theme-protecting-our-democracy-upholding-our-values/file-digital-fairness-act</li>
+<li>PDD Holdings, Form 20-F FY2025 — https://www.sec.gov/Archives/edgar/data/1737806/000110465926050727/pdd-20251231x20f.htm</li>
+<li>EcomCrew (citing Sensor Tower <em>State of Mobile 2026</em>) — https://www.ecomcrew.com/temu-and-shein-top-the-global-shopping-app-download-charts-in-2025/</li>
+<li>Reuters via Investing.com, Temu US daily users after de minimis, Jun 2025 — https://www.investing.com/news/economy-news/retailer-temus-daily-us-users-nearly-halve-following-end-of-de-minimis-loophole-4081081</li>
+<li>Earnest Analytics, <em>Temu's retention grows over time</em>, 18 Mar 2024 — https://www.earnestanalytics.com/insights/temus-retention-grows-over-time-leads-walmart-trails-amazon</li>
+<li>Omnisend, <em>Temu vs Amazon</em> survey (Cint, Apr 2024, n = 4,000) — https://www.omnisend.com/temu-vs-amazon/</li>
+<li>Temu DSA transparency page — https://www.temu.com/de-en/digital-services-act.html</li>
+<li>Trustpilot UK, Temu profile (accessed 10 Oct 2026) — https://uk.trustpilot.com/review/www.temu.com</li>
+<li>Apple App Store listings (accessed 10 Oct 2026): Temu https://apps.apple.com/us/app/temu-shop-like-a-billionaire/id1641486558 · Amazon https://apps.apple.com/us/app/amazon-shopping/id297606951 · Shein https://apps.apple.com/us/app/shein-shopping-online/id878577184 · AliExpress https://apps.apple.com/us/app/aliexpress-shopping-app/id436672029</li>
+<li>Google Play, Temu listing (accessed 10 Oct 2026) — https://play.google.com/store/apps/details?id=com.einnovation.temu</li>
+<li>Shaun Read, <em>Confessions of a Temu addict</em>, Business Day, 2 Oct 2026 — https://www.businessday.co.za/opinion/2026-10-02-shaun-read-confessions-of-a-temu-addict/</li>
+<li>Factually, <em>Temu Fishland vs Farmland</em> (player reports, unverified), Jul 2026 — https://factually.co/fact-checks/electronics-tech/temu-fishland-vs-farmland-easier-to-win-996186</li>
+<li>ROI Revolution, Amazon deal types (Lightning Deal "% claimed") — https://roirevolution.com/blog/top-4-types-of-amazon-advertising-deals-discounts/</li>
+<li>Luguri, J. &amp; Strahilevitz, L. (2021). Shining a Light on Dark Patterns. <em>Journal of Legal Analysis</em> 13(1) — https://academic.oup.com/jla/article/13/1/43/6180579</li>
+<li>Mathur, A. et al. (2019). Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites. <em>Proc. ACM HCI</em> (CSCW) — https://arxiv.org/abs/1907.07032</li>
+<li>Nunes, J. &amp; Drèze, X. (2006). The Endowed Progress Effect. <em>Journal of Consumer Research</em> 32(4) — https://doi.org/10.1086/500480</li>
+<li>Kivetz, R., Urminsky, O. &amp; Zheng, Y. (2006). The Goal-Gradient Hypothesis Resurrected. <em>Journal of Marketing Research</em> 43(1) — https://doi.org/10.1509/jmkr.43.1.39</li>
+<li>Worchel, S., Lee, J. &amp; Adewole, A. (1975). Effects of supply and demand on ratings of object value. <em>JPSP</em> 32(5) — https://doi.org/10.1037/0022-3514.32.5.906</li>
+<li>Kahneman, D. &amp; Tversky, A. (1979). Prospect Theory. <em>Econometrica</em> 47(2) — https://doi.org/10.2307/1914185</li>
+</ul>
+  <div class="pager"><a href="revolut.html"><span class="dir">‹ Previous case study</span><span class="t">Revolut</span></a></div>
+</article>
+<aside class="sidebar">
+  <div class="panel sand" id="subscribe"><h4 style="margin:0 0 var(--s-4)">Get the next teardown in your inbox.</h4><input class="input" type="email" placeholder="Your email" aria-label="Email"><a class="btn block" href="mailto:mr.vaghasiya197@gmail.com?subject=Subscribe">Subscribe</a></div>
+  <div class="panel"><div class="eyebrow" style="margin-bottom:var(--s-3)">The question</div><p style="margin:0">Conversion: where persuasion becomes pressure, and what it costs.</p></div>
+</aside>
+</main>
+<footer class="site-footer"><div class="inner">
+  <div><h5>Validate first. Then build what users keep.</h5><p style="max-width:44ch;color:var(--ink-75)">Senior mobile developer and team lead. I research and test ideas before building, so the apps I ship are the ones people keep.</p></div>
+  <div><h5>Work</h5><ul><li><a href="../../site/case-studies/chatgpt.html">ChatGPT</a></li><li><a href="../../site/case-studies/duolingo.html">Duolingo</a></li><li><a href="../../site/case-studies/myfitnesspal.html">MyFitnessPal</a></li><li><a href="../../site/case-studies/revolut.html">Revolut</a></li><li><a href="../../site/case-studies/temu.html">Temu</a></li></ul></div>
+  <div><h5>Elsewhere</h5><ul><li><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a></li><li><a href="https://github.com/MR0100">GitHub</a></li><li><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></li></ul></div>
+</div><p class="legal">Independent studies. Not affiliated with or endorsed by the companies named. Screens © their owners, used for commentary.</p></footer>
+</body></html>

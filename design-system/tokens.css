@@ -1,0 +1,60 @@
+/* Mitul Vaghasiya · Portfolio design tokens
+   Base layer: Holstee "Mindful Matter" article system (audited Oct 2026, see README.md).
+   Our layer: case-study semantics (evidence / hypothesis / problem / outcome), severity dots, figure frames. */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root{
+  /* ── Colour: base (from Holstee) ───────────────────────── */
+  --paper:        #F7F6F2;   /* page background */
+  --surface:      #FFFFFF;   /* article card */
+  --sand:         #ECE8DB;   /* footer, subscribe card */
+  --note:         #FAF6F0;   /* disclosure / callout fill */
+  --ink:          #000000;   /* all text */
+  --ink-75:       rgba(0,0,0,.75);
+  --ink-60:       rgba(0,0,0,.60);  /* secondary text, captions */
+  --ink-20:       rgba(0,0,0,.20);  /* table + card borders */
+  --ink-10:       rgba(0,0,0,.10);  /* hairlines */
+  --ink-03:       rgba(0,0,0,.03);  /* subtle fills */
+  --accent:       #3E7B73;   /* buttons, active links, "next post" */
+  --accent-soft:  #4F7A73;
+  --accent-deep:  #0C5132;
+  --accent-tint:  #E4EFEC;
+  --focus:        rgb(11 97 205);
+
+  /* ── Colour: our case-study semantics ───────────────────── */
+  --evidence:     #3E7B73;  --evidence-bg:   #E4EFEC;   /* cited fact */
+  --hypothesis:   #8A6416;  --hypothesis-bg: #F6EEDB;   /* labelled guess */
+  --problem:      #8E1F0B;  --problem-bg:    #F7E6E1;   /* friction / risk (Holstee's brick) */
+  --outcome:      #0C5132;  --outcome-bg:    #DDEBE2;   /* result / win */
+
+  /* ── Type (Holstee families, weights and tracking) ──────── */
+  --font-heading: 'Figtree', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --w-light: 300; --w-regular: 400; --w-medium: 500; --w-semibold: 600; --w-bold: 700;
+  --heading-tracking: -0.02em;
+  --label-tracking:   0.1em;
+
+  /* Holstee's fluid scale (1rem = 16px here; Holstee uses 10px root) */
+  --fs-display: clamp(3rem, 2.34vw + 1.88rem, 3.75rem);   /* 48→60 home hero        */
+  --fs-title:   clamp(2.4rem, 1.87vw + 1.5rem, 3rem);     /* 38→48 case-study title  */
+  --fs-h2:      clamp(1.6rem, 1.25vw + 1rem, 2rem);        /* 26→32                   */
+  --fs-h3:      clamp(1.4rem, 1.09vw + .88rem, 1.75rem);   /* 22→28                   */
+  --fs-h4:      clamp(1.1rem, .86vw + .69rem, 1.375rem);   /* 18→22                   */
+  --fs-h5:      1.125rem;                                   /* 18                      */
+  --fs-lead:    1.1875rem;                                  /* 19  summary paragraph   */
+  --fs-body:    1rem;                                       /* 16  (Holstee: 15)       */
+  --fs-small:   .875rem;                                    /* 14  tables, captions    */
+  --fs-label:   .8125rem;                                   /* 13  meta, eyebrow       */
+  --lh-body: 1.65; --lh-heading: 1.3; --lh-tight: 1.15;
+
+  /* ── Space, shape, layout ──────────────────────────────── */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px;
+  --radius-block: 10px;  --radius-block-mobile: 8px;
+  --radius-medium: 8px;  --radius-small: 5px;
+  --button-height: 48px; --border: 1px;
+  --page-width: 1410px;  --measure: 780px;  --sidebar: 300px;  --gutter: 48px;
+
+  /* ── Motion (Holstee curves) ───────────────────────────── */
+  --ease-default: cubic-bezier(.3,1,.3,1);   --dur-default: 200ms;
+  --ease-nav:     cubic-bezier(.6,0,.4,1);   --dur-image: 1000ms;
+}

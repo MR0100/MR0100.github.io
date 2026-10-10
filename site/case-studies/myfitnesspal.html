@@ -1,0 +1,353 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyFitnessPal: MyFitnessPal slows down its core habit, then sells the shortcut</title><meta name="description" content="Habit: why people stop logging, and what the paywall does to that.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../design-system/tokens.css"><link rel="stylesheet" href="../../design-system/components.css"></head><body>
+<div class="announce">New case study every two weeks · <a href="#subscribe">Get it by email</a></div>
+<header class="site-header">
+  <nav><a href="../../site/index.html#work">Work</a><a href="../../site/index.html#writing">Writing</a><a href="../../site/index.html#about">About</a></nav>
+  <a class="wordmark" href="../../site/index.html">Mitul Vaghasiya</a>
+  <nav><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></nav>
+</header>
+<main class="layout">
+<article class="card">
+  <header>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#work">Case studies</a><span>/</span>MyFitnessPal</div>
+    <div class="meta"><b>Independent study</b><span class="dot">·</span>18 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
+    <h1>MyFitnessPal slows down its core habit, then sells the shortcut</h1>
+  </header>
+  
+<div class="callout"><p><strong>Disclaimer.</strong> This is an independent study by Mitul Vaghasiya. It is not affiliated with, sponsored by or endorsed by MyFitnessPal, Inc. I have no internal data. Every number is cited; everything else is labelled <span class="tag hypothesis">Hypothesis</span>. Screens are public App Store screenshots, saved for research only. For the public portfolio they will be re-captured or redrawn.</p></div>
+<p class="lead">MyFitnessPal only works when people keep logging food, and the research is clear that they stop because logging feels tedious. In 2022 the app moved its fastest free logging tool (barcode scan) behind Premium. In 2026 a redesign moved the food diary off the home screen. In my sample of 250 recent App Store reviews, those two decisions account for the largest groups of complaints. I propose a free "log it again" layer for the meals people repeat every day. It does not need AI, it does not cannibalise Premium, and a 5-user test plus an A/B test can validate it before anyone builds the full version.</p>
+<dl class="facts"><div><dt>App</dt><dd>MyFitnessPal: Calorie Counter</dd></div><div><dt>Category</dt><dd>Health &amp; Fitness</dd></div><div><dt>Platform</dt><dd>iOS (store data); Android by reference</dd></div><div><dt>Version / date studied</dt><dd>v26.40.0 (released 6 Oct 2026), studied 10 Oct 2026</dd></div><div><dt>Methods</dt><dd>Review mining (n=250), store screenshots, peer-reviewed studies, press, company statements, competitor benchmark</dd></div><div><dt>Role</dt><dd>Independent study by Mitul Vaghasiya</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#why-this-app">Why this app</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#journey-audit-logging-a-meal">Journey audit: logging a meal</a></li><li><a href="#insights">Insights</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#options-considered">Options considered</a></li><li><a href="#proposed-solution-log-it-again">Proposed solution: "Log it again"</a></li><li><a href="#success-metrics-amp-validation-plan">Success metrics &amp; validation plan</a></li><li><a href="#risks-amp-open-questions">Risks &amp; open questions</a></li><li><a href="#linkedin-spin-offs">LinkedIn spin-offs</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+
+<h2 id="why-this-app">Why this app</h2>
+<ul>
+<li><strong>Scale.</strong> MyFitnessPal reports "over 280 million members in over 120 countries" and a database of 20M+ foods (<a href="https://lite.aol.com/sports/other/story/0022/20260224/9659625.htm">2026 Winter Release, Feb 2026</a>). On the US App Store it has 2.37 million ratings averaging 4.71 (<a href="https://itunes.apple.com/lookup?id=341232718&amp;country=us">iTunes lookup, 10 Oct 2026</a>). The store listing says members have created "over 100 billion food logs" (<a href="https://apps.apple.com/us/app/id341232718">App Store</a>).</li>
+<li><strong>Business model.</strong> Freemium with ads. Premium costs $19.99/month or $79.99/year and includes "Barcode Scan &amp; Meal Scan", "Voice Log", "Macro Tracking with Custom Goals" and "Ad-Free Logging" (<a href="https://www.myfitnesspal.com/premium">myfitnesspal.com/premium</a>). Premium+ adds meal planning at $99.99/year (<a href="https://lite.aol.com/sports/other/story/0022/20260224/9659625.htm">Winter Release 2026</a>). Revenue isn't public. One third-party estimate puts it at about $310M for 2023 (<a href="https://www.businessofapps.com/data/myfitnesspal-statistics/">Business of Apps</a>), but its sourcing is weak.</li>
+<li><strong>The metric that matters: logging retention.</strong> Logging food is both the product and the outcome driver. In a 24-week study, people who reached 5% or 10% weight loss opened their food journal more often each day than people who did not (2.4 vs 1.6 and 2.7 vs 1.7 times per day) (<a href="https://pubmed.ncbi.nlm.nih.gov/30801989/">Harvey et al., <em>Obesity</em>, 2019</a>). If people stop logging, they get no result, and then they have no reason to pay.</li>
+</ul>
+<h2 id="the-problem">The problem</h2>
+<p><strong>Who is affected:</strong> new users in their first month, when the habit either forms or doesn't, and long-time users whose daily routine just got slower.</p>
+<p><strong>What goes wrong:</strong> logging takes effort, and people quit because of that effort.</p>
+<ul>
+<li>In a randomised trial of MyFitnessPal in primary care (n=212), "logins decreased sharply after the first month". The median number of logins fell from 8 in month 1 to 0 in month 6, and active users fell from 94 to 34 (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4422872/">Laing et al., <em>Annals of Internal Medicine</em>, 2014</a>). The authors write that use "plummeted after the first month because they found it tedious or felt it took too much time", and that "a faster, streamlined interface for entering foods may be a priority" (same source).</li>
+<li>Logging takes real time. In the Harvey study it averaged 23.2 minutes a day in month 1 and 14.6 minutes in month 6. Frequency predicted weight loss; minutes spent did not (<a href="https://pubmed.ncbi.nlm.nih.gov/30801989/">Harvey et al., 2019</a>). So the goal is many small logging moments, each one cheap.</li>
+<li>MyFitnessPal's CEO said this about Cal AI, which MyFitnessPal acquired: "there is an audience of people that want it fast, they want AI based" (<a href="https://techcrunch.com/?p=3098039">TechCrunch, 2 Mar 2026</a>).</li>
+</ul>
+<p><strong>Two company decisions made logging slower for many users:</strong></p>
+<ol>
+<li><strong>The barcode paywall (2022).</strong> "Beginning October 1, Barcode Scan will be available only with a Premium subscription. Members who use the free version of the app will still be able to log food with the search feature" (company email quoted by <a href="https://www.droid-life.com/2022/08/24/myfitnesspal-puts-barcode-scanner-behind-premium-paywall/">Droid Life, 24 Aug 2022</a>; see also <a href="https://www.pocket-lint.com/apps/news/162386-wow-myfitnesspal-put-its-popular-barcode-scanner-feature-behind-a-paywall">Pocket-lint</a>).</li>
+<li><strong>The "Today" redesign (2026).</strong> The classic Diary was replaced by a Today home screen. Press reports say the diary now sits behind "View All", per-meal macros are harder to find, and the company called the new layout "the path forward", with no option to revert (<a href="https://piunikaweb.com/2026/04/24/myfitnesspal-new-update-complaints/">PiunikaWeb, 24 Apr 2026</a>; <a href="https://support.myfitnesspal.com/hc/en-us/articles/39985611667341-Introducing-the-brand-new-Today-tab">MyFitnessPal help centre</a>).</li>
+</ol>
+<p><strong>Review mining.</strong> I pulled the 250 most recent US App Store reviews through Apple's public RSS feed (<a href="https://itunes.apple.com/us/rss/customerreviews/page=1/id=341232718/sortby=mostrecent/json">feed</a>). They were posted 30 Aug to 8 Oct 2026, on versions 26.34 to 26.40. Ratings: 90 five-star, 15 four-star, 32 three-star, 30 two-star, 83 one-star. I read and coded all 145 reviews rated 1–3 stars by hand (keyword search assisted, but every review was read). One review can carry several themes. The raw sample is saved as <code>data/review-sample-appstore-us-2026-08-30_2026-10-08.json</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Theme (1–3★ reviews, n=145)</th>
+<th>Count</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redesign/update made logging or reviewing the day slower or harder</td>
+<td>42</td>
+<td>29%</td>
+</tr>
+<tr>
+<td>Paywall, price, or features "that used to be free"</td>
+<td>33</td>
+<td>23%</td>
+</tr>
+<tr>
+<td>…of which name the <strong>barcode scanner</strong> specifically</td>
+<td>15</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Bugs, logouts, Premium not recognised, data loss</td>
+<td>30</td>
+<td>21%</td>
+</tr>
+<tr>
+<td>Ads, upsell pop-ups, notifications or animations interrupting logging</td>
+<td>24</td>
+<td>17%</td>
+</tr>
+<tr>
+<td>Explicit logging-effort complaints (extra taps, copying meals, serving sizes, bounced navigation)</td>
+<td>21</td>
+<td>14%</td>
+</tr>
+<tr>
+<td>Database accuracy</td>
+<td>8</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>Wearable sync</td>
+<td>7</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>AI features unwanted or weak</td>
+<td>6</td>
+<td>4%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Representative quotes (verbatim, US App Store):</p>
+<ul>
+<li>"Every step does 2x longer. So frustrating just trying to log food throughout my day" (1★, 24 Sep 2026)</li>
+<li>"just stop switching me back to the Home Screen every time I edit an entry" (1★, 29 Sep 2026)</li>
+<li>"barcode scanning is a paid feature now when users like me literally used it to build your database" (1★, 26 Sep 2026)</li>
+<li>"I pretty much eat the same thing every week and copying one day at a time is so unnecessary" (2★, 3 Sep 2026)</li>
+</ul>
+<p>The positive reviews matter too. The 4–5★ reviews mostly praise ease and results from people who kept going ("I've been journaling 17 weeks in a row", 5★, 27 Sep 2026). One Premium user wrote that barcode and meal scan are "Both in premium, but if you are committed to using this app, the convenience is worth it" (4★, 6 Oct 2026). So the product works for people who keep the habit. The fight is to get people through the first weeks.</p>
+<p><em>Limits of the sample:</em> this is US iOS only and covers six weeks, starting about five months after the redesign. People who write reviews are skewed toward angry users. The counts show which themes come up, not how common each problem is across all users.</p>
+<h2 id="journey-audit-logging-a-meal">Journey audit: logging a meal</h2>
+<p><em>Method note:</em> Mobbin wasn't available (paid plan required), and I did not instrument the live app. So the figures below are MyFitnessPal's own App Store screenshots for v26.40, which show the best case. The step list combines those screens with the help-centre description and the user reports cited above. I will re-capture the real flow on a device before the public version.</p>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-01-mfp-today-screen.webp" alt="Figure 1" decoding="async"></div><figcaption><strong>Figure 1.</strong> The Today screen. Calories and macros sit at the top, then GLP-1 cards, and the Diary only starts near the bottom with a "View all" link. Source: <a href="https://apps.apple.com/us/app/id341232718">App Store listing</a>, screenshot 10.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-02-mfp-meal-scan.webp" alt="Figure 2" decoding="async"></div><figcaption><strong>Figure 2.</strong> Meal Scan (Premium). A photo becomes three detected items, each with a delete icon, and a single "Log breakfast" button. Source: App Store listing, screenshot 4.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-03-mfp-voice-log.webp" alt="Figure 3" decoding="async"></div><figcaption><strong>Figure 3.</strong> Voice Log (Premium): "Talk when you're ready to log your meal." Source: App Store listing, screenshot 5.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-04-mfp-barcode-scan-premium.webp" alt="Figure 4" decoding="async"></div><figcaption><strong>Figure 4.</strong> Barcode Scan, Premium-only since 1 Oct 2022. Source: App Store listing, screenshot 9.</figcaption></figure>
+<p><strong>Free-user path to log a usual breakfast (reconstructed):</strong> open app → Today → scroll to Diary or tap "View all" → Breakfast → Log → search text → pick an entry from similar-looking results → adjust serving → save → in some reports, get bounced back to the top or to Home → repeat for each item.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+<th>Issue</th>
+<th>Heuristic / principle</th>
+<th>Severity (1–4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Open app</td>
+<td>The home screen is a summary. The diary, which is the main job, is below the fold</td>
+<td>Match the most frequent task (Fitts / frequency-of-use ordering)</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Find meal</td>
+<td>Diary sits behind "View all", and per-meal macros are harder to find (press + reviews)</td>
+<td>Recognition over recall; visibility of system status</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Add food (free)</td>
+<td>Text search only. The fastest input (barcode) is paywalled</td>
+<td>Efficiency of use; the Laing "tedious" finding</td>
+<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Choose entry</td>
+<td>Many near-duplicate entries; 8 reviews question accuracy</td>
+<td>Error prevention; trust</td>
+<td><span class="dots s2" title="Severity 2 of 4" aria-label="Severity 2 of 4"><span class="on">●●</span><span class="off">●●</span></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Edit portion</td>
+<td>Saving closes the meal and returns to the top of the day (reviews)</td>
+<td>User control; preserve context</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Repeat meal</td>
+<td>Copying a day across meal slots is harder than before (reviews)</td>
+<td>Efficiency; support habitual behaviour</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Any step</td>
+<td>Banner ad or "try premium" overlay delays scrolling or blocks input (reviews)</td>
+<td>Don't interrupt the core task; paywall timing</td>
+<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="insights">Insights</h2>
+<p class="insight"><strong>1. Logging cost causes churn, more than motivation does.</strong>
+<em>Observation:</em> use collapses after month 1. <em>Evidence:</em> the Laing RCT (median logins 8 → 0; "tedious") and Harvey (frequency, not minutes, predicts success). <em>Why it matters:</em> in the Fogg Behavior Model, a behaviour happens when motivation, ability and a prompt line up. Motivation drops after the first weeks, so ability (how easy logging is) has to rise to make up for it. Every extra tap costs the most exactly when motivation is fading.</p>
+<p class="insight"><strong>2. The redesign made logging slower for the users most likely to pay.</strong>
+<em>Observation:</em> 29% of negative reviews in my sample blame the update, and many are from users with 5–10 years of history. <em>Evidence:</em> review table; "the path forward" statement (<a href="https://piunikaweb.com/2026/04/24/myfitnesspal-new-update-complaints/">PiunikaWeb</a>). <em>Why it matters:</em> a home screen built for glanceable progress, coaching and GLP-1 cards competes with the one job that happens 3–6 times a day. <strong>Hypothesis:</strong> long-time users stay mainly because of switching costs ("I feel trapped because I have so many recipes and data", 1★, 5 Oct 2026). That kind of retention looks fine on a dashboard but doesn't build loyalty.</p>
+<p class="insight"><strong>3. The paywall removes the speed tool during the weeks the habit forms, and the trust damage lasts.</strong>
+<em>Observation:</em> four years after the change, 15 of 145 negative reviews in a six-week window still name the barcode scanner. <em>Evidence:</em> review table; the "we built your database" quote. <em>Why it matters:</em> users helped build the database by scanning products, and that changes how the paywall feels. To them it reads as taking something away, not as an upgrade, and loss aversion makes a lost feature hurt more than a new one pleases. <strong>Hypothesis:</strong> free users who never get the habit going never reach the point where Premium feels worth paying for.</p>
+<p class="insight"><strong>4. Photo AI makes logging faster, but it isn't accurate enough to stand alone.</strong>
+<em>Observation:</em> the whole category is racing to photo logging, and MyFitnessPal bought Cal AI (<a href="https://techcrunch.com/?p=3098039">TechCrunch</a>). <em>Evidence:</em> in a preliminary NIH-presented study of 102 controlled meals, photo features in MyFitnessPal, Cal AI, Lose It! and Appediet underestimated energy by about 33%, by 327 kcal on average for MyFitnessPal (<a href="https://www.healio.com/news/primary-care/20260804/ai-photobased-calorietracking-tools-underestimate-them-by-33">Healio, 4 Aug 2026</a>; conference abstract, not yet peer-reviewed). <em>Why it matters:</em> a fast log that undercounts by a third can break the user's trust in the numbers, and then the progress loop. Most of what a person eats repeats, so the cheapest accurate log is one they have already confirmed before. That needs memory of the user's own meals, not a vision model.</p>
+<h2 id="benchmark">Benchmark</h2>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-05-calai-camera-first.webp" alt="Figure 5" decoding="async"></div><figcaption><strong>Figure 5.</strong> Cal AI makes the camera the logging surface ("Just snap a picture of your food"). Source: <a href="https://apps.apple.com/us/app/id6480417616">Cal AI App Store listing</a>, screenshot 2. The original image is low resolution (392×696).</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-06-calai-result-fix-results.webp" alt="Figure 6" decoding="async"></div><figcaption><strong>Figure 6.</strong> Cal AI's result screen has a pencil on every value and a "Fix Results" button next to "Done". Correction is part of the main flow. Source: Cal AI listing, screenshot 3.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-07-loseit-snap-it.webp" alt="Figure 7" decoding="async"></div><figcaption><strong>Figure 7.</strong> Lose It! "Snap Your Food" labels detected items on the photo. Source: <a href="https://apps.apple.com/us/app/id297368629">Lose It! App Store listing</a>, screenshot 3.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-08-cronometer-photo-log.webp" alt="Figure 8" decoding="async"></div><figcaption><strong>Figure 8.</strong> Cronometer "Snap a photo, log your food". Photo logging now exists even in the accuracy-first app. Source: <a href="https://apps.apple.com/us/app/id1145935738">Cronometer App Store listing</a>.</figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/03-myfitnesspal/assets/fig-09-cronometer-verified-food-detail.webp" alt="Figure 9" decoding="async"></div><figcaption><strong>Figure 9.</strong> Cronometer's food detail shows its data source ("NCCDB") and serving in grams, so the user can see where the numbers come from. Source: Cronometer listing.</figcaption></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Moment</th>
+<th>MyFitnessPal</th>
+<th>Cal AI</th>
+<th>Lose It!</th>
+<th>Cronometer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default capture</td>
+<td>Search (free); scan/voice/photo (Premium)</td>
+<td>Camera first</td>
+<td>Search + Snap It, voice, barcode</td>
+<td>Search + photo log</td>
+</tr>
+<tr>
+<td>Correction</td>
+<td>Delete per item (Fig. 2)</td>
+<td>Edit each value + "Fix Results" (Fig. 6)</td>
+<td>Not visible in screenshots</td>
+<td>Precise amount/serving (Fig. 9)</td>
+</tr>
+<tr>
+<td>Trust signal</td>
+<td>Green "verified" tick</td>
+<td>Health score</td>
+<td>n/a</td>
+<td>Lab data source named</td>
+</tr>
+<tr>
+<td>Free barcode</td>
+<td>No (since 2022)</td>
+<td>n/a</td>
+<td>Unclear: sources conflict</td>
+<td>Reported free by third parties; not confirmed from a primary page</td>
+</tr>
+</tbody>
+</table></div>
+<p>What I take from this: Cal AI treats a fast first guess plus easy correction as one design, which fits the accuracy evidence above. Cronometer earns trust by showing where its numbers come from. None of the store screenshots show a strong "repeat my usual" pattern, so that gap is open.</p>
+<h2 id="options-considered">Options considered</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>User value</th>
+<th>Business value</th>
+<th>Effort</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Make barcode free again</strong></td>
+<td>High, and repairs trust</td>
+<td>Removes a top Premium reason; ARPU risk</td>
+<td>Low</td>
+<td>High revenue risk; hard to reverse twice</td>
+</tr>
+<tr>
+<td><strong>B. "Habit window": all fast-logging tools free for the first 14–30 days, then Premium</strong></td>
+<td>High in the critical month</td>
+<td>Users feel the value before the paywall (reverse trial)</td>
+<td>Medium (entitlements)</td>
+<td>Could feel like a bait-and-switch when it ends; cannibalises the 7-day trial</td>
+</tr>
+<tr>
+<td><strong>C. Free "Log it again" layer + diary-first navigation; camera tools stay Premium</strong></td>
+<td>High for repeat meals (daily)</td>
+<td>Keeps the habit alive for free users, so more of them reach the point where Premium makes sense; no paid feature given away</td>
+<td>Medium</td>
+<td>Users may never feel the need to upgrade if repeats cover most meals</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Chosen: C, with B as the second experiment.</strong> C attacks the most frequent cost (re-logging the same foods) without touching Premium pricing, and it can be measured on its own. B is the stronger revenue bet but needs C's baseline to judge it fairly.</p>
+<p><strong>Deliberately not building:</strong> more streaks, pop-ups or "AI coach" prompts aimed at re-engagement. Reviews already complain about "Passive Aggressive Notifications" and that "a paid app should not hijack my screen". Adding more prompts on top of a slow logging flow doesn't make it any easier to log.</p>
+<h2 id="proposed-solution-log-it-again">Proposed solution: "Log it again"</h2>
+<p>Wireframe-level, screen by screen:</p>
+<ol>
+<li><strong>Today, top card (time-aware).</strong> At 7–10 am: "Your usual breakfast? Oats, banana, coffee · 412 kcal" with <strong>[Log]</strong> and <strong>[Change]</strong> buttons. One tap logs all items to Breakfast. The card is built from the user's last 14 days of the same meal slot. With no history, it shows "Log yesterday's breakfast".</li>
+<li><strong>Diary as a first-class tab, or a setting for "Open to: Diary / Today".</strong> This responds directly to the reviews asking to "customize my landing zone".</li>
+<li><strong>Edit in place.</strong> Changing a portion saves inline and keeps the scroll position. No bounce back to the top or to Home.</li>
+<li><strong>Copy day → day, per meal slot.</strong> Long-press a past day to get "Copy all meals to today". Items keep their slots.</li>
+<li><strong>Search results ranked by personal history first,</strong> with a "you've logged this 12×" chip, then the global database.</li>
+<li><strong>No ads or upsell overlays inside the add-food sheet.</strong> Premium shows up as a quiet, contextual option: "New food? Scan the barcode (Premium)". Upsell can live on Today and Progress.</li>
+</ol>
+<p><strong>Build note (mobile developer's view).</strong></p>
+<ul>
+<li><em>Complexity: low to medium.</em> The suggestion engine is not ML. It is a frequency query over the local diary (meal slot × weekday × time of day). It runs on-device from a local store (SQLite; in Flutter, drift or Isar), so it works offline and adds no backend cost. Moving the diary to a tab and preserving edit state is navigation and state-restoration work, not new UI.</li>
+<li><em>Platform:</em> iOS 17+ interactive widgets (App Intents) and Android Glance widgets can offer "Log usual breakfast" from the home screen, which is the fastest log possible. Ship that in phase 2, after the in-app card proves the behaviour, because widget and server sync conflicts need care.</li>
+<li><em>Performance:</em> several reviews say the screen freezes while a banner ad loads during search. <strong>Hypothesis:</strong> the ad view is laid out synchronously in the search list. Load ads after first frame and outside the scroll container.</li>
+<li><em>Ship first:</em> (1) edit-in-place + scroll preservation (bug-level fix, fastest win); (2) Today "usual meal" card behind a remote flag; (3) per-slot copy; (4) widgets.</li>
+</ul>
+<h2 id="success-metrics-amp-validation-plan">Success metrics &amp; validation plan</h2>
+<ul>
+<li><strong>Primary metric:</strong> logging days per week in weeks 2–4 for new users. A secondary cut: share of new users still logging ≥3 days/week at day 30. This follows the Payne et al. suggestion that a lower 3-days-per-week bar may help adherence (<a href="https://onlinelibrary.wiley.com/doi/10.1002/osp4.566">Obesity Science &amp; Practice, 2022</a>).</li>
+<li><strong>Secondary:</strong> median time and taps per logged meal; share of meals logged via "again" or copy.</li>
+<li><strong>Guardrails:</strong> Premium conversion by day 30 and day 60; refund/cancel rate; share of days logged under 800 kcal (to catch lazy one-tap logs that undercount); share of 1–3★ reviews citing logging effort.</li>
+<li><strong>Experiment:</strong> A/B test on new free users (50/50, at least 6 weeks so the month-1 drop is visible), with sample size set from the team's baseline variance. I don't have that baseline, so I'm not quoting a number. For existing users, staged rollout (5% → 25% → 100%) with a 10% long-term holdout.</li>
+</ul>
+<p><strong>5-user test script (moderated, 30 min, remote).</strong>
+<em>Recruit:</em> 5 adults who tracked calories in the past 12 months and then stopped; at least 2 ex-MyFitnessPal free users; mix of iOS and Android. Screener question: "Why did you stop?"</p>
+<ol>
+<li><em>Warm-up (3 min):</em> "Walk me through the last time you logged a meal. What made it annoying, if anything?"</li>
+<li><em>Task 1 (baseline, current app):</em> "Log what you ate for breakfast yesterday." Record time, taps, hesitations.</li>
+<li><em>Task 2 (prototype):</em> "It's 8 am. Log your usual breakfast." Record time and taps, and whether they trust the card's items.</li>
+<li><em>Task 3:</em> "Change the banana to half a banana at dinner, then add a yogurt." Watch for lost context.</li>
+<li><em>Task 4:</em> "Make today's lunch the same as Monday's."</li>
+<li><em>After each task:</em> Single Ease Question (1–7).</li>
+<li><em>Probe (5 min):</em> "Would this change how often you log? What would make you stop again?" Show the "New food? Scan (Premium)" prompt: "How does this feel?"</li>
+<li><em>Close:</em> "If you could change one thing about logging, what would it be?"</li>
+</ol>
+<p><em>Pass signal:</em> 4 of 5 users log a usual meal in under 10 seconds without help, and none say they distrust the suggested items. Five users can show usability problems, not prove retention; the A/B test does that.</p>
+<h2 id="risks-amp-open-questions">Risks &amp; open questions</h2>
+<ul>
+<li>What share of logged meals are actual repeats? The internal team can measure this from diary data, and it decides how much C is worth.</li>
+<li>Did the Today redesign move retention or conversion internally? The reviews are loud, but the dashboards may say otherwise.</li>
+<li>How much of Premium conversion is driven by barcode scan specifically? That decides whether A or B is affordable.</li>
+<li>Accuracy and ethics: one review warns the app "fuels eating disorders". One-tap logging must not hide calorie totals or encourage under-logging. This needs clinical review.</li>
+<li>Do the frequent "Premium not recognised" and logout bugs (21% of negative reviews) undo any UX gain? They may need fixing first.</li>
+</ul>
+<h2 id="linkedin-spin-offs">LinkedIn spin-offs</h2>
+<ol>
+<li><strong>Silent loss + Proof:</strong> "MyFitnessPal users quit in month one. A 2014 trial found the reason: it 'took too much time'. Then the free shortcut went behind Premium." <em>Visual:</em> line chart of median logins 8 → 0 over six months (Laing), with the barcode icon struck through in red.</li>
+<li><strong>Sides + Tension + Open loop:</strong> "Every calorie app is racing to AI photo logging. In an NIH-presented test, it undercounted calories by about a third. Guess what actually keeps people logging." <em>Visual:</em> split screen with a camera on one side and a "Log my usual breakfast" button on the other, and "−33%" in red over the camera.</li>
+<li><strong>Unpopular opinion + Tension:</strong> "Unpopular opinion: the best AI feature for a calorie app isn't AI. It's a button that says 'log my usual breakfast'." <em>Visual:</em> a wireframe of the "Your usual breakfast? [Log]" card, before/after tap count.</li>
+</ol>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>MyFitnessPal App Store listing and metadata: https://apps.apple.com/us/app/id341232718 · https://itunes.apple.com/lookup?id=341232718&amp;country=us</li>
+<li>App Store review feed (sample source): https://itunes.apple.com/us/rss/customerreviews/page=1/id=341232718/sortby=mostrecent/json</li>
+<li>MyFitnessPal Premium page: https://www.myfitnesspal.com/premium</li>
+<li>MyFitnessPal 2026 Winter Release (press release copy): https://lite.aol.com/sports/other/story/0022/20260224/9659625.htm</li>
+<li>MyFitnessPal help centre, Today tab: https://support.myfitnesspal.com/hc/en-us/articles/39985611667341-Introducing-the-brand-new-Today-tab</li>
+<li>PiunikaWeb on the Today redesign: https://piunikaweb.com/2026/04/24/myfitnesspal-new-update-complaints/</li>
+<li>Droid Life on barcode paywall: https://www.droid-life.com/2022/08/24/myfitnesspal-puts-barcode-scanner-behind-premium-paywall/</li>
+<li>Pocket-lint on barcode paywall: https://www.pocket-lint.com/apps/news/162386-wow-myfitnesspal-put-its-popular-barcode-scanner-feature-behind-a-paywall</li>
+<li>TechCrunch on Cal AI acquisition: https://techcrunch.com/?p=3098039</li>
+<li>Laing et al. 2014, Annals of Internal Medicine: https://pmc.ncbi.nlm.nih.gov/articles/PMC4422872/ · https://pubmed.ncbi.nlm.nih.gov/25402403/</li>
+<li>Harvey et al. 2019, Obesity: https://pubmed.ncbi.nlm.nih.gov/30801989/</li>
+<li>Payne et al. 2022, Obesity Science &amp; Practice: https://onlinelibrary.wiley.com/doi/10.1002/osp4.566</li>
+<li>Healio on NIH-presented photo-app accuracy study: https://www.healio.com/news/primary-care/20260804/ai-photobased-calorietracking-tools-underestimate-them-by-33</li>
+<li>Business of Apps (revenue estimate, weak): https://www.businessofapps.com/data/myfitnesspal-statistics/</li>
+<li>Competitor listings: Cal AI https://apps.apple.com/us/app/id6480417616 · Lose It! https://apps.apple.com/us/app/id297368629 · Cronometer https://apps.apple.com/us/app/id1145935738</li>
+</ul>
+  <div class="pager"><a href="duolingo.html"><span class="dir">‹ Previous case study</span><span class="t">Duolingo</span></a><a class="next" href="revolut.html"><span class="dir">Next case study ›</span><span class="t">Revolut</span></a></div>
+</article>
+<aside class="sidebar">
+  <div class="panel sand" id="subscribe"><h4 style="margin:0 0 var(--s-4)">Get the next teardown in your inbox.</h4><input class="input" type="email" placeholder="Your email" aria-label="Email"><a class="btn block" href="mailto:mr.vaghasiya197@gmail.com?subject=Subscribe">Subscribe</a></div>
+  <div class="panel"><div class="eyebrow" style="margin-bottom:var(--s-3)">The question</div><p style="margin:0">Habit: why people stop logging, and what the paywall does to that.</p></div>
+</aside>
+</main>
+<footer class="site-footer"><div class="inner">
+  <div><h5>Validate first. Then build what users keep.</h5><p style="max-width:44ch;color:var(--ink-75)">Senior mobile developer and team lead. I research and test ideas before building, so the apps I ship are the ones people keep.</p></div>
+  <div><h5>Work</h5><ul><li><a href="../../site/case-studies/chatgpt.html">ChatGPT</a></li><li><a href="../../site/case-studies/duolingo.html">Duolingo</a></li><li><a href="../../site/case-studies/myfitnesspal.html">MyFitnessPal</a></li><li><a href="../../site/case-studies/revolut.html">Revolut</a></li><li><a href="../../site/case-studies/temu.html">Temu</a></li></ul></div>
+  <div><h5>Elsewhere</h5><ul><li><a href="https://www.linkedin.com/in/mitul-vaghasiya/">LinkedIn</a></li><li><a href="https://github.com/MR0100">GitHub</a></li><li><a href="mailto:mr.vaghasiya197@gmail.com">Email</a></li></ul></div>
+</div><p class="legal">Independent studies. Not affiliated with or endorsed by the companies named. Screens © their owners, used for commentary.</p></footer>
+</body></html>
