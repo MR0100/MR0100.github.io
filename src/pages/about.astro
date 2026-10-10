@@ -17,94 +17,97 @@ const skills = [
 ---
 <Base title="About · Mitul Vaghasiya" active="About" description="Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Surat, India.">
   <section class="wrap hero">
-    <p class="eyebrow">About</p>
-    <h1>I’m Mitul. I find out why people keep apps, and then I build them.</h1>
+    <div class="who">
+      <img src="/images/mitul-400.jpg" alt="Mitul Vaghasiya" width="64" height="64" />
+      <p><b>Mitul Vaghasiya</b><span>Product designer &amp; researcher · {profile.location}</span></p>
+    </div>
+    <h1>I find out why people keep apps, and then I build them.</h1>
   </section>
 
-  <section class="wrap intro">
-    <aside class="side">
-      <img src={profile.headshot} alt="Mitul Vaghasiya" width="480" height="480" />
-      <dl class="facts">
-        <div><dt>Based in</dt><dd>{profile.location}</dd></div>
-        <div><dt>Building since</dt><dd>November 2019</dd></div>
-        <div><dt>Now</dt><dd>Mobile team lead, KGK InfoTech</dd></div>
-        <div><dt>Elsewhere</dt><dd><a class="link" href={profile.linkedin}>LinkedIn</a> · <a class="link" href={profile.github}>GitHub</a></dd></div>
-      </dl>
-    </aside>
-    <div class="story">
+  <section class="wrap row">
+    <h2 class="label">Story</h2>
+    <div class="content story">
       <p class="first">I started in November 2019 as a junior Flutter developer in Surat, and I’ve been building mobile apps ever since, {exp} now, for clients in Canada, Germany, Korea, Japan, Brazil and India. Today I lead the mobile team at KGK InfoTech.</p>
       <p>Somewhere along the way I noticed that the apps that failed were rarely badly built. They were well built for a problem people didn’t have. So I changed how I work: research first, validate with a prototype, then build and measure whether people actually stay.</p>
       <p>This site is where I do that in the open. I study apps millions of people use, publish what I find, and write about research, mobile UX and building products people keep.</p>
-      <p class="more"><a class="link" href="/studies/">Read the case studies</a> · <a class="link" href="/work/">See the apps I’ve built</a></p>
+      <dl class="facts">
+        <div><dt>Now</dt><dd>Mobile team lead, KGK InfoTech</dd></div>
+        <div><dt>Building since</dt><dd>November 2019</dd></div>
+        <div><dt>Based in</dt><dd>{profile.location}</dd></div>
+        <div><dt>Elsewhere</dt><dd><a class="link" href={profile.linkedin}>LinkedIn</a>, <a class="link" href={profile.github}>GitHub</a></dd></div>
+      </dl>
     </div>
   </section>
 
-  <section class="wrap block">
-    <h2>How I work</h2>
-    <div class="principles">
+  <section class="wrap row">
+    <h2 class="label">How I work</h2>
+    <div class="content principles">
       {principles.map(([t, d], i) => <div><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>)}
     </div>
   </section>
 
-  <section class="wrap block split">
-    <h2>Experience</h2>
-    <ol class="timeline">
+  <section class="wrap row">
+    <h2 class="label">Experience</h2>
+    <ol class="content list">
       {experience.map(e => <li><span class="when">{e.period}</span><div><h3>{e.company}</h3><p class="role">{e.role}</p><p>{e.note}</p></div></li>)}
-      <li><span class="when">2017 — 2020</span><div><h3>S.V. Patel College, Surat</h3><p class="role">Bachelor of Computer Applications</p></div></li>
     </ol>
   </section>
 
-  <section class="wrap block split">
-    <h2>What I bring</h2>
-    <dl class="skills">
+  <section class="wrap row">
+    <h2 class="label">What I bring</h2>
+    <dl class="content list skills">
       {skills.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
     </dl>
+  </section>
+
+  <section class="wrap row">
+    <h2 class="label">Education</h2>
+    <ol class="content list">
+      <li><span class="when">2017 — 2020</span><div><h3>S.V. Patel College, Surat</h3><p class="role">Bachelor of Computer Applications</p></div></li>
+    </ol>
   </section>
 </Base>
 
 <style>
-  .hero { padding-top: 72px; padding-bottom: 48px; }
-  .hero h1 { font-size: clamp(42px, 5.4vw, 76px); margin: 16px 0 0; max-width: 1000px; }
-  .intro { display: grid; grid-template-columns: 300px 1fr; gap: 72px; padding-bottom: 72px; align-items: start; }
-  .side img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius); }
-  .facts { margin: 20px 0 0; font-size: 14px; }
-  .facts div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
-  .facts dt { color: var(--ink-3); }
-  .facts dd { margin: 0; }
-  .story { border-top: 1px solid var(--line); padding-top: 28px; }
-  .story p { font-size: 19px; color: var(--ink-2); max-width: 640px; }
+  /* One grid for the whole page: a label column and a content column, on the same lines as the header */
+  .hero { padding-top: 72px; padding-bottom: 72px; }
+  .who { display: flex; align-items: center; gap: 16px; }
+  .who img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+  .who p { margin: 0; display: flex; flex-direction: column; line-height: 1.35; }
+  .who b { font-weight: 600; }
+  .who span { color: var(--ink-3); font-size: 15px; }
+  .hero h1 { font-size: clamp(42px, 5.6vw, 80px); margin: 32px 0 0; max-width: 1000px; }
+  .row { display: grid; grid-template-columns: 280px 1fr; gap: 48px; padding-top: 40px; padding-bottom: 72px; position: relative; }
+  .row::before { content: ''; position: absolute; top: 0; left: 32px; right: 32px; border-top: 1px solid var(--line); }
+  .label { font-size: clamp(28px, 2.6vw, 36px); }
+  .content { margin: 0; padding: 0; max-width: 760px; }
+  .story p { font-size: 18px; color: var(--ink-2); }
   .story .first { font: 400 clamp(24px, 2.2vw, 30px)/1.35 var(--serif); color: var(--ink); }
-  .story .more { font-size: 16px; color: var(--ink-3); margin-top: 28px; }
-  .block { padding: 72px 0; border-top: 1px solid var(--line); }
-  .block h2 { font-size: clamp(32px, 3.2vw, 44px); margin-bottom: 32px; }
-  .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 32px 0 0; font-size: 15px; }
+  .facts div { padding: 12px 0; border-top: 1px solid var(--line); }
+  .facts dt { color: var(--ink-3); font-size: 13px; }
+  .facts dd { margin: 2px 0 0; }
+  .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
   .n { font-size: 13px; color: var(--ink-3); }
-  .principles h3 { font-size: 26px; margin: 10px 0 10px; }
+  .principles h3 { font-size: 26px; margin: 8px 0 10px; }
   .principles p { color: var(--ink-2); font-size: 16px; margin: 0; }
-  .split { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; }
-  .timeline { list-style: none; margin: 0; padding: 0; }
-  .timeline li { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
-  .timeline li:first-child { border-top: 0; padding-top: 0; }
+  .list { list-style: none; }
+  .list > li, .list > div { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .list > :first-child { border-top: 0; padding-top: 4px; }
   .when { color: var(--ink-3); font-size: 15px; padding-top: 6px; }
-  .timeline h3 { font-size: 26px; }
+  .list h3 { font-size: 26px; }
   .role { font-weight: 500; margin: 4px 0 6px; }
-  .timeline p:last-child { color: var(--ink-2); margin: 0; }
-  .skills { margin: 0; }
-  .skills div { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--line); }
-  .skills div:first-child { border-top: 0; padding-top: 0; }
+  .list p:last-child { color: var(--ink-2); margin: 0; }
+  .list .role:last-child { color: var(--ink); }
   .skills dt { font: 400 24px/1.2 var(--serif); }
   .skills dd { margin: 0; color: var(--ink-2); padding-top: 3px; }
   @media (max-width: 960px) {
-    .split, .intro { grid-template-columns: 1fr; gap: 32px; }
-    .side { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: start; }
-    .facts { margin: 0; }
-    .hero { padding-top: 40px; }
-    .principles { grid-template-columns: 1fr 1fr; }
+    .row { grid-template-columns: 1fr; gap: 24px; padding-bottom: 56px; }
   }
-  @media (max-width: 560px) {
-    .principles { grid-template-columns: 1fr; }
-    .timeline li, .skills div { grid-template-columns: 1fr; gap: 6px; }
-    .side { grid-template-columns: 1fr; }
-    .side img { max-width: 280px; }
+  @media (max-width: 760px) {
+    .hero { padding-top: 40px; padding-bottom: 48px; }
+    .row::before { left: 20px; right: 20px; }
+    .principles, .facts { grid-template-columns: 1fr; }
+    .list > li, .list > div { grid-template-columns: 1fr; gap: 6px; }
   }
 </style>
