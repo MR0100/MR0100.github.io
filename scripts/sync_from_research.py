@@ -5,7 +5,7 @@ Usage:  python3 scripts/sync_from_research.py [path/to/PersonalResearch]
 
 Publishable:  case-study.md, test-kit.md, design/*.png, prototype/index.html + try.html,
               data/*.md (review coding notes, quotes are short and cited), references/**/SOURCE.md,
-              _shared/compare.js
+              _shared/compare.js (the research repo's _shared/tokens.css is only a preview copy; the site uses design-system/)
 Never copied: report.md (full research, available on request), raw review data (*.json),
               App Store / press reference images, assets/ (third-party store and press images),
               render scripts.

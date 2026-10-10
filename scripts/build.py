@@ -238,6 +238,7 @@ def doc_page(md_text, title, app, slug, out, back_label, up='../'):
 
 def fix_prototype(text):
     text = text.replace('../../../portfolio/design-system/', '/design-system/')
+    text = text.replace('../../_shared/tokens.css', '/design-system/tokens.css')
     text = text.replace('../../_shared/compare.js', '/work/_shared/compare.js')
     text = GH_CASE.sub('../', text)
     return text

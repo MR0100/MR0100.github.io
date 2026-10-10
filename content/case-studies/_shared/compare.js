@@ -34,7 +34,7 @@
         <div class="cmp-actions">${ctrls.map((c, i) => `<button class="cmp-btn primary" data-side="${key}" data-i="${i}">${esc(c.label)}</button>${c.status ? `<span class="cmp-status" id="st-${key}-${c.status}"></span>` : ''}`).join('')}
         <button class="cmp-btn" data-restart="${key}">Restart</button></div></div></div>`;
   };
-  document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="../../../portfolio/design-system/tokens.css"><style>
+  document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="../../_shared/tokens.css"><style>
     body.compare{display:block;padding:40px 24px 56px;background:var(--paper);font:300 17px/1.6 var(--font-body);color:var(--ink);min-height:0}
     .cmp-wrap{max-width:1040px;margin:0 auto}
     .cmp-eyebrow{font:500 13px/1.4 var(--font-heading);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60)}
