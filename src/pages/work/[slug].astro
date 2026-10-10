@@ -1,9 +1,9 @@
 ---
-// One page per project, in the same layout as the case studies. KGK Diamonds has its own full case study (kgk-diamonds.astro).
+// One page per project, in the same layout as the case studies. A project with `caseStudy` also has /work/<slug>/case-study/.
 import CaseStudy from '../../layouts/CaseStudy.astro';
 import { projects, STORES_CHECKED, type Project } from '../../data/work';
 export function getStaticPaths() {
-  const list = projects.filter(p => p.slug !== 'kgk-diamonds');
+  const list = projects;
   return list.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: list[(i + 1) % list.length] } }));
 }
 const { p, next } = Astro.props as { p: Project; next: Project };
@@ -21,6 +21,7 @@ const hero = phones.length >= 2 ? phones.slice(0, 2) : [];
 const heroOne = !hero.length ? p.images[0] : undefined;
 const gallery = p.images.filter(i => !hero.includes(i) && i !== heroOne);
 const links = [
+  ...(p.caseStudy ? [{ label: 'Read the case study', note: 'The problem, the decisions and the results', href: `/work/${p.slug}/case-study/`, internal: true }] : []),
   ...(p.appStore ? [{ label: 'App Store', note: 'The live listing', href: p.appStore }] : []),
   ...(p.playStore ? [{ label: 'Google Play', note: 'The live listing', href: p.playStore }] : []),
   ...p.proof.map(x => ({ label: x.label, note: x.note ?? 'Public record', href: x.href })),
@@ -28,6 +29,7 @@ const links = [
 ---
 <CaseStudy app={p.name} kind={`Project · ${p.category}`} title={p.name} summary={p.oneLiner} meta={meta} accent={p.accent}
   crumbs={[{ href: '/work/', label: 'Work' }, { label: p.name }]}
+  tabs={p.caseStudy ? [{ label: 'Project details', href: `/work/${p.slug}/`, current: true }, { label: 'Case study', href: `/work/${p.slug}/case-study/` }] : undefined}
   next={{ href: `/work/${next.slug}/`, label: `${next.name}: ${next.oneLiner}` }}>
   <div slot="hero" class:list={['shots', { single: !hero.length }]}>
     {hero.map(i => <img src={i.src} alt={i.alt} />)}
@@ -68,8 +70,8 @@ const links = [
 
   {links.length > 0 && (
     <div class="wide"><div class="deeper">
-      <p class="eyebrow">{live ? `Check it yourself · stores checked ${STORES_CHECKED}` : 'Where it was recorded'}</p>
-      {links.map(l => <a href={l.href} rel="noopener"><b>{l.label} ↗</b><span>{l.note}</span></a>)}
+      <p class="eyebrow">{live ? `Go deeper · stores checked ${STORES_CHECKED}` : 'Where it was recorded'}</p>
+      {links.map(l => <a href={l.href} rel="noopener"><b>{l.label}{'internal' in l ? ' →' : ' ↗'}</b><span>{l.note}</span></a>)}
     </div></div>
   )}
   {!live && <div class="wide"><p class="disclaim">{p.statusNote ?? 'This app is no longer available in the stores. The links above are independent records that it existed.'}</p></div>}

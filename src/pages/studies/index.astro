@@ -22,6 +22,15 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
         </div>
       </a>
     ))}
+    <a class="row" href="/work/kgk-diamonds/case-study/">
+      <div class="visual" style="background:#e9e4da"><img src="/images/projects/kgk-diamonds/2.jpg" alt="" loading="lazy" class="shot" /></div>
+      <div class="text">
+        <p class="eyebrow">{String(studies.length + 1).padStart(2, '0')} · KGK Diamonds · Client work</p>
+        <h2>Making a 50,000-diamond catalogue feel fast on a cheap Android phone</h2>
+        <p>The live trading app I lead for the KGK Group: what slowed traders down, the decisions that fixed it, and the numbers before and after.</p>
+        <span class="more">Read the case study →</span>
+      </div>
+    </a>
   </section>
 </Base>
 
@@ -33,6 +42,7 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
   .row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; padding: 40px 0; border-top: 1px solid var(--line); }
   .visual { border-radius: var(--radius); height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden; padding-top: 32px; }
   .visual img { width: 46%; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .visual img.shot { width: 40%; border-radius: 18px 18px 0 0; box-shadow: 0 20px 40px rgba(0,0,0,.12); }
   .row:hover .visual img { transform: translateY(-8px); }
   .text h2 { font-size: clamp(30px, 3vw, 42px); margin: 12px 0 14px; }
   .text p:not(.eyebrow) { color: var(--ink-2); }

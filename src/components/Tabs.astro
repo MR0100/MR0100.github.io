@@ -1,0 +1,20 @@
+---
+// A row of links between the parts of one piece of work (a study, or a project and its case study)
+interface Props { items: { label: string; href: string; current?: boolean }[]; label?: string }
+const { items, label = 'Sections' } = Astro.props;
+---
+<nav class="tabs" aria-label={label}>
+  <div class="wrap row">
+    {items.map(t => <a href={t.href} class:list={{ on: t.current }} aria-current={t.current ? 'page' : undefined}>{t.label}</a>)}
+  </div>
+</nav>
+
+<style>
+  .tabs { border-bottom: 1px solid var(--line); margin-top: 20px; }
+  .row { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .row::-webkit-scrollbar { display: none; }
+  a { flex: none; padding: 12px 0 13px; font-size: 15px; color: var(--ink-3); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+  a:hover { color: var(--ink); }
+  a.on { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
+  @media (max-width: 760px) { .row { gap: 22px; } a { font-size: 14px; } }
+</style>

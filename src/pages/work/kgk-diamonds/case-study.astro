@@ -1,6 +1,6 @@
 ---
-import CaseStudy from '../../layouts/CaseStudy.astro';
-import { projects } from '../../data/work';
+import CaseStudy from '../../../layouts/CaseStudy.astro';
+import { projects } from '../../../data/work';
 const kgk = projects.find(p => p.slug === 'kgk-diamonds')!;
 const phones = kgk.images.filter(i => i.kind === 'phone');
 // Mitul's own version, written from his résumé (Sep 2026) and the public store listings (checked 11 Oct 2026).
@@ -20,8 +20,9 @@ const meta = [
   meta={meta}
   accent="#e9e4da"
   kind="Case study"
-  crumbs={[{ href: '/work/', label: 'Work' }, { label: 'KGK Diamonds' }]}
-  next={{ href: '/work/mytarot/', label: 'MyTarot (Tarot Cat): a daily-tarot app for the Korean market' }}
+  crumbs={[{ href: '/work/', label: 'Work' }, { href: '/work/kgk-diamonds/', label: 'KGK Diamonds' }, { label: 'Case study' }]}
+  tabs={[{ label: 'Project details', href: '/work/kgk-diamonds/' }, { label: 'Case study', href: '/work/kgk-diamonds/case-study/', current: true }]}
+  next={{ href: '/studies/temu/', label: 'Temu: The games aren’t the problem. The hidden rules are.' }}
 >
   <div slot="hero" class="pair">
     {phones.slice(0, 2).map((i, n) => <figure><img src={i.src} alt={i.alt} /><figcaption>{n ? 'Stone detail' : 'The inventory'}</figcaption></figure>)}
@@ -99,7 +100,7 @@ const meta = [
     <p class="eyebrow">Go deeper</p>
     <a href="https://apps.apple.com/in/app/kgk-diamonds-buy-diamonds/id6479595403" rel="noopener"><b>App Store ↗</b><span>The live app, rated 5.0</span></a>
     <a href="https://play.google.com/store/apps/details?id=com.kgk.diamonds" rel="noopener"><b>Google Play ↗</b><span>The live app on Android</span></a>
-    <a href="/work/kgk-hrms/"><b>KGK HRMS</b><span>The group’s HR app, same team</span></a>
+    <a href="/work/kgk-diamonds/"><b>Project details</b><span>The product, my role, the stack and more screens</span></a>
   </div></div>
 </CaseStudy>
 

@@ -27,7 +27,8 @@ import { counts } from '../../data/profile';
             <p class="stores">
               {a.appStore && <a class="link" href={a.appStore}>App Store</a>}
               {a.playStore && <a class="link" href={a.playStore}>Google Play</a>}
-              <a class="link strong" href={`/work/${a.slug}/`}>{a.caseStudy ? 'Case study →' : 'Project details →'}</a>
+              {a.caseStudy && <a class="link strong" href={`/work/${a.slug}/case-study/`}>Case study →</a>}
+              <a class="link strong" href={`/work/${a.slug}/`}>Project details →</a>
             </p>
           </div>
         </article>

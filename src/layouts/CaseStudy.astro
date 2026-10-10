@@ -1,15 +1,17 @@
 ---
 import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
+import Tabs from '../components/Tabs.astro';
 interface Meta { label: string; value: string }
-interface Props { study?: { slug: string; current: string };
+interface Props { study?: { slug: string; current: string }; tabs?: { label: string; href: string; current?: boolean }[];
   title: string; app: string; summary: string; meta: Meta[]; accent: string; icon?: string;
   kind?: string; next?: { href: string; label: string }; active?: string; crumbs?: { href?: string; label: string }[];
 }
-const { title, app, summary, meta, accent, icon, kind = 'Case study', next, active = 'Work', crumbs = [], study } = Astro.props;
+const { title, app, summary, meta, accent, icon, kind = 'Case study', next, active = 'Work', crumbs = [], study, tabs } = Astro.props;
 ---
 <Base title={app === title ? `${app} · Mitul Vaghasiya` : `${app} · ${title} · Mitul Vaghasiya`} description={summary} active={active} crumbs={crumbs}>
   {study && <StudyTabs {...study} />}
+  {tabs && <Tabs items={tabs} />}
   <article>
     <header class="wrap head">
       <div class="lead">
