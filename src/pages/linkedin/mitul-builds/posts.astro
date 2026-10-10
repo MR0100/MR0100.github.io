@@ -1,0 +1,196 @@
+---
+// Mitul Builds Posts: early-access landing page used to validate demand before building the product.
+// Standalone (no site header), like the app legal pages. Honesty: nothing here claims users, results or
+// availability that don't exist yet. What's built today is the tool Mitul uses for his own posts.
+import '../../../styles/global.css';
+
+const email = 'mr.vaghasiya197@gmail.com';
+const subject = 'Early access: Mitul Builds Posts';
+const body = [
+  'Hi Mitul, please add me to early access.',
+  '',
+  '1. What I do:',
+  '2. How often I post on LinkedIn now:',
+  '3. The hardest part of posting for me:',
+  '4. OK to have a 15-minute chat? (yes / no)',
+].join('\n');
+const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+const base = '/linkedin/mitul-builds/posts';
+
+const steps = [
+  ['Plan', 'See every post on a queue and a calendar. Drag one to another day to move it. A rhythm view shows whether you hit your posts-per-week goal.'],
+  ['Write', 'A calm editor with a live LinkedIn preview, a hook-length check and a “ready to go out” checklist. Add an image, a PDF carousel or a video.'],
+  ['Schedule', 'Pick a day and time. It goes out on time from your own profile, and only posts you have finished and approved.'],
+];
+
+const features = [
+  ['Queue & calendar', 'What goes out, when, and what still needs work, at a glance.', 'Built'],
+  ['LinkedIn preview', 'See the post as it will look, including where “…more” cuts it.', 'Built'],
+  ['Readiness checks', 'Catches empty text, posts that are too long, and unfinished [placeholders] before they go out.', 'Built'],
+  ['Designed visuals', 'Carousels and images in a consistent, readable style (1080×1350).', 'Built for my own posts'],
+  ['AI drafts for your business', 'Describe your work once. Get drafts in your voice. It leaves gaps for your real details instead of inventing facts.', 'Planned'],
+  ['Post analytics', 'Which posts worked, and the best time for your audience.', 'Planned'],
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mitul Builds Posts · Plan, write and schedule LinkedIn posts</title>
+  <meta name="description" content="A calm planner for your LinkedIn posts: queue, calendar, live preview and on-time scheduling. Early access is open." />
+  <meta property="og:title" content="Mitul Builds Posts" />
+  <meta property="og:description" content="Plan, write and schedule your LinkedIn posts, without the busywork. Early access is open." />
+  <meta property="og:image" content={`https://mr0100.github.io${base}/queue.jpg`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="top wrap">
+    <span class="brand"><span class="mark" aria-hidden="true">✓</span> Mitul Builds <b>Posts</b></span>
+    <a class="btn small" href={mailto}>Get early access</a>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">Early access · LinkedIn planner</p>
+      <h1>Post on LinkedIn every week, <em>without</em> the busywork.</h1>
+      <p class="lede">Plan, write and schedule your LinkedIn posts in one calm place. See what goes out and when, catch problems before they go out, and stop posting “when you remember”.</p>
+      <div class="cta">
+        <a class="btn" href={mailto}>Get early access →</a>
+        <span class="note">Opens an email to me. No sign-up form, no spam.</span>
+      </div>
+      <figure class="shot hero-shot">
+        <img src={`${base}/queue.jpg`} alt="The queue view: upcoming posts grouped by day, each with a status, plus an up-next countdown and a posting-rhythm grid." width="1800" height="1125" />
+        <figcaption>The real tool today. I built it to plan and schedule my own LinkedIn posts.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head"><h2>How it works</h2></div>
+      <ol class="steps">
+        {steps.map(([title, text], i) => (
+          <li><span class="num">{i + 1}</span><h3>{title}</h3><p>{text}</p></li>
+        ))}
+      </ol>
+      <figure class="shot">
+        <img src={`${base}/editor.jpg`} alt="The editor: date and time, the post text with character and hook counters, a readiness checklist, and a LinkedIn-style preview." width="1800" height="1125" loading="lazy" />
+        <figcaption>Write on the left, see it as LinkedIn will show it on the right.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head"><h2>What's in it</h2><p class="muted">Honest status: what works today, and what's planned.</p></div>
+      <div class="grid">
+        {features.map(([title, text, status]) => (
+          <article class="feature">
+            <span class={`tag ${status === 'Planned' ? 'planned' : 'built'}`}>{status}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section wrap safe">
+      <div>
+        <p class="eyebrow">Safe by design</p>
+        <h2>Your account and your name come first.</h2>
+      </div>
+      <ul>
+        <li><b>Nothing posts without your OK.</b> Only posts you have finished and approved go out.</li>
+        <li><b>No bots.</b> No auto-likes, auto-comments or auto-DMs, which LinkedIn's rules don't allow.</li>
+        <li><b>No made-up facts.</b> AI drafts (planned) leave gaps for your real numbers and stories.</li>
+        <li><b>Built on LinkedIn's official sign-in</b>, not on a browser extension that clicks for you.</li>
+      </ul>
+    </section>
+
+    <section class="section wrap">
+      <figure class="shot">
+        <img src={`${base}/calendar.jpg`} alt="The calendar: a month view with each post on its day, coloured by status." width="1800" height="1125" loading="lazy" />
+        <figcaption>The calendar. Drag a post to another day to move it.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section wrap faq">
+      <div class="section-head"><h2>Questions</h2></div>
+      <details><summary>Can I use it today?</summary><p>Not yet. Right now it's the tool I use for my own posts. I'm talking to people first, to build the version you'd actually want. Early access means you hear first, and you help shape it.</p></details>
+      <details><summary>How much will it cost?</summary><p>Not decided. Tell me in your email what you'd expect to pay. That's exactly what I'm trying to learn.</p></details>
+      <details><summary>Who is it for?</summary><p>Anyone who wants to post on LinkedIn regularly: founders, people building a career, consultants, team leads. If posting feels like a chore you keep putting off, it's for you.</p></details>
+      <details><summary>Who's building it?</summary><p>I'm <a class="link" href="/">Mitul Vaghasiya</a>, a product designer and developer with 7+ years of building apps. I'm building it in public on LinkedIn.</p></details>
+    </section>
+
+    <section class="final wrap">
+      <h2>Want it for your posts?</h2>
+      <p class="muted">Send a short email: what you do, and what makes posting hard for you. I read every one.</p>
+      <a class="btn" href={mailto}>Get early access →</a>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span>© 2026 Mitul Builds</span>
+    <a class="link" href="/">mr0100.github.io</a>
+  </footer>
+</body>
+</html>
+
+<style>
+  .top { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; padding-bottom: 22px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; }
+  .brand b { font-weight: 600; }
+  .mark { width: 30px; height: 30px; border-radius: 8px; background: #11201C; color: #2EE6A8; display: grid; place-items: center; font-weight: 700; font-size: 15px; }
+  .btn.small { height: 38px; padding: 0 16px; font-size: 14px; }
+
+  .hero { padding-top: 56px; text-align: center; }
+  .hero h1 { font-size: clamp(42px, 6.2vw, 80px); max-width: 15ch; margin: 18px auto 0; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .lede { max-width: 620px; margin: 22px auto 0; font-size: 19px; color: var(--ink-2); }
+  .cta { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 30px; }
+  .note { font-size: 14px; color: var(--ink-3); }
+  .muted { color: var(--ink-2); margin: 0; }
+
+  .shot { margin: 56px auto 0; max-width: 1100px; }
+  .shot img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(20, 22, 20, .35); background: #fff; }
+  .shot figcaption { margin-top: 14px; text-align: center; font-size: 14px; color: var(--ink-3); }
+  .hero-shot { margin-top: 64px; }
+
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .steps li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; }
+  .steps h3, .feature h3 { font-family: var(--sans); font-weight: 600; font-size: 19px; letter-spacing: 0; margin: 16px 0 8px; }
+  .steps p, .feature p { margin: 0; color: var(--ink-2); font-size: 16px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .feature h3 { margin-top: 14px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+  .tag.built { background: var(--accent-soft); color: var(--accent); }
+  .tag.planned { background: #f3efe4; color: #8a6a1f; }
+
+  .safe { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; background: var(--accent); color: #eef3ee; border-radius: 28px; padding: 64px 56px; }
+  .safe .eyebrow { color: #a9bcae; }
+  .safe h2 { font-size: clamp(32px, 3.4vw, 46px); margin-top: 14px; color: #fff; }
+  .safe ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; font-size: 17px; color: #d5ded7; }
+  .safe b { color: #fff; font-weight: 600; }
+
+  .faq { max-width: 820px; }
+  details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: '+'; color: var(--ink-3); font-weight: 400; font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: '–'; }
+  summary::-webkit-details-marker { display: none; }
+  details p { margin: 12px 0 0; color: var(--ink-2); }
+
+  .final { text-align: center; padding-top: 40px; padding-bottom: 96px; }
+  .final h2 { font-size: clamp(36px, 4vw, 56px); margin-bottom: 14px; }
+  .final .btn { margin-top: 26px; }
+  .foot { display: flex; justify-content: space-between; padding-top: 28px; padding-bottom: 40px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-3); }
+
+  @media (max-width: 860px) {
+    .steps, .grid { grid-template-columns: 1fr; }
+    .safe { grid-template-columns: 1fr; gap: 28px; padding: 40px 24px; border-radius: 20px; }
+    .hero { padding-top: 24px; }
+    .shot { margin-top: 40px; }
+  }
+</style>
