@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Duolingo: Duolingo&#x27;s best comeback feature lasted one month. A broken streak still has no permanent way back.</title><meta name="description" content="Retention: what happens to learners the streak doesn’t hold?">
+<title>Duolingo: Duolingo proved 15 million lapsed learners want back in. The door was open for one month.</title><meta name="description" content="Retention: what happens to learners the streak doesn’t hold?">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../../design-system/tokens.css"><link rel="stylesheet" href="../../design-system/components.css"></head><body>
 <div class="announce">New case study every two weeks · <a href="#subscribe">Get it by email</a></div>
@@ -13,305 +13,165 @@
 <article class="card">
   <header>
     <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#work">Case studies</a><span>/</span>Duolingo</div>
-    <div class="meta"><b>Independent study</b><span class="dot">·</span>18 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
-    <h1>Duolingo's best comeback feature lasted one month. A broken streak still has no permanent way back.</h1>
+    <div class="meta"><b>Independent study</b><span class="dot">·</span>10 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
+    <h1>Duolingo proved 15 million lapsed learners want back in. The door was open for one month.</h1>
   </header>
   
-<div class="callout"><p><strong>Disclaimer.</strong> This is an independent product-design study by Mitul Vaghasiya. I am not affiliated with Duolingo, and Duolingo has not endorsed this study. I have no access to internal data. Every number links to a public source. Anything I could not verify is marked <span class="tag hypothesis">Hypothesis</span>. Screens are public App Store screenshots and a press image supplied by Duolingo. I keep them here for research only. On the public portfolio page I will re-capture or redraw them.</p></div>
-<p class="lead">When a Duolingo streak breaks, the counter goes back to zero. The ways to undo that (Streak Freeze and Streak Repair) cost gems, and the first lessons back cost energy. In June 2026 Duolingo ran a one-time "Streak Revival" event. 15.4 million learners took it, nearly 8 million of them with no active streak, and Duolingo says these users retained better than a typical re-engaged cohort. That is strong evidence of a large, recoverable group of lapsed learners. My proposal is to turn that one-off campaign into a permanent "earn it back" path that checks skills as well as restoring the number.</p>
-<dl class="facts"><div><dt>App</dt><dd>Duolingo</dd></div><div><dt>Category</dt><dd>Education</dd></div><div><dt>Platform</dt><dd>iOS (Android referenced via press)</dd></div><div><dt>Version / date studied</dt><dd>iOS 7.143.1 (released 9 Oct 2026); study date 10 Oct 2026</dd></div><div><dt>Methods</dt><dd>Shareholder letters and an earnings call, Duolingo's blog, press, coding of 500 App Store reviews, public store screenshots, competitor benchmark</dd></div><div><dt>Role</dt><dd>Independent study by Mitul Vaghasiya</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#why-this-app">Why this app</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#journey-audit-my-streak-broke-to-i-m-back">Journey audit: "my streak broke" to "I'm back"</a></li><li><a href="#insights">Insights</a></li><li><a href="#benchmark-how-others-handle-a-lapse">Benchmark: how others handle a lapse</a></li><li><a href="#options-considered">Options considered</a></li><li><a href="#proposed-solution-earn-it-back">Proposed solution: "Earn it back"</a></li><li><a href="#success-metrics-and-validation-plan">Success metrics and validation plan</a></li><li><a href="#risks-and-open-questions-what-only-the-internal-team-knows">Risks and open questions (what only the internal team knows)</a></li><li><a href="#linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+<div class="callout"><p><strong>Independent study.</strong> Not affiliated with or endorsed by Duolingo. Public sources only, every number linked. The proposal screens are my own concept, built as an unbranded prototype. Anything I couldn't verify is labelled <span class="tag hypothesis">Hypothesis</span>.</p></div>
+<p class="lead">I expected to find that Duolingo's streak puts too much pressure on learners. The evidence said I was wrong. In 127 recent one- and two-star App Store reviews, only 1 said the streak itself was too much pressure. 8 came from people trying to keep a streak, some of them 900 or 1,000 days long, and losing it to bugs, used-up freezes or a lack of gems. The real gap is what happens after a streak breaks. In June 2026 Duolingo let lapsed learners revive their streaks for one month: 15.4 million did, and they retained better than a typical returning group. Then the offer ended. So I designed a permanent "Earn it back" path, built it as a clickable prototype, and wrote the test that would prove or kill it.</p>
+<dl class="facts"><div><dt>App</dt><dd>Duolingo (iOS 7.143.1)</dd></div><div><dt>Type</dt><dd>Independent study</dd></div><div><dt>Platform</dt><dd>iOS, mobile client</dd></div><div><dt>Timeline</dt><dd>Oct 2026, 1 week</dd></div><div><dt>Methods</dt><dd>500 App Store reviews (127 negative coded), shareholder letters, earnings call, 3-app benchmark, prototype</dd></div><div><dt>Status</dt><dd>Prototype built · user test next</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#the-question-i-started-with-was-the-wrong-one">The question I started with was the wrong one</a></li><li><a href="#what-duolingo-already-proved">What Duolingo already proved</a></li><li><a href="#three-insights">Three insights</a></li><li><a href="#how-others-handle-a-lapse">How others handle a lapse</a></li><li><a href="#options-i-considered">Options I considered</a></li><li><a href="#the-design">The design</a></li><li><a href="#how-i-ll-know-if-it-works">How I'll know if it works</a></li><li><a href="#what-i-d-do-differently-and-what-only-duolingo-knows">What I'd do differently, and what only Duolingo knows</a></li></ol></nav>
 
-<h2 id="why-this-app">Why this app</h2>
-<ul>
-<li><strong>Scale.</strong> Q2 2026: <strong>58.7M daily active users</strong> (+23% YoY), <strong>140.6M monthly active users</strong> and <strong>12.7M paid subscribers</strong> (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm">Q2 2026 shareholder letter</a>). Revenue for the quarter was $298.5M (same source).</li>
-<li><strong>Business model.</strong> Freemium. The free tier has ads and an <strong>Energy</strong> limit. Super and Max subscribers get unlimited energy, according to press coverage of the rollout (<a href="https://feedbagel.com/post/duolingo-introduces-energy-feature-to-replace-hearts-for-enhanced-learning">feedbagel summary of the change</a>). The CEO said on the Q2 2026 call that a new "Super Lite" tier gives "twice as much energy" (<a href="https://www.webull.com/news/15392596720296960">Q2 2026 call transcript, Webull</a>).</li>
-<li><strong>The metric that matters: retention, specifically CURR.</strong> Duolingo defines CURR as "the proportion of 'current user DAUs' who come back the next day". It was at "an all-time high of 84%" in Q2 2026, and Duolingo calls it "one of our most important leading indicators" (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm">Q2 2026 letter</a>). Former CPO Jorge Mazal wrote that moving CURR had about <strong>5x</strong> the effect on DAU of the next-best lever (<a href="https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth">Lenny's Newsletter, Feb 2023</a>).</li>
-</ul>
-<p>Duolingo's streak story is well known. Less is written about what happens to the people who fall <strong>out</strong> of the current-user bucket when their streak breaks. Mazal's growth model counts them as "reactivated" (back after 7–29 days away) or "resurrected" (back after 30+ days) (<a href="https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth">same source</a>). This study is about that moment.</p>
-<h2 id="the-problem">The problem</h2>
-<p><strong>Who is affected:</strong> learners who built a habit and then missed a day without a Streak Freeze equipped. Long-streak users are affected most, because they have the most to lose.</p>
-<p><strong>What goes wrong:</strong> the streak resets to zero. Duolingo's own blog says losing a streak can feel "quite demotivating", and that fear of losing one can stop people from starting one (<a href="https://blog.duolingo.com/how-duolingo-streak-builds-habit">Duolingo blog, Jan 2022</a>). Reporting on Duolingo's June 2026 announcement says "losing a streak is also a common reason some users stop returning to the platform" (<a href="https://marketech-apac.com/duolingo-offers-limited-time-chance-to-revive-lost-streaks-in-new-feature-rollout/">Marketech APAC, 3 Jun 2026</a>). Restoring lost streaks was one of the most requested features: "tens of thousands" of requests on social media from 80+ countries in a year (<a href="https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/">Pocketgamer.biz, 2 Jun 2026</a>).</p>
-<p><strong>Academic evidence.</strong> Across seven studies, people were less likely to repeat a behaviour after their logged streak broke, even when their actual past behaviour was the same. The effect was stronger when they blamed themselves and <strong>weaker when they could repair the streak</strong> (<a href="https://academic.oup.com/jcr/article/49/6/1095/6623414">Silverman &amp; Barasch, <em>Journal of Consumer Research</em>, 2023</a>).</p>
-<p><strong>The way back costs money or currency.</strong> Streak Freeze and Streak Repair require gems, "and hence money, if you run out of free gems" (<a href="https://www.androidauthority.com/duolingo-revive-broken-streak-event-3673004/">Android Authority, Jun 2026</a>). The returning session also uses energy, which drains as you do exercises (Fig. 2).</p>
-<p><strong>Duolingo itself has said friction slows growth.</strong> In its Q4 2025 letter, Duolingo said "adding small amounts of friction to encourage more people to subscribe" is "part of the reason our DAU growth has slowed". It decided "to prioritize user growth over monetization" and to reinvest "more than $50M of foregone bookings from friction" into the free experience (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012246/q4fy25duolingo12-31x25shar.htm">Q4 2025 letter</a>). A securities class action filed on 7 Oct 2026 alleges that Energy was designed to create friction for free users. These are <strong>untested allegations</strong> (<a href="https://www.investmentnews.com/regulation-legal-compliance/pension-fund-accuses-duolingo-of-burying-user-growth-crisis/268542">InvestmentNews, 8 Oct 2026</a>).</p>
-<h3>Review mining</h3>
-<p><strong>Sample.</strong> I took the <strong>500 most recent</strong> iOS App Store reviews from Apple's public review feed, across seven English-language storefronts (UK 150, US 100, and 50 each from IE, IN, NZ, SG and ZA). They were posted between <strong>7 Sep and 8 Oct 2026</strong>, mostly on version 7.142.0. Ratings: 262 five-star, 64 four, 47 three, 43 two, 84 one. I read and coded all <strong>127 one- and two-star reviews</strong> by hand. One review can carry several themes. I could not access Reddit or Google Play directly (Reddit blocked automated access), so Reddit sentiment appears here only through press.</p>
+<h2 id="the-question-i-started-with-was-the-wrong-one">The question I started with was the wrong one</h2>
+<p>Duolingo has 58.7 million daily and 140.6 million monthly active users (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm">Q2 2026 shareholder letter</a>). Its engine is retention. The share of current users who come back the next day (Duolingo calls it CURR) hit an all-time high of 84%, and the company calls it "one of our most important leading indicators" (same source). The streak is the most visible part of that engine.</p>
+<p>Streaks are often criticised for creating anxiety, so my starting hypothesis was that the streak pushes people away. Before designing anything, I read what users actually complain about. I took the 500 most recent App Store reviews from seven English-language storefronts (7 Sep – 8 Oct 2026) and coded all 127 one- and two-star reviews by hand.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Theme in 1–2★ reviews (n = 127)</th>
-<th>Count</th>
-<th>Share</th>
+<th>What negative reviews are about (n = 127, one review can have several themes)</th>
+<th>Reviews</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Too much gamification or interruption (chests, events, animations)</td>
+<td>Too much gamification or interruption</td>
 <td>23</td>
-<td>18%</td>
 </tr>
 <tr>
-<td><strong>Energy / daily learning limit</strong></td>
+<td><strong>Energy (the daily learning limit)</strong></td>
 <td><strong>22</strong></td>
-<td><strong>17%</strong></td>
 </tr>
 <tr>
 <td>Pressure to pay, pricing, billing</td>
 <td>21</td>
-<td>17%</td>
 </tr>
 <tr>
-<td>Bugs, crashes, no support response</td>
+<td>Bugs, crashes, no support</td>
 <td>18</td>
-<td>14%</td>
 </tr>
 <tr>
-<td>Teaching quality, answer strictness</td>
+<td>Teaching quality, strict marking</td>
 <td>16</td>
-<td>13%</td>
 </tr>
 <tr>
 <td>Ads</td>
 <td>14</td>
-<td>11%</td>
 </tr>
 <tr>
-<td><strong>Streak loss, freeze or miscount</strong></td>
+<td><strong>Streak loss, freezes or miscounts</strong></td>
 <td><strong>9</strong></td>
-<td><strong>7%</strong></td>
 </tr>
 <tr>
-<td>AI-generated content</td>
-<td>7</td>
-<td>6%</td>
-</tr>
-<tr>
-<td>Course update erased progress</td>
-<td>4</td>
-<td>3%</td>
-</tr>
-</tbody>
-</table></div>
-<p>Across all 500 reviews, 50 (10%) mention energy or "battery". Streak complaints are a small share, but they come from the most loyal users: several cite streaks of 220 to 1,000+ days. Verbatim examples:</p>
-<ul>
-<li>"How are we expected to buy streak freezes??" (1★, IN, 7 Oct 2026, almost 1,000-day streak)</li>
-<li>"I'm at 220 days and am going to lose my streak because it won't let me finish a daily task." (2★, NZ, 16 Sep 2026)</li>
-<li>"Why are we being punished for learning? At least with the hearts you could earn them back." (1★, UK, 3 Oct 2026)</li>
-<li>"you run out of energy after just 1-2 lessons max" (1★, US, 7 Oct 2026)</li>
-</ul>
-<p>Source: <a href="https://apps.apple.com/us/app/duolingo-language-lessons/id570060128">Duolingo on the App Store</a>; feed: <code>itunes.apple.com/{country}/rss/customerreviews/id=570060128/sortby=mostrecent/json</code>.</p>
-<h2 id="journey-audit-my-streak-broke-to-i-m-back">Journey audit: "my streak broke" to "I'm back"</h2>
-<p>I could not record the real streak-break flow on a device, and Mobbin was not available on this account. So this audit combines public screens with documented mechanics. I flag the steps where I have no screen.</p>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-01-duolingo-streak-screen.webp" alt="Fig. 1" decoding="async"></div><figcaption><strong>Fig. 1. The promise.</strong> Duolingo's own store listing sells the streak as a core reason to use the app ("keep your daily streak", 3-day streak, weekly check-ins).
- 
-<em>Source: <a href="https://apps.apple.com/us/app/duolingo-language-lessons/id570060128">Duolingo App Store listing</a>, screenshot 6.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-02-duolingo-energy-per-exercise.webp" alt="Fig. 2" decoding="async"></div><figcaption><strong>Fig. 2. The cost of each exercise.</strong> Store screenshots of four exercises show the energy counter at 25, 24, 23 and 22. Each exercise uses energy, whether or not the answer is right. Duolingo describes Energy as a "learning battery" that "fully recharges in about a day" (<a href="https://blog.duolingo.com/duolingo-energy/">Duolingo blog, Jul 2025</a>).
- 
-<em>Source: <a href="https://apps.apple.com/us/app/duolingo-language-lessons/id570060128">Duolingo App Store listing</a>, screenshots 2, 3, 4 and 7. These are marketing screens, so the exact per-exercise cost may differ in the live app.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-03-duolingo-streak-revival-june-2026.webp" alt="Fig. 3" decoding="async"></div><figcaption><strong>Fig. 3. The one-time way back (June 2026).</strong> "Miss your old streak, Anna? Bring it back. 13 days left" → "Revive my 72 day streak" / "Not now" → a lesson (energy counter visible: 18) → "Your longest streak is back! 3/3". The rules: a lost streak of 30+ days, three lessons in one sitting, only the single longest streak, June only (<a href="https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/">Pocketgamer.biz</a>; <a href="https://www.androidpolice.com/lost-a-big-duolingo-streak-you-can-get-it-back-all-this-month/">Android Police</a>).
- 
-<em>Source: Duolingo-supplied press image, via <a href="https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/">Pocketgamer.biz</a>.</em></figcaption></figure>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>#</th>
-<th>Step</th>
-<th>Issue</th>
-<th>Principle</th>
-<th>Severity (1–4)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
+<td>— saying the streak itself is too much pressure</td>
 <td>1</td>
-<td>Day missed, no freeze equipped</td>
-<td>Freezes must be equipped <strong>in advance</strong> (<a href="https://blog.duolingo.com/how-duolingo-streak-builds-habit">Duolingo blog</a>), so the user is protected only if they planned to fail</td>
-<td>Error prevention (Nielsen #5)</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>2</td>
-<td>Streak shows 0</td>
-<td>Months of effort collapse into one number. Lifetime effort is not the main thing shown. <em>(No screen captured.)</em></td>
-<td>Loss aversion; broken-streak effect (<a href="https://academic.oup.com/jcr/article/49/6/1095/6623414">Silverman &amp; Barasch</a>)</td>
-<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
-</tr>
-<tr>
-<td>3</td>
-<td>Repair offer</td>
-<td>Paid with gems. Reviewers say free gems are scarce. The time window is not publicly documented</td>
-<td>Recovery from errors (Nielsen #9)</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>4</td>
-<td>Freeze consumed or streak miscounted by a bug</td>
-<td>Users lose trust in the counter (3 reviews in the sample)</td>
-<td>Visibility of system status (Nielsen #1)</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>5</td>
-<td>First session back</td>
-<td>Uses energy, and a rusty learner may make more mistakes and use more of it. <span class="tag hypothesis">Hypothesis</span> the comeback session ends early for free users</td>
-<td>Goal-gradient; friction at the moment of highest intent</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>6</td>
-<td>Course changed while away</td>
-<td>"deleted all my progress", "I don't recognize a lot of the lessons" (4 reviews)</td>
-<td>Match between system and real world (Nielsen #2)</td>
-<td><span class="dots s2" title="Severity 2 of 4" aria-label="Severity 2 of 4"><span class="on">●●</span><span class="off">●●</span></span></td>
-</tr>
-<tr>
-<td>7</td>
-<td>Revival event</td>
-<td>Works, but only once, for one month, for 30+ day streaks</td>
-<td>Scarcity used where a habit system is needed</td>
-<td><span class="dots s2" title="Severity 2 of 4" aria-label="Severity 2 of 4"><span class="on">●●</span><span class="off">●●</span></span></td>
 </tr>
 </tbody>
 </table></div>
-<h2 id="insights">Insights</h2>
-<p class="insight"><strong>1. A broken streak is a cliff, not a stumble.</strong>
-<em>Observation:</em> the product is designed around keeping the streak. Losing it is designed as a reset.
-<em>Evidence:</em> Duolingo calls losing a streak "demotivating". Press reports that streak loss is a common reason people stop returning. Peer-reviewed work shows engagement drops after a break unless the streak can be repaired (all cited above).
-<em>Why it matters:</em> the "what-the-hell" pattern. Once a goal feels violated, people stop trying. If the product shows "0", it confirms that the effort is gone.</p>
-<p class="insight"><strong>2. Duolingo has already shown how big the comeback audience is.</strong>
-<em>Evidence:</em> 15.4M learners revived their streaks in June 2026, "including nearly 8 million users who had no active streak". The event was named as one of three drivers of Q2 user growth (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm">Q2 2026 letter</a>). The CEO said these users "are also showing better retention than a typical reengaged cohort" (<a href="https://www.webull.com/news/15392596720296960">Q2 2026 call</a>).
-<em>Why it matters:</em> this is not a niche request. Duolingo itself ran it as a growth lever. It was built as a campaign, though, not as a system, and campaigns end.</p>
-<p class="insight"><strong>3. The way back is paid for in the currencies a lapsed free learner is least likely to have.</strong>
-<em>Evidence:</em> repair and freeze cost gems. The comeback session costs energy. Energy is the most-cited single mechanic in 1–2★ reviews (17%). Duolingo's own Q4 2025 letter links friction to slower DAU growth.
-<em>Why it matters:</em> friction should go where intent is low. A returning user has high intent and little energy, so this is the worst place for friction.</p>
-<p class="insight"><strong>4. Restoring the number is not the same as restoring the skill (Hypothesis).</strong>
-<em>Observation:</em> Revival restored a 72-day streak after three lessons, with no check on what the learner still remembers. Some returning users also find a changed course (4 reviews).
-<em>Why it matters:</em> if the streak no longer reflects learning, it slowly loses meaning ("streak without learning"). The comeback is the cheapest moment to reconnect the number to real progress.</p>
-<h2 id="benchmark-how-others-handle-a-lapse">Benchmark: how others handle a lapse</h2>
-<p>I compared public store screens. I did not test how each app behaves after a real lapse.</p>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-04-speak-welcome-back.webp" alt="Fig. 4" decoding="async"></div><figcaption><strong>Fig. 4. Speak: "Welcome back".</strong> The streak restarts at 1, but <strong>"1123 sentences lifetime"</strong> sits next to it, so lifetime effort stays visible.
- 
-<em>Source: <a href="https://apps.apple.com/us/app/speak-language-learning/id1286609883">Speak App Store listing</a>, screenshot 8.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-05-speak-quick-catch-up.webp" alt="Fig. 5" decoding="async"></div><figcaption><strong>Fig. 5. Speak: "Quick Catch-up".</strong> A nine-question warm-up of earlier material ("Let's do a quick practice as a warm-up!").
- 
-<em>Source: <a href="https://apps.apple.com/us/app/speak-language-learning/id1286609883">Speak App Store listing</a>, screenshot 9.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-06-busuu-weekly-goal.webp" alt="Fig. 6" decoding="async"></div><figcaption><strong>Fig. 6. Busuu: weekly goal.</strong> "50 / 50 minutes this week", with daily ticks underneath. A missed day does not reset the goal.
- 
-<em>Source: <a href="https://apps.apple.com/us/app/busuu-language-learning/id379968583">Busuu App Store listing</a>, screenshot 8.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-07-babbel-chosen-days-reminders.webp" alt="Fig. 7" decoding="async"></div><figcaption><strong>Fig. 7. Babbel: chosen days.</strong> The learner picks which days to study (here Mon, Tue, Thu, Fri), so a rest day is planned rather than a failure.
- 
-<em>Source: <a href="https://apps.apple.com/us/app/babbel-language-learning/id829587759">Babbel App Store listing</a>, screenshot 7.</em></figcaption></figure>
-<p><strong>What I take from these.</strong> Competitors soften the break (weekly goals, chosen days) or soften the reset (lifetime counters, catch-up review). None of them has Duolingo's scale of streak attachment, so copying a weekly goal outright could weaken what works. The lifetime counter and the catch-up review are worth borrowing.</p>
-<h2 id="options-considered">Options considered</h2>
+<p>Streak complaints are a small share, but they're not the complaint I expected. They come from the most loyal users, and they want the streak, not less of it:</p>
+<blockquote>
+<p>"I have an almost 1000 day streak and you have completely stopped giving out gems… How are we expected to buy streak freezes??" (1★, India, 7 Oct 2026)</p>
+<p>"I'm at 220 days and am going to lose my streak because it won't let me finish a daily task." (2★, New Zealand, 16 Sep 2026)</p>
+</blockquote>
+<p>So the question changed from "is the streak too much?" to "what happens to someone the moment it breaks?"</p>
+<h2 id="what-duolingo-already-proved">What Duolingo already proved</h2>
+<p>Duolingo's own blog says losing a streak can feel "quite demotivating" (<a href="https://blog.duolingo.com/how-duolingo-streak-builds-habit">Duolingo blog</a>), and restoring lost streaks had been requested "tens of thousands" of times from 80+ countries (<a href="https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/">Pocketgamer.biz</a>). Peer-reviewed work agrees. Across seven studies, people were less likely to continue after a logged streak broke, and the effect was weaker when they could repair it (<a href="https://academic.oup.com/jcr/article/49/6/1095/6623414">Silverman &amp; Barasch, <em>JCR</em>, 2023</a>).</p>
+<p>In June 2026 Duolingo ran "Streak Revival": learners with a lost streak of 30+ days could bring back their longest one by finishing three lessons in one sitting. <strong>15.4 million learners did it, nearly 8 million of them with no active streak</strong>, and Duolingo named it one of three drivers of Q2 user growth (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm">Q2 2026 letter</a>). The CEO said these users "are also showing better retention than a typical reengaged cohort" (<a href="https://www.webull.com/news/15392596720296960">Q2 2026 call</a>).</p>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/assets/fig-03-duolingo-streak-revival-june-2026.webp" alt="Fig. 1" decoding="async"></div><figcaption><em>Fig. 1. Streak Revival, June 2026: "Revive my 72 day streak", three lessons, then "Your longest streak is back!" It worked, and it was built as a one-month campaign. Source: Duolingo press image via <a href="https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/">Pocketgamer.biz</a>.</em></figcaption></figure>
+<h2 id="three-insights">Three insights</h2>
+<p class="insight"><strong>1. A broken streak is a cliff, not a stumble.</strong> The product is designed around keeping the streak, and losing it is designed as a reset to zero. Once a goal feels broken, people tend to give up on it completely (the "what-the-hell" effect). Showing "0" confirms that the effort is gone.</p>
+<p class="insight"><strong>2. The way back costs the things a lapsed free learner is least likely to have.</strong> Streak Freeze and Streak Repair cost gems, "and hence money, if you run out of free gems" (<a href="https://www.androidauthority.com/duolingo-revive-broken-streak-event-3673004/">Android Authority</a>). Freezes only protect you if you equipped one in advance. Energy is the single most-cited mechanic in the negative reviews (22 of 127), and Duolingo itself told investors that "adding small amounts of friction" was "part of the reason our DAU growth has slowed" (<a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012246/q4fy25duolingo12-31x25shar.htm">Q4 2025 letter</a>). A returning learner has high intent and little currency. That's the worst place for friction.</p>
+<p class="insight"><strong>3. Restoring the number isn't the same as restoring the skill.</strong> <span class="tag hypothesis">Hypothesis</span> Revival gave back a 72-day streak after three lessons with no check on what the learner still remembered, and 4 reviews describe coming back to a course that had changed. If the streak stops reflecting learning, it slowly loses meaning. The comeback is the cheapest moment to reconnect the number to real progress.</p>
+<h2 id="how-others-handle-a-lapse">How others handle a lapse</h2>
+<p>From public store screens (I didn't test each app after a real lapse): <strong>Speak</strong> restarts the streak at 1 but keeps "1123 sentences lifetime" next to it, and offers a nine-question "Quick Catch-up". <strong>Busuu</strong> uses a weekly goal, so a missed day doesn't reset anything. <strong>Babbel</strong> lets you choose your study days, so a rest day is planned, not a failure.</p>
+<p>None of them has Duolingo's level of streak attachment, so copying a weekly goal outright could weaken what works. The lifetime counter and the catch-up review are worth borrowing.</p>
+<h2 id="options-i-considered">Options I considered</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Option</th>
-<th>User value</th>
-<th>Business value</th>
-<th>Effort</th>
-<th>Risk</th>
+<th>For</th>
+<th>Against</th>
+<th>Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>A. Repeat Streak Revival every year</strong></td>
-<td>Medium (only once a year)</td>
-<td>Proven spike in Q2 2026</td>
-<td>Low</td>
-<td>Teaches users to wait for the event; no help the other 11 months</td>
+<td>A. Repeat Streak Revival every year</td>
+<td>Proven; cheap to run again</td>
+<td>Teaches people to wait for the event; no help the other 11 months</td>
+<td>Rejected</td>
 </tr>
 <tr>
-<td><strong>B. Permanent "Earn it back" path</strong>: restore a recently broken streak through a short comeback plan, with an energy-free warm-up</td>
-<td>High</td>
-<td>Recovers re-engagement continuously</td>
-<td>Medium</td>
-<td>May weaken the urgency of daily practice; may cut gem-based repair revenue</td>
+<td>B. Permanent "Earn it back" path</td>
+<td>Recovers lapsed learners all year; ties the number back to learning</td>
+<td>Might weaken the urgency of daily practice; might cut gem revenue from repairs</td>
+<td><strong>Chosen, and test the urgency risk</strong></td>
 </tr>
 <tr>
-<td><strong>C. Replace the daily streak with a weekly goal</strong> (Busuu-style)</td>
-<td>Medium</td>
-<td>Unknown; touches the 84% CURR engine</td>
-<td>High</td>
-<td>Very high: risks the mechanic behind CURR</td>
+<td>C. Replace the daily streak with a weekly goal</td>
+<td>Kinder to busy weeks</td>
+<td>Touches the engine behind 84% CURR; very high risk</td>
+<td>Rejected</td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Chosen: B.</strong> It keeps the daily streak as it is, so CURR is protected. It turns a one-month spike into an always-on system, and it puts friction after the comeback rather than in front of it. The urgency risk is real, so the plan "earns" the streak back over several days rather than offering a free button, and the experiment measures the effect on people whose streaks are still intact (section 8).</p>
-<p><strong>Deliberately not building:</strong> a one-tap "pay to restore" button with no learning attached. It would make money in the short term, but it would turn the streak into a purchase and confirm the "greedy" theme that already shows up in 17% of negative reviews.</p>
-<h2 id="proposed-solution-earn-it-back">Proposed solution: "Earn it back"</h2>
-<p>Wireframe-level, screen by screen:</p>
-<ol>
-<li><strong>Break moment (next open).</strong> Headline: "Your 214-day streak is paused, not gone." Under it: lifetime stats (days learned, words practised), in the style of Speak's lifetime counter. Primary button: "Earn it back in 3 days". Secondary: "Start fresh". It is visible to anyone whose streak of 7+ days broke within the last 14 days (thresholds to be tested).</li>
-<li><strong>Comeback plan card on Home.</strong> Three checkpoints, to be completed within 7 days. The streak flame shows as greyed "paused 214" rather than "0".</li>
-<li><strong>Day 1 warm-up (energy-free).</strong> A 3–5 minute review built from the learner's own weakest items before the break, in the style of Speak's Quick Catch-up. Mistakes are labelled "rusty", not "wrong". Duolingo already turns energy off during free trials (<a href="https://www.webull.com/news/15392596720296960">Q2 2026 call</a>), so the mechanism exists.</li>
-<li><strong>Days 2–3: normal lessons.</strong> Normal energy rules apply, which protects the business model.</li>
-<li><strong>Restored.</strong> "214 days, back on track." In the streak calendar, the paused days show as a distinct "restored" mark, so the count stays honest. Then a prompt to equip a Streak Freeze, which moves protection to the moment users are most motivated to buy it.</li>
-<li><strong>Long-lapse variant (30+ days away).</strong> First, "What's changed since you left": a course-update summary plus a short placement check. This addresses the "deleted my progress" complaints.</li>
-</ol>
-<h3>Build note (mobile developer's view)</h3>
+<p><strong>What I'd deliberately not build:</strong> a one-tap "pay to restore" button with no learning attached. It would make money in the short term, but it would turn the streak into a purchase, and pressure to pay is already in 21 of the 127 negative reviews.</p>
+<h2 id="the-design">The design</h2>
+<p>I built the proposal as a working, unbranded prototype (a generic language app, not Duolingo's UI), so it can be tested with real people. It has two variants: <strong>A</strong> is a simplified version of today's pattern (streak back to zero, repair with gems), <strong>B</strong> is the proposal.</p>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/b1-paused-not-gone.png" alt="Fig. 2" decoding="async"></div><figcaption><em>Fig. 2. </em><em>Paused, not gone.</em><em> On the next open: "Your 214-day streak is paused." Lifetime effort sits underneath (days learned, words practised), as Speak does. Two equal choices: earn it back in 3 days, or start fresh.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/b2-home-plan.png" alt="Fig. 3" decoding="async"></div><figcaption><em>Fig. 3. </em><em>The plan lives on Home.</em><em> The flame shows a grey "214 paused", not 0. Three checkpoints, to finish within 7 days. Nothing is hidden in a menu.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/b3-warmup-rusty.png" alt="Fig. 4" decoding="async"></div><figcaption><em>Fig. 4. </em><em>Day 1 is an energy-free warm-up</em><em> built from words the learner was weakest on before the break. A miss is labelled "rusty", not "wrong", and shows the answer. Duolingo already switches energy off during free trials (<a href="https://www.webull.com/news/15392596720296960">Q2 2026 call</a>), so the mechanism exists.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/b5-plan-day3.png" alt="Fig. 5" decoding="async"></div><figcaption><em>Fig. 5. </em><em>Days 2 and 3 are normal lessons</em><em> with normal energy rules, which protects the business model. The plan card tracks progress and the deadline.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/b6-restored.png" alt="Fig. 6" decoding="async"></div><figcaption><em>Fig. 6. </em><em>Restored, and honest about it.</em><em> "218 days, back on track": 214 days before the break, the missed day, and 3 comeback days. The paused days show as a distinct mark in the calendar, so a restored streak is never passed off as an unbroken one. Then, and only then, the app offers a Streak Freeze, at the moment the learner is most motivated to protect it.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/02-duolingo/design/a1-streak-zero.png" alt="Fig. 7" decoding="async"></div><figcaption><em>Fig. 7. </em><em>Variant A, for comparison.</em><em> My simplified version of today's pattern: the streak shows 0 and the way back costs gems the learner doesn't have. The gem numbers are placeholders (I couldn't verify Duolingo's real repair price or window). This is a test control, not a screenshot of Duolingo.</em></figcaption></figure>
+<h3>How I'd build it (developer's view)</h3>
 <ul>
-<li><strong>Treat the streak as a server-side state machine:</strong> <code>active → at_risk → paused_recoverable → restored | expired</code>. Compute day boundaries <strong>on the server</strong>, in the learner's own time zone, and make the calculation idempotent. Several reviews describe freezes used "without need" and widgets showing 26 while the app shows 27. Adding new states on top of a counter that users already doubt would make that worse, so fix consistency first.</li>
-<li><strong>Offline and sync.</strong> Lessons finished offline must count toward the comeback checkpoints. Queue the completion events with timestamps, and let the server decide which streak day they belong to.</li>
-<li><strong>Widgets and notifications.</strong> The iOS widget (WidgetKit) and Android widget need to read the new paused state from the same source of truth. Local reminder scheduling has to know about the 7-day plan window.</li>
-<li><strong>Energy exemption.</strong> Pass a session-level flag (<code>energy_exempt: comeback_warmup</code>) from the server rather than adding a client-side rule, so the exemption can be tuned remotely and cannot be exploited by editing the client.</li>
-<li><strong>What to ship first.</strong> Server eligibility, the break screen, the Home card and the energy-free warm-up, all behind a remote-config flag. The "What's changed" screen and placement check come second; they depend on course-diff data I cannot see from outside.</li>
-<li><strong>Effort (Hypothesis, from my experience with Flutter apps of similar complexity):</strong> for an existing team, about 2–3 sprints for phase 1. Most of the work is backend state and analytics, not UI.</li>
+<li><strong>The streak becomes a server-side state machine:</strong> <code>active → at_risk → paused_recoverable → restored | expired</code>. Day boundaries are computed on the server in the learner's time zone, and the calculation is idempotent. Reviewers already doubt the counter ("using up streak freezes without need"), so consistency gets fixed first, before any new state is added.</li>
+<li><strong>Offline lessons count.</strong> Completions are queued with timestamps and the server decides which day they belong to. Widgets and reminders read the paused state from the same source.</li>
+<li><strong>The energy exemption is a server flag</strong> on the session (<code>energy_exempt: comeback_warmup</code>), so it can be tuned remotely and can't be unlocked by editing the client.</li>
+<li><strong>Ship order:</strong> eligibility, break screen, Home card and warm-up first, behind a remote-config flag. A "What's changed since you left" screen for 30+ day lapses comes second, because it needs course-change data I can't see from outside. My estimate: 2–3 sprints for phase 1, most of it backend state and analytics.</li>
 </ul>
-<h2 id="success-metrics-and-validation-plan">Success metrics and validation plan</h2>
+<h2 id="how-i-ll-know-if-it-works">How I'll know if it works</h2>
+<p><strong>User test (next step).</strong> Five people who've used Duolingo for 3+ months and had a 30+ day streak break in the last 6 months, at least two of whom didn't come back. Each goes through the break on variant A and variant B, in alternating order. I log taps and timing in the prototype and ask: what does the screen mean, how fair it felt (1–5), and is a restored streak fair to a friend who never broke theirs? The full script and results sheet are in <a href="https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/02-duolingo/test-kit.md"><code>test-kit.md</code></a>.</p>
+<p><strong>Pass signal:</strong> at least 4 of 5 understand "paused" and can describe the 3-day plan without help, and the warm-up feels like a refresher, not a punishment. <strong>What would change my mind:</strong> 3 or more say a restored streak "doesn't count", or say they'd practise less because a safety net exists.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Variant A</th>
+<th>Variant B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Understood what happened to the streak</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>Fairness of the way back (avg, 1–5)</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>"Would come back tomorrow"</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>Chose earn back / repair / start fresh / left</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>In production</strong>, the primary metric would be the share of learners active on day 28 after a 7+ day streak breaks. The guardrail matters as much: streak-keeping and CURR among learners who <strong>never</strong> broke their streak, so the safety net doesn't reduce daily practice. Plus Streak Freeze use, gem spend and subscription conversion. I'd randomise at the moment of the break, roll out 1% → 5% → 25%, and keep a long-running holdout so any loss of urgency shows up over 8+ weeks.</p>
+<h2 id="what-i-d-do-differently-and-what-only-duolingo-knows">What I'd do differently, and what only Duolingo knows</h2>
 <ul>
-<li><strong>Primary metric:</strong> among users whose 7+ day streak breaks, the share active on <strong>day 28 after the break</strong>. In Duolingo's terms, this is better RURR/SURR and fewer users drifting to dormant.</li>
-<li><strong>Guardrails:</strong> CURR and streak-maintenance rate among users who <strong>never</strong> broke their streak (so the safety net does not reduce daily practice); Streak Freeze equips and gem spend; subscription conversion; mentions of "streak" and "energy" in 1–2★ reviews; recall accuracy in the warm-up.</li>
-<li><strong>Experiment design:</strong> a user-level A/B test, randomised at the moment of the break (control sees today's experience), staged at 1% → 5% → 25%. Because the guardrail is about behaviour <strong>before</strong> a break, keep a long-running holdout of users who never see the feature, so any loss of urgency shows up over 8+ weeks.</li>
-<li><strong>Decision rule (proposed):</strong> ship if day-28 retention after a break rises and CURR in the holdout comparison is flat within a pre-set margin.</li>
+<li>I started with a popular opinion ("streaks cause anxiety") instead of the reviews. Counting 127 complaints took an afternoon and turned the project around. Reading the evidence comes first next time.</li>
+<li>My sample is a one-month snapshot coded by one person, and store screenshots never show a broken streak. The next pass needs a real capture of the break flow on a device.</li>
+<li>Open questions only the team can answer: what share of lost daily users follow a streak break; whether the Revival group's better retention lasts past 60–90 days; how much revenue comes from Streak Repair and how much "Earn it back" would cannibalise; and how Revival handled people who already had an active streak (public reports disagree).</li>
 </ul>
-<h3>5-user test script (45 minutes, remote)</h3>
-<p><strong>Screener:</strong> has used Duolingo for 3+ months; had a streak of 30+ days that broke in the last 6 months; mix of free and Super users; at least 2 who did not come back.</p>
-<ol>
-<li><strong>Warm-up (5 min).</strong> "Tell me about the last time your streak broke. What happened that day? What did you do the next day?"</li>
-<li><strong>Feelings (5 min).</strong> "What did the zero mean to you?" Listen for self-blame, relief, or "what's the point".</li>
-<li><strong>Task 1 (8 min).</strong> Show the break-screen prototype. "What would you tap? Why?" Success: they understand "paused" without help.</li>
-<li><strong>Task 2 (8 min).</strong> "Use the Home screen to see how to get your streak back." Success: they can state the 3 steps and the 7-day window.</li>
-<li><strong>Task 3 (8 min).</strong> Run the warm-up with 5 real items. Ask: "Did this feel like punishment or a refresher?"</li>
-<li><strong>Fairness probe (5 min).</strong> "A friend kept their streak without breaking it. Is the restored number fair to them?" Listen for whether the "restored" mark is enough.</li>
-<li><strong>Close (6 min).</strong> "If this had existed when your streak broke, what would you have done?" Ask them to rank: free restore / earn it back / pay gems / start fresh.</li>
-</ol>
-<p><strong>What would change my mind:</strong> 3 or more of 5 say a restored streak "doesn't count", or say they would skip practice because a safety net exists.</p>
-<h2 id="risks-and-open-questions-what-only-the-internal-team-knows">Risks and open questions (what only the internal team knows)</h2>
-<ul>
-<li>What share of lost DAUs actually follow a streak break, compared with other causes?</li>
-<li>Does the Revival cohort's better retention last past 60 or 90 days, or was it a novelty effect?</li>
-<li>How much revenue comes from gem-based Streak Repair, and how much would "Earn it back" cannibalise it?</li>
-<li>Public reports disagree on the Revival rules: some say users needed <strong>no</strong> active streak (<a href="https://www.androidpolice.com/lost-a-big-duolingo-streak-you-can-get-it-back-all-this-month/">Android Police</a>), but the letter's "nearly 8 million… had no active streak" implies others did. How were existing streaks handled?</li>
-<li>Is there already a repair window or an "earn back" test running that public sources do not show?</li>
-</ul>
-<h2 id="linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</h2>
-<ol>
-<li><strong>Tension + Proof + Open loop:</strong> "Duolingo gave 15.4 million people their lost streak back. Then the offer expired after 30 days." <em>Visual:</em> the Revival screen (Fig. 3) with a red circle on "13 days left".</li>
-<li><strong>Sides + Tension:</strong> "Streak apps are designed for the day you keep going. Almost none are designed for the day you stop." <em>Visual:</em> split screen with ❌ "0" next to ✓ "Paused 214 · 1,123 lessons lifetime".</li>
-<li><strong>Proof + Open loop:</strong> "Duolingo told investors that friction slowed its growth. I found the moment where friction hurts most." <em>Visual:</em> the energy counter at 25→24→23→22 (Fig. 2), with a lime arrow pointing to an energy-free comeback screen.</li>
-</ol>
-<h2 id="sources">Sources</h2>
-<ul>
-<li>Duolingo Q2 2026 shareholder letter: https://www.sec.gov/Archives/edgar/data/1562088/000162828026053299/q2fy26duolingo6-30x26share.htm</li>
-<li>Duolingo Q1 2026 shareholder letter: https://www.sec.gov/Archives/edgar/data/1562088/000162828026029790/q1fy26duolingo3-31x26share.htm</li>
-<li>Duolingo Q4 2025 shareholder letter: https://www.sec.gov/Archives/edgar/data/1562088/000162828026012246/q4fy25duolingo12-31x25shar.htm</li>
-<li>Q2 2026 earnings call transcript (Webull): https://www.webull.com/news/15392596720296960</li>
-<li>Jorge Mazal, "How Duolingo reignited user growth", Lenny's Newsletter, Feb 2023: https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth</li>
-<li>Duolingo blog, "The habit-building research behind your Duolingo streak", Jan 2022: https://blog.duolingo.com/how-duolingo-streak-builds-habit</li>
-<li>Duolingo blog, Energy, Jul 2025: https://blog.duolingo.com/duolingo-energy/</li>
-<li>Pocketgamer.biz, Streak Revival, 2 Jun 2026: https://www.pocketgamer.biz/duolingo-is-restoring-lost-streaks-for-a-limited-time-aiming-to-recover-lapsed-users/</li>
-<li>Marketech APAC, 3 Jun 2026: https://marketech-apac.com/duolingo-offers-limited-time-chance-to-revive-lost-streaks-in-new-feature-rollout/</li>
-<li>Android Police, 1 Jun 2026: https://www.androidpolice.com/lost-a-big-duolingo-streak-you-can-get-it-back-all-this-month/</li>
-<li>Android Authority, Jun 2026 (gems for repair): https://www.androidauthority.com/duolingo-revive-broken-streak-event-3673004/</li>
-<li>ContentGrip, 4 Jun 2026: https://www.contentgrip.com/duolingo-streak-revival-campaign/</li>
-<li>Feedbagel, Energy replaces hearts: https://feedbagel.com/post/duolingo-introduces-energy-feature-to-replace-hearts-for-enhanced-learning</li>
-<li>InvestmentNews, class action (allegations), 8 Oct 2026: https://www.investmentnews.com/regulation-legal-compliance/pension-fund-accuses-duolingo-of-burying-user-growth-crisis/268542</li>
-<li>Silverman &amp; Barasch (2023), "On or Off Track: How (Broken) Streaks Affect Consumer Decisions", <em>JCR</em>: https://academic.oup.com/jcr/article/49/6/1095/6623414</li>
-<li>Sharif &amp; Shu, emergency reserves and persistence after failure: https://anderson-review.ucla.edu/emergency-reserves/</li>
-<li>App Store listings: Duolingo https://apps.apple.com/us/app/duolingo-language-lessons/id570060128 · Speak https://apps.apple.com/us/app/speak-language-learning/id1286609883 · Busuu https://apps.apple.com/us/app/busuu-language-learning/id379968583 · Babbel https://apps.apple.com/us/app/babbel-language-learning/id829587759</li>
-<li>App Store review feed (sample of 500, 7 Sep–8 Oct 2026): https://itunes.apple.com/gb/rss/customerreviews/id=570060128/sortby=mostrecent/json (plus us, ie, in, nz, sg, za)</li>
-</ul>
+<p>The full research report, with every source, is in <a href="https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/02-duolingo/report.md"><code>report.md</code></a>.</p>
   <div class="pager"><a href="chatgpt.html"><span class="dir">‹ Previous case study</span><span class="t">ChatGPT</span></a><a class="next" href="myfitnesspal.html"><span class="dir">Next case study ›</span><span class="t">MyFitnessPal</span></a></div>
 </article>
 <aside class="sidebar">
