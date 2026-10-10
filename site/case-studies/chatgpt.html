@@ -13,365 +13,156 @@
 <article class="card">
   <header>
     <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#work">Case studies</a><span>/</span>ChatGPT</div>
-    <div class="meta"><b>Independent study</b><span class="dot">·</span>18 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
+    <div class="meta"><b>Independent study</b><span class="dot">·</span>7 min read<span class="dot">·</span>By Mitul Vaghasiya</div>
     <h1>ChatGPT shows free users its best features, then hides the meter</h1>
   </header>
   
-<div class="callout"><p><strong>Disclaimer.</strong> This is an independent study by Mitul Vaghasiya. It is not affiliated with, endorsed by, or based on any internal data from OpenAI. It uses only public sources, linked inline. Where I give my own judgement, I write "I". Anything I could not verify is labelled <span class="tag hypothesis">Hypothesis</span>.</p></div>
-<p class="lead">I started out to study discoverability: how much ChatGPT's empty text box hides. The public evidence pointed somewhere else. In a sample of 176 recent 1–3★ App Store reviews, only 1 complained about not finding a feature. 54 complained about usage limits and upgrade prompts, and 21 of those were about photos and images, the same features the App Store page uses to sell the app. People find the features. The trouble starts when they hit a limit they couldn't see coming, in the middle of a task. I suggest a visible allowance and a gentler landing at the limit, and I set out how to test that with five users and a staged rollout.</p>
-<dl class="facts"><div><dt>App</dt><dd>ChatGPT (OpenAI)</dd></div><div><dt>Category</dt><dd>AI assistant</dd></div><div><dt>Platform</dt><dd>iOS (Android noted)</dd></div><div><dt>Version / date studied</dt><dd>iOS 1.2026.272, released 6 Oct 2026 (<a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store</a>); studied 10 Oct 2026</dd></div><div><dt>Methods</dt><dd>Desk research, review mining (n = 1,000; 176 coded), App Store screenshot audit, competitor benchmark</dd></div><div><dt>Role</dt><dd>Independent study by Mitul Vaghasiya</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#why-this-app">Why this app</a></li><li><a href="#the-problem">The problem</a></li><li><a href="#journey-audit-from-install-to-the-first-limit">Journey audit: from install to the first limit</a></li><li><a href="#insights">Insights</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#options-considered">Options considered</a></li><li><a href="#proposed-solution-wireframe-level">Proposed solution (wireframe level)</a></li><li><a href="#success-metrics-and-validation-plan">Success metrics and validation plan</a></li><li><a href="#risks-and-open-questions-only-openai-would-know">Risks and open questions (only OpenAI would know)</a></li><li><a href="#linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+<div class="callout"><p><strong>Independent study.</strong> Not affiliated with or endorsed by OpenAI. Public sources only, every number linked. The proposal screens are my own concept, built as an unbranded prototype. Anything I couldn't verify is labelled <span class="tag hypothesis">Hypothesis</span>.</p></div>
+<p class="lead">I set out to fix ChatGPT's blank-box problem: a single text field hiding voice, camera and image tools. The evidence said I was wrong. In 147 recent negative App Store reviews with a usable complaint, 1 was about finding a feature. 54 were about usage limits, and 21 of those were about the photo and image features the App Store page leads with. People find the features. They leave when a limit they couldn't see stops them mid-task. So I designed a visible allowance and a softer landing at the limit, built it as a clickable prototype, and wrote the test that would prove or kill it.</p>
+<dl class="facts"><div><dt>App</dt><dd>ChatGPT (iOS 1.2026.272)</dd></div><div><dt>Type</dt><dd>Independent study</dd></div><div><dt>Platform</dt><dd>iOS, mobile client</dd></div><div><dt>Timeline</dt><dd>Oct 2026, 1 week</dd></div><div><dt>Methods</dt><dd>1,000 App Store reviews (176 negative coded), store screens, 3-app benchmark, prototype</dd></div><div><dt>Status</dt><dd>Prototype built · user test next</dd></div></dl><nav class="toc" aria-label="In this case study"><div class="eyebrow">In this case study</div><ol><li><a href="#the-question-i-started-with-was-the-wrong-one">The question I started with was the wrong one</a></li><li><a href="#what-changed-in-august">What changed in August</a></li><li><a href="#three-insights">Three insights</a></li><li><a href="#options-i-considered">Options I considered</a></li><li><a href="#the-design">The design</a></li><li><a href="#how-i-ll-know-if-it-works">How I'll know if it works</a></li><li><a href="#what-i-d-do-differently-and-what-only-openai-knows">What I'd do differently, and what only OpenAI knows</a></li></ol></nav>
 
-<h2 id="why-this-app">Why this app</h2>
-<ul>
-<li><strong>Scale.</strong> OpenAI reported <strong>900 million weekly active users</strong> and <strong>50 million paying subscribers</strong> in February 2026 (<a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/">TechCrunch, 27 Feb 2026</a>; <a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI</a>). Sensor Tower says ChatGPT became "the fastest app to reach 1 billion global downloads across iOS and Google Play" in July 2025 (<a href="https://sensortower.com/blog/state-of-ai-apps-report-2025">Sensor Tower, Jul 2025</a>). Google Play shows 1B+ downloads (<a href="https://play.google.com/store/apps/details?id=com.openai.chatgpt">Google Play</a>, checked 10 Oct 2026). The US iOS listing has a 4.83 average from about 11.1 million ratings (<a href="https://itunes.apple.com/lookup?id=6448311069&amp;country=us">iTunes lookup API</a>, 10 Oct 2026).</li>
-<li><strong>Business model.</strong> Freemium plus ads. Paid tiers are Go, Plus and Pro. In the US, Go costs $8 a month, Plus $20 and Pro $200 (<a href="https://openai.com/blog/introducing-chatgpt-go">OpenAI, Introducing ChatGPT Go</a>; <a href="https://techcrunch.com/2025/10/09/openais-affordable-chatgpt-go-plan-expands-to-16-new-countries-in-asia">TechCrunch</a>). Since 9 Feb 2026, US users on Free and Go see ads (<a href="https://www.macrumors.com/2026/02/09/chatgpt-now-has-ads/">MacRumors, 9 Feb 2026</a>). Appfigures estimates mobile consumer spending at $2.48B in 2025, up from $487M in 2024 (<a href="https://techcrunch.com/2025/12/18/chatgpts-mobile-app-hits-new-milestone-of-3b-in-consumer-spending/">TechCrunch, 18 Dec 2025</a>).</li>
-<li><strong>Retention is already strong.</strong> Sensor Tower data, as reported by Apoorv Agrawal, puts ChatGPT's week-4 retention at about 66%, against 44% for Gemini and 41% for Claude, and DAU:MAU at 45% (<a href="https://tailwinds.substack.com/p/the-state-of-consumer-ai-part-2-engagement">Tailwinds, 10 Mar 2026</a>).</li>
-<li><strong>The metric that matters here is conversion without losing trust.</strong> On 6 Aug 2026 OpenAI made text chat unlimited for Free users and said limits still apply to file uploads, images and other tools (<a href="https://tech.yahoo.com/ai/chatgpt/article/chatgpt-free-users-now-get-unlimited-text-chats-200114299.html">Yahoo Tech, 6 Aug 2026</a>; <a href="https://www.pymnts.com/news/artificial-intelligence/2026/openai-drops-chatgpt-limits-for-free-users-and-upgrades-paid-tiers/">PYMNTS</a>). So the tools now separate Free from paid, and the moment a Free user hits a tool limit is where the upgrade case is made or lost. Free users also earn ad revenue now, so a frustrated free user costs money even if they never upgrade.</li>
-</ul>
-<h2 id="the-problem">The problem</h2>
-<p><strong>Who is affected:</strong> Free (and Go) users on mobile who use the camera, photo upload or image creation. Those are the features that make the app feel worth installing.</p>
-<p><strong>What goes wrong:</strong> Text is unlimited, but tools are metered. In my reading of the sources, the app tells users about a tool limit when they hit it, not before. One third-party guide, checked against OpenAI's help pages, says ChatGPT "does not currently show how much of your rolling upload-rate quota has been used or how much remains" (<a href="https://www.izzedo.chat/blog/chatgpt-limits">izzedo, updated 1 Oct 2026</a>; same wording in <a href="https://yingtu.ai/en/blog/chatgpt-file-upload-limits-free-plus-pro">yingtu.ai, updated 30 Sep 2026</a>). OpenAI publishes no fixed daily image number for Free, and limits "may vary based on system conditions" (same sources). I could not open OpenAI's help centre directly (HTTP 403), so this point rests on secondary sources.</p>
-<h3>Review mining</h3>
-<ul>
-<li><strong>Sample.</strong> The 1,000 most recent App Store reviews from the public RSS feed across five English-language storefronts: US, UK, India, Canada and Australia (<a href="https://itunes.apple.com/rss/customerreviews/page=1/id=6448311069/sortby=mostrecent/json?cc=us">feed example</a>). They are dated 19 Sep to 8 Oct 2026. 176 are 1–3★, and I coded 147 of those as having a usable complaint. The other 29 were off-topic (environment protests, abuse, gibberish) or too short to code.</li>
-<li><strong>Method.</strong> I tagged each review manually. A review can have more than one tag. The feed returns only the most recent reviews, so this is a snapshot, not a representative sample of all users.</li>
-</ul>
+<h2 id="the-question-i-started-with-was-the-wrong-one">The question I started with was the wrong one</h2>
+<p>ChatGPT was the fastest app ever to reach a billion downloads (<a href="https://sensortower.com/blog/state-of-ai-apps-report-2025">Sensor Tower</a>) and has 900 million weekly users and 50 million paying subscribers (<a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/">TechCrunch, Feb 2026</a>). Its own head of product has said the app lacks "affordances", like "an appliance that nobody quite knew everything you could do with it" (<a href="https://techcrunch.com/2025/10/08/openais-nick-turley-on-transforming-chatgpt-into-an-operating-system/">TechCrunch, Oct 2025</a>). So my starting hypothesis was discoverability: new users don't know about voice, camera or image creation.</p>
+<p>Before designing anything, I read what users actually complain about. I pulled the 1,000 most recent App Store reviews from five English-language storefronts (19 Sep – 8 Oct 2026) and coded the 147 negative ones that had a usable complaint.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Theme (1–3★, n = 147 with a usable complaint)</th>
+<th>What negative reviews are about (n = 147)</th>
 <th>Reviews</th>
-<th>Share</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Wrong answers, ignores instructions, poor edits</td>
+<td>Wrong answers, ignored instructions</td>
 <td>64</td>
-<td>44%</td>
 </tr>
 <tr>
-<td><strong>Usage limits, upgrade prompts, pricing</strong></td>
+<td><strong>Usage limits and upgrade prompts</strong></td>
 <td><strong>54</strong></td>
-<td><strong>37%</strong></td>
 </tr>
 <tr>
-<td>— of which about photos, images or the camera</td>
+<td>— about photos, images or the camera</td>
 <td>21</td>
-<td></td>
-</tr>
-<tr>
-<td>— of which mention waiting or reset times</td>
-<td>20</td>
-<td></td>
-</tr>
-<tr>
-<td>— of which mention upgrade or pay prompts</td>
-<td>22</td>
-<td></td>
 </tr>
 <tr>
 <td>Bugs, speed, UI changes</td>
 <td>21</td>
-<td>14%</td>
 </tr>
 <tr>
-<td>Content refusals (mostly image requests)</td>
+<td>Content refusals</td>
 <td>12</td>
-<td>8%</td>
 </tr>
 <tr>
-<td>Memory or context loss across chats</td>
-<td>10</td>
-<td>7%</td>
-</tr>
-<tr>
-<td>Account, support, privacy, wellbeing</td>
-<td>7</td>
-<td>5%</td>
-</tr>
-<tr>
-<td>Ads</td>
-<td>2</td>
-<td>1%</td>
-</tr>
-<tr>
-<td><strong>Can't find a feature / confusing navigation</strong></td>
+<td><strong>Can't find a feature</strong></td>
 <td><strong>1</strong></td>
-<td><strong>&lt;1%</strong></td>
 </tr>
 </tbody>
 </table></div>
-<p>Accuracy is the biggest theme, but it is mostly a model-quality problem, not something a product designer fixes in the mobile client. Limits are a product and UX decision. Limits also come up among happy users: 15 of the 824 reviews rated 4–5★ mention them.</p>
-<p>Representative quotes (verbatim, App Store, via the feed above):</p>
-<ul>
-<li>"Why the hell does my free plan say I get 'unlimited chats' but I got limited until 1:42AM at midnight?" (AU, 2★, 28 Sep 2026)</li>
-<li>"I only uploaded one photo and asked a few questions, but I was quickly restricted and prompted to upgrade to Plus." (UK, 1★, 5 Oct 2026)</li>
-<li>"my photo options were used up and I think that's unfair because I never actually received the photo." (UK, 1★, 7 Oct 2026)</li>
-<li>"it is always saying after 2 to 3 chats that upgrade, upgrade, upgrade" (India, 3★, 7 Oct 2026)</li>
-</ul>
-<p><strong>Company view.</strong> ChatGPT's head, Nick Turley, has said the product is "really powerful, but it's lacking something very important, which is affordances," and compared it to "this appliance that nobody quite knew everything you could do with it" (<a href="https://techcrunch.com/2025/10/08/openais-nick-turley-on-transforming-chatgpt-into-an-operating-system/">TechCrunch, 8 Oct 2025</a>). My original angle was right that there is a gap in affordances. The reviews suggest the gap that hurts most is this: users can't see how much of a feature they have left.</p>
-<h2 id="journey-audit-from-install-to-the-first-limit">Journey audit: from install to the first limit</h2>
-<p><strong>A note on the screens.</strong> I planned to use Mobbin captures, but Mobbin's API needed a paid plan this session. So the figures below are OpenAI's and competitors' public App Store screenshots, downloaded on 10 Oct 2026. They are marketing composites, not raw captures, and they never show the limit state. Before this goes public, the real flow will be re-captured on a fresh Free account, including the limit screen.</p>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-01-chatgpt-image-create.webp" alt="Fig. 1" decoding="async"></div><figcaption><em>Fig. 1. "Create new worlds". Image creation is the first App Store screenshot. The composer reads "+ Ask ChatGPT" with a mic and a voice button. Source: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store, ChatGPT</a>, v1.2026.272.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-02-chatgpt-voice.webp" alt="Fig. 2" decoding="async"></div><figcaption><em>Fig. 2. "Talk it out anytime". Voice mode. Source: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store, ChatGPT</a>.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-03-chatgpt-photo-edit.webp" alt="Fig. 3" decoding="async"></div><figcaption><em>Fig. 3. "Edit your look". Uploading a selfie for a professional headshot. Source: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store, ChatGPT</a>.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-04-chatgpt-camera-translate.webp" alt="Fig. 4" decoding="async"></div><figcaption><em>Fig. 4. "Translate the world around you". Camera input on a menu. Source: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store, ChatGPT</a>.</em></figcaption></figure>
-<p>What I see: three of the eight App Store screenshots (Figs. 1, 3, 4) sell photo, camera or image features. Those are the features a Free user is most likely to hit a limit on. The store page makes a promise, and the limit breaks it.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>#</th>
-<th>Step</th>
-<th>Issue</th>
-<th>Heuristic / principle</th>
-<th>Severity (1–4)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Store page</td>
-<td>Leads with image and camera features but doesn't say they are capped on Free</td>
-<td>Match between expectation and system (Nielsen #2)</td>
-<td><span class="dots s2" title="Severity 2 of 4" aria-label="Severity 2 of 4"><span class="on">●●</span><span class="off">●●</span></span></td>
-</tr>
-<tr>
-<td>2</td>
-<td>First open, empty composer</td>
-<td>Tools sit behind "+"; nothing hints at what you can do or how much (Fig. 1)</td>
-<td>Recognition over recall (Nielsen #6); Turley's "affordances"</td>
-<td><span class="dots s2" title="Severity 2 of 4" aria-label="Severity 2 of 4"><span class="on">●●</span><span class="off">●●</span></span></td>
-</tr>
-<tr>
-<td>3</td>
-<td>First photo or image use</td>
-<td>Works, so this is the peak moment of value</td>
-<td>Aha moment</td>
-<td>—</td>
-</tr>
-<tr>
-<td>4</td>
-<td>2nd or 3rd tool use</td>
-<td>No visible allowance; users can't plan their uses (secondary sources)</td>
-<td>Visibility of system status (Nielsen #1)</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>5</td>
-<td>Limit hit mid-task</td>
-<td>The limit lands at peak intent, with a reset time sometimes many hours away; "unlimited" messaging adds confusion</td>
-<td>Error prevention (Nielsen #5); expectation violation</td>
-<td><span class="dots s4" title="Severity 4 of 4" aria-label="Severity 4 of 4"><span class="on">●●●●</span><span class="off"></span></span></td>
-</tr>
-<tr>
-<td>6</td>
-<td>Upgrade prompt</td>
-<td>Felt as nagging ("upgrade, upgrade, upgrade")</td>
-<td>Psychological reactance</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-<tr>
-<td>7</td>
-<td>Failed output</td>
-<td>Reviewers say failed generations still used their allowance (<span class="tag hypothesis">Hypothesis</span> one review, not verified)</td>
-<td>Fairness; error recovery (Nielsen #9)</td>
-<td><span class="dots s3" title="Severity 3 of 4" aria-label="Severity 3 of 4"><span class="on">●●●</span><span class="off">●</span></span></td>
-</tr>
-</tbody>
-</table></div>
-<h2 id="insights">Insights</h2>
-<p class="insight"><strong>1. The leak comes after discovery.</strong></p>
-<ul>
-<li><em>Observation:</em> Users find the photo and image features. They get angry when those features stop working.</li>
-<li><em>Evidence:</em> 1 discoverability complaint against 54 about limits, 21 of them about images (Section 2).</li>
-<li><em>Why it matters:</em> An onboarding tour would push more people into the same wall faster. Hooked-style habit loops need a reward that comes reliably; a reward that stops without warning undercuts the habit.</li>
-</ul>
-<p class="insight"><strong>2. "Unlimited" changed the deal, but the UI didn't.</strong></p>
-<ul>
-<li><em>Observation:</em> Since August 2026, Free has two kinds of limit: unlimited text and metered tools. To most users it is all one chat box.</li>
-<li><em>Evidence:</em> The 6 Aug 2026 announcement (<a href="https://tech.yahoo.com/ai/chatgpt/article/chatgpt-free-users-now-get-unlimited-text-chats-200114299.html">Yahoo Tech</a>); the "unlimited chats" review above.</li>
-<li><em>Why it matters:</em> Expectation violation. When a promise is broken, people react more strongly to the loss than they would have to a smaller promise that was kept (loss aversion).</li>
-</ul>
-<p class="insight"><strong>3. The wall comes at peak intent, so it feels like punishment, not an offer.</strong></p>
-<ul>
-<li><em>Observation:</em> The upgrade pitch appears when the user is blocked, mid-task, often with a multi-hour wait.</li>
-<li><em>Evidence:</em> 20 of the 54 limit reviews mention waiting or reset times; 22 mention upgrade or pay prompts.</li>
-<li><em>Why it matters:</em> Peak-end rule: people remember a session by its worst moment and its end. Here both are the wall. Repeated prompts trigger reactance, so the user pushes back instead of considering the offer.</li>
-</ul>
-<p class="insight"><strong>4. Free users are now customers too.</strong></p>
-<ul>
-<li><em>Observation:</em> With ads on Free and Go (<a href="https://www.macrumors.com/2026/02/09/chatgpt-now-has-ads/">MacRumors</a>), a free user who leaves annoyed costs revenue even if they never upgrade.</li>
-<li><em>Why it matters:</em> The limit moment should be designed for two good outcomes, upgrading or coming back tomorrow, not just one.</li>
-</ul>
-<h2 id="benchmark">Benchmark</h2>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-05-gemini-create-omni-templates.webp" alt="Fig. 5" decoding="async"></div><figcaption><em>Fig. 5. Gemini, "Create with Omni". Choosing a mode puts a "Videos" chip in the composer and shows template tiles. Source: <a href="https://apps.apple.com/us/app/google-gemini/id6477489729">App Store, Google Gemini</a>, v1.2026.3970207, 10 Oct 2026.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-06-gemini-music-templates.webp" alt="Fig. 6" decoding="async"></div><figcaption><em>Fig. 6. Gemini music mode: "Try a template or describe a track", with a "Music" chip in the composer. Source: <a href="https://apps.apple.com/us/app/google-gemini/id6477489729">App Store, Google Gemini</a>.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-07-perplexity-empty-state-suggestions.webp" alt="Fig. 7" decoding="async"></div><figcaption><em>Fig. 7. Perplexity's empty state shows rows of example questions under "Where knowledge begins". Source: <a href="https://apps.apple.com/us/app/perplexity-ai-search-chat/id1668000334">App Store, Perplexity</a>, v26.40.0, 10 Oct 2026.</em></figcaption></figure>
-<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-08-claude-files-model-chip.webp" alt="Fig. 8" decoding="async"></div><figcaption><em>Fig. 8. Claude's composer shows "+" and a visible model chip ("Opus"); files appear as cards. Source: <a href="https://apps.apple.com/us/app/claude-by-anthropic/id6473753684">App Store, Claude</a>, v1.261007.20, 10 Oct 2026.</em></figcaption></figure>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Moment</th>
-<th>ChatGPT</th>
-<th>Gemini</th>
-<th>Perplexity</th>
-<th>Claude</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>What can I do?</td>
-<td>"+" menu (Fig. 1)</td>
-<td>Mode chip in the composer plus templates (Figs. 5–6)</td>
-<td>Example questions on the empty state (Fig. 7)</td>
-<td>"+" plus a model chip (Fig. 8)</td>
-</tr>
-<tr>
-<td>How much do I have left?</td>
-<td>Shown at the limit; upload quota not shown (secondary sources)</td>
-<td>Free image cap is described as approximate and changing (<a href="https://ai.zenken.co.jp/en/post/gemini-image-guide/">third-party guide</a>)</td>
-<td>Not checked</td>
-<td>Usage page with session and weekly bars and reset times on paid and Enterprise plans (<a href="https://atlas.utdallas.edu/TDClient/30/Portal/KB/Article/1597/How-to-Check-Your-Claude-Usage">UT Dallas KB</a>); reportedly empty for Free (<a href="https://claude-monitor.com/claude-free-plan-usage">claude-monitor, Oct 2026</a>, unverified)</td>
-</tr>
-</tbody>
-</table></div>
-<p>What I take from this: Gemini's mode chip is the clearest pattern for showing what you can do. It names the tool inside the composer, so it is also the natural place to show how much of that tool is left. None of the four makes the remaining allowance visible on a Free mobile account, as far as I can verify. That's a gap ChatGPT could close first.</p>
-<h2 id="options-considered">Options considered</h2>
+<p>Wrong answers are the biggest theme, but that's a model problem, not something a mobile client fixes. Limits are a product and design decision. And discoverability, my starting point, barely appears.</p>
+<h2 id="what-changed-in-august">What changed in August</h2>
+<p>On 6 August 2026 OpenAI made text chat unlimited on the Free plan, while file uploads, images and other tools stayed metered (<a href="https://tech.yahoo.com/ai/chatgpt/article/chatgpt-free-users-now-get-unlimited-text-chats-200114299.html">Yahoo Tech</a>). Ads arrived on Free in February (<a href="https://www.macrumors.com/2026/02/09/chatgpt-now-has-ads/">MacRumors</a>). Two things follow:</p>
+<ol>
+<li><strong>The tools are now the upgrade case.</strong> The moment a free user hits a tool limit is where OpenAI wins or loses the subscription.</li>
+<li><strong>A free user who leaves annoyed costs money even if they never pay</strong>, because they also stop seeing ads.</li>
+</ol>
+<p>But the app still looks like one chat box. Users hear "unlimited" and then hit a wall:</p>
+<blockquote>
+<p>"Why the hell does my free plan say I get 'unlimited chats' but I got limited until 1:42AM at midnight?" (2★, Australia, 28 Sep 2026)</p>
+<p>"I only uploaded one photo and asked a few questions, but I was quickly restricted and prompted to upgrade to Plus." (1★, UK, 5 Oct 2026)</p>
+</blockquote>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/assets/fig-03-chatgpt-photo-edit.webp" alt="Fig. 1" decoding="async"></div><figcaption><em>Fig. 1. The App Store page sells photo and image features ("Edit your look"). Three of its eight screenshots are features a Free user is most likely to run out of. Source: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">App Store</a>.</em></figcaption></figure>
+<h2 id="three-insights">Three insights</h2>
+<p class="insight"><strong>1. The leak comes after discovery, not before.</strong> An onboarding tour would push more people into the same wall, faster.</p>
+<p class="insight"><strong>2. The wall arrives at peak intent.</strong> 20 of the 54 limit reviews mention a reset time hours away, and 22 mention being pushed to upgrade. By the peak-end rule, people remember a session by its worst moment and its end. Here, both are the wall, so the upgrade offer reads as punishment.</p>
+<p class="insight"><strong>3. Nobody shows the meter.</strong> Third-party guides say the app doesn't show how much of the upload quota is left (<a href="https://www.izzedo.chat/blog/chatgpt-limits">izzedo</a>). As far as I could verify, ChatGPT, Gemini and Claude don't show a remaining allowance on a free mobile account either (I couldn't check Perplexity). That's an open gap, not a copied pattern. <span class="tag hypothesis">Hypothesis</span> One reviewer says failed generations still count. I couldn't verify it.</p>
+<h2 id="options-i-considered">Options I considered</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Option</th>
-<th>User value</th>
-<th>Business value</th>
-<th>Effort</th>
-<th>Risk</th>
+<th>For</th>
+<th>Against</th>
+<th>Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A. Feature tour or onboarding carousel (my starting angle)</td>
-<td>Low to medium: users already find the features</td>
-<td>Low: sends more people to the wall faster</td>
-<td>Low</td>
-<td>Adds friction before first value</td>
+<td>A. Feature tour on first open</td>
+<td>Easy to build</td>
+<td>Solves a problem reviews don't report; sends people to the wall faster</td>
+<td>Rejected</td>
 </tr>
 <tr>
-<td><strong>B. Visible allowance + soft landing at the limit (chosen)</strong></td>
-<td>High: predictable, fair, keeps the task alive</td>
-<td>Upgrade offered at a planned moment; brings users back for ads</td>
-<td>Medium</td>
-<td>Showing the meter could make some users ration their use (needs testing)</td>
+<td>B. Visible allowance + soft landing at the limit</td>
+<td>Fixes the moment reviews describe; keeps pricing intact</td>
+<td>Showing a meter might make people ration use</td>
+<td><strong>Chosen, and test the rationing risk</strong></td>
 </tr>
 <tr>
-<td>C. Raise Free tool limits</td>
-<td>High</td>
-<td>Compute cost; weaker reason to upgrade</td>
-<td>Business decision</td>
-<td>Not a design lever</td>
+<td>C. Raise free limits</td>
+<td>Users love it</td>
+<td>Compute cost; weakens the upgrade; not a design lever</td>
+<td>Out of scope</td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Why B:</strong> it fixes the moment the reviews describe, keeps OpenAI's pricing intact, and fits a mobile client.</p>
-<p><strong>What I would deliberately not build:</strong> a full-screen hard paywall or a countdown timer at the limit. It turns peak intent into pressure, and pressure is what the "upgrade, upgrade, upgrade" reviews are complaining about.</p>
-<h2 id="proposed-solution-wireframe-level">Proposed solution (wireframe level)</h2>
-<ol>
-<li><strong>Tool chips with a quiet allowance.</strong> When a user picks Camera, Photo or Create image from "+", a chip appears in the composer (the Gemini pattern), for example "Create image · 2 left today". When exact numbers aren't stable, show a band instead: "a few left", "last one today".</li>
-<li><strong>Warning before the last use.</strong> One step before the cap, a single line above the composer: "Last image for today, resets at 3:40 pm. Make it count?" There is no modal.</li>
-<li><strong>Soft landing at the limit.</strong> A bottom sheet with three equal choices:
-   - <strong>Save for later.</strong> The request is kept and runs at reset, with a notification when it's done.
-   - <strong>Do it in text instead.</strong> Text is unlimited, for example "describe the edit" or "translate from typed text".
-   - <strong>Upgrade.</strong> One line on what Go or Plus adds for this tool, with the price.</li>
-</ol>
-<p>The draft and photo stay attached whatever the user chooses.</p>
-<ol start="4">
-<li><strong>Fair failures.</strong> If a generation fails or is refused, say whether it counted. <strong>Hypothesis:</strong> it should not count.</li>
-<li><strong>A "Today" row in Settings → Plan.</strong> One line per tool with what is left and when it resets. It's a single place to check, not a dashboard.</li>
-</ol>
-<p><strong>Build note (mobile developer's view).</strong></p>
+<p><strong>What I'd deliberately not build:</strong> a full-screen paywall or a countdown at the limit. It turns peak intent into pressure, and pressure is exactly what the "upgrade, upgrade, upgrade" reviews complain about.</p>
+<h2 id="the-design">The design</h2>
+<p>I built the proposal as a working, unbranded prototype (an AI assistant, not ChatGPT's UI), so it can be tested with real people. It has two variants: <strong>A</strong> copies today's pattern (a hard stop with an upgrade button), <strong>B</strong> is the proposal.</p>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/b2-chip-3-left.png" alt="Fig. 2" decoding="async"></div><figcaption><em>Fig. 2. </em><em>Allowance on the tool chip.</em><em> Picking a photo tool adds a chip to the composer: "Photos · 3 left today". The count lives where the decision happens, not in settings.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/b4-last-one-warning.png" alt="Fig. 3" decoding="async"></div><figcaption><em>Fig. 3. </em><em>Warning before the last use.</em><em> One line above the composer, no modal: "Last photo use for today. Resets at 3:40 pm." The chip turns amber.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/b5-limit-sheet.png" alt="Fig. 4" decoding="async"></div><figcaption><em>Fig. 4. </em><em>A soft landing with three equal choices.</em><em> The message and photo are kept. Save it for later (runs at reset, with a notification), do it in text (unlimited), or upgrade. Upgrade is one of three options, not the only exit.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/b6-saved-for-later.png" alt="Fig. 5" decoding="async"></div><figcaption><em>Fig. 5. </em><em>Save for later.</em><em> The request is queued, and the notification permission is asked here, where the reason is obvious, not at first launch.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/b7-plan-today.png" alt="Fig. 6" decoding="async"></div><figcaption><em>Fig. 6. </em><em>One place to check.</em><em> The plan page shows text as unlimited, tools as "0 of 3 left", the reset time, and that failed results don't count.</em></figcaption></figure>
+<figure><div class="frame"><img src="../../../case-studies/01-chatgpt/design/a1-limit-wall.png" alt="Fig. 7" decoding="async"></div><figcaption><em>Fig. 7. </em><em>Variant A, for comparison.</em><em> My simplified version of the pattern reviewers describe: the limit appears only after sending, with one way out. This is a test control, not a screenshot of ChatGPT.</em></figcaption></figure>
+<h3>How I'd build it (developer's view)</h3>
 <ul>
-<li><em>Server-driven state.</em> Limits are dynamic, so the client should never hard-code them. Render a server-sent <code>allowance</code> object (<code>tool</code>, <code>remaining</code> or <code>band</code>, <code>resetsAt</code>, <code>countsFailures</code>), with every string coming from the server so copy can be A/B tested without an app release.</li>
-<li><em>Native or Flutter.</em> It's the same model either way: one allowance stream per session, refreshed after each tool call.</li>
-<li><em>Notifications.</em> "Save for later" needs push permission. Ask for it in the sheet, where the reason is obvious, not at first launch. iOS provisional authorization can deliver quietly before the full prompt.</li>
-<li><em>Running the saved request.</em> Run it on the server so it works across devices. Use idempotency keys so a retry can't spend the allowance twice.</li>
-<li><em>What to ship first.</em> The pre-limit warning line and the three-choice sheet, because they need almost no new backend. Then chips with counts. Then save-for-later.</li>
-<li><em>Effort, my estimate.</em> The client UI is about 2–3 sprints for one mobile team; the backend allowance API is the real dependency.</li>
+<li><strong>The server owns the numbers.</strong> Limits change with load, so the client never hard-codes them. It renders an <code>allowance</code> object (<code>tool</code>, <code>remaining</code> or a band like "a few left", <code>resetsAt</code>, <code>countsFailures</code>), and all copy comes from the server so it can be A/B tested without an app release.</li>
+<li><strong>Save for later runs on the server</strong>, with an idempotency key so a retry can't spend the allowance twice.</li>
+<li><strong>Ship order:</strong> warning line and limit sheet first (almost no backend), then chips with counts, then save-for-later. My estimate: 2–3 sprints for the mobile client; the allowance API is the real dependency.</li>
 </ul>
-<h2 id="success-metrics-and-validation-plan">Success metrics and validation plan</h2>
+<h2 id="how-i-ll-know-if-it-works">How I'll know if it works</h2>
+<p><strong>User test (next step).</strong> Five people who use a free AI app on their phone weekly, at least two of them for photos. Each does the same three photo tasks on variant A and variant B, in alternating order. I log taps and timing in the prototype and ask three things after each limit: what happens now, how fair it felt (1–5), and whether they'd come back tomorrow. The full script and results sheet are in <a href="https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/01-chatgpt/test-kit.md"><code>test-kit.md</code></a>.</p>
+<p><strong>Pass signal:</strong> at least 4 of 5 predict their remaining uses correctly before the limit, and nobody calls the B sheet "pushy". <strong>What would change my mind:</strong> people ration their use because they can see the meter, or they skip "Save for later" because they don't trust it to run.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Variant A</th>
+<th>Variant B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Predicted remaining uses correctly</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>Fairness at the limit (avg, 1–5)</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>"Would come back tomorrow"</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+<tr>
+<td>Chose upgrade / save / text / left</td>
+<td><em>pending</em></td>
+<td><em>pending</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>In production</strong>, the primary metric would be the 7-day return rate of free users after their first tool limit, with guardrails on free-to-paid conversion, tool use per user (to catch rationing) and ad impressions per session. I'd run it as an A/B test in one market for 2–4 weeks, then a staged rollout with a holdout.</p>
+<h2 id="what-i-d-do-differently-and-what-only-openai-knows">What I'd do differently, and what only OpenAI knows</h2>
 <ul>
-<li><strong>Primary metric:</strong> 7-day return rate of Free users after their first tool limit.</li>
-<li><strong>Secondary metrics:</strong></li>
-<li>Upgrade conversion within 7 days of a limit event.</li>
-<li>Share of limit events that end in "save for later" or "text instead" rather than leaving the app.</li>
-<li><strong>Guardrails:</strong></li>
-<li>Overall free-to-paid conversion must not drop.</li>
-<li>Tool uses per Free user must not fall sharply, as a check on rationing.</li>
-<li>Ad impressions per session must hold.</li>
-<li>Support contacts about limits.</li>
-<li>Share of 1–3★ reviews tagged "limits", re-coded with this method.</li>
+<li>I started with a solution (a feature tour) before reading the reviews. Reading 1,000 reviews first took a day and saved me from building the wrong thing. I'll start there next time.</li>
+<li>My review sample is a recent snapshot coded by one person, and store screenshots never show the limit state. The next pass needs a real capture of the limit flow on a fresh account.</li>
+<li>Open questions only the team can answer: how limits are computed (rolling window? load-based?), whether an exact count is even promisable, and how limit events trade off against ads and upgrades in their own funnel.</li>
 </ul>
-<p><strong>Experiment design.</strong></p>
-<ul>
-<li><strong>Phase 1:</strong> a 5-user test on a clickable prototype (below).</li>
-<li><strong>Phase 2:</strong> an A/B test on Free users in one market with three arms:</li>
-<li>control;</li>
-<li>warning line plus sheet;</li>
-<li>everything, including chips and save-for-later.</li>
-</ul>
-<p>Run it for 2–4 weeks, randomise by account, and report by tool.</p>
-<ul>
-<li><strong>Phase 3:</strong> a staged rollout by storefront, with a 5% holdout kept for a month.</li>
-</ul>
-<p><strong>5-user test script (about 30 min each, remote, on their own phone).</strong></p>
-<ul>
-<li><em>Recruit:</em> five people who have used ChatGPT Free on mobile in the last month and have never paid. Mix of countries and ages, and at least two who use photos or images weekly.</li>
-</ul>
-<ol>
-<li><em>Warm-up (3 min).</em> "Tell me about the last time you used ChatGPT on your phone. What did you use it for?"</li>
-<li><em>Expectation check (2 min).</em> "On the free plan, what do you think is limited, and what isn't?" Note any mention of "unlimited".</li>
-<li><em>Task 1 (5 min).</em> "Translate this menu photo." The prototype uses one allowance. Ask: "How many more could you do today? How sure are you?"</li>
-<li><em>Task 2 (5 min).</em> "Now edit this selfie into a headshot." The warning line appears. Ask: "What does this tell you? What would you do now?"</li>
-<li><em>Task 3 (7 min).</em> "Edit one more photo." The limit sheet appears. Think aloud. Which option did they pick, and why? Did they notice that the draft was kept?</li>
-<li><em>Fairness probe (3 min).</em> Show a failed generation. "Do you think that counted? Should it?"</li>
-<li><em>Wrap-up (5 min).</em> "Rate how fair the limit felt, 1–5. Would you come back tomorrow for this? What would make you pay?"</li>
-</ol>
-<ul>
-<li><em>Pass signal:</em> at least 4 of 5 predict their remaining allowance correctly after Task 2, and no one describes the sheet as "pushy". Write findings as quotes plus counts, not opinions.</li>
-</ul>
-<h2 id="risks-and-open-questions-only-openai-would-know">Risks and open questions (only OpenAI would know)</h2>
-<ul>
-<li>How limits are really computed: per tool, rolling or fixed window, and adjusted by load. Is an exact or banded count even promisable?</li>
-<li>Whether failed or refused generations count today. One review claims they do.</li>
-<li>Whether showing the meter increases or reduces tool use and upgrades. Rationing is a real risk.</li>
-<li>How limit events, ad revenue and upgrades trade off in OpenAI's own funnel data.</li>
-<li>Whether these reviews reflect A/B cohorts, regional limits or a temporary tightening. One report says free image limits were cut without notice (<a href="https://aiweekly.co/alerts/openai-quietly-cuts-chatgpt-free-tier-limits">aiweekly</a>, not fully verified).</li>
-<li>What the real limit screen looks like on 1.2026.272. I haven't captured it yet.</li>
-</ul>
-<h2 id="linkedin-spin-offs-stop-formula">LinkedIn spin-offs (STOP formula)</h2>
-<ol>
-<li><strong>Proof + Open loop:</strong> "I read 176 angry ChatGPT reviews. 1 was about finding features. 54 were about something else." Visual: two bars, 1 vs 54, with the 54 in red.</li>
-<li><strong>Tension + Sides:</strong> "ChatGPT tells free users chat is unlimited. Then a photo edit says: come back in 18 hours." (The 18 hours is one reviewer's report; say so in the body.) Visual: the App Store "Edit your look" screen next to a redrawn limit sheet, with one red circle on the reset time.</li>
-<li><strong>Sides + Tension (request-I-hear pattern):</strong> "'We need a better onboarding tour.' Founders ask me this every month. ChatGPT's reviews show where users actually leave." Visual: a ❌ tour carousel vs a ✓ "2 left today" chip.</li>
-</ol>
-<p>Each post should end with the fix, the three-choice sheet, and a question that asks for reasons: "Would you show the meter, or hide it? Why?"</p>
-<h2 id="sources">Sources</h2>
-<ul>
-<li>App Store listings, checked 10 Oct 2026: <a href="https://apps.apple.com/us/app/chatgpt/id6448311069">ChatGPT</a> · <a href="https://apps.apple.com/us/app/google-gemini/id6477489729">Google Gemini</a> · <a href="https://apps.apple.com/us/app/claude-by-anthropic/id6473753684">Claude</a> · <a href="https://apps.apple.com/us/app/perplexity-ai-search-chat/id1668000334">Perplexity</a></li>
-<li>Ratings and version: <a href="https://itunes.apple.com/lookup?id=6448311069&amp;country=us">iTunes lookup API</a></li>
-<li>Reviews: <a href="https://itunes.apple.com/rss/customerreviews/page=1/id=6448311069/sortby=mostrecent/json?cc=us">App Store customer-reviews RSS</a> (pages 1–10; cc = us, gb, in, ca, au)</li>
-<li><a href="https://play.google.com/store/apps/details?id=com.openai.chatgpt">Google Play listing</a></li>
-<li><a href="https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/">TechCrunch: ChatGPT reaches 900M WAU (27 Feb 2026)</a> · <a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI: Accelerating the next phase of AI</a></li>
-<li><a href="https://sensortower.com/blog/state-of-ai-apps-report-2025">Sensor Tower: State of AI Apps 2025</a></li>
-<li><a href="https://techcrunch.com/2025/12/18/chatgpts-mobile-app-hits-new-milestone-of-3b-in-consumer-spending/">TechCrunch: $3B mobile consumer spending (18 Dec 2025)</a></li>
-<li><a href="https://tailwinds.substack.com/p/the-state-of-consumer-ai-part-2-engagement">Tailwinds: State of Consumer AI, Part 2 (10 Mar 2026)</a></li>
-<li><a href="https://openai.com/blog/introducing-chatgpt-go">OpenAI: Introducing ChatGPT Go</a> · <a href="https://techcrunch.com/2025/10/09/openais-affordable-chatgpt-go-plan-expands-to-16-new-countries-in-asia">TechCrunch: Go expands</a></li>
-<li><a href="https://www.macrumors.com/2026/02/09/chatgpt-now-has-ads/">MacRumors: ChatGPT now has ads (9 Feb 2026)</a></li>
-<li><a href="https://tech.yahoo.com/ai/chatgpt/article/chatgpt-free-users-now-get-unlimited-text-chats-200114299.html">Yahoo Tech: Free users get unlimited text chats (6 Aug 2026)</a> · <a href="https://www.pymnts.com/news/artificial-intelligence/2026/openai-drops-chatgpt-limits-for-free-users-and-upgrades-paid-tiers/">PYMNTS (6 Aug 2026)</a></li>
-<li><a href="https://techcrunch.com/2025/10/08/openais-nick-turley-on-transforming-chatgpt-into-an-operating-system/">TechCrunch: Nick Turley interview (8 Oct 2025)</a></li>
-<li>Limit guides (secondary): <a href="https://www.izzedo.chat/blog/chatgpt-limits">izzedo</a> · <a href="https://yingtu.ai/en/blog/chatgpt-file-upload-limits-free-plus-pro">yingtu.ai</a> · <a href="https://aiweekly.co/alerts/openai-quietly-cuts-chatgpt-free-tier-limits">aiweekly</a> · <a href="https://community.openai.com/t/file-upload-limit-user-quota-is-breaking-my-workflow-heavy-user-needs-file-management-options/1259792">OpenAI Community: no quota meter (13 May 2025)</a></li>
-<li>Competitor limits: <a href="https://atlas.utdallas.edu/TDClient/30/Portal/KB/Article/1597/How-to-Check-Your-Claude-Usage">UT Dallas: Check your Claude usage</a> · <a href="https://claude-monitor.com/claude-free-plan-usage">claude-monitor</a> · <a href="https://ai.zenken.co.jp/en/post/gemini-image-guide/">Gemini image limits guide</a></li>
-<li>STOP formula: <code>../../07-attention-psychology.md</code></li>
-</ul>
+<p>The full research report, with every source, is in <a href="https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/01-chatgpt/report.md"><code>report.md</code></a>.</p>
   <div class="pager"><a class="next" href="duolingo.html"><span class="dir">Next case study ›</span><span class="t">Duolingo</span></a></div>
 </article>
 <aside class="sidebar">

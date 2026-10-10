@@ -55,13 +55,19 @@ def slugify(t):
 
 
 def convert(dirname, slug, app, question, prev, nxt):
-    src = open(os.path.join(CS, dirname, 'report.md'), encoding='utf-8').read()
+    # The portfolio edit (case-study.md) wins over the full research report when it exists
+    md = 'case-study.md' if os.path.exists(os.path.join(CS, dirname, 'case-study.md')) else 'report.md'
+    src = open(os.path.join(CS, dirname, md), encoding='utf-8').read()
     words = len(re.findall(r'\w+', src))
     minutes = max(1, round(words / 230))
     # Markdown needs a blank line before a list that follows a paragraph line
     src = re.sub(r'(?m)^(?!\s*$)(?!\s*[-*] )(?!\s*\d+\. )(?!\|)(.+)\n(\s*(?:[-*]|\d+\.) )', r'\1\n\n\2', src)
     body = markdown.markdown(src, extensions=['tables', 'sane_lists'])
     img_prefix = f'../../../case-studies/{dirname}/'
+
+    # Links to sibling markdown files point at GitHub
+    gh = f'https://github.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/{dirname}/'
+    body = re.sub(r'href="(?!https?:|#|mailto:)([^"]+\.md)"', lambda m: f'href="{gh}{m.group(1)}"', body)
 
     # Title
     m = re.search(r'<h1>(.*?)</h1>', body, re.S)

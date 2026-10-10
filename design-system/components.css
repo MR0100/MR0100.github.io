@@ -6,6 +6,7 @@ img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color var(--dur-default) var(--ease-default)}
 a:hover{color:var(--accent)}
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+code{font:.875em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--ink-03);padding:.1em .35em;border-radius:4px}
 strong,b{font-weight:var(--w-medium)}
 ::selection{background:var(--accent-tint)}
 
@@ -84,7 +85,7 @@ p{margin:0 0 var(--s-5)}
 /* ── Figures: screens on a soft frame ── */
 figure{margin:var(--s-6) 0}
 .frame{background:radial-gradient(120% 90% at 20% 10%,#EEF1EC 0%,#E3E7E2 45%,#D9DFE0 100%);border-radius:var(--radius-block);padding:var(--s-6);display:flex;justify-content:center;align-items:center;overflow:hidden}
-.frame img{max-height:520px;width:auto;border-radius:var(--radius-medium);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.frame img{max-height:680px;width:auto;border-radius:var(--radius-medium);box-shadow:0 12px 32px rgba(0,0,0,.12)}
 figcaption{font-size:var(--fs-small);line-height:1.55;color:var(--ink-60);margin-top:var(--s-3)}
 figcaption em{font-style:normal}
 
