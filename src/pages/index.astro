@@ -5,7 +5,7 @@ import { profile, counts, testimonials, experienceLabel } from '../data/profile'
 import { liveApps } from '../data/work';
 import { publishedWriting, nextScheduled, fmtDate } from '../data/published';
 const exp = experienceLabel();
-const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
+const studies = (await getCollection('studies')).filter(s => s.data.kind !== 'client').sort((a, b) => a.data.order - b.data.order);
 const [lead, ...rest] = studies;
 const posts = (await publishedWriting()).slice(0, 3);
 const upcoming = await nextScheduled();

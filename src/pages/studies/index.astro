@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
+const href = (s: (typeof studies)[number]) => s.data.kind === 'client' ? `/work/${s.id}/case-study/` : `/studies/${s.id}/`;
 ---
 <Base title="Case studies · Mitul Vaghasiya" active="Case studies"
   description="Independent product studies of apps millions use: what users struggle with, what it costs the business, and a tested way to fix it.">
@@ -12,25 +13,16 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
   </section>
   <section class="wrap list">
     {studies.map((s, i) => (
-      <a class="row" href={`/studies/${s.id}/`}>
-        <div class="visual" style={`background:${s.data.accent}`}><img src={s.data.cover} alt="" loading={i < 2 ? 'eager' : 'lazy'} /></div>
+      <a class="row" href={href(s)}>
+        <div class="visual" style={`background:${s.data.accent}`}><img src={s.data.cover} alt="" loading={i < 2 ? 'eager' : 'lazy'} class:list={{ shot: s.data.kind === 'client' }} /></div>
         <div class="text">
-          <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {s.data.app} · {s.data.theme}</p>
+          <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {s.data.app} · {s.data.kind === 'client' ? 'Client work' : s.data.theme}</p>
           <h2>{s.data.title}</h2>
           <p>{s.data.summary}</p>
           <span class="more">Read the study →</span>
         </div>
       </a>
     ))}
-    <a class="row" href="/work/kgk-diamonds/case-study/">
-      <div class="visual" style="background:#e9e4da"><img src="/images/projects/kgk-diamonds/2.jpg" alt="" loading="lazy" class="shot" /></div>
-      <div class="text">
-        <p class="eyebrow">{String(studies.length + 1).padStart(2, '0')} · KGK Diamonds · Client work</p>
-        <h2>Making a 50,000-diamond catalogue feel fast on a cheap Android phone</h2>
-        <p>The live trading app I lead for the KGK Group: what slowed traders down, the decisions that fixed it, and the numbers before and after.</p>
-        <span class="more">Read the case study →</span>
-      </div>
-    </a>
   </section>
 </Base>
 

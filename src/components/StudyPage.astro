@@ -1,0 +1,79 @@
+---
+// The case-study template shared by the product studies and the client case studies:
+// hero pair, three-part summary, three numbers, the written study, captioned screens, and links to go deeper.
+import { render, type CollectionEntry } from 'astro:content';
+import CaseStudy from '../layouts/CaseStudy.astro';
+interface Link { label: string; note: string; href: string; external?: boolean }
+interface Props {
+  study: CollectionEntry<'studies'>; crumbs: { href?: string; label: string }[]; active: string;
+  next?: { href: string; label: string }; deeper: Link[];
+  studyTabs?: { slug: string; current: string }; tabs?: { label: string; href: string; current?: boolean }[];
+}
+const { study, crumbs, active, next, deeper, studyTabs, tabs } = Astro.props;
+const d = study.data;
+const { Content } = await render(study);
+const client = d.kind === 'client';
+const labels = client ? ['The problem', 'What I found', 'What I changed'] : ['The question', 'What I found', 'What I’d change'];
+const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
+---
+<CaseStudy app={d.app} kind={client ? 'Case study · client work' : 'Product study'} active={active} crumbs={crumbs} study={studyTabs} tabs={tabs}
+  title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} next={next}>
+  <div slot="hero" class:list={['pair', { framed: client }]}>
+    {d.heroImages.map((src, i) => <figure><img src={src} alt={`${d.app}: ${heroCaptions[i]}`} /><figcaption>{heroCaptions[i]}</figcaption></figure>)}
+  </div>
+
+  <div class="wide"><div class="tldr">
+    <div><h3>{labels[0]}</h3><p>{d.tldr.question}</p></div>
+    <div><h3>{labels[1]}</h3><p>{d.tldr.found}</p></div>
+    <div><h3>{labels[2]}</h3><p>{d.tldr.change}</p></div>
+  </div></div>
+
+  <div class="wide"><div class="stats">
+    {d.stats.map(s => <div><b>{s.value}</b><span>{s.label}</span></div>)}
+  </div></div>
+
+  <section class="md"><Content /></section>
+
+  <div class="wide">
+    <p class="eyebrow figs-head">{client ? 'The app' : 'The design'}</p>
+    <div class:list={['figs', { framed: client }]}>
+      {d.figures.map(f => <figure><div class="frame" style={`background:${d.accent}`}><img src={f.src} alt="" loading="lazy" /></div><figcaption>{f.caption}</figcaption></figure>)}
+    </div>
+    <p class="disclaim">{d.figureNote ?? `All screens are my re-creations in ${d.app}’s visual style, for an independent study. Not affiliated with ${d.app}.`}</p>
+  </div>
+
+  <div class="wide"><div class="deeper">
+    <p class="eyebrow">Go deeper</p>
+    {deeper.map(l => <a href={l.href} rel={l.external ? 'noopener' : undefined}><b>{l.label}{l.external ? ' ↗' : ''}</b><span>{l.note}</span></a>)}
+  </div></div>
+</CaseStudy>
+
+<style>
+  .pair { display: flex; gap: clamp(20px, 5vw, 72px); justify-content: center; align-items: flex-end; padding: 48px 24px 0; width: 100%; }
+  .pair figure { margin: 0; width: min(36%, 300px); display: flex; flex-direction: column; align-items: center; }
+  .pair img { width: 100%; filter: drop-shadow(0 24px 40px rgba(0,0,0,.12)); }
+  .pair.framed figure { width: min(30%, 260px); }
+  .pair.framed img { border-radius: 22px; filter: none; box-shadow: 0 24px 48px rgba(0,0,0,.12); }
+  .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .md :global(h2) { font-size: clamp(30px, 3vw, 40px); margin: 10px 0 18px; }
+  .md :global(p.eyebrow) { margin: 56px 0 0; color: var(--ink-3); }
+  .md :global(p.eyebrow:first-child) { margin-top: 0; }
+  .figs-head { margin: 0 0 24px; }
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .figs figure { margin: 0; }
+  .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; }
+  .frame img { width: 92%; }
+  .figs.framed .frame img { width: 88%; border-radius: 14px 14px 0 0; }
+  .figs figcaption { font-size: 15px; color: var(--ink-2); margin-top: 14px; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; }
+  .deeper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
+  .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+  .deeper a b { font: 400 24px/1.2 var(--serif); }
+  .deeper a span { font-size: 14px; color: var(--ink-3); }
+  .deeper a:hover b { text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 900px) {
+    .figs { grid-template-columns: 1fr 1fr; }
+    .deeper { grid-template-columns: 1fr; }
+  }
+</style>
