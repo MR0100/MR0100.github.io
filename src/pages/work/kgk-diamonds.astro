@@ -1,0 +1,77 @@
+---
+import CaseStudy from '../../layouts/CaseStudy.astro';
+// Mitul's own version, written from his résumé (Sep 2026) and the public store listings (checked 11 Oct 2026).
+// Mitul is preparing a fuller case study with new visuals; it replaces this one when ready.
+const meta = [
+  { label: 'Role', value: 'Mobile development team lead' },
+  { label: 'Team', value: '7 people: 2 mobile, 1 backend, 1 web, 1 design, 2 QA' },
+  { label: 'Timeline', value: 'Apr 2025 — now' },
+  { label: 'Platform', value: 'Flutter · iOS & Android' },
+  { label: 'Live', value: '<a class="link" href="https://apps.apple.com/in/app/kgk-diamonds-buy-diamonds/id6479595403">App Store</a> · <a class="link" href="https://play.google.com/store/apps/details?id=com.kgk.diamonds">Google Play</a>' },
+];
+---
+<CaseStudy
+  app="KGK Diamonds"
+  title="Making a 50,000-diamond catalogue feel fast on a cheap Android phone"
+  summary="KGK Diamonds lets wholesalers in 10+ countries browse and buy certified diamonds from a 120-year-old group. I joined in 2025 to lead the mobile team on the live app, with one goal: a trader on an entry-level phone and a slow connection should never wait on the catalogue."
+  meta={meta}
+  accent="#e9e4da"
+  icon="/images/apps/kgk-diamonds.jpg"
+  next={{ href: '/studies/temu/', label: 'Product study: Temu’s hidden rules' }}
+>
+  <div class="wide"><div class="tldr">
+    <div><h3>The problem</h3><p>The inventory grid, the screen traders live in, dropped frames and took 5 seconds to show anything on the phones many of them use.</p></div>
+    <div><h3>What I did</h3><p>Re-engineered the grid, set one architecture for the whole team, and owned the release pipeline from code to both stores.</p></div>
+    <div><h3>The outcome</h3><p>60 FPS scrolling, the grid on screen in 2 seconds, releases in 1.5 days instead of 4, and 99.9% crash-free sessions.</p></div>
+  </div></div>
+
+  <section>
+    <p class="eyebrow">Context</p>
+    <h2>A trading tool, not a shop window</h2>
+    <p>Wholesalers don’t browse for pleasure. They compare stones by cut, clarity, colour and certificate, often on a phone between meetings, and often on a mid-range Android device on a patchy network. If the catalogue stutters, they call a salesperson instead, and the app loses its reason to exist.</p>
+    <p>The app was already live when I joined. My job was to make it fast and dependable, and to set up a team that could keep it that way.</p>
+  </section>
+
+  <div class="wide"><div class="visual pending">Visual coming: the inventory grid, before and after<br />(Mitul is preparing updated screens)</div></div>
+
+  <section>
+    <p class="eyebrow">Key decisions</p>
+    <h2>Fix the screen people live in first</h2>
+    <p>Profiling showed the grid was doing too much on the device: rendering every row, filtering locally and parsing a heavy payload. I made three changes together:</p>
+    <ul>
+      <li><strong>Virtualised lists</strong>, so only what’s on screen is built.</li>
+      <li><strong>Server-driven filters</strong>, so the phone asks for the right 50 stones instead of sorting 50,000.</li>
+      <li><strong>A slimmer payload</strong>, shaped around what the grid actually shows.</li>
+    </ul>
+    <p>On entry-level Android, scrolling went from 50 to a steady 60 FPS, and the first paint of the grid dropped from 5 seconds to 2, measured on traders’ real network conditions. Tree-shaking, deferred asset loading and cache priming also cut the app size by 10% and cold start by 45% on mid-tier Android 12 phones.</p>
+  </section>
+
+  <div class="wide"><div class="decision">
+    <div><p class="eyebrow">Team</p><h3>One architecture for everyone</h3><p>I made Clean Architecture with MVVM and BLoC the team standard across KGK’s apps. Cross-feature merge conflicts fell about 65%, and new engineers became productive in 2 weeks instead of 5.</p></div>
+    <div><p class="eyebrow">Trust</p><h3>Pricing data stays on the device</h3><p>Prices are commercially sensitive. Screen capture is blocked on pricing screens, the app refuses to run when it detects traffic-sniffing tools, and credentials and cached inventory sit in encrypted storage behind JWT and OAuth 2.0.</p></div>
+  </div></div>
+
+  <section>
+    <p class="eyebrow">Delivery</p>
+    <h2>Releases became boring, which is the point</h2>
+    <p>I own the release pipeline end to end: Git workflow, CI builds, a test suite of unit, widget and Patrol end-to-end tests at about 80% coverage gated on every pull request, and Fastlane signing and upload to both stores. A release used to take 4 days; it now takes 1.5.</p>
+  </section>
+
+  <div class="wide"><div class="stats">
+    <div><b>60 FPS</b><span>scrolling on entry-level Android, up from 50</span></div>
+    <div><b>5s → 2s</b><span>until the inventory grid appears</span></div>
+    <div><b>99.9%</b><span>crash-free sessions on both stores</span></div>
+  </div></div>
+
+  <section>
+    <p class="eyebrow">Leadership</p>
+    <h2>Building the team, not just the app</h2>
+    <p>I mentor five of the seven people on the team, and two were promoted internally within a year. I also work directly with non-technical diamond vendors across those 10+ countries, turning how they actually trade into scope the team can ship.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">What I’d do next</p>
+    <h2>Measure the trader, not just the app</h2>
+    <p>The technical numbers are strong. The next step is the one I push in my product studies: tie them to behaviour. Do faster grids mean more enquiries per session, and fewer calls to sales? That’s the case I want this app to make next.</p>
+  </section>
+</CaseStudy>

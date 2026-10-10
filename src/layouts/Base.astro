@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+interface Props { title: string; description?: string; active?: string }
+const { title, description = 'Mitul Vaghasiya, Senior Mobile Engineer & Team Lead. Mobile products researched first and shipped end to end.', active = '' } = Astro.props;
+const nav = [['Work', '/work/'], ['Studies', '/#studies'], ['About', '/about/']];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(profile.headshot, Astro.site)} />
+  <link rel="icon" href="/images/mitul-400.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="mark" href="/">Mitul Vaghasiya</a>
+      <nav>
+        {nav.map(([label, href]) => <a class:list={['navlink', { on: active === label }]} href={href}>{label}</a>)}
+        <a class="btn small" href={`mailto:${profile.email}`}>Get in touch</a>
+      </nav>
+    </div>
+  </header>
+  <main><slot /></main>
+  <footer class="foot">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Building something people should keep using?</h2>
+        <p>I’m happy to talk about mobile products, from first research to the store release.</p>
+        <a class="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
+      </div>
+      <div class="meta">
+        <span>© {new Date().getFullYear()} Mitul Vaghasiya · {profile.location}</span>
+        <span class="links">
+          <a href={profile.linkedin}>LinkedIn</a><a href={profile.github}>GitHub</a><a href={profile.upwork}>Upwork</a><a href="/resume/">Résumé</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .top { position: sticky; top: 0; z-index: 10; background: rgba(247,246,242,.86); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid transparent; }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .mark { font: 400 22px/1 var(--serif); letter-spacing: -.01em; }
+  nav { display: flex; align-items: center; gap: 28px; }
+  .navlink { font-size: 15px; color: var(--ink-2); }
+  .navlink:hover, .navlink.on { color: var(--ink); }
+  .btn.small { height: 38px; padding: 0 16px; font-size: 14px; }
+  .foot { background: var(--accent); color: #eef1ec; margin-top: 40px; }
+  .cta { padding: 96px 0 72px; max-width: 760px; }
+  .cta h2 { font-size: clamp(36px, 4vw, 56px); color: #fff; }
+  .cta p { color: #b9c2bb; margin: 18px 0 28px; font-size: 18px; }
+  .mail { font: 400 clamp(24px, 2.6vw, 34px)/1.2 var(--serif); color: #fff; border-bottom: 1px solid rgba(255,255,255,.35); }
+  .meta { display: flex; justify-content: space-between; gap: 16px; padding: 24px 0 32px; border-top: 1px solid rgba(255,255,255,.12); font-size: 14px; color: #9aa59d; flex-wrap: wrap; }
+  .links { display: flex; gap: 20px; }
+  .links a:hover { color: #fff; }
+  @media (max-width: 760px) {
+    nav { gap: 16px; }
+    .navlink:nth-child(2) { display: none; }
+    .btn.small { display: none; }
+  }
+</style>
