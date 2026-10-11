@@ -19,7 +19,8 @@ This repo holds **design and code only**. All content comes from two private rep
 | Path | What |
 |---|---|
 | `src/pages/` | Home, case studies (overview, try it, screen by screen, full analysis, test kit, review coding, sources), writing, work and one page per project, about, app legal pages |
-| `src/layouts/`, `src/components/` | Page templates; `StudyPage`, `StudyTabs`, `StudyPager`, `EssayCard` |
+| `src/layouts/`, `src/components/` | Page templates; `StudyPage`, `StudyTabs`, `StudyPager`, `Pager`, `EssayCard` |
+| `src/styles/global.css` | Tokens (widths, type scale, colours) and shared parts (`.page-head`, `.measure`, `.prose`). The rules for using them: [`DESIGN-RULES.md`](DESIGN-RULES.md) |
 | `src/content/` | **Synced, don't edit here:** `studies`, `research`, `docs`, `prototypes`, `writing`, `work` |
 | `src/data/` | Code that reads the synced data (`profile.ts`, `work.ts`, `published.ts`, `studyNav.ts`) |
 | `public/studies/`, `public/writing/`, `public/images/` | Synced screens, prototypes, graphics and images |

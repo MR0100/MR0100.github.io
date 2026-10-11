@@ -1,19 +1,16 @@
 ---
 // Back on the left, next on the right: the previous and next parts of the same study.
+// The first part goes back to all studies; the last part goes on to the next study.
+import { getCollection } from 'astro:content';
+import Pager from './Pager.astro';
 import { studyTabs } from '../data/studyNav';
 interface Props { slug: string; current: string }
 const { slug, current } = Astro.props;
 const tabs = await studyTabs(slug);
 const i = tabs.findIndex(t => t.key === current);
-const prev = tabs[i - 1], next = tabs[i + 1];
+const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
+const after = studies[(studies.findIndex(s => s.id === slug) + 1) % studies.length];
+const prev = tabs[i - 1] ?? { href: '/studies/', label: 'All case studies' };
+const next = tabs[i + 1] ?? { href: `/studies/${after.id}/`, label: `Next study: ${after.data.app}` };
 ---
-<nav class="wrap pager" aria-label="Study pages">
-  {prev ? <a class="btn ghost" href={prev.href} rel="prev">← {prev.label}</a> : <span />}
-  {next ? <a class="btn" href={next.href} rel="next">{next.label} →</a> : <a class="btn" href={tabs[0].href}>{tabs[0].label} →</a>}
-</nav>
-
-<style>
-  .pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 32px; padding-bottom: 48px; }
-  .btn { height: 42px; padding: 0 18px; font-size: 14px; }
-  .btn.ghost:hover { border-color: var(--ink-3); }
-</style>
+<Pager prev={prev} next={next} label="Study pages" />

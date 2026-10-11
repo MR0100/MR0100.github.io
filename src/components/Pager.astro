@@ -1,0 +1,16 @@
+---
+// The one back/next control on the site: small buttons with the page name, back on the left, next on the right.
+interface Link { href: string; label: string }
+interface Props { prev?: Link; next?: Link; label?: string }
+const { prev, next, label = 'More pages' } = Astro.props;
+---
+<nav class="wrap pager" aria-label={label}>
+  {prev ? <a class="btn ghost" href={prev.href} rel="prev">← {prev.label}</a> : <span />}
+  {next && <a class="btn" href={next.href} rel="next">{next.label} →</a>}
+</nav>
+
+<style>
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 32px; padding-bottom: 48px; }
+  .btn { height: 42px; padding: 0 18px; font-size: 14px; max-width: 100%; }
+  .btn.ghost:hover { border-color: var(--ink-3); }
+</style>

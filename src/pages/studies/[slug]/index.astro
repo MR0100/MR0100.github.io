@@ -5,12 +5,12 @@ import StudyPage from '../../../components/StudyPage.astro';
 export async function getStaticPaths() {
   const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
   const docs = await getCollection('docs');
-  return studies.map((s, i) => ({
+  return studies.map(s => ({
     params: { slug: s.id },
-    props: { study: s, next: studies[(i + 1) % studies.length], docs: docs.filter(d => d.data.study === s.id) },
+    props: { study: s, docs: docs.filter(d => d.data.study === s.id) },
   }));
 }
-const { study, next, docs } = Astro.props;
+const { study, docs } = Astro.props;
 const d = study.data;
 const base = `/studies/${study.id}/`;
 const evidence = docs.filter(x => x.data.kind.startsWith('evidence/'));
@@ -24,5 +24,4 @@ const deeper = [
 ];
 ---
 <StudyPage study={study} active="Case studies" deeper={deeper}
-  crumbs={[{ href: '/studies/', label: 'Case studies' }, { label: d.app }]} studyTabs={{ slug: study.id, current: 'overview' }}
-  next={{ href: `/studies/${next.id}/`, label: `${next.data.app}: ${next.data.title}` }} />
+  crumbs={[{ href: '/studies/', label: 'Case studies' }, { label: d.app }]} studyTabs={{ slug: study.id, current: 'overview' }} />

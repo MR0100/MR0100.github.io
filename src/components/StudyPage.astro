@@ -2,20 +2,21 @@
 // The case-study template: hero pair, three-part summary, three numbers, the written study, captioned screens, and links to go deeper.
 import { render, type CollectionEntry } from 'astro:content';
 import CaseStudy from '../layouts/CaseStudy.astro';
+import StudyPager from './StudyPager.astro';
 interface Link { label: string; note: string; href: string; external?: boolean }
 interface Props {
   study: CollectionEntry<'studies'>; crumbs: { href?: string; label: string }[]; active: string;
-  next?: { href: string; label: string }; deeper: Link[];
+  deeper: Link[];
   studyTabs?: { slug: string; current: string }; tabs?: { label: string; href: string; current?: boolean }[];
 }
-const { study, crumbs, active, next, deeper, studyTabs, tabs } = Astro.props;
+const { study, crumbs, active, deeper, studyTabs, tabs } = Astro.props;
 const d = study.data;
 const { Content } = await render(study);
 const labels = ['The question', 'What I found', 'What I’d change'];
 const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
 ---
 <CaseStudy app={d.app} kind="Product study" active={active} crumbs={crumbs} study={studyTabs} tabs={tabs}
-  title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} next={next} image={`/studies/${study.id}/og.png`}>
+  title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} image={`/studies/${study.id}/og.png`}>
   <div slot="hero" class="pair">
     {d.heroImages.map((src, i) => <figure><img src={src} alt={`${d.app}: ${heroCaptions[i]}`} /><figcaption>{heroCaptions[i]}</figcaption></figure>)}
   </div>
@@ -44,6 +45,7 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
     <p class="eyebrow">Go deeper</p>
     {deeper.map(l => <a href={l.href} rel={l.external ? 'noopener' : undefined}><b>{l.label}{l.external ? ' ↗' : ''}</b><span>{l.note}</span></a>)}
   </div></div>
+  <StudyPager slot="pager" slug={study.id} current="overview" />
 </CaseStudy>
 
 <style>
@@ -51,7 +53,7 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   .pair figure { margin: 0; width: min(36%, 300px); display: flex; flex-direction: column; align-items: center; }
   .pair img { width: 100%; filter: drop-shadow(0 24px 40px rgba(0,0,0,.12)); }
   .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
-  .md :global(h2) { font-size: clamp(30px, 3vw, 40px); margin: 10px 0 18px; }
+  .md :global(h2) { font-size: var(--h2); margin: 10px 0 18px; }
   .md :global(p.eyebrow) { margin: 56px 0 0; color: var(--ink-3); }
   .md :global(p.eyebrow:first-child) { margin-top: 0; }
   .figs-head { margin: 0 0 24px; }

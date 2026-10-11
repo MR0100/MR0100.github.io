@@ -1,12 +1,13 @@
 ---
 // One page per project, in the same layout as the case studies. A project with `caseStudy` also has a study at /studies/<slug>/.
 import CaseStudy from '../../layouts/CaseStudy.astro';
+import Pager from '../../components/Pager.astro';
 import { projects, STORES_CHECKED, type Project } from '../../data/work';
 export function getStaticPaths() {
   const list = projects;
-  return list.map((p, i) => ({ params: { slug: p.slug }, props: { p, next: list[(i + 1) % list.length] } }));
+  return list.map((p, i) => ({ params: { slug: p.slug }, props: { p, prev: list[(i - 1 + list.length) % list.length], next: list[(i + 1) % list.length] } }));
 }
-const { p, next } = Astro.props as { p: Project; next: Project };
+const { p, prev, next } = Astro.props as { p: Project; prev: Project; next: Project };
 const live = p.status === 'live';
 const stores = [p.appStore && `<a class="link" href="${p.appStore}">App Store</a>`, p.playStore && `<a class="link" href="${p.playStore}">Google Play</a>`].filter(Boolean).join(' · ');
 const meta = [
@@ -29,8 +30,7 @@ const links = [
 ---
 <CaseStudy image={`/images/og/${p.slug}.png`} app={p.name} kind={`Project · ${p.category}`} title={p.name} summary={p.oneLiner} meta={meta} accent={p.accent}
   crumbs={[{ href: '/work/', label: 'Work' }, { label: p.name }]}
-  tabs={p.caseStudy ? [{ label: 'Project details', href: `/work/${p.slug}/`, current: true }, { label: 'Case study', href: `/studies/${p.slug}/` }] : undefined}
-  next={{ href: `/work/${next.slug}/`, label: `${next.name}: ${next.oneLiner}` }}>
+  tabs={p.caseStudy ? [{ label: 'Project details', href: `/work/${p.slug}/`, current: true }, { label: 'Case study', href: `/studies/${p.slug}/` }] : undefined}>
   <div slot="hero" class:list={['shots', { single: !hero.length }]}>
     {hero.map(i => <img src={i.src} alt={i.alt} />)}
     {heroOne && <img src={heroOne.src} alt={heroOne.alt} class:list={[heroOne.kind]} />}
@@ -75,6 +75,7 @@ const links = [
     </div></div>
   )}
   {!live && <div class="wide"><p class="disclaim">{p.statusNote ?? 'This app is no longer available in the stores. The links above are independent records that it existed.'}</p></div>}
+  <Pager slot="pager" label="Projects" prev={{ href: `/work/${prev.slug}/`, label: prev.name }} next={{ href: `/work/${next.slug}/`, label: next.name }} />
 </CaseStudy>
 
 <style>

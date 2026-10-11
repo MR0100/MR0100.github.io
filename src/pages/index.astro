@@ -103,9 +103,9 @@ const quotes = import.meta.env.DEV ? testimonials : testimonials.filter(t => !t.
 
 <style>
   .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 64px; align-items: center; padding-top: 80px; padding-bottom: 64px; }
-  .hero h1 { font-size: clamp(44px, 5.4vw, 78px); margin: 18px 0 26px; }
+  .hero h1 { font-size: var(--display); margin: 18px 0 26px; }
   .hero h1 em { font-style: italic; }
-  .lede { font-size: 19px; color: var(--ink-2); max-width: 580px; }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: var(--text); }
   .actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
   .portrait { margin: 0; justify-self: end; width: 100%; max-width: 400px; }
   .portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 28px; }
@@ -135,7 +135,7 @@ const quotes = import.meta.env.DEV ? testimonials : testimonials.filter(t => !t.
   .posts time { font-size: 14px; color: var(--ink-3); }
   .posts h3 { font-size: 28px; margin: 8px 0 8px; }
   .posts p { color: var(--ink-2); margin: 0; font-size: 16px; }
-  .soon { font: 400 26px/1.35 var(--serif); color: var(--ink-2); max-width: 760px; border-top: 1px solid var(--line); padding-top: 24px; margin: 0; }
+  .soon { font: 400 26px/1.35 var(--serif); color: var(--ink-2); max-width: var(--text); border-top: 1px solid var(--line); padding-top: 24px; margin: 0; }
 
   .work { display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: start; }
   .kgk { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center; }

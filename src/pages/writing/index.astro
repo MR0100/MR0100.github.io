@@ -10,7 +10,7 @@ const upcoming = await nextScheduled();
 const topics = [...new Set(essays.map(e => e.data.topic).filter(Boolean))];
 ---
 <Base title="Writing · Mitul Vaghasiya" active="Writing" description="Essays and notes on product research, mobile UX and building apps people keep.">
-  <section class="wrap intro">
+  <section class="wrap page-head">
     <p class="eyebrow">Writing</p>
     <h1>Notes on research, mobile UX and building what people keep.</h1>
     <p class="lede">Essays you can put to work this week, drawn from my case studies and from shipping mobile apps since 2019. Each ends with one thing to try.</p>
@@ -39,9 +39,6 @@ const topics = [...new Set(essays.map(e => e.data.topic).filter(Boolean))];
 </Base>
 
 <style>
-  .intro { padding-top: 72px; padding-bottom: 48px; }
-  .intro h1 { font-size: clamp(40px, 4.8vw, 64px); margin-top: 16px; max-width: 900px; }
-  .lede { font-size: 19px; color: var(--ink-2); max-width: 720px; margin: 20px 0 0; }
   .topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
   .topics span { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
   .lead { padding-bottom: 72px; }

@@ -20,7 +20,7 @@ const groups = [
 <Base title={`${d.app} screen by screen · Mitul Vaghasiya`} description={d.intro} active="Case studies" image={`${base}og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: base, label: d.app }, { label: 'Screen by screen' }]}>
   <StudyTabs slug={p.id} current="screens" />
-  <header class="wrap head">
+  <header class="wrap page-head">
     <p class="eyebrow">Screen by screen · {d.app}</p>
     <h1>{d.title}</h1>
     <p class="lede">{d.intro}</p>
@@ -67,13 +67,10 @@ const groups = [
 </Base>
 
 <style>
-  .head { padding-top: 56px; padding-bottom: 24px; max-width: 980px; margin-left: max(0px, calc((100vw - var(--wrap)) / 2)); }
-  .head h1 { font-size: clamp(38px, 4.4vw, 58px); margin: 14px 0 20px; }
-  .lede { font-size: 19px; color: var(--ink-2); max-width: 720px; }
-  .group { padding-top: 56px; padding-bottom: 24px; }
+  .group { padding-top: 16px; padding-bottom: 24px; }
   .ghead { border-top: 1px solid var(--line); padding-top: 28px; margin-bottom: 32px; }
-  .ghead h2 { font-size: clamp(30px, 3vw, 40px); margin: 10px 0 8px; }
-  .sub { color: var(--ink-3); font-size: 15px; max-width: 640px; margin: 0; }
+  .ghead h2 { font-size: var(--h2); margin: 10px 0 8px; }
+  .sub { color: var(--ink-3); font-size: 15px; max-width: var(--text); margin: 0; }
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .steps.n2 { grid-template-columns: repeat(4, 1fr); }
   figure { margin: 0; }
@@ -92,7 +89,6 @@ const groups = [
   .learn li { margin-bottom: 8px; }
   .test { background: var(--accent-soft); border-radius: 14px; padding: 22px 24px; align-self: start; }
   .test p:last-child { margin: 8px 0 0; }
-  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; max-width: 760px; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; max-width: var(--text); }
   @media (max-width: 960px) { .steps, .steps.n2 { grid-template-columns: 1fr 1fr; } .learn { grid-template-columns: 1fr; padding: 24px; } }
-  @media (max-width: 520px) { .head { padding-top: 32px; } }
 </style>

@@ -5,6 +5,7 @@ Guidance for Claude Code in this repo: Mitul Vaghasiya's public portfolio site (
 ## Rules
 - **Public repo, design and code only.** Content is edited in `../portfolio-content` (studies, essays, work data) or `../linkedin-growth` (posts), then synced with `scripts/sync_content.py`. Never edit `src/content/` by hand, and never add third-party screenshots, raw review data or private notes.
 - **Honesty:** every number cited or labelled Hypothesis; prototype screens are labelled re-creations.
+- **Design rules:** every page follows `DESIGN-RULES.md` (one left edge, three widths, one header, one type scale, small back/next buttons). Use the tokens and shared parts; change the rules file before breaking a rule.
 - Before pushing: `npm run build`, serve `dist/` (`npx astro preview`), and crawl for broken links, missing images or JS errors.
 - Identity: product designer & researcher who also ships mobile apps. Case studies, analysis and writing lead; shipped work supports. Never mention Upwork or freelancing.
 

@@ -5,7 +5,7 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
 ---
 <Base title="Case studies · Mitul Vaghasiya" active="Case studies"
   description="Independent product studies of apps millions use: what users struggle with, what it costs the business, and a tested way to fix it.">
-  <section class="wrap intro">
+  <section class="wrap page-head">
     <p class="eyebrow">Case studies</p>
     <h1>I study apps millions of people use, and design what would make them stay.</h1>
     <p class="lede">Each study starts with a question, tests it against real evidence (thousands of reviews, company reports, research), and ends with a prototype and the test that would prove it wrong. In most of them, the evidence changed my first question. The last one is an app I build myself, studied the same way.</p>
@@ -26,16 +26,13 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
 </Base>
 
 <style>
-  .intro { padding-top: 72px; padding-bottom: 56px; max-width: 980px; margin-left: max(0px, calc((100vw - var(--wrap)) / 2)); }
-  .intro h1 { font-size: clamp(40px, 4.8vw, 66px); margin: 16px 0 22px; }
-  .lede { font-size: 19px; color: var(--ink-2); max-width: 700px; }
   .list { padding-bottom: 40px; }
   .row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; padding: 40px 0; border-top: 1px solid var(--line); }
   .visual { border-radius: var(--radius); height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden; padding-top: 32px; }
   .visual img { width: 46%; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
   .row:hover .visual img { transform: translateY(-8px); }
-  .text h2 { font-size: clamp(30px, 3vw, 42px); margin: 12px 0 14px; }
+  .text h2 { font-size: var(--h2); margin: 12px 0 14px; }
   .text p:not(.eyebrow) { color: var(--ink-2); }
   .more { font-weight: 500; font-size: 15px; }
-  @media (max-width: 900px) { .row { grid-template-columns: 1fr; gap: 24px; } .visual { height: 300px; } .intro { padding-top: 40px; } }
+  @media (max-width: 900px) { .row { grid-template-columns: 1fr; gap: 24px; } .visual { height: 300px; } }
 </style>

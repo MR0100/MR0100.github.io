@@ -76,11 +76,11 @@ const skills = [
   .who p { margin: 0; display: flex; flex-direction: column; line-height: 1.35; }
   .who b { font-weight: 600; }
   .who span { color: var(--ink-3); font-size: 15px; }
-  .hero h1 { font-size: clamp(42px, 5.6vw, 80px); margin: 32px 0 0; max-width: 1000px; }
+  .hero h1 { font-size: var(--display); margin: 32px 0 0; max-width: var(--title); }
   .row { display: grid; grid-template-columns: 280px 1fr; gap: 48px; padding-top: 40px; padding-bottom: 72px; position: relative; }
   .row::before { content: ''; position: absolute; top: 0; left: 32px; right: 32px; border-top: 1px solid var(--line); }
   .label { font-size: clamp(28px, 2.6vw, 36px); }
-  .content { margin: 0; padding: 0; max-width: 760px; }
+  .content { margin: 0; padding: 0; max-width: var(--text); }
   .story p { font-size: 18px; color: var(--ink-2); }
   .story .first { font: 400 clamp(24px, 2.2vw, 30px)/1.35 var(--serif); color: var(--ink); }
   .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 32px 0 0; font-size: 15px; }

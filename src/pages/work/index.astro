@@ -5,7 +5,7 @@ const past = otherWork.map(o => ({ ...o, p: projects.find(p => p.slug === o.slug
 import { counts } from '../../data/profile';
 ---
 <Base title="Work · Mitul Vaghasiya" active="Work" description="Mobile apps Mitul has shipped since 2019, and the projects behind them.">
-  <section class="wrap intro">
+  <section class="wrap page-head">
     <p class="eyebrow">Work</p>
     <h1>Apps I’ve built and led, since 2019.</h1>
     <p class="lede">{counts.projectsWorkedOn} projects across commerce, health, agriculture, education and consumer apps, for clients in Canada, Germany, Korea, Japan, Brazil and India. {liveApps.length} are live in the stores today. Some others shipped and were later withdrawn, and some were stopped by their clients before launch. They’re all listed below, honestly labelled.</p>
@@ -53,11 +53,8 @@ import { counts } from '../../data/profile';
 </Base>
 
 <style>
-  .intro { padding-top: 72px; padding-bottom: 48px; }
-  .intro h1 { font-size: clamp(40px, 4.8vw, 64px); margin: 16px 0 22px; max-width: 900px; }
-  .lede { font-size: 19px; color: var(--ink-2); max-width: 760px; }
   .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 8px; flex-wrap: wrap; }
-  .head h2 { font-size: clamp(30px, 3vw, 40px); }
+  .head h2 { font-size: var(--h2); }
   .note { font-size: 14px; color: var(--ink-3); }
   .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
   .app { display: grid; grid-template-columns: 96px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
@@ -83,7 +80,7 @@ import { counts } from '../../data/profile';
   .status { background: var(--accent-soft); color: var(--ink-2); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
   .arrow { margin-left: auto; color: var(--ink); transition: transform .2s; }
   .card:hover .arrow { transform: translateX(3px); }
-  .end { margin-top: 48px; max-width: 760px; }
+  .end { margin-top: 48px; max-width: var(--text); }
   @media (max-width: 900px) {
     .apps { grid-template-columns: 1fr; }
     .cards { grid-template-columns: 1fr 1fr; }
