@@ -11,7 +11,7 @@ const d = p.data;
 const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' && x.id !== p.id)
   .sort((a, b) => Number(b.data.topic === d.topic) - Number(a.data.topic === d.topic)).slice(0, 2);
 ---
-<Base title={`${d.title} · Mitul Vaghasiya`} description={d.dek} active="Writing"
+<Base title={`${d.title} · Mitul Vaghasiya`} description={d.dek} active="Writing" image={d.cover} type="article"
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: d.title }]}>
   <div class="progress" aria-hidden="true"><i id="bar"></i></div>
   <article>

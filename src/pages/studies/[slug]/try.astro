@@ -15,7 +15,7 @@ const sides = [
   { key: 'after', v: 'B', label: 'After', sub: 'My proposal', g: c.after },
 ];
 ---
-<Base title={`${d.app} before and after · Mitul Vaghasiya`} description={c.question.replace(/<[^>]+>/g, '')} active="Case studies"
+<Base title={`${d.app} before and after · Mitul Vaghasiya`} description={c.question.replace(/<[^>]+>/g, '')} active="Case studies" image={`${base}og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: base, label: d.app }, { label: 'Try it' }]}>
   <StudyTabs slug={p.id} current="try" />
   <header class="wrap head">

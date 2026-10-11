@@ -3,8 +3,10 @@ import '../styles/global.css';
 import { profile } from '../data/profile';
 // crumbs: where this page sits, shown under the header on every inner page. The last one is the current page (not a link).
 interface Crumb { href?: string; label: string }
-interface Props { title: string; description?: string; active?: string; crumbs?: Crumb[] }
-const { title, description = 'Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Case studies, analysis and writing.', active = '', crumbs = [] } = Astro.props;
+interface Props { title: string; description?: string; active?: string; crumbs?: Crumb[]; image?: string; type?: 'website' | 'article' }
+const { title, description = 'Mitul Vaghasiya: product designer and researcher who also ships mobile apps. Case studies, analysis and writing.', active = '', crumbs = [], image = '/images/og/default.png', type = 'website' } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site);
+const img = new URL(image, Astro.site);
 const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '/work/'], ['About', '/about/']];
 ---
 <!doctype html>
@@ -14,9 +16,18 @@ const nav = [['Case studies', '/studies/'], ['Writing', '/writing/'], ['Work', '
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={url} />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Mitul Vaghasiya" />
+  <meta property="og:url" content={url} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(profile.headshot, Astro.site)} />
+  <meta property="og:image" content={img} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={img} />
   <link rel="icon" href="/images/mitul-400.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

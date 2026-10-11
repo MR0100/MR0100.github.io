@@ -15,7 +15,7 @@ const labels = ['The question', 'What I found', 'What I’d change'];
 const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
 ---
 <CaseStudy app={d.app} kind="Product study" active={active} crumbs={crumbs} study={studyTabs} tabs={tabs}
-  title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} next={next}>
+  title={d.title} summary={d.summary} meta={d.meta} accent={d.accent} next={next} image={`/studies/${study.id}/og.png`}>
   <div slot="hero" class="pair">
     {d.heroImages.map((src, i) => <figure><img src={src} alt={`${d.app}: ${heroCaptions[i]}`} /><figcaption>{heroCaptions[i]}</figcaption></figure>)}
   </div>

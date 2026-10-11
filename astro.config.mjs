@@ -1,11 +1,8 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-export default defineConfig({
-  site: 'https://mr0100.github.io',
-  trailingSlash: 'always',
-  build: { format: 'directory' },
-  // Old v1 addresses keep working
-  redirects: {
+// Old v1 addresses keep working, but stay out of the sitemap
+const redirects = {
     '/work/kgk-diamonds/case-study': '/studies/kgk-diamonds/',
     '/work/chatgpt': '/studies/chatgpt/',
     '/work/chatgpt/test-kit': '/studies/chatgpt/test-kit/',
@@ -24,5 +21,13 @@ export default defineConfig({
     '/work/temu/sources': '/studies/temu/sources/',
     '/work/revolut/evidence/restriction-themes': '/studies/revolut/evidence/restriction-themes/',
     '/work/temu/evidence/game-themes': '/studies/temu/evidence/game-themes/'
-  },
+};
+
+
+export default defineConfig({
+  site: 'https://mr0100.github.io',
+  trailingSlash: 'always',
+  build: { format: 'directory' },
+  redirects,
+  integrations: [sitemap({ filter: page => !Object.keys(redirects).some(r => page === `https://mr0100.github.io${r}/`) && !page.includes('/linkedin/') })],
 });

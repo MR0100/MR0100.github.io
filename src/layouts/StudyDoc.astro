@@ -9,7 +9,7 @@ const { slug, app, current, label, title, description } = Astro.props;
 const study = await getEntry('studies', slug);
 const accent = study?.data.accent ?? '#e7ece6';
 ---
-<Base title={`${app} · ${label} · Mitul Vaghasiya`} description={description} active="Case studies"
+<Base title={`${app} · ${label} · Mitul Vaghasiya`} description={description} active="Case studies" image={`/studies/${slug}/og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: `/studies/${slug}/`, label: app }, { label }]}>
   <StudyTabs slug={slug} current={current} />
   <header class="wrap head"><div class="col">

@@ -17,7 +17,7 @@ const groups = [
   { key: 'proposal', eyebrow: 'The proposal', title: 'What I’d build instead', sub: `The same moment, in ${d.proposal.length} screens.`, steps: d.proposal },
 ];
 ---
-<Base title={`${d.app} screen by screen · Mitul Vaghasiya`} description={d.intro} active="Case studies"
+<Base title={`${d.app} screen by screen · Mitul Vaghasiya`} description={d.intro} active="Case studies" image={`${base}og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: base, label: d.app }, { label: 'Screen by screen' }]}>
   <StudyTabs slug={p.id} current="screens" />
   <header class="wrap head">

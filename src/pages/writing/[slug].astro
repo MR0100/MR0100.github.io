@@ -11,7 +11,7 @@ const { p } = Astro.props;
 const { Content } = await render(p);
 ---
 {p.data.source === 'Essay' ? <Essay p={p}><Content /></Essay> : (
-<Doc title={p.data.title} eyebrow={['LinkedIn post', fmtDate(p.data.date)].join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
+<Doc image={p.data.cover || undefined} title={p.data.title} eyebrow={['LinkedIn post', fmtDate(p.data.date)].join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
   <p slot="lede" class="dek">{p.data.dek}</p>
   {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}

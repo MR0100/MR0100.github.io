@@ -27,7 +27,7 @@ const links = [
   ...p.proof.map(x => ({ label: x.label, note: x.note ?? 'Public record', href: x.href })),
 ];
 ---
-<CaseStudy app={p.name} kind={`Project · ${p.category}`} title={p.name} summary={p.oneLiner} meta={meta} accent={p.accent}
+<CaseStudy image={`/images/og/${p.slug}.png`} app={p.name} kind={`Project · ${p.category}`} title={p.name} summary={p.oneLiner} meta={meta} accent={p.accent}
   crumbs={[{ href: '/work/', label: 'Work' }, { label: p.name }]}
   tabs={p.caseStudy ? [{ label: 'Project details', href: `/work/${p.slug}/`, current: true }, { label: 'Case study', href: `/studies/${p.slug}/` }] : undefined}
   next={{ href: `/work/${next.slug}/`, label: `${next.name}: ${next.oneLiner}` }}>

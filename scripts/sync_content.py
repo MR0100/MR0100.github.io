@@ -122,6 +122,8 @@ def sync_studies():
         for sub in ('design', 'prototype'):
             shutil.rmtree(os.path.join(dst, sub), ignore_errors=True)
         shutil.copytree(os.path.join(s, 'design'), os.path.join(dst, 'design'))
+        if os.path.exists(os.path.join(s, 'og.png')):
+            shutil.copy2(os.path.join(s, 'og.png'), out('public', 'studies', slug, 'og.png'))
         try_html = fix_prototype(open(os.path.join(s, 'prototype', 'try.html'), encoding='utf-8').read())
         open(out('public', 'studies', slug, 'prototype', 'try.html'), 'w', encoding='utf-8').write(try_html)
         screens = json.load(open(os.path.join(s, 'prototype', 'screens.json'), encoding='utf-8'))
@@ -225,7 +227,7 @@ def sync_work():
     for f in glob.glob(os.path.join(WORK, '*.json')):
         json.dump(strip(json.load(open(f, encoding='utf-8'))), open(out('src', 'content', 'work', os.path.basename(f)), 'w', encoding='utf-8'),
                   ensure_ascii=False, indent=1)
-    for d in ('projects', 'apps'):
+    for d in ('projects', 'apps', 'og'):
         shutil.rmtree(os.path.join(REPO, 'public', 'images', d), ignore_errors=True)
         shutil.copytree(os.path.join(WORK, 'images', d), os.path.join(REPO, 'public', 'images', d))
     for f in glob.glob(os.path.join(WORK, 'images', '*.jpg')):

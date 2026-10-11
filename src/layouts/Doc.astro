@@ -2,10 +2,10 @@
 import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
 interface Crumb { href?: string; label: string }
-interface Props { study?: { slug: string; current: string }; title: string; eyebrow: string; back?: { href: string; label: string }; crumbs?: Crumb[]; description?: string; active?: string }
-const { title, eyebrow, back, crumbs, description, active = 'Case studies', study } = Astro.props;
+interface Props { image?: string; study?: { slug: string; current: string }; title: string; eyebrow: string; back?: { href: string; label: string }; crumbs?: Crumb[]; description?: string; active?: string }
+const { title, eyebrow, back, crumbs, description, active = 'Case studies', study, image } = Astro.props;
 ---
-<Base title={`${title} · Mitul Vaghasiya`} description={description} active={active} crumbs={crumbs ?? (back ? [back, { label: title }] : [])}>
+<Base title={`${title} · Mitul Vaghasiya`} description={description} active={active} image={image} type="article" crumbs={crumbs ?? (back ? [back, { label: title }] : [])}>
   {study && <StudyTabs {...study} />}
   <article class="doc wrap">
     <header>
