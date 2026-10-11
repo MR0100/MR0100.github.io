@@ -38,7 +38,7 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
     <div class="figs">
       {d.figures.map(f => <figure><div class="frame" style={`background:${d.accent}`}><img src={f.src} alt="" loading="lazy" /></div><figcaption>{f.caption}</figcaption></figure>)}
     </div>
-    <p class="disclaim">{d.figureNote ?? `All screens are my re-creations in ${d.app}’s visual style, for an independent study. Not affiliated with ${d.app}.`}</p>
+    <p class="disclaim in-main">{d.figureNote ?? `All screens are my re-creations in ${d.app}’s visual style, for an independent study. Not affiliated with ${d.app}.`}</p>
   </div>
 
   <div class="wide"><div class="deeper">
@@ -53,16 +53,13 @@ const heroCaptions = d.heroCaptions ?? ['Today, re-created', 'My proposal'];
   .pair figure { margin: 0; width: min(36%, 300px); display: flex; flex-direction: column; align-items: center; }
   .pair img { width: 100%; filter: drop-shadow(0 24px 40px rgba(0,0,0,.12)); }
   .pair figcaption { margin: 14px 0 20px; font: 500 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
-  .md :global(h2) { font-size: var(--h2); margin: 10px 0 18px; }
-  .md :global(p.eyebrow) { margin: 56px 0 0; color: var(--ink-3); }
-  .md :global(p.eyebrow:first-child) { margin-top: 0; }
   .figs-head { margin: 0 0 24px; }
   .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
   .figs figure { margin: 0; }
   .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; }
   .frame img { width: 92%; }
   .figs figcaption { font-size: 15px; color: var(--ink-2); margin-top: 14px; }
-  .disclaim { font-size: 13px; color: var(--ink-3); margin: 24px 0 0; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin-top: 24px; margin-bottom: 0; }
   .deeper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
   .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
   .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }

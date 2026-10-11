@@ -13,15 +13,15 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', active = '
   {study && <StudyTabs {...study} />}
   {tabs && <Tabs items={tabs} />}
   <article>
-    <header class="wrap page-head head">
-      <div class="lead">
-        <p class="eyebrow">{kind} · {app}</p>
-        <h1>{title}</h1>
-        <p class="lede">{summary}</p>
+    <header class="wrap page-head">
+      <p class="eyebrow">{kind} · {app}</p>
+      <h1>{title}</h1>
+      <div class="sec facts">
+        <dl class="side meta">
+          {meta.map(m => <div><dt>{m.label}</dt><dd set:html={m.value} /></div>)}
+        </dl>
+        <div class="main"><p class="summary">{summary}</p></div>
       </div>
-      <dl class="meta">
-        {meta.map(m => <div><dt>{m.label}</dt><dd set:html={m.value} /></div>)}
-      </dl>
     </header>
     <div class="wrap">
       <div class="hero" style={`background:${accent}`}>
@@ -34,8 +34,9 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', active = '
 </Base>
 
 <style>
-  /* Header on the grid's left edge, with the facts beside it */
-  .head { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; align-items: end; }
+  /* Header: title from the left edge; the facts in the side column, the summary in the main column */
+  .facts { margin-top: 32px; }
+  .summary { font-size: 19px; color: var(--ink-2); margin: 0; }
   .meta { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
   .meta div { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
   .meta dt { color: var(--ink-3); }
@@ -43,10 +44,8 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', active = '
   .hero { border-radius: var(--radius); min-height: 460px; display: grid; place-items: center; overflow: hidden; }
   .hero-icon { width: 160px; height: 160px; border-radius: 36px; box-shadow: 0 24px 60px rgba(0,0,0,.16); }
   .body { padding: 72px 0 24px; }
-  /* Text sections sit on the same left edge as everything else, at text width */
+  /* Text sections are .sec grids (side heading, main text) across the full grid */
   .body :global(section) { max-width: var(--wrap); margin: 0 auto 72px; padding: 0 32px; }
-  .body :global(section > *) { max-width: var(--text); }
-  .body :global(section h2) { font-size: var(--h2); margin: 10px 0 18px; }
   .body :global(section p), .body :global(section li) { color: var(--ink-2); }
   .body :global(section ul) { padding-left: 20px; margin: 0 0 1em; }
   .body :global(section li) { margin-bottom: 8px; }
@@ -67,7 +66,6 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', active = '
   .body :global(.decision h3) { font-size: 24px; margin: 6px 0 10px; }
   .body :global(.decision p) { color: var(--ink-2); margin: 0; }
   @media (max-width: 900px) {
-    .head { grid-template-columns: 1fr; gap: 32px; }
     .hero { min-height: 300px; }
     .body :global(.stats), .body :global(.tldr), .body :global(.decision) { grid-template-columns: 1fr; }
     .body :global(.stats div + div) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }

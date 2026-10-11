@@ -45,7 +45,7 @@ const sides = [
   </section>
 
   <section class="wrap foot">
-    <p class="disclaim">Both phones are live: tap through them. {d.note?.replace('Every screen below is', 'Both are')} Prices and numbers on screen are placeholders. <a class="link" href={`${base}sources/`}>Sources</a>.</p>
+    <p class="disclaim in-main">Both phones are live: tap through them. {d.note?.replace('Every screen below is', 'Both are')} Prices and numbers on screen are placeholders. <a class="link" href={`${base}sources/`}>Sources</a>.</p>
   </section>
   <StudyPager slug={p.id} current="try" />
 </Base>
@@ -100,6 +100,6 @@ const sides = [
   .btn.small.ghost { border: 1px solid var(--line); background: transparent; }
   .status { font-size: 14px; color: var(--ink-3); }
   .foot { padding-top: 24px; }
-  .disclaim { font-size: 13px; color: var(--ink-3); max-width: var(--text); }
+  .disclaim { font-size: 13px; color: var(--ink-3); }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .col { padding: 18px; } }
 </style>

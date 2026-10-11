@@ -14,7 +14,7 @@ const topics = [...new Set(essays.map(e => e.data.topic).filter(Boolean))];
     <p class="eyebrow">Writing</p>
     <h1>Notes on research, mobile UX and building what people keep.</h1>
     <p class="lede">Essays you can put to work this week, drawn from my case studies and from shipping mobile apps since 2019. Each ends with one thing to try.</p>
-    {topics.length > 0 && <p class="topics">{topics.map(t => <span>{t}</span>)}</p>}
+    {topics.length > 0 && <p class="topics in-main">{topics.map(t => <span>{t}</span>)}</p>}
   </section>
 
   {lead && <section class="wrap lead"><EssayCard p={lead} big /></section>}
@@ -39,7 +39,7 @@ const topics = [...new Set(essays.map(e => e.data.topic).filter(Boolean))];
 </Base>
 
 <style>
-  .topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+  .topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; margin-bottom: 0; }
   .topics span { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
   .lead { padding-bottom: 72px; }
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 56px 40px; padding-top: 56px; border-top: 1px solid var(--line); }

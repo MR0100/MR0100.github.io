@@ -44,18 +44,17 @@ const links = [
   </div></div>
 
   {p.contributions.length > 0 && (
-    <section>
-      <p class="eyebrow">What I did</p>
-      <h2>How I contributed</h2>
-      <ul>{p.contributions.map(c => <li set:html={c} />)}</ul>
-    </section>
+    <section><div class="sec">
+      <div class="side"><p class="eyebrow">What I did</p><h2>How I contributed</h2></div>
+      <div class="main"><ul>{p.contributions.map(c => <li set:html={c} />)}</ul></div>
+    </div></section>
   )}
 
   {p.stack.length > 0 && (
-    <section>
-      <p class="eyebrow">Built with</p>
-      <p class="stack">{p.stack.map(s => <span>{s}</span>)}</p>
-    </section>
+    <section><div class="sec">
+      <div class="side"><p class="eyebrow">Built with</p><h2>The stack</h2></div>
+      <div class="main"><p class="stack">{p.stack.map(s => <span>{s}</span>)}</p></div>
+    </div></section>
   )}
 
   {gallery.length > 0 && (
@@ -64,7 +63,7 @@ const links = [
       <div class:list={['figs', { land: gallery.some(g => g.kind !== 'phone') }]}>
         {gallery.map(g => <figure><div class="frame" style={`background:${p.accent}`}><img src={g.src} alt={g.alt} loading="lazy" class:list={[g.kind]} /></div></figure>)}
       </div>
-      {p.imageSource && <p class="disclaim">{p.imageSource}</p>}
+      {p.imageSource && <p class="disclaim in-main">{p.imageSource}</p>}
     </div>
   )}
 
@@ -74,7 +73,7 @@ const links = [
       {links.map(l => <a href={l.href} rel="noopener"><b>{l.label}{'internal' in l ? ' →' : ' ↗'}</b><span>{l.note}</span></a>)}
     </div></div>
   )}
-  {!live && <div class="wide"><p class="disclaim">{p.statusNote ?? 'This app is no longer available in the stores. The links above are independent records that it existed.'}</p></div>}
+  {!live && <div class="wide"><p class="disclaim in-main">{p.statusNote ?? 'This app is no longer available in the stores. The links above are independent records that it existed.'}</p></div>}
   <Pager slot="pager" label="Projects" prev={{ href: `/work/${prev.slug}/`, label: prev.name }} next={{ href: `/work/${next.slug}/`, label: next.name }} />
 </CaseStudy>
 
@@ -85,7 +84,7 @@ const links = [
   .shots.single img { width: auto; max-width: min(100%, 820px); max-height: 420px; border-radius: 16px; }
   .shots.single img.phone { max-height: 420px; }
   .shots .icon { width: 140px !important; border-radius: 32px !important; }
-  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
   .stack span { font-size: 14px; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); }
   .figs-head { margin: 0 0 24px; }
   .figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
@@ -94,7 +93,7 @@ const links = [
   .frame { border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; height: 100%; }
   .frame img { width: 88%; border-radius: 14px 14px 0 0; }
   .frame img.landscape, .frame img.graphic { width: 100%; border-radius: 12px; margin-bottom: 18px; }
-  .disclaim { font-size: 13px; color: var(--ink-3); margin: 20px 0 0; }
+  .disclaim { font-size: 13px; color: var(--ink-3); margin-top: 20px; margin-bottom: 0; }
   .deeper { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
   .deeper .eyebrow { grid-column: 1 / -1; margin: 28px 0 8px; }
   .deeper a { display: flex; flex-direction: column; gap: 4px; padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }

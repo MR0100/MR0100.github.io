@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import rehypeRaw from 'rehype-raw';
+import rehypeSections from './src/lib/rehype-sections.mjs';
 
 // Old v1 addresses keep working, but stay out of the sitemap
 const redirects = {
@@ -29,5 +31,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   redirects,
+  // Raw HTML first, so figures and eyebrows written as HTML are seen by the section layout
+  markdown: { rehypePlugins: [rehypeRaw, rehypeSections] },
   integrations: [sitemap({ filter: page => !Object.keys(redirects).some(r => page === `https://mr0100.github.io${r}/`) && !page.includes('/linkedin/') })],
 });

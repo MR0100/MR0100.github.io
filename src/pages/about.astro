@@ -77,10 +77,11 @@ const skills = [
   .who b { font-weight: 600; }
   .who span { color: var(--ink-3); font-size: 15px; }
   .hero h1 { font-size: var(--display); margin: 32px 0 0; max-width: var(--title); }
-  .row { display: grid; grid-template-columns: 280px 1fr; gap: 48px; padding-top: 40px; padding-bottom: 72px; position: relative; }
+  /* The same side/main split as the editorial grid (.sec) */
+  .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gap); padding-top: 40px; padding-bottom: 72px; position: relative; }
   .row::before { content: ''; position: absolute; top: 0; left: 32px; right: 32px; border-top: 1px solid var(--line); }
   .label { font-size: clamp(28px, 2.6vw, 36px); }
-  .content { margin: 0; padding: 0; max-width: var(--text); }
+  .content { margin: 0; padding: 0; }
   .story p { font-size: 18px; color: var(--ink-2); }
   .story .first { font: 400 clamp(24px, 2.2vw, 30px)/1.35 var(--serif); color: var(--ink); }
   .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 32px 0 0; font-size: 15px; }
@@ -101,7 +102,7 @@ const skills = [
   .list .role:last-child { color: var(--ink); }
   .skills dt { font: 400 24px/1.2 var(--serif); }
   .skills dd { margin: 0; color: var(--ink-2); padding-top: 3px; }
-  @media (max-width: 960px) {
+  @media (max-width: 900px) {
     .row { grid-template-columns: 1fr; gap: 24px; padding-bottom: 56px; }
   }
   @media (max-width: 760px) {

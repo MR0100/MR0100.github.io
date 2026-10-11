@@ -13,14 +13,14 @@ const { Content } = await render(p);
 {p.data.source === 'Essay' ? <Essay p={p}><Content /></Essay> : (
 <Doc image={p.data.cover || undefined} title={p.data.title} eyebrow={['LinkedIn post', fmtDate(p.data.date)].join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
-  <p slot="lede" class="dek">{p.data.dek}</p>
-  {p.data.cover && <img class="cover" src={p.data.cover} alt="" />}
+  <p slot="lede" class="dek in-main">{p.data.dek}</p>
+  {p.data.cover && <p class="in-main"><img class="cover" src={p.data.cover} alt="" /></p>}
   <Content />
-  <p class="origin">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
+  <p class="origin in-main">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
 </Doc>)}
 
 <style>
-  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 18px 0 0; max-width: var(--text); }
+  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin-top: 24px; margin-bottom: 0; }
   .cover { width: 100% !important; max-width: 520px; margin: 0 0 40px !important; border-radius: 16px; }
   .origin { font-size: 15px; color: var(--ink-3); margin-top: 40px; }
 </style>

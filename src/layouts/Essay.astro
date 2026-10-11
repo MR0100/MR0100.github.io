@@ -18,12 +18,12 @@ const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' &&
     <header class="wrap page-head">
       <p class="eyebrow">Essay · {d.topic} · {fmtDate(d.date)} · {d.minutes} min read</p>
       <h1>{d.title}</h1>
-      <p class="dek">{d.dek}</p>
-      <p class="by"><img src="/images/mitul-400.jpg" alt="" width="36" height="36" /><span>Mitul Vaghasiya</span></p>
+      <p class="dek in-main">{d.dek}</p>
+      <p class="by in-main"><img src="/images/mitul-400.jpg" alt="" width="36" height="36" /><span>Mitul Vaghasiya</span></p>
     </header>
-    {d.cover && <div class="wrap"><img class="cover" src={d.cover} alt="" /></div>}
+    {d.cover && <div class="wrap"><div class="in-main"><img class="cover" src={d.cover} alt="" /></div></div>}
     <div class="wrap"><div class="prose essay"><slot /></div></div>
-    <div class="wrap"><div class="measure end">
+    <div class="wrap"><div class="in-main end">
       <p>Questions, or a different experience? <a class="link" href={`mailto:${profile.email}`}>Write to me</a> or reply on <a class="link" href={profile.linkedin}>LinkedIn</a>.</p>
     </div></div>
   </article>
@@ -45,18 +45,17 @@ const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' &&
 <style>
   .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 20; }
   .progress i { display: block; height: 100%; width: 0; background: var(--accent); }
-  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 18px 0 0; max-width: var(--text); }
-  .by { display: flex; align-items: center; gap: 10px; margin: 24px 0 0; font-size: 15px; font-weight: 500; }
+  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin-top: 24px; margin-bottom: 0; }
+  .by { display: flex; align-items: center; gap: 10px; margin-top: 24px; margin-bottom: 0; font-size: 15px; font-weight: 500; }
   .by img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-  .cover { width: 100%; max-width: var(--text); margin: 0 0 56px; border-radius: var(--radius); aspect-ratio: 16 / 9; object-fit: cover; }
-  /* Figures and the "try this" box sit in the text column */
+  .cover { width: 100%; margin: 0 0 56px; border-radius: var(--radius); aspect-ratio: 16 / 9; object-fit: cover; }
+  /* Figures and the "try this" box sit in the main column */
   .essay :global(.essay-fig) { margin: 40px 0; }
   .essay :global(.essay-fig img) { width: 100% !important; max-width: none; margin: 0 !important; border-radius: 16px; box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(20,22,20,.06); }
   .essay :global(.essay-fig figcaption) { font-size: 14px; color: var(--ink-3); margin-top: 12px; text-align: center; }
   .essay :global(aside.try) { margin: 40px 0; padding: 24px 28px; border-radius: 18px; background: var(--accent); color: #eef1ec; }
   .essay :global(aside.try p) { margin: 0; font-size: 18px; color: #eef1ec; }
   .essay :global(aside.try .k) { font: 500 12px/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #b9c2bb; margin-bottom: 8px; }
-  .essay :global(h2) { margin-top: 56px; }
   .end { border-top: 1px solid var(--line); margin-top: 56px; padding-top: 24px; color: var(--ink-3); font-size: 15px; }
   .more { padding-top: 72px; padding-bottom: 24px; }
   .mhead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 1px solid var(--line); padding-top: 24px; margin-bottom: 32px; }
