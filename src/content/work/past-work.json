@@ -1,0 +1,82 @@
+[
+ {
+  "slug": "lili",
+  "name": "Lili",
+  "what": "AI health assistant reading Fitbit and Apple Health",
+  "where": "International",
+  "year": "2021–23",
+  "status": "No longer in stores"
+ },
+ {
+  "slug": "physio-mobile",
+  "name": "Physio Mobile",
+  "what": "Video rehab programmes for physiotherapy patients",
+  "where": "Germany",
+  "year": "2021–23",
+  "status": "No longer in stores"
+ },
+ {
+  "slug": "bookmrk-delivery",
+  "name": "BookMrk + Delivery",
+  "what": "School book ordering and its last-mile delivery app",
+  "where": "India",
+  "year": "2020–22",
+  "status": "No longer in stores"
+ },
+ {
+  "slug": "locket",
+  "name": "Locket",
+  "what": "Real-time location sharing with native background services",
+  "where": "International",
+  "year": "2022–23",
+  "status": "No longer in stores"
+ },
+ {
+  "slug": "marline-media",
+  "name": "Marline Media",
+  "what": "Invitation cards and photo-lens maker",
+  "where": "International",
+  "year": "2021–23",
+  "status": "No longer in stores"
+ },
+ {
+  "slug": "setera-tpms",
+  "name": "Setera TPMS",
+  "what": "Tyre-pressure sensor tool over native USB serial",
+  "where": "Brazil",
+  "year": "2023–24",
+  "status": "B2B tool"
+ },
+ {
+  "slug": "studymap",
+  "name": "Studymap",
+  "what": "AI study content and group study sessions",
+  "where": "Japan",
+  "year": "2022–24",
+  "status": "Rebranded by the client"
+ },
+ {
+  "slug": "warden-tracker",
+  "name": "Warden Tracker",
+  "what": "Geofencing with background location and proximity alerts",
+  "where": "—",
+  "year": "2022–23",
+  "status": "Internal"
+ },
+ {
+  "slug": "careshare",
+  "name": "CareShare",
+  "what": "Care coordination with Google Fit and Apple Health",
+  "where": "—",
+  "year": "2021–22",
+  "status": "Unreleased"
+ },
+ {
+  "slug": "synergy",
+  "name": "Synergy",
+  "what": "Matchmaking with real-time messaging",
+  "where": "—",
+  "year": "2021–22",
+  "status": "Unreleased"
+ }
+]

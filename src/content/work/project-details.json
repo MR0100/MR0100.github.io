@@ -1,0 +1,768 @@
+{
+ "live": {
+  "kgk-diamonds": {
+   "about": "KGK Diamonds is the buying app of the KGK Group. Professionals search a consolidated inventory of certified diamonds from five sales offices, save searches, share stones, export details to Excel, bid on new arrivals and book viewings at KGK offices.",
+   "audience": "Retailers, wholesalers, brokers and jewellery designers who buy certified diamonds in volume.",
+   "team": "7 people: 2 mobile, 1 backend, 1 web, 1 design, 2 QA. Mitul leads the team and mentors five of them.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Clean Architecture",
+    "MVVM",
+    "BLoC",
+    "REST and GraphQL",
+    "Hive",
+    "Encrypted storage",
+    "Patrol end-to-end tests",
+    "Fastlane",
+    "CI/CD"
+   ],
+   "contributions": [
+    "Rebuilt the inventory grid with virtualised lists, server-driven filters and a slimmer payload. Scrolling on entry-level Android went from 50 to 60 FPS and the grid now appears in 2 seconds instead of 5.",
+    "Cut app size by 10% and cold start by 45% on mid-tier Android 12 phones through tree-shaking, deferred asset loading and cache priming.",
+    "Made Clean Architecture with MVVM and BLoC the team standard. Cross-feature merge conflicts fell about 65% and new engineers became productive in 2 weeks instead of 5.",
+    "Protected commercially sensitive pricing: screen capture blocked on pricing screens, the app refuses to start when it detects traffic-sniffing tools, and credentials and cached inventory sit in encrypted storage behind JWT and OAuth 2.0.",
+    "Built a test suite of unit, widget and Patrol end-to-end tests at about 80% coverage, run on every pull request.",
+    "Owns the release pipeline end to end, including Fastlane signing and store upload. A release takes 1.5 days instead of 4, and crash-free sessions hold at 99.9% on both stores."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/kgk-diamonds/1.jpg",
+     "kind": "phone",
+     "alt": "KGK Diamonds dashboard with new arrivals, bids, cart and saved searches"
+    },
+    {
+     "src": "/images/projects/kgk-diamonds/2.jpg",
+     "kind": "phone",
+     "alt": "Diamond search screen with shape, carat and clarity filters"
+    },
+    {
+     "src": "/images/projects/kgk-diamonds/3.jpg",
+     "kind": "phone",
+     "alt": "Search results listing certified stones with price per carat and discount"
+    },
+    {
+     "src": "/images/projects/kgk-diamonds/4.jpg",
+     "kind": "phone",
+     "alt": "New arrivals with a bid countdown timer"
+    },
+    {
+     "src": "/images/projects/kgk-diamonds/5.jpg",
+     "kind": "phone",
+     "alt": "Match pair screen for selecting two matching stones"
+    }
+   ],
+   "imageSource": "Google Play listing, com.kgk.diamonds (store frames with a caption above each phone screen)"
+  },
+  "mytarot": {
+   "about": "A daily tarot app built around a talking cat who shuffles the deck and presents your reading. You pick a topic, such as money, love or work, draw a card and get a short reading meant to start the day calmly.",
+   "audience": "Korean consumers who like a quick daily fortune.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "Local storage",
+    "FCM",
+    "Custom animations"
+   ],
+   "contributions": [
+    "Built the interactive card-drawing flow with custom animations that run the same on iOS and Android.",
+    "Set up an offline database so the daily reading works without a connection."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/mytarot/1.jpg",
+     "kind": "graphic",
+     "alt": "Tarot Cat title card with the pink cat beside a fanned deck"
+    },
+    {
+     "src": "/images/projects/mytarot/2.jpg",
+     "kind": "phone",
+     "alt": "Money luck topic with the green card back"
+    },
+    {
+     "src": "/images/projects/mytarot/3.jpg",
+     "kind": "phone",
+     "alt": "Love luck topic with the pink card back"
+    },
+    {
+     "src": "/images/projects/mytarot/4.jpg",
+     "kind": "phone",
+     "alt": "Work luck topic with the blue card back"
+    },
+    {
+     "src": "/images/projects/mytarot/5.jpg",
+     "kind": "phone",
+     "alt": "Topic picker with the cat resting on a cushion"
+    }
+   ],
+   "imageSource": "Google Play listing, com.onezlabs.tarot_cat (\"Tarot Cat\", 500x1024 originals, so they display small)"
+  },
+  "foresite": {
+   "about": "ForeSite is the field app of Ukko Agro, a smart-agriculture company. It turns data from on-farm weather stations and crop models into daily insights: which fields need attention, growth stages, disease risk and spray timing, plus field data entry and farm management.",
+   "audience": "Growers and agronomists who need to decide what to do on the farm today with little time to spare.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "REST APIs",
+    "SQLite",
+    "Offline-first sync",
+    "Maps",
+    "Live location",
+    "WebSockets",
+    "Kotlin and Swift (Method Channels)",
+    "Charts",
+    "FCM"
+   ],
+   "contributions": [
+    "Built offline-first sync: a local SQLite store that replays changes and resolves conflicts when the connection returns, with request retry and caching, so crop monitoring keeps working in fields with no signal.",
+    "Shaped API payloads around what each screen actually shows, to keep map and chart screens quick on weak connections.",
+    "Wrote a native bridge in Kotlin and Swift for secure WebSocket telemetry, where Dart alone could not reach the platform."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/foresite/1.jpg",
+     "kind": "phone",
+     "alt": "Daily insights feed with disease models, growth stages and notifications"
+    },
+    {
+     "src": "/images/projects/foresite/2.jpg",
+     "kind": "phone",
+     "alt": "Insight detail listing the fields that need spraying today"
+    },
+    {
+     "src": "/images/projects/foresite/3.jpg",
+     "kind": "phone",
+     "alt": "Satellite map of fields and weather stations"
+    },
+    {
+     "src": "/images/projects/foresite/4.jpg",
+     "kind": "phone",
+     "alt": "Growth stage modelling on a field map with stage timeline"
+    },
+    {
+     "src": "/images/projects/foresite/5.jpg",
+     "kind": "phone",
+     "alt": "Disease modelling with a spray window for a canola field"
+    }
+   ],
+   "imageSource": "Google Play listing, com.ukkoag.enterprise (store frames with a caption above each phone screen)"
+  },
+  "kgk-hrms": {
+   "about": "KGK HRMS is the KGK Group’s staff app for everyday HR: attendance, leave, gate passes, travel requests, canteen and performance reviews, with each screen shown according to the employee’s role.",
+   "audience": "KGK Group employees, team leads, heads of department and HR administrators.",
+   "team": "Built by the same KGK InfoTech mobile team that Mitul leads (7 people across mobile, backend, web, design and QA).",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Clean Architecture",
+    "BLoC",
+    "REST APIs",
+    "Role-based access control",
+    "Encrypted local storage"
+   ],
+   "contributions": [
+    "Leads the team that builds and ships the app, owning architecture, code review and sprint scoping.",
+    "Role-based access control, so each person only sees the screens and data their role allows.",
+    "Encrypted local storage for any HR data held on the device.",
+    "Integration with KGK’s HR back end through REST APIs, on the Clean Architecture and BLoC standard used across KGK’s apps."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/kgk-hrms/1.jpg",
+     "kind": "phone",
+     "alt": "KGK HRMS sign-in screen"
+    },
+    {
+     "src": "/images/projects/kgk-hrms/2.jpg",
+     "kind": "phone",
+     "alt": "Performance review scorecard with role tabs for user, team lead, HR, head of department and admin"
+    },
+    {
+     "src": "/images/projects/kgk-hrms/3.jpg",
+     "kind": "phone",
+     "alt": "No access rights message shown when a role is not allowed to view a section"
+    }
+   ],
+   "imageSource": "Google Play listing, com.kgkhrms.app (plain phone screenshots)"
+  },
+  "havitglam": {
+   "about": "Havitglam helps people build one healthy habit at a time through seven-day challenges, such as taking vitamins, yoga, drinking water or reading. Each day you prove it with a timestamped photo and share progress with other users.",
+   "audience": "People who want to stick with a self-care routine and like a little social encouragement.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "Local storage",
+    "FCM",
+    "Camera",
+    "Sound",
+    "Animations"
+   ],
+   "contributions": [
+    "Built local image caching with cloud storage behind it, so a photo-heavy app kept scrolling at 60 fps."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/havitglam/1.jpg",
+     "kind": "graphic",
+     "alt": "Promotional graphic: transform your healthy habit with a seven-day challenge"
+    },
+    {
+     "src": "/images/projects/havitglam/2.jpg",
+     "kind": "phone",
+     "alt": "Goal screen with a yoga photo and a take a glam moment button"
+    },
+    {
+     "src": "/images/projects/havitglam/3.jpg",
+     "kind": "phone",
+     "alt": "Daily photo grid tracking a seven-day challenge"
+    },
+    {
+     "src": "/images/projects/havitglam/4.jpg",
+     "kind": "phone",
+     "alt": "Seven-day challenge success screen with shared photos"
+    },
+    {
+     "src": "/images/projects/havitglam/5.jpg",
+     "kind": "phone",
+     "alt": "Feed of other users’ challenge photos"
+    }
+   ],
+   "imageSource": "Google Play listing, com.onezlabs.havitglam (store frames with captions, 500x1024 originals)"
+  },
+  "todays-quote": {
+   "about": "Today’s Quote delivers a daily quote from well-known people, set on calm photographic backgrounds. Users can save favourites, search by author and play small puzzle games built from quotes, with a leaderboard to compete with others.",
+   "audience": "People who want a short dose of motivation to start the day.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "FCM and local notifications",
+    "Local storage",
+    "2D game"
+   ],
+   "contributions": [
+    "Automated the daily quote delivery through FCM, with local notifications as well.",
+    "Built the screen transitions and micro-animations across the app."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/todays-quote/1.jpg",
+     "kind": "phone",
+     "alt": "Daily quote card on a mountain background"
+    },
+    {
+     "src": "/images/projects/todays-quote/2.jpg",
+     "kind": "phone",
+     "alt": "Quote search results by author with like buttons"
+    },
+    {
+     "src": "/images/projects/todays-quote/3.jpg",
+     "kind": "phone",
+     "alt": "My Quotes collection of saved favourites"
+    },
+    {
+     "src": "/images/projects/todays-quote/4.jpg",
+     "kind": "phone",
+     "alt": "Quote puzzle game with a counter and timer"
+    }
+   ],
+   "imageSource": "Google Play listing, com.onezlabs.todaysquote (store frames with captions, 430x800 originals, so they display small)"
+  },
+  "invitation-cards": {
+   "about": "An invitation card maker for Indian occasions: weddings, engagements, baby showers, house warmings, business openings, festivals and obituaries. Users pick a template, edit text, photos, stickers and colours, then export as PNG or PDF and share directly. The app and its cards are available in Gujarati, Hindi and English.",
+   "audience": "Families and small businesses in India who want a printed or shareable invitation without hiring a designer.",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "REST APIs",
+    "Custom canvas editor",
+    "Local storage",
+    "In-app purchase",
+    "FCM",
+    "Animations"
+   ],
+   "contributions": [
+    "Built the card editor: a customisable canvas with layers, where text, images and vector elements can be moved and edited independently.",
+    "Built the export path that turns the edited card into a shareable file."
+   ],
+   "images": [
+    {
+     "src": "/images/projects/invitation-cards/1.jpg",
+     "kind": "phone",
+     "alt": "Category list for wedding, engagement, baby shower and opening invitations"
+    },
+    {
+     "src": "/images/projects/invitation-cards/2.jpg",
+     "kind": "phone",
+     "alt": "Editor with sticker picker on a wedding card"
+    },
+    {
+     "src": "/images/projects/invitation-cards/3.jpg",
+     "kind": "phone",
+     "alt": "Text colour picker on a Gujarati invitation"
+    },
+    {
+     "src": "/images/projects/invitation-cards/4.jpg",
+     "kind": "phone",
+     "alt": "Settings with language choice of Hindi, English and Gujarati"
+    },
+    {
+     "src": "/images/projects/invitation-cards/5.jpg",
+     "kind": "phone",
+     "alt": "Font and text formatting tools on a pink invitation card"
+    }
+   ],
+   "imageSource": "Google Play listing, com.luxecard.app (store frames with captions)"
+  }
+ },
+ "past": {
+  "lili": {
+   "name": "Lili: Health Data Assistant",
+   "about": "Lili sat on top of a person’s Fitbit or Apple Health data and turned it into insights, personal plans and plain-language answers through a chat-style assistant. Users could also log symptoms, tags and mood so those were part of the analysis.",
+   "audience": "People with a wearable who wanted to understand their own health data.",
+   "client": "Lili (itslili.com)",
+   "role": "Senior Flutter Developer, Sadguru Soft",
+   "period": "2021–2023",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "BLoC",
+    "REST APIs",
+    "Fitbit API (OAuth 2.0)",
+    "Apple Health",
+    "Encrypted local storage"
+   ],
+   "contributions": [
+    "Led the Flutter build for iOS and Android.",
+    "Connected two data sources, Fitbit over OAuth 2.0 and Apple Health through on-device permissions, into one internal health-data model.",
+    "Built the chat-style assistant and its swipeable reply cards.",
+    "Moved chat history onto a windowed BLoC stream, which cut start-up jitter and memory pressure during heavy data loads.",
+    "Kept personal health data encrypted on the device and accessed accounts read-only."
+   ],
+   "proof": [
+    {
+     "label": "App Store listing, archived Jul 2024",
+     "href": "https://web.archive.org/web/20240720065855/https://apps.apple.com/us/app/lili-health-data-assistant/id1549377844"
+    },
+    {
+     "label": "Google Play listing, archived Jun 2022 (10K+ downloads, 4.6 stars)",
+     "href": "https://web.archive.org/web/20220630150119/https://play.google.com/store/apps/details?id=com.itslili.lili"
+    },
+    {
+     "label": "Lili website, archived May 2021",
+     "href": "https://web.archive.org/web/20210513122155/https://itslili.com/"
+    }
+   ],
+   "images": [
+    {
+     "src": "/images/projects/lili/1.jpg",
+     "kind": "graphic",
+     "alt": "Lili chat assistant, points and stats screens"
+    },
+    {
+     "src": "/images/projects/lili/2.jpg",
+     "kind": "graphic",
+     "alt": "Lili splash, chat and rewards screens"
+    },
+    {
+     "src": "/images/projects/lili/3.jpg",
+     "kind": "graphic",
+     "alt": "Lili store graphic: daily tasks and streak screen"
+    },
+    {
+     "src": "/images/projects/lili/4.jpg",
+     "kind": "graphic",
+     "alt": "Lili store graphic: asking Lili how your body is doing"
+    }
+   ],
+   "imageSource": "Images 1–2 from Mitul’s old portfolio; 3–4 from the App Store listing.",
+   "icon": "/images/apps/lili.jpg",
+   "category": "Health"
+  },
+  "physio-mobile": {
+   "name": "Physio Mobile",
+   "about": "A home rehab app with video exercise programmes for back, shoulder and neck, and knee and hip pain. Patients picked a body area and difficulty, followed the videos, set reminders, gave feedback on each exercise and tracked their progress.",
+   "audience": "Physiotherapy patients doing guided exercises at home, in the German-speaking market.",
+   "client": "A physiotherapy practice (German-speaking market)",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2021–2023",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "FCM",
+    "Video playback",
+    "Local storage"
+   ],
+   "contributions": [
+    "Built the iOS and Android app in Flutter.",
+    "Built the exercise flow: body area, then level (easy, medium, hard), then guided video exercises.",
+    "Tuned video playback for mid-length exercise clips.",
+    "Added reminders over FCM, a stats screen and per-exercise feedback.",
+    "Handled the patient health profile with care for data at rest and in transit."
+   ],
+   "proof": [],
+   "images": [
+    {
+     "src": "/images/projects/physio-mobile/1.jpg",
+     "kind": "graphic",
+     "alt": "Physio Mobile exercise types, levels and menu"
+    },
+    {
+     "src": "/images/projects/physio-mobile/2.jpg",
+     "kind": "graphic",
+     "alt": "Physio Mobile notifications, stats and exercise feedback"
+    },
+    {
+     "src": "/images/projects/physio-mobile/3.jpg",
+     "kind": "graphic",
+     "alt": "Physio Mobile reminder, feedback and exercise video screens"
+    }
+   ],
+   "imageSource": "Mitul’s old portfolio.",
+   "category": "Health"
+  },
+  "bookmrk-delivery": {
+   "name": "BookMrk + BookMrk Delivery",
+   "about": "BookMrk was a school books and stationery shop where parents and students could shop by school, class, publisher or subject. The companion delivery app gave drivers their assigned orders, maps and status updates so customers could follow the order live.",
+   "audience": "Parents and students in India buying school books, and the delivery staff fulfilling those orders.",
+   "client": "BOOKMRK Ventures India Pvt. Ltd. (bookmrk.in)",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2020–2022",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "REST APIs",
+    "Google Maps SDK",
+    "Background location",
+    "FCM",
+    "In-app purchase"
+   ],
+   "contributions": [
+    "Built the customer app with drill-down shopping by school, class and subject, plus cart and checkout.",
+    "Built the driver app: order list, status changes and navigation with the Google Maps SDK.",
+    "Kept driver location updating in the background so the customer app could show live tracking.",
+    "Added FCM notifications for new orders and order status."
+   ],
+   "proof": [
+    {
+     "label": "App Store listing (BOOKMRK), archived Jun 2021",
+     "href": "https://web.archive.org/web/20210603233748/https://apps.apple.com/in/app/bookmrk/id1543839623"
+    },
+    {
+     "label": "bookmrk.in, archived Jul 2021 (links to the iOS and Android apps)",
+     "href": "https://web.archive.org/web/20210713115929/https://www.bookmrk.in/"
+    }
+   ],
+   "images": [
+    {
+     "src": "/images/projects/bookmrk-delivery/1.jpg",
+     "kind": "graphic",
+     "alt": "BookMrk home, shop by class and school list screens"
+    },
+    {
+     "src": "/images/projects/bookmrk-delivery/2.jpg",
+     "kind": "graphic",
+     "alt": "BookMrk Delivery splash, order list and status screens"
+    },
+    {
+     "src": "/images/projects/bookmrk-delivery/3.jpg",
+     "kind": "phone",
+     "alt": "BookMrk home screen with categories"
+    },
+    {
+     "src": "/images/projects/bookmrk-delivery/4.jpg",
+     "kind": "phone",
+     "alt": "BookMrk list of schools"
+    }
+   ],
+   "imageSource": "Images 1–2 from Mitul’s old portfolio; 3–4 from the App Store listing.",
+   "icon": "/images/apps/bookmrk-delivery.jpg",
+   "category": "Commerce"
+  },
+  "locket": {
+   "name": "Locket",
+   "about": "A location-sharing app for friends and family. It showed each friend’s location, battery, movement speed and status on a map, with one-to-one and group chat, a “Ninja Mode” to adjust what you share, and a login streak.",
+   "audience": "Friend groups and families, with a Japanese-language store listing.",
+   "client": "Wanderlust studio",
+   "role": "Lead Flutter Developer, Sadguru Soft",
+   "period": "2022–2023",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Kotlin",
+    "Swift",
+    "Method Channels",
+    "Background services",
+    "WebSockets"
+   ],
+   "contributions": [
+    "Led the Flutter build.",
+    "Wrote native background location services in Kotlin and Swift, bridged to Flutter over Method Channels.",
+    "Sent location, battery and speed updates to friends over a WebSocket, and ran group chat on the same connection.",
+    "Set up the Android foreground service and iOS background modes so the app stayed within store rules and kept battery use reasonable."
+   ],
+   "proof": [
+    {
+     "label": "Google Play listing, archived Feb 2023",
+     "href": "https://web.archive.org/web/20230202154959/https://play.google.com/store/apps/details?id=io.locket"
+    }
+   ],
+   "images": [
+    {
+     "src": "/images/projects/locket/1.jpg",
+     "kind": "phone",
+     "alt": "Locket map with friends’ locations in Tokyo"
+    },
+    {
+     "src": "/images/projects/locket/2.jpg",
+     "kind": "phone",
+     "alt": "Locket chat screen"
+    },
+    {
+     "src": "/images/projects/locket/3.jpg",
+     "kind": "graphic",
+     "alt": "Locket store title graphic"
+    }
+   ],
+   "imageSource": "Google Play listing (archived).",
+   "icon": "/images/apps/locket.jpg",
+   "category": "Social"
+  },
+  "marline-media": {
+   "name": "Marline Media",
+   "about": "A design app for the Marline Media shop, which sold Snapchat geofilters, Instagram lenses and digital invitations. Users picked a template for an occasion such as a wedding, birthday or baby shower, edited it on a canvas, and ordered it or unlocked premium templates.",
+   "audience": "People planning events who wanted a custom invitation, filter or lens.",
+   "client": "Marline Media (marlinemedia.com)",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2021–2023",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "Custom canvas rendering",
+    "REST APIs",
+    "FCM",
+    "In-app purchase"
+   ],
+   "contributions": [
+    "Built and released the app.",
+    "Built the canvas editor with independently movable text, image and graphic layers.",
+    "Rendered exports at print resolution rather than screen resolution.",
+    "Added the template catalogue by occasion and a membership with in-app purchase."
+   ],
+   "proof": [
+    {
+     "label": "Marline Media website, archived Apr 2022",
+     "href": "https://web.archive.org/web/20220404100719/https://marlinemedia.com/"
+    }
+   ],
+   "images": [
+    {
+     "src": "/images/projects/marline-media/1.jpg",
+     "kind": "graphic",
+     "alt": "Marline Media splash, onboarding and filter screens"
+    },
+    {
+     "src": "/images/projects/marline-media/2.jpg",
+     "kind": "graphic",
+     "alt": "Marline Media invitation editor and Snapchat filter categories"
+    },
+    {
+     "src": "/images/projects/marline-media/3.jpg",
+     "kind": "graphic",
+     "alt": "Marline Media membership, categories and profile screens"
+    }
+   ],
+   "imageSource": "Mitul’s old portfolio.",
+   "category": "Design tool"
+  },
+  "setera-tpms": {
+   "name": "Setera TPMS",
+   "about": "An Android tool for technicians that talks to Setera’s tyre-pressure and temperature sensors over USB. It reads and writes sensor data so the hardware can be set up and checked in the field.",
+   "audience": "Technicians installing Setera fleet-telemetry hardware.",
+   "client": "Setera, a fleet telemetry company in Brazil (setera.seg.br)",
+   "role": "Mobile Developer, Sadguru Soft",
+   "period": "2023–2024",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Kotlin",
+    "Android USB Host API",
+    "Method Channels",
+    "Serial communication"
+   ],
+   "contributions": [
+    "Wrote the USB serial layer in Kotlin: device discovery, permissions, reads and writes.",
+    "Exposed it to the Flutter UI through Method Channels.",
+    "Built the technician screens in Flutter, with clear error messages when the hardware did not respond."
+   ],
+   "proof": [
+    {
+     "label": "Setera website: tyre pressure and temperature product line",
+     "href": "https://setera.seg.br/"
+    }
+   ],
+   "images": [],
+   "category": "B2B tool"
+  },
+  "studymap": {
+   "name": "Studymap",
+   "about": "A Japanese study app that builds a personal study plan around the learner’s goal exam and daily life, then serves daily tasks, quizzes and explanations and re-plans as they go. It also supported studying together in groups.",
+   "audience": "Japanese learners preparing for certification and university entrance exams.",
+   "client": "Remody Inc., Tokyo, Japan",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2022–2024",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "REST APIs",
+    "Reactive streams",
+    "Real-time sync",
+    "Local storage",
+    "Japanese localisation"
+   ],
+   "contributions": [
+    "Built the iOS and Android app in Flutter for a Japanese-language audience.",
+    "Modelled the AI-generated study content as typed Dart models so the UI did not depend on raw JSON.",
+    "Built the group study session as a state machine for joining, leaving, moving through content and reconnecting.",
+    "Used reactive streams to keep every participant’s screen in sync."
+   ],
+   "proof": [
+    {
+     "label": "App Store listing (Japan), archived Dec 2025",
+     "href": "https://web.archive.org/web/20251218014020/https://apps.apple.com/jp/app/studymap/id1613502226"
+    },
+    {
+     "label": "Remody, the client’s website",
+     "href": "https://www.remody.co.jp/"
+    }
+   ],
+   "images": [
+    {
+     "src": "/images/projects/studymap/1.jpg",
+     "kind": "phone",
+     "alt": "Studymap today’s study tasks and progress"
+    },
+    {
+     "src": "/images/projects/studymap/2.jpg",
+     "kind": "phone",
+     "alt": "Studymap quiz progress by subject and year"
+    },
+    {
+     "src": "/images/projects/studymap/3.jpg",
+     "kind": "phone",
+     "alt": "Studymap multiple-choice question"
+    },
+    {
+     "src": "/images/projects/studymap/4.jpg",
+     "kind": "phone",
+     "alt": "Studymap creating your study plan"
+    }
+   ],
+   "imageSource": "App Store listing (archived).",
+   "icon": "/images/apps/studymap.jpg",
+   "category": "Education"
+  },
+  "warden-tracker": {
+   "name": "Warden Tracker",
+   "about": "A geofencing app that watches the device’s location in the background and sends an alert as soon as it enters or leaves a set area.",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2022–2023",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Kotlin",
+    "Swift",
+    "Background location",
+    "Geofencing",
+    "Native push notifications"
+   ],
+   "contributions": [
+    "Built native background location for each platform: an Android foreground service, and iOS significant-change updates with full precision when needed.",
+    "Checked fence crossings on the device so alerts fired without waiting for a server.",
+    "Sent proximity alerts through native push."
+   ],
+   "proof": [],
+   "images": [],
+   "category": "Location"
+  },
+  "careshare": {
+   "name": "CareShare",
+   "about": "A health companion app where people logged symptoms, pain, blood pressure, pulse and temperature, either by hand, from a photo of a device, or synced from Google Fit and Apple Health.",
+   "audience": "People keeping track of their own health or caring for someone.",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2021–2022",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Google Fit",
+    "Apple Health",
+    "Camera",
+    "REST APIs",
+    "FCM",
+    "In-app purchase"
+   ],
+   "contributions": [
+    "Read Google Fit and Apple Health data into one shared model.",
+    "Built the symptom and vitals logging screens, including a body map for where pain is.",
+    "Added photo capture of readings from devices such as a blood pressure monitor.",
+    "Added FCM reminders and in-app purchase for premium features."
+   ],
+   "proof": [],
+   "images": [
+    {
+     "src": "/images/projects/careshare/1.jpg",
+     "kind": "graphic",
+     "alt": "CareShare pain scale, body map and blood pressure screens"
+    },
+    {
+     "src": "/images/projects/careshare/2.jpg",
+     "kind": "graphic",
+     "alt": "CareShare date picker, symptoms list and symptom detail"
+    },
+    {
+     "src": "/images/projects/careshare/3.jpg",
+     "kind": "graphic",
+     "alt": "CareShare pulse entry, device photo and symptom search"
+    }
+   ],
+   "imageSource": "Mitul’s old portfolio.",
+   "category": "Health"
+  },
+  "synergy": {
+   "name": "Synergy",
+   "about": "A matchmaking and dating app with a discover feed of profiles, profile interests and real-time chat between matches.",
+   "role": "Flutter Developer, Sadguru Soft",
+   "period": "2021–2022",
+   "stack": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "WebSockets",
+    "REST APIs",
+    "FCM",
+    "In-app purchase"
+   ],
+   "contributions": [
+    "Built real-time chat over WebSockets, with reconnects handled so messages did not repeat or go missing.",
+    "Built the discover, chat and profile screens.",
+    "Added in-app purchase for premium features, kept separate from the chat path.",
+    "Added FCM notifications for new messages."
+   ],
+   "proof": [],
+   "images": [
+    {
+     "src": "/images/projects/synergy/1.jpg",
+     "kind": "graphic",
+     "alt": "Synergy discover, chat and profile screens"
+    }
+   ],
+   "imageSource": "Mitul’s old portfolio.",
+   "category": "Social"
+  }
+ }
+}

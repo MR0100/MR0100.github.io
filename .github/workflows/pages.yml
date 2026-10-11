@@ -1,10 +1,14 @@
-name: Deploy site
+name: Sync and deploy
 
+# Builds the site and publishes it to GitHub Pages.
+# When the CONTENT_TOKEN secret is set (a read-only token for the private repos), it first fetches
+# portfolio-content and linkedin-growth and copies in their publishable parts (scripts/sync_content.py).
+# Without the secret it builds the content already committed here.
 on:
   push:
     branches: [main]
   schedule:
-    - cron: '30 0 * * *'   # daily 06:00 IST: scheduled articles and the experience count go live on time
+    - cron: '30 0 * * *'   # daily 06:00 IST: new content, scheduled articles and the experience count go live
   workflow_dispatch:
 
 permissions:
@@ -19,8 +23,30 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HAS_TOKEN: ${{ secrets.CONTENT_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Fetch portfolio-content
+        if: env.HAS_TOKEN == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: MR0100/portfolio-content
+          token: ${{ secrets.CONTENT_TOKEN }}
+          path: _sources/portfolio-content
+      - name: Fetch linkedin-growth
+        if: env.HAS_TOKEN == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: MR0100/linkedin-growth
+          token: ${{ secrets.CONTENT_TOKEN }}
+          path: _sources/linkedin-growth
+          sparse-checkout: linkedin-posts
+      - name: Sync content
+        if: env.HAS_TOKEN == 'true'
+        run: |
+          python3 scripts/sync_content.py --content _sources/portfolio-content --linkedin _sources/linkedin-growth
+          rm -rf _sources
       - uses: withastro/action@v3
   deploy:
     needs: build

@@ -1,32 +1,41 @@
-"""Copy the publishable parts of the private research repo into this site.
+"""Copy the publishable parts of the private content repos into this site.
 
-Usage:  python3 scripts/sync_from_research.py [path/to/PersonalResearch]   (default: ../PersonalResearch)
+Usage:  python3 scripts/sync_content.py [--content PATH] [--linkedin PATH]
+        defaults: ../portfolio-content and ../linkedin-growth (the repos sit side by side in profile-growth/)
+The "Sync and deploy" workflow runs the same script on GitHub with fresh checkouts of both repos.
 
-Writes:
-  src/content/research/<slug>.md        full analysis (case-study.md), links mapped to site URLs
-  src/content/docs/<slug>--<kind>.md    test kit, review-coding evidence, source lists
-  src/content/writing/<date>-<slug>.md  LinkedIn posts as articles (published on their date)
-  public/studies/<slug>/design/*.png    my re-created screens
-  src/content/prototypes/<slug>.json    the screen-by-screen flow and the before/after guide, rendered by the site
-  public/studies/<slug>/prototype/try.html   the live phones (embedded by /studies/<slug>/try/)
-  public/studies/_shared/compare.js, public/design-system/tokens.css
+From portfolio-content:
+  case-studies/NN-app/overview.md   -> src/content/studies/<slug>.md       the study's portfolio page
+  case-studies/NN-app/case-study.md -> src/content/research/<slug>.md      full analysis, links mapped to site URLs
+  test-kit.md, data/*.md, references/**/SOURCE.md -> src/content/docs/  test kit, review coding, source lists
+  design/*.png, prototype/try.html  -> public/studies/<slug>/             my re-created screens and the live phones
+  prototype/screens.json            -> src/content/prototypes/<slug>.json screen by screen + the before/after guide
+  essays/*.md + essays/assets/      -> src/content/writing/, public/writing/<slug>/
+  work/*.json (without "notes")     -> src/content/work/;  work/images/ -> public/images/
+From linkedin-growth:
+  linkedin-posts/<date>_post-NN_slug/ -> src/content/writing/<date>-<slug>.md (shown from its date)
 
-Never copied: report.md (full report, available on request), raw review data (*.json), App Store / press
-reference images, assets/ (third-party store and press images), render scripts.
+Never copied: report.md (available on request), raw review data (*.json in data/), references/ and assets/
+(third-party store and press images), render scripts, and the "notes" (sources and caveats) in work data.
 """
 import glob, json, os, re, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-SRC_REPO = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(REPO), 'PersonalResearch')
-CS = os.path.join(SRC_REPO, 'linkedin-growth', 'case-studies')
-POSTS = os.path.join(SRC_REPO, 'linkedin-growth', 'posts')
-ESSAYS = os.path.join(SRC_REPO, 'essays')
+def _arg(flag, default):
+    return sys.argv[sys.argv.index(flag) + 1] if flag in sys.argv else default
+PARENT = os.path.dirname(REPO)
+CONTENT = os.path.abspath(_arg('--content', os.path.join(PARENT, 'portfolio-content')))
+LINKEDIN = os.path.abspath(_arg('--linkedin', os.path.join(PARENT, 'linkedin-growth')))
+CS = os.path.join(CONTENT, 'case-studies')
+ESSAYS = os.path.join(CONTENT, 'essays')
+WORK = os.path.join(CONTENT, 'work')
+POSTS = os.path.join(LINKEDIN, 'linkedin-posts')
 
 STUDIES = [('01-chatgpt', 'chatgpt', 'ChatGPT'), ('02-duolingo', 'duolingo', 'Duolingo'), ('03-myfitnesspal', 'myfitnesspal', 'MyFitnessPal'),
            ('04-revolut', 'revolut', 'Revolut'), ('05-temu', 'temu', 'Temu'),
            ('06-kgk-diamonds', 'kgk-diamonds', 'KGK Diamonds')]
-GH_CASE = re.compile(r'https://github\.com/MR0100/PersonalResearch/blob/main/linkedin-growth/case-studies/[^/"\']+/case-study\.md')
+GH_CASE = re.compile(r'https://github\.com/MR0100/(?:PersonalResearch/blob/main/linkedin-growth|portfolio-content/blob/main)/case-studies/[^/"\']+/case-study\.md')
 
 
 def out(*p):
@@ -105,7 +114,7 @@ def compare_data(try_html):
 
 
 def sync_studies():
-    for d in ('src/content/research', 'src/content/docs', 'src/content/prototypes'):
+    for d in ('src/content/research', 'src/content/docs', 'src/content/prototypes', 'src/content/studies'):
         shutil.rmtree(os.path.join(REPO, d), ignore_errors=True)
     for dirname, slug, app in STUDIES:
         s = os.path.join(CS, dirname)
@@ -118,6 +127,7 @@ def sync_studies():
         screens = json.load(open(os.path.join(s, 'prototype', 'screens.json'), encoding='utf-8'))
         json.dump({**screens, 'compare': compare_data(try_html)},
                   open(out('src', 'content', 'prototypes', f'{slug}.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        shutil.copy2(os.path.join(s, 'overview.md'), out('src', 'content', 'studies', f'{slug}.md'))
         cs = open(os.path.join(s, 'case-study.md'), encoding='utf-8').read()
         open(out('src', 'content', 'research', f'{slug}.md'), 'w', encoding='utf-8').write(
             fm({'title': first_heading(cs), 'app': app, 'study': slug}) + figures(map_links(strip_h1(cs), slug)))
@@ -205,9 +215,28 @@ def sync_writing():
     return n
 
 
+def sync_work():
+    """Profile and project data. The "notes" field (sources, caveats) stays private."""
+    def strip(o):
+        if isinstance(o, dict):
+            return {k: strip(v) for k, v in o.items() if k != 'notes'}
+        return [strip(v) for v in o] if isinstance(o, list) else o
+    shutil.rmtree(os.path.join(REPO, 'src', 'content', 'work'), ignore_errors=True)
+    for f in glob.glob(os.path.join(WORK, '*.json')):
+        json.dump(strip(json.load(open(f, encoding='utf-8'))), open(out('src', 'content', 'work', os.path.basename(f)), 'w', encoding='utf-8'),
+                  ensure_ascii=False, indent=1)
+    for d in ('projects', 'apps'):
+        shutil.rmtree(os.path.join(REPO, 'public', 'images', d), ignore_errors=True)
+        shutil.copytree(os.path.join(WORK, 'images', d), os.path.join(REPO, 'public', 'images', d))
+    for f in glob.glob(os.path.join(WORK, 'images', '*.jpg')):
+        shutil.copy2(f, out('public', 'images', os.path.basename(f)))
+
+
 if __name__ == '__main__':
-    if not os.path.isdir(CS):
-        sys.exit(f'Research repo not found at {CS}. Pass its path as the first argument.')
+    for path, name in ((CS, 'portfolio-content'), (POSTS, 'linkedin-growth')):
+        if not os.path.isdir(path):
+            sys.exit(f'{name} not found at {path}. Pass --content / --linkedin.')
     sync_studies()
+    sync_work()
     n = sync_writing()
-    print(f'synced {len(STUDIES)} studies and {n} articles from {SRC_REPO}')
+    print(f'synced {len(STUDIES)} studies, work data and {n} articles from {CONTENT} and {LINKEDIN}')
