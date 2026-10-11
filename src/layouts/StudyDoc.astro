@@ -5,10 +5,11 @@ import StudyTabs from '../components/StudyTabs.astro';
 import StudyPager from '../components/StudyPager.astro';
 import Facts from '../components/Facts.astro';
 import StudyThumb from '../components/StudyThumb.astro';
+import DocGlance from '../components/DocGlance.astro';
 import { studyTabs } from '../data/studyNav';
 import { getEntry } from 'astro:content';
-interface Props { slug: string; app: string; current: string; label: string; title: string; description?: string; words?: number }
-const { slug, app, current, label, title, description, words = 0 } = Astro.props;
+interface Props { slug: string; app: string; current: string; label: string; title: string; description?: string; words?: number; body?: string; headings?: { depth: number; slug: string; text: string }[] }
+const { slug, app, current, label, title, description, words = 0, body = '', headings = [] } = Astro.props;
 const study = await getEntry('studies', slug);
 const accent = study?.data.accent ?? '#e7ece6';
 const facts = [
@@ -26,6 +27,7 @@ const facts = [
   </header>
   <div class="wrap"><div class="sdoc lead-grid" style={`--fig-bg:${accent}`}>
     <Facts class="lead-facts" items={facts}><StudyThumb slug={slug} /></Facts>
+    <DocGlance kind={current} body={body} headings={headings} />
     <slot />
   </div></div>
   <StudyPager slug={slug} current={current} />
@@ -34,6 +36,14 @@ const facts = [
 <style>
   /* The body is laid out as .sec grids (rehype-sections): headings in the side column, text in the main column, tables and screens across both */
   .sdoc { padding-bottom: 24px; font-size: 17px; color: var(--ink-2); }
+  /* The glance band sits between the opening row and the sections, though it comes before the markdown in the page */
+  .sdoc > :global(.glance) { grid-column: 1 / -1; order: 1; }
+  .sdoc > :global(.sec:not(.intro)) { order: 2; }
+  /* Stacked on phones, but still in that order */
+  @media (max-width: 900px) {
+    .sdoc.lead-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .sdoc > :global(*), .sdoc > :global(.sec.intro > *) { grid-column: 1 / -1; grid-row: auto; min-width: 0; }
+  }
 
   .sdoc :global(p), .sdoc :global(ul), .sdoc :global(ol) { margin-top: 0; margin-bottom: 1em; }
   .sdoc :global(li) { margin-bottom: .45em; }

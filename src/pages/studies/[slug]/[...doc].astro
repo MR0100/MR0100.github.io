@@ -6,9 +6,9 @@ export async function getStaticPaths() {
   return (await getCollection('docs')).map(d => ({ params: { slug: d.data.study, doc: d.data.kind }, props: { d } }));
 }
 const { d } = Astro.props;
-const { Content } = await render(d);
+const { Content, headings } = await render(d);
 const label = LABELS[d.data.kind] ?? 'Review coding';
 ---
-<StudyDoc slug={d.data.study} app={d.data.app} current={d.data.kind} label={label} title={d.data.title} words={(d.body ?? '').split(/\s+/).length}>
+<StudyDoc slug={d.data.study} app={d.data.app} current={d.data.kind} label={label} title={d.data.title} words={(d.body ?? '').split(/\s+/).length} body={d.body} headings={headings}>
   <Content />
 </StudyDoc>

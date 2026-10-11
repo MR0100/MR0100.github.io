@@ -47,6 +47,20 @@ Every page starts the same way:
 - A page with no opening text gets its facts as one row across the full width.
 - Graphics are small and real (they show the page's own data or link somewhere), never decoration, and they reuse the site's visual language: tinted panels with a phone screen, app icons, chips. No new graphic styles (progress bars, charts) for this slot. Home and About keep their own heroes.
 
+### The "at a glance" band (study documents)
+Overview, Try it and Screen by screen each open with a strong visual (hero panel, live phones, screen rows). The document tabs match them with a band between the opening row and the first section (`DocGlance`, data from `src/lib/docGlance.ts`, read from the document's own markdown):
+
+| Page | Big numbers | Its own visual | Then |
+|---|---|---|---|
+| Full analysis | Minutes to read, sources linked, screens re-created, tables of evidence | (the screens are in the body, as figure cards) | Contents card |
+| Test kit | People, minutes a session, steps in the script, signals | The script as a timeline, each step as wide as its minutes; pass and kill signals as two cards | Contents card |
+| Review coding | Reviews in the sample, matched and coded, themes (or reviews across the apps, apps compared) | Counts as bars; a subset row ("— …") shows as "of which", indented, and isn't counted as a theme | Contents card |
+| Sources | Images and pages the screens follow, last checked | none | Contents card |
+
+- Numbers come only from the document itself. If a number can't be read reliably, it's left out; never show two different numbers for the same thing.
+- The band keeps the order opening → band → sections at every width (CSS `order`, and a one-column grid on phones, not `display: block`).
+- Style: big serif numbers between hairlines (as on the overview), white cards (as on Try it), numbered items (as on Screen by screen). No new visual styles.
+
 ## 4. Type scale
 | Token | Size | Where |
 |---|---|---|
