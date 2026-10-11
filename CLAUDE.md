@@ -8,6 +8,12 @@ Guidance for Claude Code in this repo: Mitul Vaghasiya's public portfolio site (
 - Before pushing: `npm run build`, serve `dist/` (`npx astro preview`), and crawl for broken links, missing images or JS errors.
 - Identity: product designer & researcher who also ships mobile apps. Case studies, analysis and writing lead; shipped work supports. Never mention Upwork or freelancing.
 
+
+## Knowledge
+Shared notes and skills live in `~/Desktop/Projects/Mitul/knowledge` (start with its README, "Find by task"). For this repo:
+- Skill **`portfolio-publish`** for every publish; skill **`essay`** for new writing (content goes in `../portfolio-content`).
+- Voice and identity: `~/Desktop/Projects/Mitul/knowledge/writing-and-attention/voice-and-style.md`, `~/Desktop/Projects/Mitul/knowledge/about-mitul/positioning.md`, `~/Desktop/Projects/Mitul/knowledge/about-mitul/preferences.md` (what Mitul likes and rejects in design).
+
 ## Git rules
 - **Authorship:** every commit by **Mitul Vaghasiya <mr.vaghasiya197@gmail.com>** only.
 - **No AI attribution** anywhere: no `Co-Authored-By: Claude`, "Generated with Claude Code" or similar in commits, PRs or comments.
