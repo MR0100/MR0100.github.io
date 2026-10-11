@@ -56,16 +56,22 @@ const facts = [
   .sdoc :global(th) { color: var(--ink-3); font-weight: 500; font-size: 13px; letter-spacing: .02em; }
   .sdoc :global(tr:last-child td) { border-bottom: 0; }
   /* Figures in tinted frames, laid out side by side */
-  .sdoc :global(.figs) { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; margin-top: 28px; margin-bottom: 36px; }
-  .sdoc :global(figure.fig) { margin: 0; }
-  .sdoc :global(.fig .frame) { background: var(--fig-bg); border-radius: 18px; padding: 24px 18px 0; display: flex; justify-content: center; overflow: hidden; }
-  .sdoc :global(.fig .frame img) { width: 88%; display: block; }
-  .sdoc :global(.fig figcaption) { font-size: 14px; color: var(--ink-2); margin-top: 14px; line-height: 1.55; }
+  /* Figures as horizontal cards, two per row: the screen in its tinted frame, the caption beside it,
+     so a long caption uses the height the phone already takes instead of hanging below it */
+  .sdoc :global(.figs) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px var(--gap); margin-top: 28px; margin-bottom: 36px; }
+  .sdoc :global(figure.fig) { margin: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 24px; align-items: start; }
+  .sdoc :global(.fig .frame) { background: var(--fig-bg); border-radius: 18px; padding: 22px 16px 0; display: flex; justify-content: center; align-items: flex-start; overflow: hidden; aspect-ratio: 4 / 5; }
+  .sdoc :global(.fig .frame img) { width: 92%; display: block; }
+  .sdoc :global(.fig figcaption) { font-size: 15px; color: var(--ink-2); margin: 0; line-height: 1.6; }
   .sdoc :global(.note-box) { background: var(--accent-soft); color: var(--ink-2); font-size: 15px; border-radius: 12px; padding: 14px 18px; margin-top: 24px; margin-bottom: 8px; }
   .sdoc :global(.note-box + p em) { font-size: 14px; }
   @media (max-width: 760px) {
     .sdoc { font-size: 16px; }
-    .sdoc :global(.figs) { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sdoc :global(.figs) { grid-template-columns: 1fr; gap: 32px; }
     .sdoc :global(table) { display: block; overflow-x: auto; }
+  }
+  @media (max-width: 520px) {
+    .sdoc :global(figure.fig) { grid-template-columns: 1fr; gap: 14px; }
+    .sdoc :global(.fig .frame) { aspect-ratio: 5 / 4; }
   }
 </style>

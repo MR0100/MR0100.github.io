@@ -44,6 +44,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
    and wide rows for media and tables. Every block touches the grid's left edge, its right edge, or both. */
 .sec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gap); align-items: start; }
 .sec > .side { grid-column: 1; position: sticky; top: 96px; }
+/* A heading only follows its text when the section has no full-width rows; otherwise it would slide over them */
+.sec:has(> .wide) > .side { position: static; }
 .sec > .main { grid-column: 2; min-width: 0; }
 .sec > .wide { grid-column: 1 / -1; min-width: 0; overflow-x: auto; }
 .sec > .main > :first-child, .sec > .side > :first-child { margin-top: 0; }

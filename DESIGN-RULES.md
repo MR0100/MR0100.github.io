@@ -19,7 +19,8 @@ The rules every page on the site follows, so a study, a project, an essay and an
 - A text section is a `.sec`: `.side` (eyebrow and h2) and `.main` (text). In markdown this happens automatically: `rehype-sections` puts each `##` (and the eyebrow just above it) in the side column, the text after it in the main column, and tables and `.figs` / `.wide` blocks across both. Text before the first `##` goes in the main column.
 - A single block that should start at the main column (a lede, a note) gets `.in-main`.
 - Sections are separated by a hairline across the full grid.
-- Side headings stick while their own section's text scrolls past (desktop only); the section is their container, so they stop at its end.
+- Side headings stick while their own section's text scrolls past (desktop only), but only in sections with no full-width rows: a sticky heading would slide over a table or screen row in its own section.
+- Figures with captions (`.figs` of `figure.fig`) are horizontal cards, two per row: the screen in its tinted frame on the left, the caption beside it. Never put long captions under narrow phones in four columns: the text runs far below the image. One card per row below 760 px; caption under the image below 520 px.
 - Below 900 px the columns stack: heading, then text, both full width.
 - No one-off `max-width` values for text. Images may keep their own smaller size (a portrait, a square post cover).
 
@@ -92,6 +93,6 @@ After `npm run build`, serve `dist/` and check at 1440, 1024 and 390 px:
 - every h1 and every facts column starts on the grid's left edge, and every page except Home and About has a facts row;
 - no long paragraph sits outside a `.main`, `.in-main` or a card;
 - no horizontal scroll at 390 px, and the pager buttons fit;
-- scrolling the whole page, the facts column never covers a section's heading or text;
+- scrolling the whole page, no side heading or facts column ever covers text, a table or a figure;
 - `grep -rn "max-width: [0-9]" src | grep -v @media` lists only image sizes.
 - After changing `rehype-sections`, delete `.astro/` before building: Astro caches rendered markdown.
