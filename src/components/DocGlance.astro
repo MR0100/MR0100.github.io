@@ -73,7 +73,10 @@ const max = Math.max(1, ...(g.bars?.rows.map(r => r.value) ?? [1]));
   .bars .sub b { font-weight: 500; color: var(--ink-3); }
   /* Contents, numbered like the steps on Screen by screen */
   .toc ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
-  .toc a { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink); }
+  /* One rule above each item, level across the row; no document link underline (it doubled the lines) */
+  .toc li { display: flex; }
+  .toc a { flex: 1; display: flex; gap: 12px; padding: 12px 0; border: 0 !important; border-bottom: 1px solid var(--line) !important; font-size: 15px; color: var(--ink); }
+  .toc li:nth-child(-n + 3) a { border-top: 1px solid var(--line) !important; }
   .toc a span { flex: none; color: var(--ink-3); font-size: 13px; padding-top: 2px; }
   .toc a:hover { text-decoration: underline; text-underline-offset: 4px; }
   @media (max-width: 900px) {
@@ -86,6 +89,8 @@ const max = Math.max(1, ...(g.bars?.rows.map(r => r.value) ?? [1]));
     .steps b { font-size: 18px; }
     .steps .t { margin-left: auto; white-space: nowrap; }
     .signals, .toc ol { grid-template-columns: 1fr; }
+    .toc li:nth-child(-n + 3) a { border-top: 0 !important; }
+    .toc li:first-child a { border-top: 1px solid var(--line) !important; }
     .bars li { grid-template-columns: minmax(0, 1fr) 48px; }
     .bars .track { grid-column: 1 / -1; grid-row: 2; }
     .card { padding: 22px 20px; }
