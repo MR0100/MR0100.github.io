@@ -12,7 +12,8 @@ export default function rehypeSections() {
   return tree => {
     const kids = tree.children, out = [];
     let sec = null, main = null;
-    const open = side => { sec = div('sec', side ? [div('side', side)] : []); out.push(sec); main = null; };
+    // Text before the first heading is the intro: layouts put the page's facts beside it
+    const open = side => { sec = side ? div('sec', [div('side', side)]) : { ...div('sec'), properties: { className: ['sec', 'intro'] } }; out.push(sec); main = null; };
     for (let i = 0; i < kids.length; i++) {
       const n = kids[i];
       if (blank(n) || isEl(n, 'hr')) continue;

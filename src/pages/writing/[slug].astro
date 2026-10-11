@@ -11,16 +11,15 @@ const { p } = Astro.props;
 const { Content } = await render(p);
 ---
 {p.data.source === 'Essay' ? <Essay p={p}><Content /></Essay> : (
-<Doc image={p.data.cover || undefined} title={p.data.title} eyebrow={['LinkedIn post', fmtDate(p.data.date)].join(' · ')} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
+<Doc image={p.data.cover || undefined} title={p.data.title} eyebrow="LinkedIn post"
+  facts={[{ label: 'Published', value: fmtDate(p.data.date) }, ...(p.data.minutes ? [{ label: 'Reading time', value: `${p.data.minutes} min` }] : []), { label: 'First shared', value: `<a class="link" href="${profile.linkedin}">LinkedIn</a>` }]} description={p.data.dek} active="Writing" back={{ href: '/writing/', label: 'All writing' }}
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: p.data.title }]}>
-  <p slot="lede" class="dek in-main">{p.data.dek}</p>
-  {p.data.cover && <p class="in-main"><img class="cover" src={p.data.cover} alt="" /></p>}
+  <p class="dek">{p.data.dek}</p>
+  {p.data.cover && <p><img class="cover" src={p.data.cover} alt="" /></p>}
   <Content />
-  <p class="origin in-main">First shared on <a href={profile.linkedin}>LinkedIn</a>.</p>
 </Doc>)}
 
 <style>
-  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin-top: 24px; margin-bottom: 0; }
-  .cover { width: 100% !important; max-width: 520px; margin: 0 0 40px !important; border-radius: 16px; }
-  .origin { font-size: 15px; color: var(--ink-3); margin-top: 40px; }
+  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 0; }
+  .cover { width: 100% !important; max-width: 520px; margin: 32px 0 8px !important; border-radius: 16px; }
 </style>

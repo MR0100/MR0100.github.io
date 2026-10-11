@@ -1,0 +1,15 @@
+---
+// Every page header: eyebrow and title from the left edge, then one row with the facts (and a small graphic) in the side column
+// and the lede in the main column (DESIGN-RULES.md §3).
+import Facts from './Facts.astro';
+interface Props { eyebrow: string; title: string; facts?: { label: string; value: string }[] }
+const { eyebrow, title, facts = [] } = Astro.props;
+---
+<header class="wrap page-head">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <div class="sec head-row">
+    <Facts class="side" items={facts}><slot name="graphic" /></Facts>
+    <div class="main"><slot /></div>
+  </div>
+</header>

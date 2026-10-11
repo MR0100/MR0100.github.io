@@ -7,6 +7,6 @@ export async function getStaticPaths() {
 const { r } = Astro.props;
 const { Content } = await render(r);
 ---
-<StudyDoc slug={r.id} app={r.data.app} current="full" label="Full analysis" title={r.data.title}>
+<StudyDoc slug={r.id} app={r.data.app} current="full" label="Full analysis" title={r.data.title} words={(r.body ?? '').split(/\s+/).length}>
   <Content />
 </StudyDoc>

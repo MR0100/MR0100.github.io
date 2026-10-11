@@ -1,7 +1,8 @@
 ---
-// A long-form essay: a centred reading column, a wide cover, figures that break out of the text, and more essays at the end.
+// A long-form essay on the editorial grid: the facts (author, date, reading time) beside the dek, cover and opening; more essays at the end.
 import Base from './Base.astro';
 import EssayCard from '../components/EssayCard.astro';
+import Facts from '../components/Facts.astro';
 import { publishedWriting, fmtDate } from '../data/published';
 import { profile } from '../data/profile';
 import type { CollectionEntry } from 'astro:content';
@@ -10,19 +11,29 @@ const { p } = Astro.props;
 const d = p.data;
 const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' && x.id !== p.id)
   .sort((a, b) => Number(b.data.topic === d.topic) - Number(a.data.topic === d.topic)).slice(0, 2);
+const facts = [
+  { label: 'By', value: `<span class="byline"><img src="/images/mitul-400.jpg" alt="" width="22" height="22" />Mitul Vaghasiya</span>` },
+  { label: 'Published', value: fmtDate(d.date) },
+  { label: 'Reading time', value: `${d.minutes} min` },
+  ...(d.topic ? [{ label: 'Topic', value: d.topic }] : []),
+];
 ---
 <Base title={`${d.title} · Mitul Vaghasiya`} description={d.dek} active="Writing" image={d.cover} type="article"
   crumbs={[{ href: '/writing/', label: 'Writing' }, { label: d.title }]}>
   <div class="progress" aria-hidden="true"><i id="bar"></i></div>
   <article>
     <header class="wrap page-head">
-      <p class="eyebrow">Essay · {d.topic} · {fmtDate(d.date)} · {d.minutes} min read</p>
+      <p class="eyebrow">Essay{d.topic ? ` · ${d.topic}` : ''}</p>
       <h1>{d.title}</h1>
-      <p class="dek in-main">{d.dek}</p>
-      <p class="by in-main"><img src="/images/mitul-400.jpg" alt="" width="36" height="36" /><span>Mitul Vaghasiya</span></p>
     </header>
-    {d.cover && <div class="wrap"><div class="in-main"><img class="cover" src={d.cover} alt="" /></div></div>}
-    <div class="wrap"><div class="prose essay"><slot /></div></div>
+    <div class="wrap"><div class="prose essay lead-grid">
+      <Facts class="lead-facts" items={facts}>
+        <div class="rdots" aria-hidden="true">{Array.from({ length: d.minutes }, () => <i />)}</div>
+      </Facts>
+      <p class="dek">{d.dek}</p>
+      {d.cover && <img class="cover" src={d.cover} alt="" />}
+      <slot />
+    </div></div>
     <div class="wrap"><div class="in-main end">
       <p>Questions, or a different experience? <a class="link" href={`mailto:${profile.email}`}>Write to me</a> or reply on <a class="link" href={profile.linkedin}>LinkedIn</a>.</p>
     </div></div>
@@ -45,10 +56,13 @@ const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' &&
 <style>
   .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 20; }
   .progress i { display: block; height: 100%; width: 0; background: var(--accent); }
-  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin-top: 24px; margin-bottom: 0; }
-  .by { display: flex; align-items: center; gap: 10px; margin-top: 24px; margin-bottom: 0; font-size: 15px; font-weight: 500; }
-  .by img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-  .cover { width: 100%; margin: 0 0 56px; border-radius: var(--radius); aspect-ratio: 16 / 9; object-fit: cover; }
+  .dek { font: 400 24px/1.35 var(--serif); color: var(--ink-2); margin: 0; }
+  .essay .cover { width: 100%; margin: 32px 0 40px; border-radius: var(--radius); aspect-ratio: 16 / 9; object-fit: cover; }
+  /* The side column: one dot per minute of reading, above the facts */
+  .rdots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .rdots i { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+  .essay :global(.byline) { display: inline-flex; align-items: center; gap: 8px; }
+  .essay :global(.byline img) { width: 22px; height: 22px; margin: 0; border-radius: 50%; object-fit: cover; display: inline-block; }
   /* Figures and the "try this" box sit in the main column */
   .essay :global(.essay-fig) { margin: 40px 0; }
   .essay :global(.essay-fig img) { width: 100% !important; max-width: none; margin: 0 !important; border-radius: 16px; box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(20,22,20,.06); }
@@ -62,5 +76,5 @@ const more = (await publishedWriting()).filter(x => x.data.source === 'Essay' &&
   .mhead h2 { font-size: var(--h2); }
   .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
   @media (max-width: 960px) { .essay :global(.essay-fig) { margin: 32px 0; } .essay :global(aside.try) { margin: 32px 0; padding: 20px 22px; } }
-  @media (max-width: 760px) { .mgrid { grid-template-columns: 1fr; } .cover { margin-bottom: 36px; } }
+  @media (max-width: 760px) { .mgrid { grid-template-columns: 1fr; } .essay .cover { margin-bottom: 32px; } }
 </style>

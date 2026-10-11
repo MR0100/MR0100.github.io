@@ -1,0 +1,10 @@
+---
+// The side column under every page title: an optional small graphic, then the page's key facts.
+interface Item { label: string; value: string }
+interface Props { items: Item[]; class?: string }
+const { items, class: c } = Astro.props;
+---
+<div class:list={['side-facts', c]}>
+  <slot />
+  {items.length > 0 && <dl class="facts">{items.map(i => <div><dt>{i.label}</dt><dd set:html={i.value} /></div>)}</dl>}
+</div>

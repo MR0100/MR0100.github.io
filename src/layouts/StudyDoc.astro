@@ -3,11 +3,19 @@
 import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
 import StudyPager from '../components/StudyPager.astro';
+import Facts from '../components/Facts.astro';
+import StudyProgress from '../components/StudyProgress.astro';
+import { studyTabs } from '../data/studyNav';
 import { getEntry } from 'astro:content';
-interface Props { slug: string; app: string; current: string; label: string; title: string; description?: string }
-const { slug, app, current, label, title, description } = Astro.props;
+interface Props { slug: string; app: string; current: string; label: string; title: string; description?: string; words?: number }
+const { slug, app, current, label, title, description, words = 0 } = Astro.props;
 const study = await getEntry('studies', slug);
 const accent = study?.data.accent ?? '#e7ece6';
+const facts = [
+  { label: 'Study', value: `<a class="link" href="/studies/${slug}/">${app}</a>` },
+  { label: 'This page', value: label },
+  ...(words ? [{ label: 'Reading time', value: `${Math.max(1, Math.round(words / 230))} min` }] : []),
+];
 ---
 <Base title={`${app} · ${label} · Mitul Vaghasiya`} description={description} active="Case studies" image={`/studies/${slug}/og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: `/studies/${slug}/`, label: app }, { label }]}>
@@ -16,13 +24,17 @@ const accent = study?.data.accent ?? '#e7ece6';
     <p class="eyebrow">{label} · {app}</p>
     <h1>{title}</h1>
   </header>
-  <div class="wrap"><div class="sdoc" style={`--fig-bg:${accent}`}><slot /></div></div>
+  <div class="wrap"><div class="sdoc lead-grid" style={`--fig-bg:${accent}`}>
+    <Facts class="lead-facts" items={facts}><StudyProgress slug={slug} current={current} /></Facts>
+    <slot />
+  </div></div>
   <StudyPager slug={slug} current={current} />
 </Base>
 
 <style>
   /* The body is laid out as .sec grids (rehype-sections): headings in the side column, text in the main column, tables and screens across both */
   .sdoc { padding-bottom: 24px; font-size: 17px; color: var(--ink-2); }
+
   .sdoc :global(p), .sdoc :global(ul), .sdoc :global(ol) { margin-top: 0; margin-bottom: 1em; }
   .sdoc :global(li) { margin-bottom: .45em; }
   .sdoc :global(ul ul), .sdoc :global(ol ul) { margin-top: .45em; }
@@ -32,8 +44,8 @@ const accent = study?.data.accent ?? '#e7ece6';
   .sdoc :global(code) { font-size: .86em; background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; }
   .sdoc :global(h3) { font-family: var(--sans); font-size: 18px; font-weight: 600; letter-spacing: 0; color: var(--ink); margin-top: 32px; margin-bottom: 10px; line-height: 1.4; }
   /* The disclaimer and summary at the top */
-  .sdoc :global(.sec:first-child > .main > blockquote:first-child) { margin-top: 0; margin-bottom: 24px; padding: 16px 20px; background: var(--surface); border-radius: 14px; border: 0; font: 400 15px/1.6 var(--sans); color: var(--ink-2); }
-  .sdoc :global(.sec:first-child > .main > blockquote:first-child + p) { font-size: 19px; color: var(--ink-2); }
+  .sdoc :global(.sec.intro > .main > blockquote:first-child) { margin-top: 0; margin-bottom: 24px; padding: 16px 20px; background: var(--surface); border-radius: 14px; border: 0; font: 400 15px/1.6 var(--sans); color: var(--ink-2); }
+  .sdoc :global(.sec.intro > .main > blockquote:first-child + p) { font-size: 19px; color: var(--ink-2); }
   /* Quotes from reviews, as on the overview */
   .sdoc :global(blockquote) { margin: 24px 0; padding: 0 0 0 22px; border-left: 2px solid var(--accent); font: 400 23px/1.4 var(--serif); color: var(--ink); }
   .sdoc :global(blockquote p) { margin: 0; }

@@ -1,15 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
 const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base title="Case studies · Mitul Vaghasiya" active="Case studies"
   description="Independent product studies of apps millions use: what users struggle with, what it costs the business, and a tested way to fix it.">
-  <section class="wrap page-head">
-    <p class="eyebrow">Case studies</p>
-    <h1>I study apps millions of people use, and design what would make them stay.</h1>
+  <PageHead eyebrow="Case studies" title="I study apps millions of people use, and design what would make them stay."
+    facts={[{ label: 'Studies', value: String(studies.length) }, { label: 'Each has', value: 'Overview, live prototype, full analysis, test kit, sources' }]}>
+    <p slot="graphic" class="swatches">{studies.map(s => <a href={`/studies/${s.id}/`} title={s.data.app} style={`background:${s.data.accent}`}><img src={s.data.cover} alt="" /></a>)}</p>
     <p class="lede">Each study starts with a question, tests it against real evidence (thousands of reviews, company reports, research), and ends with a prototype and the test that would prove it wrong. In most of them, the evidence changed my first question. The last one is an app I build myself, studied the same way.</p>
-  </section>
+  </PageHead>
   <section class="wrap list">
     {studies.map((s, i) => (
       <a class="row" href={`/studies/${s.id}/`}>
@@ -26,6 +27,10 @@ const studies = (await getCollection('studies')).sort((a, b) => a.data.order - b
 </Base>
 
 <style>
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 0 0 20px; }
+  .swatches a { aspect-ratio: 3 / 4; border-radius: 8px; overflow: hidden; display: flex; justify-content: center; align-items: flex-end; padding-top: 6px; transition: transform .2s; }
+  .swatches a:hover { transform: translateY(-2px); }
+  .swatches img { width: 70%; }
   .list { padding-bottom: 40px; }
   .row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; padding: 40px 0; border-top: 1px solid var(--line); }
   .visual { border-radius: var(--radius); height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden; padding-top: 32px; }

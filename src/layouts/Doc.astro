@@ -2,9 +2,10 @@
 import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
 import Pager from '../components/Pager.astro';
+import Facts from '../components/Facts.astro';
 interface Crumb { href?: string; label: string }
-interface Props { image?: string; study?: { slug: string; current: string }; title: string; eyebrow: string; back?: { href: string; label: string }; crumbs?: Crumb[]; description?: string; active?: string }
-const { title, eyebrow, back, crumbs, description, active = 'Case studies', study, image } = Astro.props;
+interface Props { facts?: { label: string; value: string }[]; image?: string; study?: { slug: string; current: string }; title: string; eyebrow: string; back?: { href: string; label: string }; crumbs?: Crumb[]; description?: string; active?: string }
+const { title, eyebrow, back, crumbs, description, active = 'Case studies', study, image, facts = [] } = Astro.props;
 ---
 <Base title={`${title} · Mitul Vaghasiya`} description={description} active={active} image={image} type="article" crumbs={crumbs ?? (back ? [back, { label: title }] : [])}>
   {study && <StudyTabs {...study} />}
@@ -14,7 +15,10 @@ const { title, eyebrow, back, crumbs, description, active = 'Case studies', stud
       <h1>{title}</h1>
       <slot name="lede" />
     </header>
-    <div class="prose"><slot /></div>
+    <div class="prose lead-grid">
+      <Facts class="lead-facts" items={facts}><slot name="graphic" /></Facts>
+      <slot />
+    </div>
   </article>
   {back && <Pager prev={back} />}
 </Base>

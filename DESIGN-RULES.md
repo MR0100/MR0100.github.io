@@ -12,7 +12,7 @@ The rules every page on the site follows, so a study, a project, an essay and an
 ## 2. What goes where
 | Where | What |
 |---|---|
-| **Side column** (left third) | Section labels and headings (eyebrow + h2), the facts table on a study or project header |
+| **Side column** (left third) | Section labels and headings (eyebrow + h2); under the title, the page's facts and its small graphic |
 | **Main column** (right two thirds) | All running text: paragraphs, lists, quotes, notes, ledes, disclaimers, essay figures and covers, the Try-this box |
 | **Full width** (both columns) | Page titles, hero panels, tables, screen galleries, phone pairs, card grids, stat rows, the three-part summary |
 
@@ -23,15 +23,27 @@ The rules every page on the site follows, so a study, a project, an essay and an
 - Below 900 px the columns stack: heading, then text, both full width.
 - No one-off `max-width` values for text. Images may keep their own smaller size (a portrait, a square post cover).
 
-## 3. The page header
-Every page starts the same way, with `.page-head`:
+## 3. The top of every page
+Every page starts the same way:
 1. Breadcrumbs (from `Base`, on every inner page).
 2. Tabs, if the page is one part of something bigger (a study, a project with a case study).
-3. Eyebrow: `Kind · Subject`, for example `Full analysis · Temu`, `Project · Consumer`, `Essay · Research · 11 Oct 2026 · 5 min read`.
+3. Eyebrow: `Kind · Subject`, for example `Full analysis · Temu`, `Project · Consumer`, `Essay · Design`.
 4. Title (h1), from the left edge, sentence case, at most `--title` (960 px).
-5. Lede in the main column: one to three sentences. Writing pages use the serif dek, with the byline under it.
+5. **The facts row**: the side column holds a small graphic and the page's key facts (`Facts`); the main column holds the opening text. Neither column is ever empty at the top of a page.
 
-Study overviews and project pages put the facts table in the side column and the summary in the main column, under the title. That's the only header variant.
+| Page | Graphic | Facts | Main column |
+|---|---|---|---|
+| Every study page | Study progress: one segment per part, the current one filled, each a link (`StudyProgress`) | Overview: type, method, timeline, status. Other parts: study, this page, and reading time, format or screen count | The summary, lede, or the document's own opening (disclaimer, summary, intro) |
+| Project | none | Client, role, when, platform, live/status | The one-liner |
+| Essay | One dot per minute of reading | By, published, reading time, topic | Dek, cover, then the essay's opening |
+| LinkedIn post | none | Published, reading time, first shared | Dek, cover, then the post |
+| Case studies | Each study's colour and screen, linking to it | Number of studies, what each has | Lede |
+| Work | Live app icons, linking to their pages | Live apps (with check date), projects, building since | Lede |
+| Writing | Topic chips | Essays, short posts | Lede |
+
+- Header pages use `PageHead`. Long pages (study documents, essays, posts) use `.lead-grid`: the facts sit beside the markdown's intro (the text before the first `##`), which `rehype-sections` marks `.sec.intro`. On desktop the facts stick while the opening scrolls.
+- A page with no opening text gets its facts as one row across the full width.
+- Graphics are small and real (they show the page's own data or link somewhere), never decoration. Home and About keep their own heroes.
 
 ## 4. Type scale
 | Token | Size | Where |
@@ -55,12 +67,12 @@ Card titles inside grids may be smaller (21–34 px serif); they are part of the
 ## 6. Which layout for which page
 | Page | Layout | Body |
 |---|---|---|
-| Study overview | `StudyPage` → `CaseStudy` | Hero panel, summary and numbers full width; text as `.sec`; screens full width |
+| Study overview | `StudyPage` → `CaseStudy` → `PageHead` | Hero panel, summary and numbers full width; text as `.sec`; screens full width |
 | Project | `work/[slug]` → `CaseStudy` | Same as the overview |
 | Try it, Screen by screen | own pages | Phones and screen rows full width; group headings as `.sec` |
-| Full analysis, Test kit, Review coding, Sources | `StudyDoc` | Markdown as `.sec`; tables and figures full width |
-| Essay | `Essay` | Markdown as `.sec`; cover, figures and Try-this in the main column |
-| LinkedIn post | `Doc` | Markdown as `.sec` |
+| Full analysis, Test kit, Review coding, Sources | `StudyDoc` (`.lead-grid`) | Markdown as `.sec`; tables and figures full width |
+| Essay | `Essay` (`.lead-grid`) | Markdown as `.sec`; cover, figures and Try-this in the main column |
+| LinkedIn post | `Doc` (`.lead-grid`) | Markdown as `.sec` |
 | Case studies, Writing, Work | index pages | Lists and cards full width |
 | About | own page | The same side/main split for every row |
 | Home | own page | A composition of full-width blocks; `--display` hero |
@@ -76,7 +88,8 @@ Outside these rules: the Postpace landing page (`/linkedin/mitul-builds/posts/`)
 ## 8. Checking a change
 After `npm run build`, serve `dist/` and check at 1440, 1024 and 390 px:
 - every `.sec` spans the grid edge to edge, and every `.main`, lede and `.in-main` starts at the main column;
-- every h1 starts on the grid's left edge;
+- every h1 and every facts column starts on the grid's left edge, and every page except Home and About has a facts row;
 - no long paragraph sits outside a `.main`, `.in-main` or a card;
 - no horizontal scroll at 390 px, and the pager buttons fit;
 - `grep -rn "max-width: [0-9]" src | grep -v @media` lists only image sizes.
+- After changing `rehype-sections`, delete `.astro/` before building: Astro caches rendered markdown.

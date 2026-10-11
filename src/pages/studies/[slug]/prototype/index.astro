@@ -4,6 +4,8 @@ import { getCollection, getEntry } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import StudyTabs from '../../../../components/StudyTabs.astro';
 import StudyPager from '../../../../components/StudyPager.astro';
+import PageHead from '../../../../components/PageHead.astro';
+import StudyProgress from '../../../../components/StudyProgress.astro';
 export async function getStaticPaths() {
   return (await getCollection('prototypes')).map(p => ({ params: { slug: p.id }, props: { p } }));
 }
@@ -20,11 +22,11 @@ const groups = [
 <Base title={`${d.app} screen by screen · Mitul Vaghasiya`} description={d.intro} active="Case studies" image={`${base}og.png`} type="article"
   crumbs={[{ href: '/studies/', label: 'Case studies' }, { href: base, label: d.app }, { label: 'Screen by screen' }]}>
   <StudyTabs slug={p.id} current="screens" />
-  <header class="wrap page-head">
-    <p class="eyebrow">Screen by screen · {d.app}</p>
-    <h1>{d.title}</h1>
+  <PageHead eyebrow={`Screen by screen · ${d.app}`} title={d.title}
+    facts={[{ label: 'Study', value: `<a class="link" href="${base}">${d.app}</a>` }, { label: 'This page', value: 'Screen by screen' }, { label: 'Screens', value: `${d.today.length} today · ${d.proposal.length} proposed` }]}>
+    <StudyProgress slot="graphic" slug={p.id} current="screens" />
     <p class="lede">{d.intro}</p>
-  </header>
+  </PageHead>
 
   {groups.map(g => (
     <section class="wrap group">
