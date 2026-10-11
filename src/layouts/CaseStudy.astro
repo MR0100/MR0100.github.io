@@ -3,7 +3,6 @@ import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
 import Tabs from '../components/Tabs.astro';
 import PageHead from '../components/PageHead.astro';
-import StudyProgress from '../components/StudyProgress.astro';
 interface Meta { label: string; value: string }
 interface Props { study?: { slug: string; current: string }; tabs?: { label: string; href: string; current?: boolean }[]; image?: string;
   title: string; app: string; summary: string; meta: Meta[]; accent: string; icon?: string;
@@ -16,7 +15,6 @@ const { title, app, summary, meta, accent, icon, kind = 'Case study', active = '
   {tabs && <Tabs items={tabs} />}
   <article>
     <PageHead eyebrow={`${kind} · ${app}`} title={title} facts={meta}>
-      {study && <StudyProgress slot="graphic" {...study} />}
       <p class="lede">{summary}</p>
     </PageHead>
     <div class="wrap">

@@ -63,13 +63,13 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
 /* Long pages (study documents, essays, posts): the facts sit in the side column beside the page's opening text.
    The markdown intro's own grid dissolves into this one, so the first row has both columns filled. */
 .lead-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gap); align-items: start; }
-.lead-grid > .lead-facts { grid-column: 1; grid-row: 1 / span 3; position: sticky; top: 96px; }
+.lead-grid > .lead-facts { grid-column: 1; grid-row: 1 / span 3; }
 .lead-grid > :not(.sec):not(.lead-facts) { grid-column: 2; }
 .lead-grid > .sec { grid-column: 1 / -1; }
 .lead-grid > .sec.intro { display: contents; }
 .lead-grid > .sec:not(.intro) { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--line); }
 /* No opening text: the facts run across the top instead */
-.lead-grid:not(:has(> .sec.intro)) > .lead-facts { grid-column: 1 / -1; grid-row: auto; position: static; }
+.lead-grid:not(:has(> .sec.intro)) > .lead-facts { grid-column: 1 / -1; grid-row: auto; }
 .lead-grid:not(:has(> .sec.intro)) > .lead-facts .facts { grid-template-columns: repeat(3, 1fr); column-gap: var(--gap); }
 /* A single block that starts at the main column (ledes, notes, disclaimers) */
 .in-main { margin-left: calc((100% + 2 * var(--gap)) / 3); }
@@ -91,7 +91,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01e
   .sec > .wide { margin-top: 8px; }
   .in-main, .page-head .lede { margin-left: 0; }
   .lead-grid { display: block; }
-  .lead-grid > .lead-facts { position: static; margin-bottom: 28px; }
+  .lead-grid > .lead-facts { margin-bottom: 28px; }
   .lead-grid:not(:has(> .sec.intro)) > .lead-facts .facts { grid-template-columns: 1fr; }
 }
 

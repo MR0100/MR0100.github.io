@@ -19,7 +19,7 @@ The rules every page on the site follows, so a study, a project, an essay and an
 - A text section is a `.sec`: `.side` (eyebrow and h2) and `.main` (text). In markdown this happens automatically: `rehype-sections` puts each `##` (and the eyebrow just above it) in the side column, the text after it in the main column, and tables and `.figs` / `.wide` blocks across both. Text before the first `##` goes in the main column.
 - A single block that should start at the main column (a lede, a note) gets `.in-main`.
 - Sections are separated by a hairline across the full grid.
-- Side headings stick while their text scrolls past (desktop only).
+- Side headings stick while their own section's text scrolls past (desktop only); the section is their container, so they stop at its end.
 - Below 900 px the columns stack: heading, then text, both full width.
 - No one-off `max-width` values for text. Images may keep their own smaller size (a portrait, a square post cover).
 
@@ -33,7 +33,8 @@ Every page starts the same way:
 
 | Page | Graphic | Facts | Main column |
 |---|---|---|---|
-| Every study page | Study progress: one segment per part, the current one filled, each a link (`StudyProgress`) | Overview: type, method, timeline, status. Other parts: study, this page, and reading time, format or screen count | The summary, lede, or the document's own opening (disclaimer, summary, intro) |
+| Study overview | none (the hero panel follows straight after) | Type, method, timeline, status | The summary |
+| Other study pages | The study's tinted panel and screen, linking to the overview (`StudyThumb`), in the same style as the study cards | Study, this page, and reading time, format or screen count | The lede, or the document's own opening (disclaimer, summary, intro) |
 | Project | none | Client, role, when, platform, live/status | The one-liner |
 | Essay | One dot per minute of reading | By, published, reading time, topic | Dek, cover, then the essay's opening |
 | LinkedIn post | none | Published, reading time, first shared | Dek, cover, then the post |
@@ -41,9 +42,9 @@ Every page starts the same way:
 | Work | Live app icons, linking to their pages | Live apps (with check date), projects, building since | Lede |
 | Writing | Topic chips | Essays, short posts | Lede |
 
-- Header pages use `PageHead`. Long pages (study documents, essays, posts) use `.lead-grid`: the facts sit beside the markdown's intro (the text before the first `##`), which `rehype-sections` marks `.sec.intro`. On desktop the facts stick while the opening scrolls.
+- Header pages use `PageHead`. Long pages (study documents, essays, posts) use `.lead-grid`: the facts sit beside the markdown's intro (the text before the first `##`), which `rehype-sections` marks `.sec.intro`. The facts scroll with the page: never make them sticky, because a sticky item's limit is its whole container, so it slides over the sections below.
 - A page with no opening text gets its facts as one row across the full width.
-- Graphics are small and real (they show the page's own data or link somewhere), never decoration. Home and About keep their own heroes.
+- Graphics are small and real (they show the page's own data or link somewhere), never decoration, and they reuse the site's visual language: tinted panels with a phone screen, app icons, chips. No new graphic styles (progress bars, charts) for this slot. Home and About keep their own heroes.
 
 ## 4. Type scale
 | Token | Size | Where |
@@ -91,5 +92,6 @@ After `npm run build`, serve `dist/` and check at 1440, 1024 and 390 px:
 - every h1 and every facts column starts on the grid's left edge, and every page except Home and About has a facts row;
 - no long paragraph sits outside a `.main`, `.in-main` or a card;
 - no horizontal scroll at 390 px, and the pager buttons fit;
+- scrolling the whole page, the facts column never covers a section's heading or text;
 - `grep -rn "max-width: [0-9]" src | grep -v @media` lists only image sizes.
 - After changing `rehype-sections`, delete `.astro/` before building: Astro caches rendered markdown.

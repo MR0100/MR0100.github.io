@@ -4,7 +4,7 @@ import Base from './Base.astro';
 import StudyTabs from '../components/StudyTabs.astro';
 import StudyPager from '../components/StudyPager.astro';
 import Facts from '../components/Facts.astro';
-import StudyProgress from '../components/StudyProgress.astro';
+import StudyThumb from '../components/StudyThumb.astro';
 import { studyTabs } from '../data/studyNav';
 import { getEntry } from 'astro:content';
 interface Props { slug: string; app: string; current: string; label: string; title: string; description?: string; words?: number }
@@ -25,7 +25,7 @@ const facts = [
     <h1>{title}</h1>
   </header>
   <div class="wrap"><div class="sdoc lead-grid" style={`--fig-bg:${accent}`}>
-    <Facts class="lead-facts" items={facts}><StudyProgress slug={slug} current={current} /></Facts>
+    <Facts class="lead-facts" items={facts}><StudyThumb slug={slug} /></Facts>
     <slot />
   </div></div>
   <StudyPager slug={slug} current={current} />

@@ -5,7 +5,7 @@ import Base from '../../../../layouts/Base.astro';
 import StudyTabs from '../../../../components/StudyTabs.astro';
 import StudyPager from '../../../../components/StudyPager.astro';
 import PageHead from '../../../../components/PageHead.astro';
-import StudyProgress from '../../../../components/StudyProgress.astro';
+import StudyThumb from '../../../../components/StudyThumb.astro';
 export async function getStaticPaths() {
   return (await getCollection('prototypes')).map(p => ({ params: { slug: p.id }, props: { p } }));
 }
@@ -24,7 +24,7 @@ const groups = [
   <StudyTabs slug={p.id} current="screens" />
   <PageHead eyebrow={`Screen by screen · ${d.app}`} title={d.title}
     facts={[{ label: 'Study', value: `<a class="link" href="${base}">${d.app}</a>` }, { label: 'This page', value: 'Screen by screen' }, { label: 'Screens', value: `${d.today.length} today · ${d.proposal.length} proposed` }]}>
-    <StudyProgress slot="graphic" slug={p.id} current="screens" />
+    <StudyThumb slot="graphic" slug={p.id} />
     <p class="lede">{d.intro}</p>
   </PageHead>
 

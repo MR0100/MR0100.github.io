@@ -1,0 +1,19 @@
+---
+// A small graphic for the side column of a study's inner pages: the study's own tinted panel and screen,
+// in the same style as the study cards and hero panels. Links back to the overview.
+import { getEntry } from 'astro:content';
+interface Props { slug: string }
+const { slug } = Astro.props;
+const s = await getEntry('studies', slug);
+---
+{s && (
+  <a class="thumb" href={`/studies/${slug}/`} style={`background:${s.data.accent}`} aria-label={`${s.data.app} study overview`}>
+    <img src={s.data.cover} alt="" />
+  </a>
+)}
+
+<style>
+  .thumb { display: flex; justify-content: center; align-items: flex-start; height: 180px; padding-top: 22px; margin-bottom: 20px; border-radius: 16px; overflow: hidden; }
+  .thumb img { width: 34%; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .thumb:hover img { transform: translateY(-4px); }
+</style>
